@@ -1,0 +1,10 @@
+//
+//  Common+Localizable.strings
+//  Armony
+//
+//  Created by Koray Yıldız on 12.10.22.
+//
+
+"Common.Cancel" = "Vazgeç";
+"Common.OK" = "Tamam";
+"Common.Save" = "Kaydet";

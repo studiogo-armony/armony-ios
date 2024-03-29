@@ -1,0 +1,12 @@
+/* 
+  Feedback+Localizable.strings
+  Armony
+
+  Created by Koray Yildiz on 08.12.22.
+  
+*/
+
+"Feedback.SubjectSelection.Header.Title" = "Konu";
+"Feedback.Submission.Succes.Title" = "Mesajın bize ulaştı. Teşekkür ederiz.";
+"Feedback.SubmitButton.Title" = "Gönder";
+"Feedback.Title" = "Bize Ulaşın";

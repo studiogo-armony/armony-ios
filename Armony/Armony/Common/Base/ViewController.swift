@@ -1,0 +1,40 @@
+//
+//  ViewController.swift
+//  Armony
+//
+//  Created by Koray Yıldız on 22.08.2021.
+//
+
+import UIKit
+
+private struct Constants {
+    static let seperator = "ViewController"
+}
+
+public protocol ViewController {
+    static var storyboardName: UIStoryboard.Name { get }
+}
+
+extension ViewController where Self: UIViewController {
+
+    static func allocate<V: UIViewController>(suffix: String) -> V {
+        guard let identifier = "\(self)".components(separatedBy: Constants.seperator).first else {
+            preconditionFailure("Unable to initiliaze view controller with name \(self)")
+        }
+        return StoryboardLoader.shared.board(with: storyboardName).allocate(with: identifier + suffix)
+    }
+
+    static func controller() -> Self {
+        if storyboardName == .none {
+            return Self()
+        }
+        return allocate(suffix: .empty)
+    }
+
+    static func navigator() -> Navigator {
+        if storyboardName == .none {
+            return Navigator(rootViewController: controller())
+        }
+        return allocate(suffix: "Navigator")
+    }
+}
