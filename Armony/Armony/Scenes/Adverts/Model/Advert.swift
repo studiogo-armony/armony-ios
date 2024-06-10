@@ -39,6 +39,7 @@ public struct Advert: Decodable {
     let skills: [Skill]
     let user: ArmonyUser
     let status: Advert.Status
+    let updateDate: String
 
     var isStatusActive: Bool {
         return status == .active
@@ -49,5 +50,6 @@ public struct Advert: Decodable {
         case id, description, genres, skills, user, isActive, status
         case type = "adType"
         case location = "city"
+        case updateDate = "updatedAt"
     }
 }

@@ -8,7 +8,7 @@
 import UIKit
 
 private struct Constant {
-    static let heightForCell: CGFloat = 193
+    static let heightForCell: CGFloat = 186
     static let heightForSectionHeader: CGFloat = 112
 }
 

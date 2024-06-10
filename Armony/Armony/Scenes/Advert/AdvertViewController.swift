@@ -13,7 +13,7 @@ protocol AdvertViewDelegate: AnyObject, ActivityIndicatorShowing, NavigationBarC
     func configureSkillsView(with presentation: SkillsPresentation)
     func configureGenresView(with presentation: MusicGenresPresentation)
 
-    func setAppyButtonBackgroundColor(_ color: UIColor)
+//    func setAppyButtonBackgroundColor(_ color: UIColor)
     func setDescriptionLabel(description: String)
 
     func setRemoveAdvertsButtonVisibility(isHidden: Bool)
@@ -113,6 +113,9 @@ final class AdvertViewController: UIViewController, ViewController {
     func configureUI() {
         view.backgroundColor = .armonyDarkBlue
         sendMessageButton.makeAllCornersRounded(radius: .medium)
+        sendMessageButton.makeBordered(width: .default, color: .blue)
+        sendMessageButton.setBackgroundColor(.darkBlue)
+
         removeAdvertsButton.makeAllCornersRounded(radius: .medium)
         activateAdvertButton.makeAllCornersRounded(radius: .medium)
         activateAdvertButton.makeBordered(width: .default, color: .blue)
@@ -158,9 +161,9 @@ extension AdvertViewController: AdvertViewDelegate {
         removeAdvertsButton.isHidden = isHidden
     }
 
-    func setAppyButtonBackgroundColor(_ color: UIColor) {
-        sendMessageButton.backgroundColor = color
-    }
+//    func setAppyButtonBackgroundColor(_ color: UIColor) {
+//        sendMessageButton.backgroundColor = color
+//    }
 
     func configureUserSummaryView(with presentation: UserSummaryPresentation) {
         userSummaryView.configure(with: presentation)

@@ -13,7 +13,6 @@ public struct CardPresentation {
     public let colorCode: String
     public let isActive: Bool
     public let status: Advert.Status
-    public let titleAccessoryPresentation: TitleAccessoryPresentation
     public let userSummaryPresentation : UserSummaryPresentation
     public let skillsPresentation: SkillsPresentation
 
@@ -21,14 +20,12 @@ public struct CardPresentation {
                 colorCode: String,
                 isActive: Bool,
                 status: Advert.Status,
-                titleAccessoryPresentation: TitleAccessoryPresentation,
                 userSummaryPresentation: UserSummaryPresentation,
                 skillsPresentation: SkillsPresentation) {
         self.id = id
         self.colorCode = colorCode
         self.isActive = isActive
         self.status = status
-        self.titleAccessoryPresentation = titleAccessoryPresentation
         self.userSummaryPresentation = userSummaryPresentation
         self.skillsPresentation = skillsPresentation
     }
@@ -39,16 +36,16 @@ public struct CardPresentation {
         isActive = advert.isActive
         status = advert.status
 
-        titleAccessoryPresentation = TitleAccessoryPresentation(
-            title: advert.type.title.attributed(.armonyWhite, font: .regularSubheading),
-            accessoryImage: .static("right-arrow-icon".image)
+        let avatarPresentation = AvatarPresentation(
+            kind: .custom(.init(size: .custom(72), radius: .medium)),
+            source: .url(advert.user.avatarURL)
         )
-
-        let avatarPresentation = AvatarPresentation(size: .small, source: .url(advert.user.avatarURL))
         userSummaryPresentation = UserSummaryPresentation(
             avatarPresentation: avatarPresentation,
             name: advert.user.name.attributed(color: .white, font: .regularBody),
-            location: advert.location.title.attributed(color: .white, font: .regularBody)
+            location: advert.location.title.attributed(color: .white, font: .regularBody), 
+            cardTitle: advert.type.title.attributed(.armonyWhite, font: .semiboldHeading), 
+            updateDate: advert.updateDate.attributed(color: .white, font: .regularBody)
         )
 
         skillsPresentation = SkillsPresentation(
@@ -64,7 +61,6 @@ public struct CardPresentation {
                                         colorCode: .empty,
                                         isActive: false, 
                                         status: .inactive,
-                                        titleAccessoryPresentation: .empty,
                                         userSummaryPresentation: .empty(),
                                         skillsPresentation: .empty)
 }

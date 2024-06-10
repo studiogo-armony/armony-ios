@@ -9,39 +9,60 @@ import UIKit
 
 struct AvatarPresentation {
 
-    enum Size {
-        /// 52.0
-        case small
-
-        /// 80.0
-        case medium
-
-        /// Custom size
-        case custom(CGFloat)
+    enum Kind {
+        case circled(AvatarPresentation.Configuration)
+        case custom(AvatarPresentation.Configuration)
 
         var size: CGSize {
             switch self {
-            case .small:
-                return CGSize(size: 52.0)
+            case .circled(let config):
+                return config.size.size
 
-            case .medium:
-                return CGSize(size: 80.0)
-
-            case .custom(let width):
-                return CGSize(size: width)
+            case .custom(let config):
+                return config.size.size
             }
-        }
-
-        var width: CGFloat {
-            return size.width
         }
     }
 
-    private(set) var size: AvatarPresentation.Size
+    // MARK: - Configuration
+    struct Configuration {
+        enum Size {
+            /// 52.0
+            case small
+
+            /// 80.0
+            case medium
+
+            /// Custom size
+            case custom(CGFloat)
+
+            var size: CGSize {
+                switch self {
+                case .small:
+                    return CGSize(size: 52.0)
+
+                case .medium:
+                    return CGSize(size: 80.0)
+
+                case .custom(let width):
+                    return CGSize(size: width)
+                }
+            }
+        }
+        let size: Size
+        let radius: AppTheme.Radius?
+
+        init(size: Size, radius: AppTheme.Radius? = nil) {
+            self.size = size
+            self.radius = radius
+        }
+    }
+
+    private(set) var kind: AvatarPresentation.Kind
     private(set) var source: ImageSource
 
-    init(size: AvatarPresentation.Size, source: ImageSource) {
-        self.size = size
+    init(kind: AvatarPresentation.Kind, source: ImageSource) {
+        self.kind = kind
 
         switch source {
         case .static(let image):
@@ -53,5 +74,5 @@ struct AvatarPresentation {
     }
 
     // MARK: - EMPTY
-    static let empty = AvatarPresentation(size: .small, source: .static(.avatarPlaceholder))
+    static let empty = AvatarPresentation(kind: .circled(.init(size: .small)), source: .static(.avatarPlaceholder))
 }

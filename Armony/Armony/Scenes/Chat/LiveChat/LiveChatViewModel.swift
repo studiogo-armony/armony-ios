@@ -260,15 +260,12 @@ fileprivate extension Advert {
     func cardPresentation() -> CardPresentation {
         let colorCode = type.colorCode
 
-        let titleAccessoryPresentation = TitleAccessoryPresentation(
-            title: type.title.attributed(.armonyWhite, font: .regularSubheading),
-            accessoryImage: .static("right-arrow-icon".image)
-        )
-
         let userSummaryPresentation = UserSummaryPresentation(
-            avatarPresentation: .init(size: .small, source: .url(user.avatarURL)),
+            avatarPresentation: .init(kind: .custom(.init(size: .custom(72))), source: .url(user.avatarURL)),
             name: user.name.attributed(color: .white, font: .regularBody),
-            location: location.title.attributed(color: .white, font: .regularBody)
+            location: location.title.attributed(color: .white, font: .regularBody),
+            cardTitle: type.title.attributed(.armonyWhite, font: .semiboldSubheading), 
+            updateDate: updateDate.attributed(color: .white, font: .regularBody)
         )
 
         let skillsPresentation = SkillsPresentation(
@@ -282,7 +279,6 @@ fileprivate extension Advert {
                                 colorCode: colorCode,
                                 isActive: isActive, 
                                 status: status,
-                                titleAccessoryPresentation: titleAccessoryPresentation,
                                 userSummaryPresentation: userSummaryPresentation,
                                 skillsPresentation: skillsPresentation)
     }

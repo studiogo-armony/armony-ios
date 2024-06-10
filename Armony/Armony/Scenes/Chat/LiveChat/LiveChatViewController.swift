@@ -190,7 +190,7 @@ extension LiveChatViewController: MessagesDataSource {
 
     func headerViewSize(for section: Int, in messagesCollectionView: MessagesCollectionView) -> CGSize {
         if section == .zero {
-            return CGSize(width: messagesCollectionView.frame.size.width, height: 226)
+            return CGSize(width: messagesCollectionView.frame.size.width, height: 187 + 32)
         }
         return .zero
     }

@@ -29,7 +29,7 @@ final class ChatCell: UITableViewCell {
         subtitleLabel.textColor = .armonyWhite
         subtitleLabel.text = presentation.previewMessage
 
-        let avatarPresentation = AvatarPresentation(size: .custom(44),
+        let avatarPresentation = AvatarPresentation(kind: .custom(.init(size: .custom(44), radius: .low)),
                                                     source: .url(presentation.avatarURL))
         avatarView.configure(with: avatarPresentation)
         separatorView.configure(with: .separator)

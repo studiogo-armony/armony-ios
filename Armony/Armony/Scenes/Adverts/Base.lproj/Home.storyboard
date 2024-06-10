@@ -111,13 +111,14 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="uSS-XA-deR">
                                         <rect key="frame" x="0.0" y="642" width="414" height="140"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dtS-l2-b2L">
+                                            <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dtS-l2-b2L">
                                                 <rect key="frame" x="16" y="0.0" width="382" height="44"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="VVy-NP-hPf"/>
                                                 </constraints>
                                                 <inset key="contentEdgeInsets" minX="42" minY="0.0" maxX="42" maxY="0.0"/>
-                                                <state key="normal" title="Button"/>
+                                                <inset key="imageEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <state key="normal" title="Button" image="send-message-right-arrow-icon"/>
                                                 <connections>
                                                     <action selector="applyButtonTapped" destination="1QS-m0-Mcg" eventType="touchUpInside" id="qsZ-34-WMP"/>
                                                 </connections>
@@ -185,6 +186,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="send-message-right-arrow-icon" width="24" height="24"/>
         <namedColor name="armonyBlack">
             <color red="0.054901960784313725" green="0.0039215686274509803" blue="0.16470588235294117" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

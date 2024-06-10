@@ -9,7 +9,6 @@ import UIKit
 
 final class AvatarView: UIView, NibLoadable {
 
-    @IBOutlet private weak var borderImageView: UIImageView!
     @IBOutlet weak var borderImageViewWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var imageView: UIImageView!
 
@@ -27,21 +26,21 @@ final class AvatarView: UIView, NibLoadable {
 
     private func configure() {
         imageView.contentMode = .scaleAspectFill
-        borderImageView.contentMode = .scaleAspectFill
-        borderImageView.bringSubviewToFront(self)
         imageView.image = .avatarPlaceholder
-        DispatchQueue.main.async {
-            self.imageView.circled()
-        }
     }
 
     func configure(with presentation: AvatarPresentation) {
-        if borderImageViewWidthConstraint.constant != presentation.size.width {
-            borderImageViewWidthConstraint.constant = presentation.size.width
+        if borderImageViewWidthConstraint.constant != presentation.kind.size.width {
+            borderImageViewWidthConstraint.constant = presentation.kind.size.width
         }
         imageView.setImage(source: presentation.source) { [weak self] _ in
-            DispatchQueue.main.async {
-                self?.imageView.circled()
+            switch presentation.kind {
+            case .circled:
+                DispatchQueue.main.async {
+                    self?.imageView.circled()
+                }
+            case .custom(let config):
+                self?.imageView.makeAllCornersRounded(radius: config.radius.ifNil(.medium))
             }
         }
     }

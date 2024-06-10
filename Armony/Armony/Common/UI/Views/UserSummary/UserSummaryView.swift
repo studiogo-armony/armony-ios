@@ -14,9 +14,11 @@ protocol UserSummaryViewDelegate: AnyObject {
 final class UserSummaryView: UIView, NibLoadable {
 
     @IBOutlet private weak var avatarView: AvatarView!
+    @IBOutlet private weak var cardTitleLabel: UILabel!
+    @IBOutlet private weak var dateImageView: UIImageView!
+    @IBOutlet private weak var cardDateLabel: UILabel!
     @IBOutlet private weak var nameLabel: UILabel!
-    @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var statusLabel: UILabel!
+    @IBOutlet private weak var userTitleLabel: UILabel!
     @IBOutlet private weak var locationLabel: UILabel!
     @IBOutlet private weak var locationImageView: UIImageView!
     @IBOutlet private(set) weak var infoDotButton: UIButton!
@@ -54,10 +56,18 @@ final class UserSummaryView: UIView, NibLoadable {
 
     func configure(with presentation: UserSummaryPresentation) {
         avatarView.configure(with: presentation.avatarPresentation)
+        
+        cardTitleLabel.hidableAttributedText = presentation.cardTitle
+        cardDateLabel.hidableAttributedText = presentation.updateDate
+        dateImageView.isHidden = cardDateLabel.isHidden
+
+        let parentStackView = (dateImageView.superview as? UIStackView)
+        let hasVisibleView = parentStackView?.subviews.first { $0.isHidden == false }
+        parentStackView?.isHidden = hasVisibleView.isNil
+
         nameLabel.hidableAttributedText = presentation.name
-        titleLabel.hidableAttributedText = presentation.title
+        userTitleLabel.hidableAttributedText = presentation.title
         infoDotButton.isHidden = !presentation.shouldShowDotsButton
-        statusLabel.isHidden = true
         locationLabel.hidableAttributedText = presentation.location
         locationImageView.isHidden = presentation.location.ifNil(.empty).string.isEmpty
     }

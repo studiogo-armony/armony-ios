@@ -68,6 +68,8 @@ public extension String {
     var emptyStateButtonAttributed: NSAttributedString {
         return attributed(color: .white, font: .semiboldHeading)
     }
+
+
 }
 
 // MARK: - AppColor - HEX

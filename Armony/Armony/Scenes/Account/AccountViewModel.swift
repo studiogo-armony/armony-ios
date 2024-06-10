@@ -57,12 +57,14 @@ final class AccountViewModel: ViewModel {
             case .success(let response):
                 self?.response = response.data
 
-                let avatar = AvatarPresentation(size: .medium, source: .url(response.data.avatarURL))
+                let avatar = AvatarPresentation(kind: .circled(.init(size: .medium)), source: .url(response.data.avatarURL))
                 let userSummaryPresentation = UserSummaryPresentation(
                     avatarPresentation: avatar,
                     name: response.data.name.attributed(color: .white, font: .regularHeading),
                     title: response.data.title?.title.attributed(color: .white, font: .lightBody),
-                    location: response.data.location?.title.attributed(color: .white, font: .regularBody)
+                    location: response.data.location?.title.attributed(color: .white, font: .regularBody), 
+                    cardTitle: .empty, 
+                    updateDate: nil
                 )
 
                 self?.view?.configureUserSummaryView(with: userSummaryPresentation)

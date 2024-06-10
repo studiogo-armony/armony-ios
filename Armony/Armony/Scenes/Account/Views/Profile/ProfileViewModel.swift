@@ -38,7 +38,7 @@ final class ProfileViewModel: ViewModel {
     func textViewDidEndEditing(text: String) {
         request.bio = text
     }
-    
+
     func saveButtonDidTap() {
         view?.startSaveButtonActivityIndicatorView()
         let profileTask = PutProfileTask(userID: authenticator.userID, request: request)
@@ -231,7 +231,7 @@ extension ProfileViewModel: ViewModelLifeCycle {
         view?.configureUI()
 
         let avatarPresentation = AvatarPresentation(
-            size: .custom(88),
+            kind: .custom(.init(size: .custom(72), radius: .medium)),
             source: .url(presentation.avatarURLString?.url)
         )
         view?.configureAvatarView(with: avatarPresentation)
@@ -349,3 +349,4 @@ struct CreateProfileFirebaseEvent: FirebaseEvent {
     var action: String = "Complete"
     var parameters: Payload
 }
+

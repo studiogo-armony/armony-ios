@@ -22,8 +22,8 @@ final class AdvertCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        cardView.makeAllCornersRounded(radius: .medium)
-        cardView.backgroundColor = .armonyDarkBlue
+        cardView.makeAllCornersRounded(radius: .high)
+//        cardView.backgroundColor = .armonyDarkBlue
 
         visualEffectView.frame = cardView.bounds
         cardView.addSubview(visualEffectView)
@@ -40,7 +40,7 @@ final class AdvertCell: UICollectionViewCell {
             colorCode: presentation.colorCode,
             isActive: presentation.isActive, 
             status: presentation.status,
-            titleAccessoryPresentation: presentation.titleAccessoryPresentation,
+//            titleAccessoryPresentation: presentation.titleAccessoryPresentation,
             userSummaryPresentation: presentation.userSummaryPresentation,
             skillsPresentation: presentation.skillsPresentation
         )

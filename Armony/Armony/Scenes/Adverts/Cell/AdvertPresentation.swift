@@ -27,11 +27,13 @@ struct AdvertPresentation {
             accessoryImage: .static("right-arrow-icon".image)
         )
 
-        let avatarPresentation =  AvatarPresentation(size: .small, source: .url(advert.user.avatarURL))
+        let avatarPresentation =  AvatarPresentation(kind: .custom(.init(size: .custom(72), radius: .medium)), source: .url(advert.user.avatarURL))
         userSummaryPresentation = UserSummaryPresentation(
             avatarPresentation: avatarPresentation,
             name: advert.user.name.attributed(color: .white, font: .regularBody),
-            location: advert.location.title.attributed(color: .white, font: .regularBody)
+            location: advert.location.title.attributed(color: .white, font: .regularBody), 
+            cardTitle: advert.type.title.attributed(.armonyWhite, font: .semiboldHeading), 
+            updateDate: nil
         )
 
         skillsPresentation = SkillsPresentation(

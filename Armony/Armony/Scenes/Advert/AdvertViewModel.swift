@@ -308,14 +308,15 @@ extension AdvertViewModel: ViewModelLifeCycle {
                 // UserSummary
                 let shouldShowDotsButton = response.data.user.id != AuthenticationService.shared.userID
                 let avatarPresentation = AvatarPresentation(
-                    size: .custom(72),
+                    kind: .custom(.init(size: .custom(72), radius: .medium)),
                     source: .url(response.data.user.avatarURL)
                 )
                 let userSummaryPresentation = UserSummaryPresentation(
                     avatarPresentation: avatarPresentation,
                     shouldShowDotsButton: shouldShowDotsButton,
                     name: response.data.user.name.attributed(color: .white, font: .regularHeading),
-                    location: response.data.location.title.attributed(color: .white, font: .regularBody)
+                    location: response.data.location.title.attributed(color: .white, font: .regularBody), 
+                    cardTitle: .empty
                 )
                 self?.view?.configureUserSummaryView(with: userSummaryPresentation)
                 self?.view?.setRemoveAdvertsButtonVisibility(isHidden: response.data.user.id != AuthenticationService.shared.userID)
@@ -325,7 +326,7 @@ extension AdvertViewModel: ViewModelLifeCycle {
                 self?.view?.setApplyButtonButtonVisibility(isHidden: isApplyButtonHidden)
 
                 self?.view?.setDescriptionLabel(description: response.data.description.emptyIfNil)
-                self?.view?.setAppyButtonBackgroundColor(response.data.type.colorCode.colorFromHEX)
+//                self?.view?.setAppyButtonBackgroundColor(response.data.type.colorCode.colorFromHEX)
 
                 // Skills
                 let skillsPresentation = SkillsPresentation(

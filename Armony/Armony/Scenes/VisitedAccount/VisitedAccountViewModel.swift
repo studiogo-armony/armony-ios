@@ -31,13 +31,15 @@ final class VisitedAccountViewModel: ViewModel {
                 self?.response = response.data
 
                 let _ = self?.userID != self?.authenticator.userID
-                let avatar = AvatarPresentation(size: .medium, source: .url(response.data.avatarURL))
+                let avatar = AvatarPresentation(kind: .custom(.init(size: .custom(72), radius: .medium)), source: .url(response.data.avatarURL))
                 let userSummaryPresentation = UserSummaryPresentation(
                     avatarPresentation: avatar,
                     shouldShowDotsButton: false,
                     name: response.data.name.attributed(color: .white, font: .regularHeading),
                     title: response.data.title?.title.attributed(color: .white, font: .lightBody),
-                    location: response.data.location?.title.attributed(color: .white, font: .regularBody)
+                    location: response.data.location?.title.attributed(color: .white, font: .regularBody),
+                    cardTitle: .empty, 
+                    updateDate: nil
                 )
 
                 self?.view?.configureUserSummaryView(with: userSummaryPresentation)

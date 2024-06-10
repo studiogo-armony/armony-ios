@@ -21,3 +21,10 @@ extension Int {
         return NSNotFound
     }
 }
+
+
+extension Double   {
+    var ns: NSNumber {
+        NSNumber(value: self)
+    }
+}

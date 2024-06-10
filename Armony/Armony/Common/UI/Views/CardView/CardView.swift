@@ -9,24 +9,31 @@ import UIKit
 
 public final class CardView: UIView, NibLoadable {
 
-    @IBOutlet private weak var titleContainerView: UIView!
-    @IBOutlet private weak var titleAccessoryView: TitleAccessoryView!
+    @IBOutlet private weak var colorfulHeaderView: UIView!
+    @IBOutlet private weak var infoContainerView: UIView!
     @IBOutlet private weak var userSummaryView: UserSummaryView!
     @IBOutlet private weak var skillsView: SkillsView!
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         initFromNib()
+        configureUI()
     }
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         initFromNib()
+        configureUI()
+    }
+
+    fileprivate func configureUI() {
+        colorfulHeaderView.makeCornersRounded(radius: .medium, CALayer.topCorners)
+        infoContainerView.makeCornersRounded(radius: .medium, CALayer.topCorners)
+        infoContainerView.setBackgroundColor(.darkBlue)
     }
 
     public func configure(presentation: CardPresentation) {
-        titleContainerView.backgroundColor = presentation.colorCode.colorFromHEX
-        titleAccessoryView.configure(with: presentation.titleAccessoryPresentation)
+        colorfulHeaderView.backgroundColor = presentation.colorCode.colorFromHEX
         userSummaryView.configure(with: presentation.userSummaryPresentation)
         skillsView.configure(with: presentation.skillsPresentation)
     }
