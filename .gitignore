@@ -90,3 +90,7 @@ fastlane/test_output
 # https://github.com/johnno1962/injectionforxcode
 
 iOSInjectionProject/
+
+#Other
+/Armony/Armony/Resources/Firebase
+/Armony/Armony/Resources/Configs
