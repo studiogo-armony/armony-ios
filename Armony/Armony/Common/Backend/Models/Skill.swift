@@ -19,6 +19,25 @@ struct Skill: Codable {
         case title = "name"
         case colorCode
     }
+
+    init(id: Int, iconURL: URL?, title: String, colorCode: String?) {
+        self.id = id
+        self.iconURL = iconURL
+        self.title = title
+        self.colorCode = colorCode
+    }
+
+    init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try container.decode(Int.self, forKey: .id)
+        do {
+            self.iconURL = try container.decodeIfPresent(URL.self, forKey: .iconURL)
+        } catch {
+            self.iconURL = nil
+        }
+        self.title = try container.decode(String.self, forKey: .title)
+        self.colorCode = try container.decodeIfPresent(String.self, forKey: .colorCode)
+    }
 }
 
 // MARK: - Location
@@ -75,6 +94,21 @@ extension RestArrayResponse where T == MusicGenre {
                 id: advertType.id,
                 title: advertType.name,
                 isSelected: selectedIDs.contains(advertType.id)
+            )
+        }
+        return items
+    }
+}
+
+// MARK: - ServiceResponse
+extension RestArrayResponse where T == ServiceResponse {
+
+    func itemsForSelection(selectedIDs: [Int]) -> [ServiceSelectionInput] {
+        let items: [ServiceSelectionInput] = data.compactMap { service in
+            return ServiceSelectionInput(
+                id: service.id,
+                title: service.title,
+                isSelected: selectedIDs.contains(service.id)
             )
         }
         return items

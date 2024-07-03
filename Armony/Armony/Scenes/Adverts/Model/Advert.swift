@@ -34,12 +34,15 @@ public struct Advert: Decodable {
     let location: Location
     let description: String?
     let type: Advert.Properties
-    let genres: [MusicGenre]
+    @DefaultDecodable<EmptyDefault>
+    var genres: [MusicGenre]
     let isActive: Bool
     let skills: [Skill]
     let user: ArmonyUser
     let status: Advert.Status
     let updateDate: String
+    @DefaultDecodable<EmptyDefault>
+    var serviceTypes: [ServiceResponse]
 
     var isStatusActive: Bool {
         return status == .active
@@ -47,7 +50,7 @@ public struct Advert: Decodable {
 
     // MARK: - CodingKeys
     enum CodingKeys: String, CodingKey {
-        case id, description, genres, skills, user, isActive, status
+        case id, description, genres, skills, user, isActive, status, serviceTypes
         case type = "adType"
         case location = "city"
         case updateDate = "updatedAt"

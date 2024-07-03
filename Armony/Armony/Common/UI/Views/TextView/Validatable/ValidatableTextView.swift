@@ -38,4 +38,8 @@ final class ValidatableTextView: TextView, ValidationResponder {
 
         return rules.validate(input: text)
     }
+
+    func revalidate() {
+        validationResult = validate(for: textView.text)
+    }
 }

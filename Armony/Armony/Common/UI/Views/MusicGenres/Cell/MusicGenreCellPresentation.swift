@@ -22,4 +22,14 @@ struct MusicGenreItemPresentation {
         self.id = genre.id
         self.title = genre.name.attributed(titleStyle.color, font: titleStyle.font)
     }
+
+    init(genre: ServiceResponse, titleStyle: TextAppearancePresentation) {
+        self.id = genre.id
+        self.title = genre.title.attributed(titleStyle.color, font: titleStyle.font)
+    }
+
+    init(genre: Skill, titleStyle: TextAppearancePresentation) {
+        self.id = genre.id
+        self.title = genre.title.attributed(titleStyle.color, font: titleStyle.font)
+    }
 }

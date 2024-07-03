@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CardView" customModule="Armony" customModuleProvider="target">
             <connections>
                 <outlet property="colorfulHeaderView" destination="9TD-NZ-2T0" id="hmH-DV-H5o"/>
+                <outlet property="genreView" destination="Kba-2V-dt5" id="JqE-za-w6S"/>
                 <outlet property="infoContainerView" destination="BbH-ob-7V7" id="iIy-1w-K7t"/>
                 <outlet property="skillsView" destination="jS6-Bv-IKy" id="UwN-I9-CFS"/>
                 <outlet property="userSummaryView" destination="Ice-dR-V1F" id="VvP-g1-KMA"/>
@@ -36,10 +37,13 @@
                                     <rect key="frame" x="16" y="16" width="757" height="436"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" placeholderIntrinsicWidth="557" placeholderIntrinsicHeight="117" translatesAutoresizingMaskIntoConstraints="NO" id="Ice-dR-V1F" customClass="UserSummaryView" customModule="Armony" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="757" height="370"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="757" height="226"/>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jS6-Bv-IKy" customClass="SkillsView" customModule="Armony" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="386" width="757" height="50"/>
+                                            <rect key="frame" x="0.0" y="242" width="757" height="50"/>
+                                        </view>
+                                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="757" placeholderIntrinsicHeight="128" translatesAutoresizingMaskIntoConstraints="NO" id="Kba-2V-dt5" customClass="MusicGenresView" customModule="Armony" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="308" width="757" height="128"/>
                                         </view>
                                     </subviews>
                                 </stackView>

@@ -35,4 +35,8 @@ final class ValidatableDropdownView: DropdownView, ValidationResponder {
         super.updateText(text)
         validationResult = rules.validate(input: textField.text)
     }
+
+    func revalidate() {
+        validationResult = rules.validate(input: textField.text)
+    }
 }

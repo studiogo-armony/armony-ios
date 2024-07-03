@@ -13,12 +13,14 @@ struct CreateAdvertRequest: Encodable {
     var location: Location?
     var genres: [MusicGenre]?
     var description: String?
+    var serviceTypes: [ServiceResponse]?
 
     init(advertTypeID: Int,
          city: Location,
          genres: [MusicGenre],
          skills: [Skill],
-         description: String?) {
+         description: String?,
+         serviceTypes: [ServiceResponse]?) {
         self.advertTypeID = advertTypeID
         self.location = city
         self.genres = genres
@@ -30,6 +32,7 @@ struct CreateAdvertRequest: Encodable {
         case advertTypeID = "adTypeId"
         case location = "city"
         case skills, genres, description
+        case serviceTypes
     }
 
     // MARK: - EMPTY
@@ -38,6 +41,7 @@ struct CreateAdvertRequest: Encodable {
         city: .empty,
         genres: .empty,
         skills: .empty,
-        description: nil
+        description: nil, 
+        serviceTypes: .empty
     )
 }

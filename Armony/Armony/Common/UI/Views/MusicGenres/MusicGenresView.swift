@@ -36,13 +36,13 @@ final class MusicGenresView: UIView, NibLoadable {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        self.collectionViewHeightConstraint.constant = self.collectionView.contentSize.height
+        self.collectionViewHeightConstraint.constant = presentation.shouldAdjustCellHeight ? presentation.cellHeight : self.collectionView.contentSize.height
     }
 
     private func configureCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
-        flowLayout.scrollDirection = .vertical
+        flowLayout.scrollDirection = presentation.shouldAdjustCellHeight ? .horizontal : .vertical
         collectionView.isScrollEnabled = false
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.registerCells(for: [MusicGenreCell.self])

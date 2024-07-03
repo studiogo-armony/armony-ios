@@ -12,6 +12,7 @@ protocol AdvertViewDelegate: AnyObject, ActivityIndicatorShowing, NavigationBarC
     func configureUserSummaryView(with presentation: UserSummaryPresentation)
     func configureSkillsView(with presentation: SkillsPresentation)
     func configureGenresView(with presentation: MusicGenresPresentation)
+    func configureInstructionTypesView(with presentation: MusicGenresPresentation)
 
 //    func setAppyButtonBackgroundColor(_ color: UIColor)
     func setDescriptionLabel(description: String)
@@ -72,6 +73,8 @@ final class AdvertViewController: UIViewController, ViewController {
         return infoView
     }()
 
+    private lazy var instructionTypesView = MusicGenresView()
+
     var viewModel: AdvertViewModel!
 
     @IBAction private func applyButtonTapped() {
@@ -98,6 +101,8 @@ final class AdvertViewController: UIViewController, ViewController {
         userSummaryView.didTapAvatarView = { [weak self] _ in
             self?.viewModel.nameDidTap()
         }
+
+        scrollableContentStackView.addArrangedSubview(instructionTypesView)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -159,6 +164,11 @@ extension AdvertViewController: AdvertViewDelegate {
 
     func setRemoveAdvertsButtonVisibility(isHidden: Bool) {
         removeAdvertsButton.isHidden = isHidden
+    }
+
+    func configureInstructionTypesView(with presentation: MusicGenresPresentation) {
+        instructionTypesView.configure(with: presentation)
+        skillsView.isHidden = !presentation.items.isEmpty
     }
 
 //    func setAppyButtonBackgroundColor(_ color: UIColor) {

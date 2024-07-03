@@ -12,3 +12,13 @@ struct GetAdvertTypesTask: HTTPTask {
     var method: HTTPMethod = .get
     var path: String = "/adtypes"
 }
+
+struct GetServicesTask: HTTPTask {
+    var method: HTTPMethod = .get
+    var path: String
+
+
+    init(adTypeID: Int) {
+        self.path = "/adtypes/\(adTypeID)/servicetypes"
+    }
+}

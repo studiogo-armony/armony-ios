@@ -328,15 +328,6 @@ extension AdvertViewModel: ViewModelLifeCycle {
                 self?.view?.setDescriptionLabel(description: response.data.description.emptyIfNil)
 //                self?.view?.setAppyButtonBackgroundColor(response.data.type.colorCode.colorFromHEX)
 
-                // Skills
-                let skillsPresentation = SkillsPresentation(
-                    type: .advert(imageViewContainerViewBorderColor: response.data.type.colorCode.colorFromHEX),
-                    title: response.data.type.skillTitle.attributed(color: .white, font: .lightBody),
-                    skillTitleStyle: .init(color: .white, font: .lightBody),
-                    skills: response.data.skills
-                )
-                self?.view?.configureSkillsView(with: skillsPresentation)
-
                 // Genre
                 let genreItemTitleStyle = TextAppearancePresentation(color: .white, font: .lightBody)
                 let genreItems: [MusicGenreItemPresentation] = response.data.genres.lazy.map {
@@ -348,6 +339,54 @@ extension AdvertViewModel: ViewModelLifeCycle {
                     items: genreItems
                 )
                 self?.view?.configureGenresView(with: genresPresentation)
+
+                // Instruction Type
+                if response.data.type.id == 4 {
+                    let genreItems: [MusicGenreItemPresentation] = response.data.serviceTypes.lazy.map {
+                        MusicGenreItemPresentation(genre: $0, titleStyle: genreItemTitleStyle)
+                    }
+                    let genresPresentation = MusicGenresPresentation(
+                        title: "Eğitim Şekli".attributed(color: .white, font: .lightBody), // TODO: - Localizable
+                        cellBorderColor: response.data.type.colorCode.colorFromHEX,
+                        items: genreItems
+                    )
+                    self?.view?.configureInstructionTypesView(with: genresPresentation)
+
+                    // Skills
+
+                    let instructionServices: [MusicGenreItemPresentation] = response.data.skills.lazy.map {
+                        MusicGenreItemPresentation(genre: $0, titleStyle: genreItemTitleStyle)
+                    }
+                    let instructionServicesPresentation = MusicGenresPresentation(
+                        title: response.data.type.skillTitle.attributed(color: .white, font: .lightBody), // TODO: - Localizable
+                        cellBorderColor: response.data.type.colorCode.colorFromHEX,
+                        items: instructionServices
+                    )
+
+                    self?.view?.configureGenresView(with: instructionServicesPresentation)
+                    self?.view?.configureSkillsView(with: .empty)
+                } else if [3,5].contains(response.data.type.id) {
+                    let instructionServices: [MusicGenreItemPresentation] = response.data.skills.lazy.map {
+                        MusicGenreItemPresentation(genre: $0, titleStyle: genreItemTitleStyle)
+                    }
+                    let instructionServicesPresentation = MusicGenresPresentation(
+                        title: response.data.type.skillTitle.attributed(color: .white, font: .lightBody), // TODO: - Localizable
+                        cellBorderColor: response.data.type.colorCode.colorFromHEX,
+                        items: instructionServices
+                    )
+
+                    self?.view?.configureGenresView(with: instructionServicesPresentation)
+                    self?.view?.configureSkillsView(with: .empty)
+                } else {
+                    // Skills
+                    let skillsPresentation = SkillsPresentation(
+                        type: .advert(imageViewContainerViewBorderColor: response.data.type.colorCode.colorFromHEX),
+                        title: response.data.type.skillTitle.attributed(color: .white, font: .lightBody),
+                        skillTitleStyle: .init(color: .white, font: .lightBody),
+                        skills: response.data.skills
+                    )
+                    self?.view?.configureSkillsView(with: skillsPresentation)
+                }
 
             case .failure(let error):
                 AlertService.show(message: error.description, actions: [.okay()])

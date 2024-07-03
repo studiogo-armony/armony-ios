@@ -15,6 +15,8 @@ protocol ValidationResponder: AnyObject {
 
     var validationResult: Validation.Result? { get }
     var validationDelegate: ValidationResponderDelegate? { get set }
+
+    func revalidate()
 }
 
 extension ValidationResponder {
@@ -52,6 +54,11 @@ final class ValidationResponders {
         self.optional = optional
 
         (required + optional).forEach { $0.validationDelegate = self }
+    }
+
+    func revalidate() {
+        (required + optional).forEach { $0.validationDelegate = self }
+        (required + optional).forEach { $0.revalidate() }
     }
 }
 

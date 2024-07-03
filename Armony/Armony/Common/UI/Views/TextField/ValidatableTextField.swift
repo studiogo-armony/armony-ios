@@ -116,6 +116,10 @@ final class ValidatableTextField: SkyFloatingLabelTextField, ValidationResponder
     func validate() {
         didBeginEditing()
     }
+
+    func revalidate() {
+        didBeginEditing()
+    }
 }
 
 // MARK: - UITextFieldDelegate

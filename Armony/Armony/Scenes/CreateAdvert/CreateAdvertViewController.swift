@@ -15,6 +15,7 @@ protocol CreateAdvertViewDelegate: AnyObject, NavigationBarCustomizing {
     func updateSkills(title: String?)
     func updateLocation(title: String?)
     func updateMusicGenres(title: String?)
+    func updateInstructionType(title: String?)
 
     func setInformationsStackViewVisibility(isHidden: Bool)
 
@@ -26,17 +27,32 @@ protocol CreateAdvertViewDelegate: AnyObject, NavigationBarCustomizing {
 
     func startMusicGenresDropdownViewActivityIndicatorView()
     func stopMusicGenresDropdownViewActivityIndicatorView()
+    func setMusicGenresDropdownViewVisibility(isHidden: Bool)
 
     func startLocationDropdownViewActivityIndicatorView()
     func stopLocationDropdownViewActivityIndicatorView()
 
+    func startInstructionTypeDropdownViewActivityIndicatorView()
+    func stopInstructionTypeDropdownViewActivityIndicatorView()
+    func setInstructionTypeDropdownViewVisibility(isHidden: Bool)
+
     func startSubmitButtonActivityIndicatorView()
     func stopSubmitButtonActivityIndicatorView()
+
+    func updateValidators(validator: CreateAdvertViewController.Validators)
 
     func resetTextView()
 }
 
 final class CreateAdvertViewController: UIViewController, ViewController {
+
+    enum Validators {
+        case musician
+        case brand
+        case instructor
+        case contractor
+        case event
+    }
 
     static var storyboardName: UIStoryboard.Name = .createAdvert
 
@@ -54,11 +70,35 @@ final class CreateAdvertViewController: UIViewController, ViewController {
 
     @IBOutlet private weak var submitButton: UIButton!
 
+    private lazy var instructionTypeDropdownView: ValidatableDropdownView = {
+        let dropdown = ValidatableDropdownView()
+        dropdown.isHidden = true
+        dropdown.configure(with: .instructionType)
+        return dropdown
+    }()
+
     var viewModel: CreateAdvertViewModel!
 
-    private lazy var validationResponders = ValidationResponders(
+    private lazy var defaultValidationResponders = ValidationResponders(
         required: [
             advertTypesDropdownView, musicGenresDropdownView, skillsDropdownView, locationDropdownView
+        ]
+    )
+
+    private lazy var instructorValidationResponders = ValidationResponders(
+        required: [
+            advertTypesDropdownView,
+            instructionTypeDropdownView,
+            skillsDropdownView,
+            locationDropdownView
+        ]
+    )
+
+    private lazy var othersValidationResponders = ValidationResponders(
+        required: [
+            advertTypesDropdownView,
+            skillsDropdownView,
+            locationDropdownView
         ]
     )
 
@@ -86,16 +126,26 @@ final class CreateAdvertViewController: UIViewController, ViewController {
         view.addTapGestureRecognizer(cancelsTouches: false) { [weak self] _ in
             self?.view.endEditing(true)
         }
-
-        validationResponders.didValidate = { [weak self] result in
-            self?.submitButton.isEnabled = result.isValid
-            self?.submitButton.backgroundColor = result.isValid ? .armonyPurple : .armonyPurpleLow
-        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         makeNavigationBarTransparent()
+
+        defaultValidationResponders.didValidate = { [weak self] result in
+            self?.submitButton.isEnabled = result.isValid
+            self?.submitButton.backgroundColor = result.isValid ? .armonyPurple : .armonyPurpleLow
+        }
+
+        instructorValidationResponders.didValidate = { [weak self] result in
+            self?.submitButton.isEnabled = result.isValid
+            self?.submitButton.backgroundColor = result.isValid ? .armonyPurple : .armonyPurpleLow
+        }
+
+        othersValidationResponders.didValidate = { [weak self] result in
+            self?.submitButton.isEnabled = result.isValid
+            self?.submitButton.backgroundColor = result.isValid ? .armonyPurple : .armonyPurpleLow
+        }
     }
 
     fileprivate func configureSubmitButton() {
@@ -138,6 +188,12 @@ final class CreateAdvertViewController: UIViewController, ViewController {
             self.view.endEditing(true)
             self.viewModel.locationDropdownTapped()
         }
+
+        informationsStackView.insertArrangedSubview(instructionTypeDropdownView, at: .zero)
+        instructionTypeDropdownView.addTapGestureRecognizer { [unowned self] _ in
+            self.view.endEditing(true)
+            self.viewModel.instructionTypeDropdownView()
+        }
     }
 
     private func prepareTitleLabels() {
@@ -151,6 +207,22 @@ final class CreateAdvertViewController: UIViewController, ViewController {
 
 // MARK: - CreateAdvertViewDelegate
 extension CreateAdvertViewController: CreateAdvertViewDelegate {
+    func startInstructionTypeDropdownViewActivityIndicatorView() {
+        instructionTypeDropdownView.startActivityIndicatorView()
+    }
+    
+    func stopInstructionTypeDropdownViewActivityIndicatorView() {
+        instructionTypeDropdownView.stopActivityIndicatorView()
+    }
+
+    func setInstructionTypeDropdownViewVisibility(isHidden: Bool) {
+        instructionTypeDropdownView.isHidden = isHidden
+    }
+
+    func setMusicGenresDropdownViewVisibility(isHidden: Bool) {
+        musicGenresDropdownView.isHidden = isHidden
+    }
+
     func configureMusicGenreDropdownView(presentation: DropdownPresentation) {
         musicGenresDropdownView.configure(with: presentation)
     }
@@ -173,6 +245,11 @@ extension CreateAdvertViewController: CreateAdvertViewDelegate {
 
     func updateMusicGenres(title: String?) {
         musicGenresDropdownView.updateText(title)
+    }
+
+    func updateInstructionType(title: String?) {
+        instructionTypeDropdownView.updateText(title)
+        instructionTypeDropdownView.revalidate()
     }
 
     func setInformationsStackViewVisibility(isHidden: Bool) {
@@ -217,6 +294,17 @@ extension CreateAdvertViewController: CreateAdvertViewDelegate {
 
     func stopSubmitButtonActivityIndicatorView() {
         submitButton.stopActivityIndicatorView()
+    }
+
+    func updateValidators(validator: CreateAdvertViewController.Validators) {
+        switch validator {
+        case .musician, .brand:
+            break
+        case .instructor:
+            break
+        default:
+            break
+        }
     }
 
     func resetTextView() {

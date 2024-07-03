@@ -21,13 +21,20 @@ final class CreateAdvertViewModel: ViewModel {
         var location: Int?
         var musicGenres: [Int]
         var skills: [Int]
+        var services: [Int]
 
         private mutating func resetSkills() {
             skills = .empty
         }
 
         // MARK: - EMPTY
-        static let empty = SelectedIDStorage(advert: nil, location: nil, musicGenres: .empty, skills: .empty)
+        static let empty = SelectedIDStorage(
+            advert: nil,
+            location: nil,
+            musicGenres: .empty,
+            skills: .empty,
+            services: .empty
+        )
     }
 
     var coordinator: CreateAdvertCoordinator!
@@ -64,6 +71,7 @@ final class CreateAdvertViewModel: ViewModel {
         view?.updateAdvertType(title: nil)
         view?.updateSkills(title: nil)
         view?.updateLocation(title: nil)
+        view?.updateInstructionType(title: nil)
         view?.setInformationsStackViewVisibility(isHidden: selectedIDStorage.advert.isNil)
 
         view?.resetTextView()
@@ -172,6 +180,33 @@ final class CreateAdvertViewModel: ViewModel {
         }
     }
 
+    func instructionTypeDropdownView() {
+        view?.startLocationDropdownViewActivityIndicatorView()
+        guard let selectedAdvertID = selectedIDStorage.advert else {
+            return
+        }
+        Task {
+            do {
+                let response = try await service.execute(task: GetServicesTask(adTypeID: selectedAdvertID),
+                                                         type: RestArrayResponse<ServiceResponse>.self)
+
+                let items = response.itemsForSelection(selectedIDs: selectedIDStorage.services)
+                let selectionPresentation = ServiceSelectionPresentation(delegate: self, items: items)
+
+                safeSync {
+                    view?.stopLocationDropdownViewActivityIndicatorView()
+                    coordinator.profileSelection(presentation: selectionPresentation)
+                }
+            }
+            catch {
+                safeSync {
+                    view?.stopLocationDropdownViewActivityIndicatorView()
+                }
+            }
+        }
+    }
+
+
     func submitButtonTapped() {
         view?.startSubmitButtonActivityIndicatorView()
         Task { @MainActor in
@@ -211,10 +246,17 @@ final class CreateAdvertViewModel: ViewModel {
 extension CreateAdvertViewModel: AdvertTypeSelectionDelegate {
 
     func advertTypeDidSelect(advert: SelectionInput?) {
+        selectedIDStorage = .empty
+        request = .empty
         if selectedIDStorage.advert != advert?.id {
             view?.updateSkills(title: .empty)
             request.skills = .empty
         }
+
+        view?.updateSkills(title: nil)
+        view?.updateLocation(title: nil)
+        view?.updateMusicGenres(title: nil)
+        view?.updateInstructionType(title: nil)
 
         view?.setInformationsStackViewVisibility(isHidden: advert.isNil)
         if let advert {
@@ -225,11 +267,26 @@ extension CreateAdvertViewModel: AdvertTypeSelectionDelegate {
             if advert.id == 1 {
                 view?.configureMusicGenreDropdownView(presentation: .musicGenres)
                 view?.configureSkillDropdownView(presentation: .skill)
-            } else if advert.id == 3 {
-                view?.configureMusicGenreDropdownView(presentation: .musicGenres)
-                view?.configureSkillDropdownView(presentation: .init(title: "Çalınan Enstrümanlar"))
+                view?.setMusicGenresDropdownViewVisibility(isHidden: false)
+                view?.setInstructionTypeDropdownViewVisibility(isHidden: true)
+                view?.updateValidators(validator: .musician)
+
+            } else if [3,5].contains(advert.id) {
+                view?.updateValidators(validator: .event)
+                view?.setMusicGenresDropdownViewVisibility(isHidden: true)
+                view?.configureSkillDropdownView(presentation: .services)
+                view?.setInstructionTypeDropdownViewVisibility(isHidden: true)
+            }
+            else if advert.id == 4 {
+                view?.updateValidators(validator: .instructor)
+                view?.configureSkillDropdownView(presentation: .instruction)
+                view?.setInstructionTypeDropdownViewVisibility(isHidden: false)
+                view?.setMusicGenresDropdownViewVisibility(isHidden: true)
             }
             else {
+                view?.updateValidators(validator: .brand)
+                view?.setMusicGenresDropdownViewVisibility(isHidden: false)
+                view?.setInstructionTypeDropdownViewVisibility(isHidden: true)
                 view?.configureSkillDropdownView(presentation: .init(title: "Aradığın Müzisyenler"))
                 view?.configureMusicGenreDropdownView(presentation: .init(title: "Müzik Tarzınız"))
             }
@@ -271,6 +328,19 @@ extension CreateAdvertViewModel: MusicGenresSelectionDelegate {
 
         request.genres = genres?.compactMap { genre in
             return MusicGenre(id: genre.id, name: genre.title)
+        }
+    }
+}
+
+// MARK: - ServiceSelectionDelegate
+extension CreateAdvertViewModel: ServiceSelectionDelegate {
+
+    func serviceDidSelect(services: [any SelectionInput]?) {
+        selectedIDStorage.services = services.ifNil(.empty).compactMap { $0.id }
+        view?.updateInstructionType(title: services?.title)
+
+        request.serviceTypes = services?.compactMap { service in
+            return ServiceResponse(id: service.id, title: service.title)
         }
     }
 }

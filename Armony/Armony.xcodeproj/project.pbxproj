@@ -123,6 +123,7 @@
 		027079872931787A00199298 /* FirebaseRemoteNotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027079862931787A00199298 /* FirebaseRemoteNotificationHandler.swift */; };
 		0270798929317BEB00199298 /* RemoteNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0270798829317BEB00199298 /* RemoteNotificationService.swift */; };
 		027150702932954A0063A8C3 /* AppLaunchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0271506F293295490063A8C3 /* AppLaunchService.swift */; };
+		02722A7D2C1B9F12003CD908 /* ServiceSelectionPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02722A7C2C1B9F12003CD908 /* ServiceSelectionPresentation.swift */; };
 		0273AE342B6BC72C000AD05B /* BannerSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0273AE332B6BC72C000AD05B /* BannerSliderView.swift */; };
 		0273AE372B6BD15B000AD05B /* BannerSliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0273AE352B6BD15B000AD05B /* BannerSliderCell.swift */; };
 		02754D34293013A40066AA07 /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = 02754D33293013A40066AA07 /* Starscream */; };
@@ -211,6 +212,8 @@
 		02DEE7FF2B8BAA1C00FD71C6 /* AvatarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DEE7FE2B8BAA1C00FD71C6 /* AvatarViewModel.swift */; };
 		02DEE8012B8BAA4A00FD71C6 /* AvatarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DEE8002B8BAA4A00FD71C6 /* AvatarCoordinator.swift */; };
 		02E0AAD02B29289D00ED545A /* GetArmonyAppDetailsTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E0AACF2B29289D00ED545A /* GetArmonyAppDetailsTask.swift */; };
+		02E443F02C35DB8000AE0A13 /* ServiceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E443EF2C35DB8000AE0A13 /* ServiceResponse.swift */; };
+		02E443F32C35DCF600AE0A13 /* DefaultRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E443F22C35DCF600AE0A13 /* DefaultRepresentation.swift */; };
 		02E7D6AC2844FCE00006780A /* DropdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E7D6AB2844FCE00006780A /* DropdownView.swift */; };
 		02E7D6AE2844FE0A0006780A /* DropdownView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02E7D6AD2844FE0A0006780A /* DropdownView.xib */; };
 		02ED3B4428F21BAD003D849F /* SegmentedControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ED3B4328F21BAD003D849F /* SegmentedControlView.swift */; };
@@ -556,6 +559,7 @@
 		027079862931787A00199298 /* FirebaseRemoteNotificationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseRemoteNotificationHandler.swift; sourceTree = "<group>"; };
 		0270798829317BEB00199298 /* RemoteNotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteNotificationService.swift; sourceTree = "<group>"; };
 		0271506F293295490063A8C3 /* AppLaunchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLaunchService.swift; sourceTree = "<group>"; };
+		02722A7C2C1B9F12003CD908 /* ServiceSelectionPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceSelectionPresentation.swift; sourceTree = "<group>"; };
 		0273AE332B6BC72C000AD05B /* BannerSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerSliderView.swift; sourceTree = "<group>"; };
 		0273AE352B6BD15B000AD05B /* BannerSliderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerSliderCell.swift; sourceTree = "<group>"; };
 		02754D3629304EB20066AA07 /* Socket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Socket.swift; sourceTree = "<group>"; };
@@ -639,6 +643,8 @@
 		02DEE7FE2B8BAA1C00FD71C6 /* AvatarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarViewModel.swift; sourceTree = "<group>"; };
 		02DEE8002B8BAA4A00FD71C6 /* AvatarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarCoordinator.swift; sourceTree = "<group>"; };
 		02E0AACF2B29289D00ED545A /* GetArmonyAppDetailsTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetArmonyAppDetailsTask.swift; sourceTree = "<group>"; };
+		02E443EF2C35DB8000AE0A13 /* ServiceResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceResponse.swift; sourceTree = "<group>"; };
+		02E443F22C35DCF600AE0A13 /* DefaultRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultRepresentation.swift; sourceTree = "<group>"; };
 		02E7D6AB2844FCE00006780A /* DropdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownView.swift; sourceTree = "<group>"; };
 		02E7D6AD2844FE0A0006780A /* DropdownView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DropdownView.xib; sourceTree = "<group>"; };
 		02ED3B4328F21BAD003D849F /* SegmentedControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControlView.swift; sourceTree = "<group>"; };
@@ -966,6 +972,7 @@
 				02C4D6EF288BFCF100FDF55F /* MusicGenresSelectionPresentation.swift */,
 				021090FE2846B9F900D66D60 /* ProfilePresentation.swift */,
 				B1BA9AB72A16853000EF98E0 /* ReportSubjectSelectionPresentation.swift */,
+				02722A7C2C1B9F12003CD908 /* ServiceSelectionPresentation.swift */,
 				02C4D6ED288BFCE800FDF55F /* SkillsSelectionPresentation.swift */,
 				02C4D6EB288BFCD500FDF55F /* TitleSelectionPresentation.swift */,
 			);
@@ -1860,6 +1867,14 @@
 			path = Avatar;
 			sourceTree = "<group>";
 		};
+		02E443F12C35DCE900AE0A13 /* PropertyWrappers */ = {
+			isa = PBXGroup;
+			children = (
+				02E443F22C35DCF600AE0A13 /* DefaultRepresentation.swift */,
+			);
+			path = PropertyWrappers;
+			sourceTree = "<group>";
+		};
 		02E7D6AA2844FCB10006780A /* Dropdown */ = {
 			isa = PBXGroup;
 			children = (
@@ -2289,6 +2304,7 @@
 				0231F2A8284FA55D0012928F /* Handlers */,
 				0294989A28F715BE0075F36F /* Localizable */,
 				B18FEB4927B5AF1F00C8A2C0 /* Notifications */,
+				02E443F12C35DCE900AE0A13 /* PropertyWrappers */,
 				B177347C26D4432F00BD7D39 /* Protocols */,
 				B1BDF43E26D843B2003212CB /* UI */,
 				022160102883661E00024D2A /* Validation */,
@@ -2463,6 +2479,7 @@
 				B1772B3A2710CDA1001E544B /* Skill.swift */,
 				02D00FD02913CE9F00B84DD7 /* FormData.swift */,
 				B19258562A1D55300058E73E /* ReportSubject.swift */,
+				02E443EF2C35DB8000AE0A13 /* ServiceResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -3356,6 +3373,7 @@
 				02BDDEBE2B6C0407005AB8FA /* BannerSliderPresentation.swift in Sources */,
 				024803922861DB190012D6CF /* AccountInformationCoordinator.swift in Sources */,
 				02AF996C28ED944E006669F4 /* CreateAdvertViewModel.swift in Sources */,
+				02722A7D2C1B9F12003CD908 /* ServiceSelectionPresentation.swift in Sources */,
 				B18FEB4D27B5B0F700C8A2C0 /* NotificationCenter+Extensions.swift in Sources */,
 				0263B529281424D700E9378F /* AccountMusicalProfileViewModel.swift in Sources */,
 				B1A6FB2927A9B6F900E1BEA5 /* RegistrationViewController.swift in Sources */,
@@ -3406,6 +3424,7 @@
 				027F8E3F2B8E1D820083A56D /* PutActivateAdvertTask.swift in Sources */,
 				B1C85DBE27BC1B2D00C3CE05 /* AuthenticationService.swift in Sources */,
 				B1772B3B2710CDA1001E544B /* Skill.swift in Sources */,
+				02E443F02C35DB8000AE0A13 /* ServiceResponse.swift in Sources */,
 				024B4DB228FDA65B00E61563 /* Deeplink+Register.swift in Sources */,
 				B17CA3A32745A69900F10336 /* ActivityIndicatorShowing.swift in Sources */,
 				B1A6FB2527A9B4CB00E1BEA5 /* RegistrationViewModel.swift in Sources */,
@@ -3488,6 +3507,7 @@
 				02C9538E285A819200A2B107 /* NotchView.swift in Sources */,
 				021E2F782889F4E700132DBB /* GetFeedbackSubjectsTask.swift in Sources */,
 				02511B9C2B8D4E1400B67F27 /* InfoView.swift in Sources */,
+				02E443F32C35DCF600AE0A13 /* DefaultRepresentation.swift in Sources */,
 				027E8E182934584B001EFDFA /* Analytic.swift in Sources */,
 				B10CCD792741055000BB313D /* GetAdvertsTask.swift in Sources */,
 				0240C78E292D6C56009A9727 /* MessageSectionHeaderView.swift in Sources */,

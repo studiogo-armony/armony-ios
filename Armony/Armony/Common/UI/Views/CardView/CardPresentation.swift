@@ -15,19 +15,22 @@ public struct CardPresentation {
     public let status: Advert.Status
     public let userSummaryPresentation : UserSummaryPresentation
     public let skillsPresentation: SkillsPresentation
+    public let genrePresentation: MusicGenresPresentation?
 
     public init(id: Int,
                 colorCode: String,
                 isActive: Bool,
                 status: Advert.Status,
                 userSummaryPresentation: UserSummaryPresentation,
-                skillsPresentation: SkillsPresentation) {
+                skillsPresentation: SkillsPresentation,
+                genrePresentation: MusicGenresPresentation? = nil) {
         self.id = id
         self.colorCode = colorCode
         self.isActive = isActive
         self.status = status
         self.userSummaryPresentation = userSummaryPresentation
         self.skillsPresentation = skillsPresentation
+        self.genrePresentation = genrePresentation
     }
 
     public init(advert: Advert) {
@@ -54,12 +57,28 @@ public struct CardPresentation {
             skillTitleStyle: TextAppearancePresentation(color: .white, font: .regularBody),
             skills: advert.skills
         )
+
+        if  ![1,2].contains(advert.type.id)  {
+            let items = advert.skills.map { item in
+                return MusicGenreItemPresentation(
+                    genre: .init(id: item.id, name: item.title),
+                    titleStyle: TextAppearancePresentation(color: .white, font: .regularBody)
+                )
+            }
+            genrePresentation = MusicGenresPresentation(
+                title: advert.type.skillTitle.attributed(color: .white, font: .lightBody),
+                cellBorderColor: advert.type.colorCode.colorFromHEX, separator: .separator, items: items,
+                shouldAdjustCellHeight: true)
+        }
+        else {
+            genrePresentation = nil
+        }
     }
 
     // MARK: - EMPTY
     static let empty = CardPresentation(id: .invalid,
                                         colorCode: .empty,
-                                        isActive: false, 
+                                        isActive: false,
                                         status: .inactive,
                                         userSummaryPresentation: .empty(),
                                         skillsPresentation: .empty)
