@@ -95,7 +95,7 @@ final class LiveChatViewModel: ViewModel {
                 }
 
                 presentation = LiveChatPresentation(
-                    cardPresentation: response.data.chat.ad.cardPresentation(),
+                    cardPresentation: CardPresentation(advert: response.data.chat.ad),
                     messages: messages,
                     receiver: .init(id: response.data.receiver.id, name: response.data.receiver.name)
                 )

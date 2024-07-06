@@ -58,7 +58,7 @@ final class FilterViewModel: ViewModel {
         Task {
             do {
                 let response = try await service.execute(task: GetAdvertTypesTask(),
-                                                         type: RestArrayResponse<AdvertType>.self)
+                                                         type: RestArrayResponse<Advert.Properties>.self)
 
                 let items = response.itemsForSelection(selectedID: filters.advert?.id)
                 let selectionPresentation = AdvertTypeSelectionPresentation(delegate: self, items: items)

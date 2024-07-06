@@ -71,13 +71,13 @@ extension RestArrayResponse where T == Skill {
 }
 
 // MARK: - AdvertType
-extension RestArrayResponse where T == AdvertType {
+extension RestArrayResponse where T == Advert.Properties {
 
     func itemsForSelection(selectedID: Int?) -> [AdvertTypeSelectionInput] {
         let items: [AdvertTypeSelectionInput] = data.compactMap { advertType in
             return AdvertTypeSelectionInput(
                 id: advertType.id,
-                title: advertType.name,
+                title: advertType.title,
                 isSelected: selectedID == advertType.id
             )
         }

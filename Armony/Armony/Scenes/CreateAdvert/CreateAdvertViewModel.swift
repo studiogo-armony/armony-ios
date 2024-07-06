@@ -43,14 +43,12 @@ final class CreateAdvertViewModel: ViewModel {
 
     private var selectedIDStorage: SelectedIDStorage = .empty
     private var request: CreateAdvertRequest
+    private var advertsResponse: [Advert.Properties] = .empty
     private var description: String? = nil {
         didSet {
             self.request.description = description.isNotNilOrEmpty ? description : nil
         }
     }
-
-    private let skillSelectionTitleForGroup = "Aradığın Müzisyenleri Ekle".needLocalization
-    private let skillSelectionTitleForSinglePerson = "Çaldığın Enstrümanları Ekle".needLocalization
 
     init(view: CreateAdvertViewDelegate) {
         self.view = view
@@ -82,7 +80,9 @@ final class CreateAdvertViewModel: ViewModel {
         Task {
             do {
                 let response = try await service.execute(task: GetAdvertTypesTask(),
-                                                         type: RestArrayResponse<AdvertType>.self)
+                                                         type: RestArrayResponse<Advert.Properties>.self)
+
+                self.advertsResponse = response.data
 
                 let items = response.itemsForSelection(selectedID: selectedIDStorage.advert)
                 let selectionPresentation = AdvertTypeSelectionPresentation(delegate: self, items: items)
@@ -132,14 +132,8 @@ final class CreateAdvertViewModel: ViewModel {
                                                          type: RestArrayResponse<Skill>.self)
 
                 let items = response.itemsForSelection(selectedIDs: selectedIDStorage.skills)
-                var headerTitle: String = .empty
+                let headerTitle: String = advertsResponse.first { $0.id == selectedIDStorage.advert}!.skillTitle
 
-                if selectedIDStorage.advert == 1 {
-                    headerTitle = skillSelectionTitleForSinglePerson
-                }
-                else {
-                    headerTitle = skillSelectionTitleForGroup
-                }
                 let selectionPresentation = SkillsSelectionPresentation(delegate: self,
                                                                         items: items,
                                                                         headerTitle: headerTitle)
@@ -294,7 +288,7 @@ extension CreateAdvertViewModel: AdvertTypeSelectionDelegate {
     }
 }
 
-// MARK: - AdvertTypeSelectionDelegate
+// MARK: - LocationSelectionDelegate
 extension CreateAdvertViewModel: LocationSelectionDelegate {
 
     func locationDidSelect(location: SelectionInput?) {
