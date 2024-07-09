@@ -281,7 +281,7 @@ extension CreateAdvertViewModel: AdvertTypeSelectionDelegate {
                 view?.updateValidators(validator: .brand)
                 view?.setMusicGenresDropdownViewVisibility(isHidden: false)
                 view?.setInstructionTypeDropdownViewVisibility(isHidden: true)
-                view?.configureSkillDropdownView(presentation: .init(title: "Aradığın Müzisyenler"))
+                view?.configureSkillDropdownView(presentation: .init(title: "Aradığım Müzisyenler"))
                 view?.configureMusicGenreDropdownView(presentation: .init(title: "Müzik Tarzınız"))
             }
         }

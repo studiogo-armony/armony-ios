@@ -44,7 +44,7 @@ final class LiveChatNavigationTitleView: UIView {
     }
 
     func configure(presentation: LiveChatNavigationTitlePresentation) {
-        avatarView.configure(with: .init(kind: .circled(.init(size: .custom(44))), source: .url(presentation.avatarURL)))
+        avatarView.configure(with: .init(kind: .circled(.init(size: .custom(40))), source: .url(presentation.avatarURL)))
         nameLabel.text = presentation.name
     }
 }

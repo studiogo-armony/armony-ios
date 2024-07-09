@@ -150,7 +150,7 @@ final class CreateAdvertViewController: UIViewController, ViewController {
 
     fileprivate func configureSubmitButton() {
         submitButton.isEnabled = false
-        submitButton.setTitle("Yayına Al", for: .normal)
+        submitButton.setTitle("İlanı Yayınla", for: .normal)
         submitButton.setTitleColor(.armonyWhite, for: .normal)
         submitButton.setTitleColor(.armonyWhiteMedium, for: .disabled)
         submitButton.titleLabel?.font = .semiboldHeading

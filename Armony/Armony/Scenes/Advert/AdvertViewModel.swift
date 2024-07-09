@@ -316,7 +316,8 @@ extension AdvertViewModel: ViewModelLifeCycle {
                     shouldShowDotsButton: shouldShowDotsButton,
                     name: response.data.user.name.attributed(color: .white, font: .regularHeading),
                     location: response.data.location.title.attributed(color: .white, font: .regularBody), 
-                    cardTitle: .empty
+                    cardTitle: .empty,
+                    updateDate: response.data.updateDate.attributed(color: .white, font: .regularBody)
                 )
                 self?.view?.configureUserSummaryView(with: userSummaryPresentation)
                 self?.view?.setRemoveAdvertsButtonVisibility(isHidden: response.data.user.id != AuthenticationService.shared.userID)
@@ -469,10 +470,10 @@ extension AdvertViewModel: DeleteAdvertFeedbackSelectionDelegate {
             feedbackSubject: FeedbackSubject(id: output.id, title: output.title),
             message: .space
         )
-        let removeAction = AlertService.action(title: "Yayından Kaldır", style: .destructive, action: { [weak self] in
+        let removeAction = AlertService.action(title: "İlanı Sil", style: .destructive, action: { [weak self] in
             self?.remove(feedback: request)
         })
-        AlertService.show(message: "Yayından kaldırmak istediginizden emin misiniz?",
+        AlertService.show(message: "İlanı silmek istediginizden emin misiniz?",
                           actions: [removeAction, .cancel()])
     }
 }

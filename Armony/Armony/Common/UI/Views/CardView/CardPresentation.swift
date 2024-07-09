@@ -48,7 +48,7 @@ public struct CardPresentation {
             name: advert.user.name.attributed(color: .white, font: .regularBody),
             location: advert.location.title.attributed(color: .white, font: .regularBody), 
             cardTitle: advert.type.title.attributed(.armonyWhite, font: .semiboldHeading), 
-            updateDate: advert.updateDate.attributed(color: .white, font: .regularBody)
+            updateDate: nil
         )
 
         skillsPresentation = SkillsPresentation(

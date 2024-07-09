@@ -280,12 +280,10 @@ extension AdvertsViewModel: ViewModelLifeCycle {
 // MARK: - EmptyStatePresentation
 private extension EmptyStatePresentation {
     static var noContent: EmptyStatePresentation = {
-        let title = "Henüz hiç bir ilan yok.".emptyStateTitleAttributed
-        let subtitle = "Maalesef".emptyStateSubtitleAttributed
+        let title = "Henüz hiçbir ilan yok.".emptyStateTitleAttributed
 
         let presentation = EmptyStatePresentation(image: "adverts-emptystate-icon".image,
                                                   title: title,
-                                                  subtitle: subtitle,
                                                   buttonTitle: "Tüm ilanları gör".emptyStateButtonAttributed)
         return presentation
     }()
