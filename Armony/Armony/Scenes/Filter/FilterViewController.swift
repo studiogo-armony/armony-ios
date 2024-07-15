@@ -51,9 +51,9 @@ final class FilterViewController: UIViewController, ViewController {
     private lazy var applyButton: UIButton = {
         let button = UIButton(type: .system)
         let buttonConfiguration = UIButton.Config(title: "Uygula",
-                                                  titleColor: .darkBlue,
+                                                  titleColor: .white,
                                                   titleFont: .semiboldSubheading,
-                                                  backgroundColor: .blue,
+                                                  backgroundColor: .purple,
                                                   rounded: .init(radius: .medium),
                                                   border: .init(radius: .default))
         button.translatesAutoresizingMaskIntoConstraints = false
