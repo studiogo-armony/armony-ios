@@ -8,26 +8,32 @@ on:
           required: true
           default: '1.2.0'
 jobs:
-  build:
+  create-branch:
     runs-on: macos-latest
+
     steps:
-      - uses: actions/checkout@v3
-      - name: create branch
-        uses: peterjgrainger/action-create-branch@v2.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.TEST }}
-        with:
-          token: ${{ secrets.TEST }}
-          branch: 'Releases/Release${{ github.event.inputs.version }}'
-      - name: Update version, commit and push
-        run: |
-          git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
-          git fetch --all
-          git checkout Releases/Release${{ github.event.inputs.version }}
-          cd Armony
-          xcrun agvtool new-marketing-version ${{ github.event.inputs.version }}
-          git config user.name "GitHub Actions Bot"
-          git config user.email "koray.yildizz@gmail.com"
-          git add .
-          git commit -m "Bump version number to ${{ github.event.inputs.version }}"
-          git push -u origin
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Git
+      run: |
+        git config user.name "GitHub Actions Bot"
+        git config user.email "koray.yildizz@gmail.com"
+      
+    - name: Create new branch
+      run: |
+        git checkout -b Releases/Release${{ github.event.inputs.version }}
+
+    - name: Update marketing version
+      run: |
+        cd Armony
+        xcrun agvtool new-marketing-version ${{ github.event.inputs.version }}
+
+    - name: Git add, commit and push
+      run: |
+        git add .
+        git commit -m "Bump version number to ${{ github.event.inputs.version }}"
+        git push origin Releases/Release${{ github.event.inputs.version }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.TEST }}
+
