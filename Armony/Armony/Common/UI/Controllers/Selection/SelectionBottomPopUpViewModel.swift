@@ -55,10 +55,10 @@ final class SelectionBottomPopUpViewModel {
 
     func willSelectItem(at indexPath: IndexPath, indexPathsForSelectedRows: [IndexPath]?) -> IndexPath? {
         guard let indexPathsForSelectedRows = indexPathsForSelectedRows,
-              indexPathsForSelectedRows.count == 6 else {
+              indexPathsForSelectedRows.count == 10 else {
             return indexPath
         }
-        AlertService.show(message: "Maximum 6 tane seçebilirsiniz".needLocalization, actions: [.okay()])
+        AlertService.show(message: "Maksimum 10 tane seçebilirsiniz".needLocalization, actions: [.okay()])
         return nil
     }
 
