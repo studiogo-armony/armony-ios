@@ -175,7 +175,7 @@ final class CreateAdvertViewModel: ViewModel {
     }
 
     func instructionTypeDropdownView() {
-        view?.startLocationDropdownViewActivityIndicatorView()
+        view?.startInstructionTypeDropdownViewActivityIndicatorView()
         guard let selectedAdvertID = selectedIDStorage.advert else {
             return
         }
@@ -188,13 +188,13 @@ final class CreateAdvertViewModel: ViewModel {
                 let selectionPresentation = ServiceSelectionPresentation(delegate: self, items: items)
 
                 safeSync {
-                    view?.stopLocationDropdownViewActivityIndicatorView()
+                    view?.stopInstructionTypeDropdownViewActivityIndicatorView()
                     coordinator.profileSelection(presentation: selectionPresentation)
                 }
             }
             catch {
                 safeSync {
-                    view?.stopLocationDropdownViewActivityIndicatorView()
+                    view?.stopInstructionTypeDropdownViewActivityIndicatorView()
                 }
             }
         }
