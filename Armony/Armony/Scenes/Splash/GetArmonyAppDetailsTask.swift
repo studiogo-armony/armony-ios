@@ -49,7 +49,13 @@ final class ForceUpdateHandler {
                 task: GetArmonyAppDetailsTask(),
                 type: ArmonyAppStoreDetail.self
             )
-            return Bundle.main.version != response.version
+            let appVersion = Bundle.main.version
+            let storeVersion = response.version ?? .empty
+
+            if storeVersion.compare(appVersion, options: .numeric) == .orderedDescending {
+                return true
+            }
+            return false
         }
     }
 }
