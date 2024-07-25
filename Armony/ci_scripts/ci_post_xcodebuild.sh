@@ -14,5 +14,6 @@ if [[ -n $CI_ARCHIVE_PATH ]]; then
 
 $UPLOAD_SYMBOLS_PATH -gsp $INFO_PLIST_PATH -p ios $CI_ARCHIVE_PATH/dSYMs
 
-echo "Archive path isn't available. Unable to run dSYMs uploading script."
+else
+    echo "Archive path isn't available. Unable to run dSYMs uploading script."
 fi
