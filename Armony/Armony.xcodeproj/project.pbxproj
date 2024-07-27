@@ -11,6 +11,7 @@
 		020476EC2B37345700C41C57 /* CreateAdvertFirebaseEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020476EB2B37345700C41C57 /* CreateAdvertFirebaseEvents.swift */; };
 		020476EE2B37349500C41C57 /* CreateAdvertFirebasveEventsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020476ED2B37349500C41C57 /* CreateAdvertFirebasveEventsHandler.swift */; };
 		020476F22B37419A00C41C57 /* CreateAdvertAdjustEventsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020476F12B37419A00C41C57 /* CreateAdvertAdjustEventsHandler.swift */; };
+		0205A49E2C53E5C600D5821D /* DropdownViewSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0205A49D2C53E5C600D5821D /* DropdownViewSnapshotTests.swift */; };
 		02079B25280F5841004644A1 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02079B24280F5841004644A1 /* PageViewController.swift */; };
 		020891DE29107A8A006E520D /* DeleteUserAdvertTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020891DD29107A8A006E520D /* DeleteUserAdvertTask.swift */; };
 		020D55442812FC9F00666642 /* AccountMusicalProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020D55432812FC9F00666642 /* AccountMusicalProfileViewController.swift */; };
@@ -199,6 +200,8 @@
 		02D90D1128568F09005B5162 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D90D1028568F09005B5162 /* OnboardingViewController.swift */; };
 		02D90D1628570461005B5162 /* OnboardingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D90D1428570461005B5162 /* OnboardingCell.swift */; };
 		02D90D1728570461005B5162 /* OnboardingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02D90D1528570461005B5162 /* OnboardingCell.xib */; };
+		02DAE1472C550E06001F4931 /* InlineSnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 02DAE1462C550E06001F4931 /* InlineSnapshotTesting */; };
+		02DAE1492C550E06001F4931 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 02DAE1482C550E06001F4931 /* SnapshotTesting */; };
 		02DB3A34289512B20056BE3C /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DB3A33289512B20056BE3C /* LoginRequest.swift */; };
 		02DB3A362895130C0056BE3C /* PostLoginTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DB3A352895130C0056BE3C /* PostLoginTask.swift */; };
 		02DB3A382896888B0056BE3C /* GetAccountInfoTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DB3A372896888B0056BE3C /* GetAccountInfoTask.swift */; };
@@ -455,6 +458,7 @@
 		020476EB2B37345700C41C57 /* CreateAdvertFirebaseEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAdvertFirebaseEvents.swift; sourceTree = "<group>"; };
 		020476ED2B37349500C41C57 /* CreateAdvertFirebasveEventsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAdvertFirebasveEventsHandler.swift; sourceTree = "<group>"; };
 		020476F12B37419A00C41C57 /* CreateAdvertAdjustEventsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAdvertAdjustEventsHandler.swift; sourceTree = "<group>"; };
+		0205A49D2C53E5C600D5821D /* DropdownViewSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownViewSnapshotTests.swift; sourceTree = "<group>"; };
 		02079B24280F5841004644A1 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		020891DD29107A8A006E520D /* DeleteUserAdvertTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteUserAdvertTask.swift; sourceTree = "<group>"; };
 		020D55432812FC9F00666642 /* AccountMusicalProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountMusicalProfileViewController.swift; sourceTree = "<group>"; };
@@ -906,6 +910,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02DAE1472C550E06001F4931 /* InlineSnapshotTesting in Frameworks */,
+				02DAE1492C550E06001F4931 /* SnapshotTesting in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -943,6 +949,22 @@
 				020476F12B37419A00C41C57 /* CreateAdvertAdjustEventsHandler.swift */,
 			);
 			path = Adjust;
+			sourceTree = "<group>";
+		};
+		0205A49F2C53EF7600D5821D /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				0205A4A02C53EF7B00D5821D /* UI */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		0205A4A02C53EF7B00D5821D /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				0205A49D2C53E5C600D5821D /* DropdownViewSnapshotTests.swift */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 		02079B23280F5833004644A1 /* Controllers */ = {
@@ -1662,12 +1684,12 @@
 			path = ForgotPassword;
 			sourceTree = "<group>";
 		};
-		02A824822881B1E8004351D0 /* Common */ = {
+		02A824822881B1E8004351D0 /* CommonMocks */ = {
 			isa = PBXGroup;
 			children = (
 				02A824832881B202004351D0 /* MockRestService.swift */,
 			);
-			path = Common;
+			path = CommonMocks;
 			sourceTree = "<group>";
 		};
 		02B644592BB6CD3F002520B6 /* Reset */ = {
@@ -2725,7 +2747,8 @@
 		B1B55C9B26CEFAE300FDE884 /* ArmonyTests */ = {
 			isa = PBXGroup;
 			children = (
-				02A824822881B1E8004351D0 /* Common */,
+				0205A49F2C53EF7600D5821D /* Common */,
+				02A824822881B1E8004351D0 /* CommonMocks */,
 				02FA5A4C2882292600E8AD5C /* Account */,
 				B1B55C9E26CEFAE300FDE884 /* Info.plist */,
 			);
@@ -3139,6 +3162,10 @@
 				B1B55C9A26CEFAE300FDE884 /* PBXTargetDependency */,
 			);
 			name = ArmonyTests;
+			packageProductDependencies = (
+				02DAE1462C550E06001F4931 /* InlineSnapshotTesting */,
+				02DAE1482C550E06001F4931 /* SnapshotTesting */,
+			);
 			productName = ArmonyTests;
 			productReference = B1B55C9826CEFAE300FDE884 /* ArmonyTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -3212,6 +3239,7 @@
 				B1A6F7212A2D1418000014A5 /* XCRemoteSwiftPackageReference "ios_sdk" */,
 				02BDBB0B2ADCA4A3008BB2A3 /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */,
 				02C4E1122ADF263500645D4C /* XCRemoteSwiftPackageReference "SnapKit" */,
+				02DAE1452C550E06001F4931 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
 			);
 			productRefGroup = B1B55C8326CEFADC00FDE884 /* Products */;
 			projectDirPath = "";
@@ -3655,6 +3683,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1B55C9D26CEFAE300FDE884 /* AccountViewModelTests.swift in Sources */,
+				0205A49E2C53E5C600D5821D /* DropdownViewSnapshotTests.swift in Sources */,
 				02A824842881B202004351D0 /* MockRestService.swift in Sources */,
 				02FA5A4E2882293000E8AD5C /* MockAccountView.swift in Sources */,
 			);
@@ -3921,7 +3950,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U6ZP8CMS8A;
 				INFOPLIST_FILE = ArmonyTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3943,7 +3972,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U6ZP8CMS8A;
 				INFOPLIST_FILE = ArmonyTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -4135,6 +4164,14 @@
 				minimumVersion = 5.6.0;
 			};
 		};
+		02DAE1452C550E06001F4931 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-snapshot-testing.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.17.2;
+			};
+		};
 		02FFF11E291EFEE300352D3C /* XCRemoteSwiftPackageReference "netfox" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kasketis/netfox";
@@ -4252,6 +4289,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 02C4E1122ADF263500645D4C /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		02DAE1462C550E06001F4931 /* InlineSnapshotTesting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 02DAE1452C550E06001F4931 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
+			productName = InlineSnapshotTesting;
+		};
+		02DAE1482C550E06001F4931 /* SnapshotTesting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 02DAE1452C550E06001F4931 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
+			productName = SnapshotTesting;
 		};
 		02F59E2D29350B2E00015036 /* FirebasePerformance */ = {
 			isa = XCSwiftPackageProductDependency;

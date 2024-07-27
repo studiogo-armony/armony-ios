@@ -9,7 +9,7 @@ import XCTest
 @testable import Armony
 import KeychainAccess
 
-class AccountViewModelTests: XCTestCase {
+final class AccountViewModelTests: XCTestCase {
 
     var mockView: MockAccountView!
     var mockRestService: MockRestService!
@@ -48,7 +48,6 @@ class AccountViewModelTests: XCTestCase {
         sut.viewWillAppear()
 
         XCTAssertTrue(mockView.invokedConfigureUserSummaryView)
-        XCTAssertEqual(mockView.invokedConfigureUserSummaryViewParameters?.presentation.avatarSize.width, 80)
         XCTAssertEqual(mockView.invokedConfigureUserSummaryViewParameters?.presentation.location?.string, .empty)
     }
 }

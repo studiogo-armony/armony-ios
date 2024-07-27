@@ -1,5 +1,5 @@
 {
-  "originHash" : "cf9a9b0eb84a41e001678fe316fb29a91ab5543e2fa6f6da889f57b2481bbcf6",
+  "originHash" : "c7aaa96ab185bc14106a6acd53bcf7183391e5538f7de8438f2ca5f4e01f4e9a",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -242,6 +242,24 @@
       "state" : {
         "revision" : "07f7f26ded8df9645c072f220378879c4642e063",
         "version" : "1.25.1"
+      }
+    },
+    {
+      "identity" : "swift-snapshot-testing",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/pointfreeco/swift-snapshot-testing",
+      "state" : {
+        "revision" : "c097f955b4e724690f0fc8ffb7a6d4b881c9c4e3",
+        "version" : "1.17.2"
+      }
+    },
+    {
+      "identity" : "swift-syntax",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/swiftlang/swift-syntax",
+      "state" : {
+        "revision" : "82a453c2dfa335c7e778695762438dfe72b328d2",
+        "version" : "600.0.0-prerelease-2024-07-24"
       }
     },
     {

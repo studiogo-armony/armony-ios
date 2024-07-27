@@ -185,5 +185,9 @@ final class MockAccountView: AccountViewDelegate {
         invokedStopRightBarButtonItemActivityIndicatorView = true
         invokedStopRightBarButtonItemActivityIndicatorViewCount += 1
     }
+
+    func addNotch() {
+        
+    }
 }
 
