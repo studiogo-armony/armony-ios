@@ -4108,7 +4108,7 @@
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 8.10.0;
+				minimumVersion = 10.4.0;
 			};
 		};
 		02BDBB0B2ADCA4A3008BB2A3 /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */ = {
