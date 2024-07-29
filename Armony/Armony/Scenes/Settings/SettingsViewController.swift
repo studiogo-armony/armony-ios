@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol SettingsViewDelegate: AnyObject {
+protocol SettingsViewDelegate: AnyObject, ActivityIndicatorShowing {
     func reloadData()
 }
 
@@ -23,12 +23,14 @@ final class SettingsViewController: UIViewController, ViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        startActivityIndicatorView()
         configureUI()
         configureTableView()
         viewModel.fetchSettingsData()
     }
 
     func configureUI() {
+        tableView.setHidden(true)
         view.backgroundColor = .armonyBlack
         tableView.backgroundColor = .clear
     }
@@ -47,6 +49,8 @@ final class SettingsViewController: UIViewController, ViewController {
 // MARK: - SettingsViewDelegate
 extension SettingsViewController: SettingsViewDelegate {
     func reloadData() {
+        stopActivityIndicatorView()
+        tableView.setHidden(false)
         tableView.reloadData()
     }
 }

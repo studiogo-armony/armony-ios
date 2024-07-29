@@ -87,6 +87,7 @@
 		024D903D2884939B007B6DFA /* FeedbackSubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024D903C2884939B007B6DFA /* FeedbackSubject.swift */; };
 		024D9041288493F2007B6DFA /* FeedbacksPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024D9040288493F2007B6DFA /* FeedbacksPresentation.swift */; };
 		024D904328849420007B6DFA /* FeedbackSubjectPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024D904228849420007B6DFA /* FeedbackSubjectPresentation.swift */; };
+		024D9FFE2C583E0D006A92D7 /* GetSettingsTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024D9FFD2C583E0D006A92D7 /* GetSettingsTask.swift */; };
 		024F7AD02B758AC600073278 /* GetBannersTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024F7ACF2B758AC600073278 /* GetBannersTask.swift */; };
 		02511B9C2B8D4E1400B67F27 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02511B9B2B8D4E1400B67F27 /* InfoView.swift */; };
 		025130A22B0C222900D12FB0 /* UIScrollView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025130A12B0C222900D12FB0 /* UIScrollView+Extensions.swift */; };
@@ -528,6 +529,7 @@
 		024D903C2884939B007B6DFA /* FeedbackSubject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackSubject.swift; sourceTree = "<group>"; };
 		024D9040288493F2007B6DFA /* FeedbacksPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbacksPresentation.swift; sourceTree = "<group>"; };
 		024D904228849420007B6DFA /* FeedbackSubjectPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackSubjectPresentation.swift; sourceTree = "<group>"; };
+		024D9FFD2C583E0D006A92D7 /* GetSettingsTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSettingsTask.swift; sourceTree = "<group>"; };
 		024F7ACF2B758AC600073278 /* GetBannersTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetBannersTask.swift; sourceTree = "<group>"; };
 		02511B9B2B8D4E1400B67F27 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		025130A12B0C222900D12FB0 /* UIScrollView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Extensions.swift"; sourceTree = "<group>"; };
@@ -1124,6 +1126,7 @@
 		0220AE2C289AF8EA00C70A0A /* API */ = {
 			isa = PBXGroup;
 			children = (
+				024D9FFC2C583DFE006A92D7 /* Task */,
 				024C95D528417A6100C54367 /* Model */,
 			);
 			path = API;
@@ -1428,6 +1431,14 @@
 				02C4D6F3288BFD1D00FDF55F /* FeedbackSubjectSelectionPresentation.swift */,
 			);
 			path = Presentation;
+			sourceTree = "<group>";
+		};
+		024D9FFC2C583DFE006A92D7 /* Task */ = {
+			isa = PBXGroup;
+			children = (
+				024D9FFD2C583E0D006A92D7 /* GetSettingsTask.swift */,
+			);
+			path = Task;
 			sourceTree = "<group>";
 		};
 		025130A02B0C221600D12FB0 /* UIScrollView */ = {
@@ -3526,6 +3537,7 @@
 				025E1EEC284A8FD1005D2F83 /* SelectionBottomPopUpCoordinator.swift in Sources */,
 				02C4D6EE288BFCE800FDF55F /* SkillsSelectionPresentation.swift in Sources */,
 				B13515DD29A6D86200AF3722 /* Length.swift in Sources */,
+				024D9FFE2C583E0D006A92D7 /* GetSettingsTask.swift in Sources */,
 				B10CCD762741041900BB313D /* Advert.swift in Sources */,
 				B188899229A92E920079D6AC /* Regex.swift in Sources */,
 				B17DFAB827B6801900A82C41 /* SplashViewController.swift in Sources */,

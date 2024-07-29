@@ -20,7 +20,9 @@ final class SettingsViewModel: ViewModel {
 
     private var presentation: SettingsPresentation = .empty {
         didSet {
-            view?.reloadData()
+            safeSync {
+                view?.reloadData()
+            }
         }
     }
 
@@ -41,13 +43,14 @@ final class SettingsViewModel: ViewModel {
     }
 
     func fetchSettingsData() {
-        let jsonString: String = RemoteConfigService.shared[.settingsData]
-        do {
-            let response = try service.load(from: jsonString, type: RestArrayResponse<Setting>.self)
-            presentation = SettingsPresentation(settings: response.data.filter { $0.isVisible })
-        }
-        catch {
-            presentation = .empty
+        Task {
+            do {
+                let response = try await service.execute(task: GetSettingsTask(), type: RestArrayResponse<Setting>.self)
+                presentation = SettingsPresentation(settings: response.data.filter { $0.isVisible })
+            }
+            catch {
+                presentation = .empty
+            }
         }
     }
 }
