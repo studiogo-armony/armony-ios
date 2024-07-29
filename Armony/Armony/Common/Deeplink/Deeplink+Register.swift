@@ -15,6 +15,7 @@ public extension URLNavigation {
         AdvertCoordinator.register(navigator: navigation)
         ChangePasswordCoordinator.register(navigator: navigation)
         ChatsCoordinator.register(navigator: navigation)
+        CreateAdvertCoordinator.register(navigator: navigation)
         LiveChatCoordinator.register(navigator: navigation)
         FeedbackCoordinator.register(navigator: navigation)
         LogOutBottomPopUpCoordinator.register(navigator: navigation)

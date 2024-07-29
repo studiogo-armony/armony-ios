@@ -45,3 +45,21 @@ final class CreateAdvertCoordinator: Coordinator {
         SelectionBottomPopUpCoordinator(navigator: navigator).start(presentation: presentation)
     }
 }
+
+// MARK: - URLNavigatable
+extension CreateAdvertCoordinator: URLNavigatable {
+    var isAuthenticationRequired: Bool {
+        return true
+    }
+    
+    static var instance: any URLNavigatable {
+        return CreateAdvertCoordinator()
+    }
+    
+    static func register(navigator: any URLNavigation) {
+        navigator.register(coordinator: instance, pattern: .createAdvert) { _ in
+            selectTab(tab: .createAdvert, shouldPopToRoot: true)
+        }
+    }
+
+}

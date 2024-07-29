@@ -32,7 +32,7 @@ final class BannerSliderCell: UICollectionViewCell {
         let label = UILabel()
         label.font = .regularBody
         label.textColor = .armonyDarkBlue
-        label.numberOfLines = 2
+        label.numberOfLines = 4
         return label
     }()
 
