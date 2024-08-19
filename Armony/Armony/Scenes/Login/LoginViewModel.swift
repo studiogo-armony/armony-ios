@@ -116,5 +116,5 @@ extension LoginViewModel: ViewModelLifeCycle {
 
 // MARK: - Events
 struct AdjustLoginEvent: AdjustEvent {
-    var token: String = "cqthdm"
+    var token: String = "ocxbrz"
 }

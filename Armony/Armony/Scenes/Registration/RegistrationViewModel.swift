@@ -98,5 +98,5 @@ extension RegistrationViewModel: ViewModelLifeCycle {
 
 // MARK: - Events
 struct AdjustRegistrationEvent: AdjustEvent {
-    var token: String = "dimmpc"
+    var token: String = "phyqiv"
 }

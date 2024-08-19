@@ -35,6 +35,8 @@ final class LogOutBottomPopUpViewModel: ViewModel {
                 authenticator.unauthenticate()
                 notifier.post(notification: .userLoggedOut)
 
+                AdjustLogOutEvet().send()
+
                 safeSync {
                     view?.stopLogoutButtonActivityIndicatorView()
                     coordinator.dismiss(animated: true) { [weak self] in
@@ -50,4 +52,8 @@ final class LogOutBottomPopUpViewModel: ViewModel {
             }
         }
     }
+}
+
+struct AdjustLogOutEvet: AdjustEvent {
+    var token: String = "6rjyuv"
 }
