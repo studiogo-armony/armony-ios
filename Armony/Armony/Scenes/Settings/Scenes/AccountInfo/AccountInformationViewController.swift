@@ -80,7 +80,7 @@ final class AccountInformationViewController: UIViewController, ViewController {
     }
 
     private func configureSaveButton() {
-        saveButton.setTitle(Localization.Common.save.localized, for: .normal)
+        saveButton.setTitle(String(localized: "Common.Save", table: "Common+Localizable"), for: .normal)
         saveButton.setTitleColor(.armonyWhite, for: .normal)
         saveButton.setTitleColor(.armonyWhiteMedium, for: .disabled)
         saveButton.titleLabel?.font = .semiboldHeading

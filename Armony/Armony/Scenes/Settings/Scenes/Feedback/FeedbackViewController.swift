@@ -39,7 +39,7 @@ final class FeedbackViewController: UIViewController, ViewController {
         configureUI()
         viewModel.viewDidLoad()
 
-        title = Localization.Feedback.title.localized
+        title = String(localized: "Feedback.Title", table: "Feedback+Localizable")
 
         configureSendButton()
 
@@ -75,7 +75,10 @@ final class FeedbackViewController: UIViewController, ViewController {
     }
 
     private func configureSendButton() {
-        sendButton.setTitle(Localization.Feedback.submitButtonTitle.localized, for: .normal)
+        sendButton.setTitle(
+            String(localized: "Feedback.SubmitButton.Title", table: "Feedback+Localizable"),
+            for: .normal
+        )
         sendButton.setTitleColor(.armonyWhite, for: .normal)
         sendButton.setTitleColor(.armonyWhiteMedium, for: .disabled)
         sendButton.titleLabel?.font = .semiboldHeading

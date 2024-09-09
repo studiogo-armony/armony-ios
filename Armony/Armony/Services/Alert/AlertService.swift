@@ -93,13 +93,15 @@ extension UIAlertController {
 
 extension UIAlertAction {
     class func okay(action: VoidCallback? = nil) -> UIAlertAction {
-        return UIAlertAction(title: Localization.Common.ok.localized, style: .default) { _ in
+        let title = String(localized: "Common.OK", table: "Common+Localizable")
+        return UIAlertAction(title: title, style: .default) { _ in
             action?()
         }
     }
 
     class func cancel(action: VoidCallback? = nil) -> UIAlertAction {
-        return UIAlertAction(title: Localization.Common.cancel.localized, style: .cancel) { _ in
+        let title = String(localized: "Common.Cancel", table: "Common+Localizable")
+        return UIAlertAction(title: title, style: .cancel) { _ in
             action?()
         }
     }

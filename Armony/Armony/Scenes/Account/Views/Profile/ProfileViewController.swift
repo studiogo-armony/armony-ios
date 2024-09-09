@@ -132,7 +132,10 @@ extension ProfileViewController: ProfileViewDelegate {
         gradientView.configure(with: .init(orientation: .vertical, color: .profile))
         configureTapGestures()
 
-        saveButton.setTitle(Localization.Common.save.localized, for: .normal) // TODO: - Localizable
+        saveButton.setTitle(
+            String(localized: "Common.Save", table: "Common+Localizable"),
+            for: .normal
+        )
         saveButton.backgroundColor = .armonyPurple
         saveButton.makeAllCornersRounded(radius: .medium)
         saveButton.titleLabel?.font = .semiboldHeading

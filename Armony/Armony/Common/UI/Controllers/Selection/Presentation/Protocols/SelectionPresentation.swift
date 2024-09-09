@@ -35,7 +35,7 @@ extension SelectionPresentation {
     }
 
     var actionButtonTitle: String {
-        return "Devam Et".needLocalization
+        return String(localized: "Common.Continue", table: "Common+Localizable")
     }
 
     var defaultImageName: String {

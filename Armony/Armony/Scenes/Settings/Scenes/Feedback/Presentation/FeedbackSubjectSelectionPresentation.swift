@@ -18,7 +18,7 @@ struct FeedbackSubjectSelectionPresentation: SelectionPresentation {
     typealias Output = SingleSelectionOutput<FeedbackSubjectSelectionInput>
 
     weak var delegate: FeedbackSubjectSelectionDelegate?
-    var headerTitle: String = Localization.Feedback.subjectSelectionHeaderTitle.localized
+    var headerTitle: String = String(localized: "Feedback.SubjectSelection.Header.Title", table: "Feedback+Localizable")
     var isMultipleSelectionAllowed: Bool = false
 
     var items: [FeedbackSubjectSelectionInput]
