@@ -7,6 +7,7 @@
 
 import SwiftUI
 import UIKit
+import SafariServices
 
 protocol AdvertViewDelegate: AnyObject, ActivityIndicatorShowing, NavigationBarCustomizing {
     func configureUserSummaryView(with presentation: UserSummaryPresentation)
@@ -78,7 +79,9 @@ final class AdvertViewController: UIViewController, ViewController {
     var viewModel: AdvertViewModel!
 
     @IBAction private func applyButtonTapped() {
-        viewModel.sendMessageButtonTapped()
+        if let url = URL(string: "https://www.zuhalmuzik.com/yuzyuze-davul-egitimi-180479")  {
+            viewModel.coordinator.openAtSafariViewController(url: url)
+        }
     }
 
     @IBAction private func activateAdvertButtonTapped() {

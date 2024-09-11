@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SafariServices
 
 public typealias Navigator = UINavigationController
 
@@ -98,6 +99,14 @@ extension Coordinator {
         if let url = URL(string: urlString) {
             open(url: url)
         }
+    }
+
+    func openAtSafariViewController(url: URL) {
+        let config = SFSafariViewController.Configuration()
+        config.entersReaderIfAvailable = true
+
+        let view = SFSafariViewController(url: url, configuration: config)
+        navigator.ifNil(UIViewController.topMostViewController as! Navigator).present(view, animated: true)
     }
 }
 
