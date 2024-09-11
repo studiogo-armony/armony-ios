@@ -15,13 +15,13 @@ final class OnboardingViewModel: ViewModel {
     private let presentation: [OnboardingPresentation] = [
         OnboardingPresentation(borderImageName: "onboarding-first-border",
                                contentImageName: "onboarding-first-content",
-                               text: "Aradığın müzisyeni\nkeşfet"),
+                               text: "Müzisyen ve\nmüzik grupları"),
         OnboardingPresentation(borderImageName: "onboarding-second-border",
                                contentImageName: "onboarding-second-content",
-                               text: "Müzik grubuna\nkatıl"),
+                               text: "Müzik eğitimleri ve\netkinlik hizmetleri"),
         OnboardingPresentation(borderImageName: "onboarding-third-border",
                                contentImageName: "onboarding-third-content",
-                               text: "Müzik ağını\nkur")
+                               text: "Profesyonel müzik\nhizmetleri")
     ]
 
     var numberOfItemsInSection: Int {
