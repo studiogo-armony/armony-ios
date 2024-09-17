@@ -180,6 +180,10 @@
 		02BDBB0D2ADCA4A3008BB2A3 /* YouTubeiOSPlayerHelper in Frameworks */ = {isa = PBXBuildFile; productRef = 02BDBB0C2ADCA4A3008BB2A3 /* YouTubeiOSPlayerHelper */; };
 		02BDDEBE2B6C0407005AB8FA /* BannerSliderPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BDDEBD2B6C0407005AB8FA /* BannerSliderPresentation.swift */; };
 		02BF0C29292924840088787A /* MessageKit in Frameworks */ = {isa = PBXBuildFile; productRef = 02BF0C28292924840088787A /* MessageKit */; };
+		02C33ACE2C9A101800AB332B /* SwiftUICardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C33ACD2C9A101800AB332B /* SwiftUICardView.swift */; };
+		02C33AD02C9A110700AB332B /* AdvertListingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C33ACF2C9A110700AB332B /* AdvertListingView.swift */; };
+		02C33AD32C9A39EC00AB332B /* AdvertListingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C33AD22C9A39EC00AB332B /* AdvertListingViewModel.swift */; };
+		02C33AD52C9A3A0900AB332B /* AdvertListingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C33AD42C9A3A0900AB332B /* AdvertListingCoordinator.swift */; };
 		02C4D6EC288BFCD500FDF55F /* TitleSelectionPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C4D6EB288BFCD500FDF55F /* TitleSelectionPresentation.swift */; };
 		02C4D6EE288BFCE800FDF55F /* SkillsSelectionPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C4D6ED288BFCE800FDF55F /* SkillsSelectionPresentation.swift */; };
 		02C4D6F0288BFCF100FDF55F /* MusicGenresSelectionPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C4D6EF288BFCF100FDF55F /* MusicGenresSelectionPresentation.swift */; };
@@ -615,6 +619,10 @@
 		02BBC48C283D5605007F7E51 /* GetUserAdvertsTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserAdvertsTask.swift; sourceTree = "<group>"; };
 		02BDBB092ADCA3E5008BB2A3 /* YoutubeMediaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeMediaCell.swift; sourceTree = "<group>"; };
 		02BDDEBD2B6C0407005AB8FA /* BannerSliderPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerSliderPresentation.swift; sourceTree = "<group>"; };
+		02C33ACD2C9A101800AB332B /* SwiftUICardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUICardView.swift; sourceTree = "<group>"; };
+		02C33ACF2C9A110700AB332B /* AdvertListingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertListingView.swift; sourceTree = "<group>"; };
+		02C33AD22C9A39EC00AB332B /* AdvertListingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertListingViewModel.swift; sourceTree = "<group>"; };
+		02C33AD42C9A3A0900AB332B /* AdvertListingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertListingCoordinator.swift; sourceTree = "<group>"; };
 		02C4D6EB288BFCD500FDF55F /* TitleSelectionPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSelectionPresentation.swift; sourceTree = "<group>"; };
 		02C4D6ED288BFCE800FDF55F /* SkillsSelectionPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillsSelectionPresentation.swift; sourceTree = "<group>"; };
 		02C4D6EF288BFCF100FDF55F /* MusicGenresSelectionPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicGenresSelectionPresentation.swift; sourceTree = "<group>"; };
@@ -1805,6 +1813,16 @@
 			path = Presentation;
 			sourceTree = "<group>";
 		};
+		02C33AD12C9A39D000AB332B /* AdvertListing */ = {
+			isa = PBXGroup;
+			children = (
+				02C33ACF2C9A110700AB332B /* AdvertListingView.swift */,
+				02C33AD22C9A39EC00AB332B /* AdvertListingViewModel.swift */,
+				02C33AD42C9A3A0900AB332B /* AdvertListingCoordinator.swift */,
+			);
+			path = AdvertListing;
+			sourceTree = "<group>";
+		};
 		02C9538C285A817D00A2B107 /* NotchView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2459,9 +2477,10 @@
 		B18F7FEC2955F7C50006B975 /* CardView */ = {
 			isa = PBXGroup;
 			children = (
+				B18F7FF629560F940006B975 /* CardPresentation.swift */,
 				B18F7FED2955F8090006B975 /* CardView.swift */,
 				B18F7FEF2955F8650006B975 /* CardView.xib */,
-				B18F7FF629560F940006B975 /* CardPresentation.swift */,
+				02C33ACD2C9A101800AB332B /* SwiftUICardView.swift */,
 			);
 			path = CardView;
 			sourceTree = "<group>";
@@ -3103,6 +3122,7 @@
 				B17DFAB427B67FE100A82C41 /* Splash */,
 				B10F0AEA294679EA002FD531 /* VisitedAccount */,
 				B1B005DC29D5DA3F0041D61A /* Web */,
+				02C33AD12C9A39D000AB332B /* AdvertListing */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -3458,6 +3478,7 @@
 				B11B96CD29567BC800D084BC /* LiveChatNavigationTitlePresentation.swift in Sources */,
 				027E8E1E29346106001EFDFA /* FirebaseRegistrationEvent.swift in Sources */,
 				B188BB352749B09F002FF3D4 /* GradientPresentation.swift in Sources */,
+				02C33AD32C9A39EC00AB332B /* AdvertListingViewModel.swift in Sources */,
 				02D90D1628570461005B5162 /* OnboardingCell.swift in Sources */,
 				02DB3A382896888B0056BE3C /* GetAccountInfoTask.swift in Sources */,
 				027F8E3F2B8E1D820083A56D /* PutActivateAdvertTask.swift in Sources */,
@@ -3512,6 +3533,7 @@
 				B15F22DE27A087D1001F5B78 /* LoginViewController.swift in Sources */,
 				02B7CA6129259B1F0055B181 /* ChatsViewController.swift in Sources */,
 				024AD7572891DE730064F68F /* PutAccountInfoRequest.swift in Sources */,
+				02C33ACE2C9A101800AB332B /* SwiftUICardView.swift in Sources */,
 				B1F3C1F126F3B31C00CE71AC /* UIEdgeInsets+Extensions.swift in Sources */,
 				B1461E132A326E1400BF8AC3 /* FilterViewController.swift in Sources */,
 				B1455CE5279B44000063D860 /* UILabel+Extensions.swift in Sources */,
@@ -3574,6 +3596,7 @@
 				02BBAFCD288D789F0005A1B4 /* SelectionOutput.swift in Sources */,
 				B10CCD7C27410F8D00BB313D /* URL+Extensions.swift in Sources */,
 				B1461E162A3281AE00BF8AC3 /* FilterViewModel.swift in Sources */,
+				02C33AD02C9A110700AB332B /* AdvertListingView.swift in Sources */,
 				B1748F8D29B538EC00A833E7 /* MixPanelAnalytic.swift in Sources */,
 				025E0821284649D900063827 /* ProfileCoordinator.swift in Sources */,
 				B13997EC2A62D6E500D948DE /* MessageCountSocketHandler.swift in Sources */,
@@ -3686,6 +3709,7 @@
 				B1E4218B27B4360200EBC232 /* Error+Extensions.swift in Sources */,
 				B152FB9A298F073F001D2F00 /* DeleteAccountTask.swift in Sources */,
 				B111223726DA7777009C7B3E /* UIViewController+Extensions.swift in Sources */,
+				02C33AD52C9A3A0900AB332B /* AdvertListingCoordinator.swift in Sources */,
 				B18F7FF5295609650006B975 /* TitleAccessoryPresentation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

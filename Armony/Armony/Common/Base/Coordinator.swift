@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 import SafariServices
 
 public typealias Navigator = UINavigationController
@@ -115,5 +116,21 @@ extension UINavigationController {
 
     var rootViewController: UIViewController! {
         viewControllers.first
+    }
+}
+
+protocol SwiftUICoordinator: Coordinator {
+    associatedtype Content: View
+}
+
+extension SwiftUICoordinator where Controller: UIViewController {
+    func createHostingViewController(rootView: any View) -> Controller {
+        return Controller.hosting(rootView: rootView)
+    }
+}
+
+extension UIHostingController: ViewController {
+    public static var storyboardName: UIStoryboard.Name {
+        .hosting
     }
 }

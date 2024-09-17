@@ -28,7 +28,6 @@ public final class CardView: UIView, NibLoadable {
     }
 
     fileprivate func configureUI() {
-        colorfulHeaderView.makeCornersRounded(radius: .medium, CALayer.topCorners)
         infoContainerView.makeCornersRounded(radius: .medium, CALayer.topCorners)
         infoContainerView.setBackgroundColor(.darkBlue)
     }
