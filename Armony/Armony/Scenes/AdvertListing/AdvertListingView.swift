@@ -7,6 +7,12 @@
 
 import SwiftUI
 
+private struct Constants {
+    static let gridViewVerticalPadding = 10.0
+    static let cardHorizontalPadding = 20.0
+    static let cardHeight = 186.0
+}
+
 struct AdvertListingView: View {
 
     @ObservedObject var viewModel: AdvertListingViewModel
@@ -38,16 +44,17 @@ struct AdvertListingView: View {
                     }
             }
         })
-        .padding(.vertical, 10)
+        .padding(.vertical, Constants.gridViewVerticalPadding)
     }
 
     private func cardView(_ item: CardPresentation) -> some View {
         return SwiftUICardView(presentation: item)
-            .frame(height: 186)
-            .padding(.horizontal, 10)
+            .frame(height: Constants.cardHeight)
+            .padding(.horizontal, Constants.cardHorizontalPadding)
     }
 }
 
+// MARK: - Preview
 #Preview {
     AdvertListingView(viewModel: .init())
 }
