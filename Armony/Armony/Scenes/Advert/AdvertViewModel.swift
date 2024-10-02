@@ -18,7 +18,7 @@ final class AdvertViewModel: ViewModel {
     private(set) var dismissCompletion: Callback<Bool>? = nil
     private var isPreviousPageLiveChat: Bool = false
 
-    private var advert: Advert? = nil
+    private(set) var advert: Advert? = nil
     var shouldInfoViewIsShown: Bool {
         let isOwner = (advert?.user.id == authenticator.userID)
         return isOwner && (advert?.status == .autoInactive)
@@ -117,16 +117,25 @@ final class AdvertViewModel: ViewModel {
     }
 
     func sendMessageButtonTapped() {
+        if let externalLink = advert?.externalLink {
+            coordinator.openAtSafariViewController(url: externalLink)
+        }
+        else {
+            handleSendMessage()
+        }
+    }
+
+    private func handleSendMessage() {
         if !authenticator.isAuthenticated {
-                ScreenViewFirebaseEvent(
-                    name: "buttonClicked",
-                    parameters: [
-                        "screen": "Advert",
-                        "advertID": id.string,
-                        "buttonType": "Send Message",
-                        "isAuthenticated": "false"
-                    ]
-                ).send()
+            ScreenViewFirebaseEvent(
+                name: "buttonClicked",
+                parameters: [
+                    "screen": "Advert",
+                    "advertID": id.string,
+                    "buttonType": "Send Message",
+                    "isAuthenticated": "false"
+                ]
+            ).send()
 
             MixPanelClickEvent(parameters: [
                 "screen": "Advert",
@@ -327,7 +336,6 @@ extension AdvertViewModel: ViewModelLifeCycle {
                 self?.view?.setApplyButtonButtonVisibility(isHidden: isApplyButtonHidden)
 
                 self?.view?.setDescriptionLabel(description: response.data.description.emptyIfNil)
-//                self?.view?.setAppyButtonBackgroundColor(response.data.type.colorCode.colorFromHEX)
 
                 // Genre
                 let genreItemTitleStyle = TextAppearancePresentation(color: .white, font: .lightBody)

@@ -15,7 +15,6 @@ protocol AdvertViewDelegate: AnyObject, ActivityIndicatorShowing, NavigationBarC
     func configureGenresView(with presentation: MusicGenresPresentation)
     func configureInstructionTypesView(with presentation: MusicGenresPresentation)
 
-//    func setAppyButtonBackgroundColor(_ color: UIColor)
     func setDescriptionLabel(description: String)
 
     func setRemoveAdvertsButtonVisibility(isHidden: Bool)
@@ -79,9 +78,7 @@ final class AdvertViewController: UIViewController, ViewController {
     var viewModel: AdvertViewModel!
 
     @IBAction private func applyButtonTapped() {
-        if let url = URL(string: "https://www.zuhalmuzik.com/yuzyuze-davul-egitimi-180479")  {
-            viewModel.coordinator.openAtSafariViewController(url: url)
-        }
+        viewModel.sendMessageButtonTapped()
     }
 
     @IBAction private func activateAdvertButtonTapped() {
@@ -163,6 +160,17 @@ extension AdvertViewController: AdvertViewDelegate {
 
     func setApplyButtonButtonVisibility(isHidden: Bool) {
         sendMessageButton.isHidden = isHidden
+
+        // FIX IT
+        if let _ = viewModel.advert?.externalLink {
+            sendMessageButton.setTitle("Eğitime Git".needLocalization, for: .normal)
+            let text  = viewModel.advert?.description
+            let finalText = text.emptyIfNil + "\n\nİndirim Kodu: ARMONYAPP5"
+            descriptionLabel.hidableText = finalText
+        }
+        else {
+            sendMessageButton.setTitle("Mesaj Gönder".needLocalization, for: .normal)
+        }
     }
 
     func setRemoveAdvertsButtonVisibility(isHidden: Bool) {
@@ -174,16 +182,12 @@ extension AdvertViewController: AdvertViewDelegate {
         skillsView.isHidden = !presentation.items.isEmpty
     }
 
-//    func setAppyButtonBackgroundColor(_ color: UIColor) {
-//        sendMessageButton.backgroundColor = color
-//    }
-
     func configureUserSummaryView(with presentation: UserSummaryPresentation) {
         userSummaryView.configure(with: presentation)
     }
 
     func setDescriptionLabel(description: String) {
-        descriptionLabel.hidableText = description
+//        descriptionLabel.hidableText = description
     }
 
     func configureSkillsView(with presentation: SkillsPresentation) {

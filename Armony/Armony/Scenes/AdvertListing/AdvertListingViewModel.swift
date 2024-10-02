@@ -20,7 +20,7 @@ final class AdvertListingViewModel: ViewModel, ObservableObject {
     func fetchAdverts() async {
         do {
             let response = try await service.execute(
-                task: GetAdvertsTask(userID: .empty),
+                task: GetExternalAdvertsTask(),
                 type: RestArrayResponse<Advert>.self
             )
             cards = response.data.map { CardPresentation(advert: $0) }

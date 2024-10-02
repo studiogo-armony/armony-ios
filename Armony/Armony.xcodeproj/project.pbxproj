@@ -233,6 +233,7 @@
 		02F15CDF2ADAB51300A58977 /* GetMediasTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F15CDE2ADAB51300A58977 /* GetMediasTask.swift */; };
 		02F15CE22ADAB99800A58977 /* UserMediasPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F15CE12ADAB99800A58977 /* UserMediasPresentation.swift */; };
 		02F15CE52ADAB9FF00A58977 /* MediaItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F15CE42ADAB9FF00A58977 /* MediaItem.swift */; };
+		02F333332CADEBFB00FA29D2 /* GetExternalAdvertsTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F333322CADEBFB00FA29D2 /* GetExternalAdvertsTask.swift */; };
 		02F3432B284E243E003730F2 /* ImagePickerHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F3432A284E243E003730F2 /* ImagePickerHandler.swift */; };
 		02F59E2E29350B2E00015036 /* FirebasePerformance in Frameworks */ = {isa = PBXBuildFile; productRef = 02F59E2D29350B2E00015036 /* FirebasePerformance */; };
 		02F61D8A29310FC500BB3272 /* SocketClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F61D8929310FC500BB3272 /* SocketClient.swift */; };
@@ -670,6 +671,7 @@
 		02F15CDE2ADAB51300A58977 /* GetMediasTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMediasTask.swift; sourceTree = "<group>"; };
 		02F15CE12ADAB99800A58977 /* UserMediasPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMediasPresentation.swift; sourceTree = "<group>"; };
 		02F15CE42ADAB9FF00A58977 /* MediaItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaItem.swift; sourceTree = "<group>"; };
+		02F333322CADEBFB00FA29D2 /* GetExternalAdvertsTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetExternalAdvertsTask.swift; sourceTree = "<group>"; };
 		02F3432A284E243E003730F2 /* ImagePickerHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerHandler.swift; sourceTree = "<group>"; };
 		02F61D8929310FC500BB3272 /* SocketClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketClient.swift; sourceTree = "<group>"; };
 		02FA5A4828820D8300E8AD5C /* Account-Sample-Data.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "Account-Sample-Data.json"; sourceTree = "<group>"; };
@@ -1816,6 +1818,7 @@
 		02C33AD12C9A39D000AB332B /* AdvertListing */ = {
 			isa = PBXGroup;
 			children = (
+				02F333342CADF2AB00FA29D2 /* API */,
 				02C33ACF2C9A110700AB332B /* AdvertListingView.swift */,
 				02C33AD22C9A39EC00AB332B /* AdvertListingViewModel.swift */,
 				02C33AD42C9A3A0900AB332B /* AdvertListingCoordinator.swift */,
@@ -1992,6 +1995,22 @@
 				02F15CE42ADAB9FF00A58977 /* MediaItem.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		02F333342CADF2AB00FA29D2 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				02F333352CADF2B100FA29D2 /* Tasks */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		02F333352CADF2B100FA29D2 /* Tasks */ = {
+			isa = PBXGroup;
+			children = (
+				02F333322CADEBFB00FA29D2 /* GetExternalAdvertsTask.swift */,
+			);
+			path = Tasks;
 			sourceTree = "<group>";
 		};
 		02F61D8829310F9D00BB3272 /* Socket */ = {
@@ -3366,6 +3385,7 @@
 				024B4DB028FDA61C00E61563 /* Deeplinks.swift in Sources */,
 				02E7D6AC2844FCE00006780A /* DropdownView.swift in Sources */,
 				B1B9F52626E9282A0036252D /* UIResponder+Extensions.swift in Sources */,
+				02F333332CADEBFB00FA29D2 /* GetExternalAdvertsTask.swift in Sources */,
 				02299353280CC75C00B7E411 /* AccountViewController.swift in Sources */,
 				020891DE29107A8A006E520D /* DeleteUserAdvertTask.swift in Sources */,
 				02DB3A3A289689B80056BE3C /* AccountInfo.swift in Sources */,

@@ -34,15 +34,20 @@ public struct Advert: Decodable {
     let location: Location
     let description: String?
     let type: Advert.Properties
+
     @DefaultDecodable<EmptyDefault>
     var genres: [MusicGenre]
+
     let isActive: Bool
     let skills: [Skill]
     let user: ArmonyUser
     let status: Advert.Status
     let updateDate: String
+
     @DefaultDecodable<EmptyDefault>
     var serviceTypes: [ServiceResponse]
+
+    var externalLink: URL?
 
     var isStatusActive: Bool {
         return status == .active
@@ -54,5 +59,6 @@ public struct Advert: Decodable {
         case type = "adType"
         case location = "city"
         case updateDate = "updatedAt"
+        case externalLink = "external_link"
     }
 }

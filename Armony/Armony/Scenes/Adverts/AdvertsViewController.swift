@@ -204,8 +204,7 @@ extension AdvertsViewController: FilterViewModelDelegate {
 // MARK: - BannerSliderViewDelegate
 extension AdvertsViewController: BannerSliderViewDelegate {
     func bannerSliderView(_ view: BannerSliderView, didSelectItemAt index: Int) {
-//        let item = viewModel.sliderPresentation.banners[index].deeplink
-//        viewModel.coordinator.open(deeplink: item)
-        AdvertListingCoordinator(navigator: navigator).start()
+        let item = viewModel.sliderPresentation.banners[index].deeplink
+        viewModel.coordinator.open(deeplink: item)
     }
 }
