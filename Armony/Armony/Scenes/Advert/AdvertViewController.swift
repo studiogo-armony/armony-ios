@@ -164,9 +164,6 @@ extension AdvertViewController: AdvertViewDelegate {
         // FIX IT
         if let _ = viewModel.advert?.externalLink {
             sendMessageButton.setTitle("Eğitime Git".needLocalization, for: .normal)
-            let text  = viewModel.advert?.description
-            let finalText = text.emptyIfNil + "\n\nİndirim Kodu: ARMONYAPP5"
-            descriptionLabel.hidableText = finalText
         }
         else {
             sendMessageButton.setTitle("Mesaj Gönder".needLocalization, for: .normal)
@@ -187,7 +184,7 @@ extension AdvertViewController: AdvertViewDelegate {
     }
 
     func setDescriptionLabel(description: String) {
-//        descriptionLabel.hidableText = description
+        descriptionLabel.hidableText = description
     }
 
     func configureSkillsView(with presentation: SkillsPresentation) {

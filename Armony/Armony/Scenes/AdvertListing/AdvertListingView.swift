@@ -40,6 +40,9 @@ struct AdvertListingView: View {
             ForEach(viewModel.cards) { item in
                 cardView(item)
                     .onTapGesture {
+                        ZuhalAcademyAdvertAdjustEvent().send()
+                        let eventLabel = item.skillsPresentation.skills.map { $0.title.string }.joined(separator: .comma)
+                        ZuhalAcademyAdvertFirebaseEvent(label: eventLabel).send()
                         viewModel.coordinator.advert(id: item.id, colorCode: item.colorCode)
                     }
             }
@@ -52,6 +55,17 @@ struct AdvertListingView: View {
             .frame(height: Constants.cardHeight)
             .padding(.horizontal, Constants.cardHorizontalPadding)
     }
+}
+
+private struct ZuhalAcademyAdvertAdjustEvent: AdjustEvent {
+    var token: String = "scd9hx"
+}
+
+private struct ZuhalAcademyAdvertFirebaseEvent: FirebaseEvent {
+    var name: String = "click_card"
+    var category: String = "Zuhal Akademi"
+    var action: String = "Click Card"
+    var label: String
 }
 
 // MARK: - Preview

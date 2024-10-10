@@ -11,6 +11,12 @@ struct BannerSliderPresentation {
     let isActive: Bool
     let banners: [BannerSliderItemPresentation]
 
+    let adjustEvents = [
+        "iy2amx",
+        "scd9hx",
+        "xy012u"
+    ]
+
     init(isActive: Bool, banners: [BannerSlider]) {
         self.isActive = isActive
         self.banners = banners.compactMap {
@@ -29,4 +35,8 @@ struct BannerSliderItemPresentation {
     let imageURL: URL
     let deeplink: Deeplink
     let backgroundColor: AppTheme.Color
+}
+
+struct BannerSliderAdjustEvent: AdjustEvent {
+    var token: String
 }
