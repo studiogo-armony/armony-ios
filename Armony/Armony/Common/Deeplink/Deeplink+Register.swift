@@ -13,6 +13,7 @@ public extension URLNavigation {
         AccountCoordinator.register(navigator: navigation)
         AccountInformationCoordinator.register(navigator: navigation)
         AdvertCoordinator.register(navigator: navigation)
+        AdvertListingCoordinator.register(navigator: navigation)
         ChangePasswordCoordinator.register(navigator: navigation)
         ChatsCoordinator.register(navigator: navigation)
         CreateAdvertCoordinator.register(navigator: navigation)

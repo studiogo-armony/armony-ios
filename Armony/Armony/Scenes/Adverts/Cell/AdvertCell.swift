@@ -22,8 +22,7 @@ final class AdvertCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        cardView.makeAllCornersRounded(radius: .high)
-//        cardView.backgroundColor = .armonyDarkBlue
+        cardView.makeAllCornersRounded(radius: .medium)
 
         visualEffectView.frame = cardView.bounds
         cardView.addSubview(visualEffectView)

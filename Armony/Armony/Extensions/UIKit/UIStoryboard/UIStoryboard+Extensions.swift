@@ -31,6 +31,7 @@ public extension UIStoryboard {
         case visitedAccount
         case splash
         case web
+        case hosting
 
         case none
         
