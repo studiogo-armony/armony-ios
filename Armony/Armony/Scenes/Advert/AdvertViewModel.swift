@@ -119,6 +119,7 @@ final class AdvertViewModel: ViewModel {
     func sendMessageButtonTapped() {
         if let externalLink = advert?.externalLink {
             ZuhalAcademyActionAdjustEvent().send()
+            ZuhalAcademyActionFirebaseEvent().send()
             coordinator.openAtSafariViewController(url: externalLink)
         }
         else {
@@ -499,3 +500,11 @@ struct DeleteAdvertFirebaseEvent: FirebaseEvent {
 struct ZuhalAcademyActionAdjustEvent: AdjustEvent {
     var token: String = "xy012u"
 }
+
+struct ZuhalAcademyActionFirebaseEvent: FirebaseEvent {
+    var name: String = "click_education"
+
+    var category: String = "Zuhal Akademi"
+    var action: String = "Click Button"
+}
+

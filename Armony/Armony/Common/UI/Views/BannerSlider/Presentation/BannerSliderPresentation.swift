@@ -17,6 +17,12 @@ struct BannerSliderPresentation {
         "xy012u"
     ]
 
+    let firebaseEvents = [
+        BannerSliderFirebaseEvent(category: "Zuhal Akademi"),
+        BannerSliderFirebaseEvent(category: "Survey"),
+        BannerSliderFirebaseEvent(category: "Youtube")
+    ]
+
     init(isActive: Bool, banners: [BannerSlider]) {
         self.isActive = isActive
         self.banners = banners.compactMap {
@@ -39,4 +45,10 @@ struct BannerSliderItemPresentation {
 
 struct BannerSliderAdjustEvent: AdjustEvent {
     var token: String
+}
+
+struct BannerSliderFirebaseEvent: FirebaseEvent {
+    var name: String = "click_banner_slider"
+    var category: String
+    var action: String = "Click Banner"
 }

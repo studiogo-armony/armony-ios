@@ -206,7 +206,12 @@ extension AdvertsViewController: BannerSliderViewDelegate {
     func bannerSliderView(_ view: BannerSliderView, didSelectItemAt index: Int) {
         let banner = viewModel.sliderPresentation.banners[index]
         let adjustToken = viewModel.sliderPresentation.adjustEvents[index]
+
+        // Events
         BannerSliderAdjustEvent(token: adjustToken).send()
+        let firebaseEvent = viewModel.sliderPresentation.firebaseEvents[index]
+        firebaseEvent.send()
+
         viewModel.coordinator.open(deeplink: banner.deeplink)
     }
 }
