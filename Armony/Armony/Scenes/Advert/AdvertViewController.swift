@@ -7,6 +7,7 @@
 
 import SwiftUI
 import UIKit
+import SafariServices
 
 protocol AdvertViewDelegate: AnyObject, ActivityIndicatorShowing, NavigationBarCustomizing {
     func configureUserSummaryView(with presentation: UserSummaryPresentation)
@@ -14,7 +15,6 @@ protocol AdvertViewDelegate: AnyObject, ActivityIndicatorShowing, NavigationBarC
     func configureGenresView(with presentation: MusicGenresPresentation)
     func configureInstructionTypesView(with presentation: MusicGenresPresentation)
 
-//    func setAppyButtonBackgroundColor(_ color: UIColor)
     func setDescriptionLabel(description: String)
 
     func setRemoveAdvertsButtonVisibility(isHidden: Bool)
@@ -160,6 +160,14 @@ extension AdvertViewController: AdvertViewDelegate {
 
     func setApplyButtonButtonVisibility(isHidden: Bool) {
         sendMessageButton.isHidden = isHidden
+
+        // FIX IT
+        if let _ = viewModel.advert?.externalLink {
+            sendMessageButton.setTitle("Eğitime Git".needLocalization, for: .normal)
+        }
+        else {
+            sendMessageButton.setTitle("Mesaj Gönder".needLocalization, for: .normal)
+        }
     }
 
     func setRemoveAdvertsButtonVisibility(isHidden: Bool) {
@@ -170,10 +178,6 @@ extension AdvertViewController: AdvertViewDelegate {
         instructionTypesView.configure(with: presentation)
         skillsView.isHidden = !presentation.items.isEmpty
     }
-
-//    func setAppyButtonBackgroundColor(_ color: UIColor) {
-//        sendMessageButton.backgroundColor = color
-//    }
 
     func configureUserSummaryView(with presentation: UserSummaryPresentation) {
         userSummaryView.configure(with: presentation)

@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct CardPresentation {
+public struct CardPresentation: Identifiable, Hashable {
 
     public let id: Int
     public let colorCode: String
@@ -73,6 +73,14 @@ public struct CardPresentation {
         else {
             genrePresentation = nil
         }
+    }
+
+    public static func == (lhs: CardPresentation, rhs: CardPresentation) -> Bool {
+        return lhs.id == rhs.id
+    }
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
 
     // MARK: - EMPTY

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 private struct Constants {
     static let seperator = "ViewController"
@@ -36,5 +37,9 @@ extension ViewController where Self: UIViewController {
             return Navigator(rootViewController: controller())
         }
         return allocate(suffix: "Navigator")
+    }
+
+    static func hosting<T: View >(rootView: T) -> Self {
+        return UIHostingController(rootView: rootView) as! Self
     }
 }

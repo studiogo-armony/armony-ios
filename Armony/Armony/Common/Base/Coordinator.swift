@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import SwiftUI
+import SafariServices
 
 public typealias Navigator = UINavigationController
 
@@ -99,6 +101,14 @@ extension Coordinator {
             open(url: url)
         }
     }
+
+    func openAtSafariViewController(url: URL) {
+        let config = SFSafariViewController.Configuration()
+        config.entersReaderIfAvailable = true
+
+        let view = SFSafariViewController(url: url, configuration: config)
+        navigator.ifNil(UIViewController.topMostViewController as! Navigator).present(view, animated: true)
+    }
 }
 
 // MARK: - UINavigationController
@@ -106,5 +116,21 @@ extension UINavigationController {
 
     var rootViewController: UIViewController! {
         viewControllers.first
+    }
+}
+
+protocol SwiftUICoordinator: Coordinator {
+    associatedtype Content: View
+}
+
+extension SwiftUICoordinator where Controller: UIViewController {
+    func createHostingViewController(rootView: any View) -> Controller {
+        return Controller.hosting(rootView: rootView)
+    }
+}
+
+extension UIHostingController: ViewController {
+    public static var storyboardName: UIStoryboard.Name {
+        .hosting
     }
 }
