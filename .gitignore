@@ -91,4 +91,6 @@ fastlane/test_output
 
 iOSInjectionProject/
 
-#Other /Armony/Armony/Resources/Firebase /Armony/Armony/Resources/Configs
+#Other
+/Armony/Armony/Resources/Firebase
+/Armony/Armony/Resources/Configs
