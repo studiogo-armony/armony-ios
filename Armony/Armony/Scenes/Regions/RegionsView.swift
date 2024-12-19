@@ -24,6 +24,10 @@ struct RegionsView: View {
             })
             .padding()
             
+            TextField("Search", text: $viewModel.searchText)
+                .textFieldStyle(.roundedBorder)
+                .padding(.horizontal)
+            
             List(viewModel.regions, id: \.id) { region in
                 HStack {
                     Text(region.displayName)
