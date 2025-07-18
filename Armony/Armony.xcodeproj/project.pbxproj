@@ -190,6 +190,7 @@
 		02BDBB0D2ADCA4A3008BB2A3 /* YouTubeiOSPlayerHelper in Frameworks */ = {isa = PBXBuildFile; productRef = 02BDBB0C2ADCA4A3008BB2A3 /* YouTubeiOSPlayerHelper */; };
 		02BDDEBE2B6C0407005AB8FA /* BannerSliderPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BDDEBD2B6C0407005AB8FA /* BannerSliderPresentation.swift */; };
 		02BF0C29292924840088787A /* MessageKit in Frameworks */ = {isa = PBXBuildFile; productRef = 02BF0C28292924840088787A /* MessageKit */; };
+		02C1E3562E299B4A0016C4AC /* AvatarSwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C1E3552E299B4A0016C4AC /* AvatarSwiftUIView.swift */; };
 		02C33ACE2C9A101800AB332B /* SwiftUICardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C33ACD2C9A101800AB332B /* SwiftUICardView.swift */; };
 		02C33AD02C9A110700AB332B /* AdvertListingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C33ACF2C9A110700AB332B /* AdvertListingView.swift */; };
 		02C33AD32C9A39EC00AB332B /* AdvertListingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C33AD22C9A39EC00AB332B /* AdvertListingViewModel.swift */; };
@@ -641,6 +642,7 @@
 		02BBC48C283D5605007F7E51 /* GetUserAdvertsTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserAdvertsTask.swift; sourceTree = "<group>"; };
 		02BDBB092ADCA3E5008BB2A3 /* YoutubeMediaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeMediaCell.swift; sourceTree = "<group>"; };
 		02BDDEBD2B6C0407005AB8FA /* BannerSliderPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerSliderPresentation.swift; sourceTree = "<group>"; };
+		02C1E3552E299B4A0016C4AC /* AvatarSwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarSwiftUIView.swift; sourceTree = "<group>"; };
 		02C33ACD2C9A101800AB332B /* SwiftUICardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUICardView.swift; sourceTree = "<group>"; };
 		02C33ACF2C9A110700AB332B /* AdvertListingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertListingView.swift; sourceTree = "<group>"; };
 		02C33AD22C9A39EC00AB332B /* AdvertListingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertListingViewModel.swift; sourceTree = "<group>"; };
@@ -2562,6 +2564,7 @@
 			isa = PBXGroup;
 			children = (
 				B13F171326E8157A00875289 /* AvatarPresentation.swift */,
+				02C1E3552E299B4A0016C4AC /* AvatarSwiftUIView.swift */,
 				B1E0C4F926DAC5320067DE6F /* AvatarView.swift */,
 				B1E0C4FB26DAD0460067DE6F /* AvatarView.xib */,
 			);
@@ -3566,6 +3569,7 @@
 				B1C9095F294680ED0080804C /* VisitedAccountViewModel.swift in Sources */,
 				020645452CCC58DC00251428 /* EmptyStateView+SwiftUI.swift in Sources */,
 				B1EC403726DBD1DE00807144 /* UIImageView+Extensions.swift in Sources */,
+				02C1E3562E299B4A0016C4AC /* AvatarSwiftUIView.swift in Sources */,
 				021091012846BAAA00D66D60 /* AccountDetail.swift in Sources */,
 				B1E29482299FE24900602819 /* HashableKey+Keys.swift in Sources */,
 				B1B55C8A26CEFADD00FDE884 /* AdvertsViewController.swift in Sources */,
@@ -4019,7 +4023,7 @@
 				"DEBUG_ACTIVITY_MODE[sdk=iphonesimulator*]" = disable;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = U6ZP8CMS8A;
-				ENABLE_DEBUG_DYLIB = NO;
+				ENABLE_DEBUG_DYLIB = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = Armony/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Armony-Debug";
@@ -4054,7 +4058,7 @@
 				DEBUG_ACTIVITY_MODE = "";
 				"DEBUG_ACTIVITY_MODE[arch=*]" = disable;
 				DEVELOPMENT_TEAM = "";
-				ENABLE_DEBUG_DYLIB = NO;
+				ENABLE_DEBUG_DYLIB = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = Armony/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Armony;
