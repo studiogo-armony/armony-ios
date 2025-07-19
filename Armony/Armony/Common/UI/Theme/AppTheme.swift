@@ -135,6 +135,7 @@ public final class AppTheme {
     }
 
     public enum Spacing: CGFloat {
+        case four = 4.0
         case eight = 8.0
         case ten = 10.0
         case twelve = 12.0

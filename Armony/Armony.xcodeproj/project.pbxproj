@@ -37,6 +37,7 @@
 		021E715328EDFCC000795BC8 /* AdvertTypeSelectionPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021E715228EDFCC000795BC8 /* AdvertTypeSelectionPresentation.swift */; };
 		021E715528EE089200795BC8 /* PostPlaceAdvertTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021E715428EE089200795BC8 /* PostPlaceAdvertTask.swift */; };
 		021EC05C2CF3B06B002A48BB /* Chat+Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 021EC05B2CF3B06B002A48BB /* Chat+Localizable.xcstrings */; };
+		021F76102E2BDDD800A3602B /* GradientSwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021F760F2E2BDDCE00A3602B /* GradientSwiftUIView.swift */; };
 		0221600F2883495200024D2A /* TextViewPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0221600E2883495200024D2A /* TextViewPresentation.swift */; };
 		022160122883663A00024D2A /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022160112883663A00024D2A /* Validation.swift */; };
 		022160142883690000024D2A /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022160132883690000024D2A /* Validator.swift */; };
@@ -67,6 +68,11 @@
 		0231F2A7284FA3AE0012928F /* TypeDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0231F2A6284FA3AE0012928F /* TypeDefinitions.swift */; };
 		023731B5286121A1005F1522 /* UIApplication+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023731B4286121A1005F1522 /* UIApplication+Extensions.swift */; };
 		023731B928612B23005F1522 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 023731B828612B23005F1522 /* Settings.storyboard */; };
+		023E74542E2AEF98007457A3 /* MusicGenresSwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023E74532E2AEF98007457A3 /* MusicGenresSwiftUIView.swift */; };
+		023E74562E2AEFBF007457A3 /* MusicGenreItemSwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023E74552E2AEFBF007457A3 /* MusicGenreItemSwiftUIView.swift */; };
+		023E74592E2B047B007457A3 /* View+CornerRounding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023E74582E2B046E007457A3 /* View+CornerRounding.swift */; };
+		023E745B2E2B04F5007457A3 /* View+BorderRounding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023E745A2E2B04EA007457A3 /* View+BorderRounding.swift */; };
+		023E745E2E2B96F1007457A3 /* TagLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023E745D2E2B96EC007457A3 /* TagLayout.swift */; };
 		0240C78E292D6C56009A9727 /* MessageSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0240C78C292D6C56009A9727 /* MessageSectionHeaderView.swift */; };
 		02472AA32810B03300A6A327 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 02472AA22810B03300A6A327 /* Alamofire */; };
 		02472AA62810B07600A6A327 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 02472AA52810B07600A6A327 /* IQKeyboardManagerSwift */; };
@@ -165,6 +171,7 @@
 		02A1DB512809AAB600E5B89E /* ForgotPasswordView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02A1DB502809AAB600E5B89E /* ForgotPasswordView.xib */; };
 		02A261F12B24D10D004D26A1 /* DeleteAccountFeedbackSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A261F02B24D10D004D26A1 /* DeleteAccountFeedbackSelection.swift */; };
 		02A261F32B24DBE0004D26A1 /* PostDeleteAccountFeedbackTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A261F22B24DBE0004D26A1 /* PostDeleteAccountFeedbackTask.swift */; };
+		02A439012E2BC963007FD1BC /* View+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A439002E2BC95B007FD1BC /* View+Additions.swift */; };
 		02A60CE22D0A291300B0FA80 /* Onboarding+Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 02A60CE12D0A291300B0FA80 /* Onboarding+Localizable.xcstrings */; };
 		02A824842881B202004351D0 /* MockRestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A824832881B202004351D0 /* MockRestService.swift */; };
 		02AC514128343DF1004C82E4 /* EmptyStatePresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02AC514028343DF1004C82E4 /* EmptyStatePresentation.swift */; };
@@ -500,6 +507,7 @@
 		021E715228EDFCC000795BC8 /* AdvertTypeSelectionPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertTypeSelectionPresentation.swift; sourceTree = "<group>"; };
 		021E715428EE089200795BC8 /* PostPlaceAdvertTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPlaceAdvertTask.swift; sourceTree = "<group>"; };
 		021EC05B2CF3B06B002A48BB /* Chat+Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = "Chat+Localizable.xcstrings"; sourceTree = "<group>"; };
+		021F760F2E2BDDCE00A3602B /* GradientSwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientSwiftUIView.swift; sourceTree = "<group>"; };
 		0221600E2883495200024D2A /* TextViewPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewPresentation.swift; sourceTree = "<group>"; };
 		022160112883663A00024D2A /* Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 		022160132883690000024D2A /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
@@ -530,6 +538,11 @@
 		0231F2A6284FA3AE0012928F /* TypeDefinitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeDefinitions.swift; sourceTree = "<group>"; };
 		023731B4286121A1005F1522 /* UIApplication+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extensions.swift"; sourceTree = "<group>"; };
 		023731B828612B23005F1522 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		023E74532E2AEF98007457A3 /* MusicGenresSwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicGenresSwiftUIView.swift; sourceTree = "<group>"; };
+		023E74552E2AEFBF007457A3 /* MusicGenreItemSwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicGenreItemSwiftUIView.swift; sourceTree = "<group>"; };
+		023E74582E2B046E007457A3 /* View+CornerRounding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+CornerRounding.swift"; sourceTree = "<group>"; };
+		023E745A2E2B04EA007457A3 /* View+BorderRounding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+BorderRounding.swift"; sourceTree = "<group>"; };
+		023E745D2E2B96EC007457A3 /* TagLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagLayout.swift; sourceTree = "<group>"; };
 		0240C78C292D6C56009A9727 /* MessageSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageSectionHeaderView.swift; sourceTree = "<group>"; };
 		0248038C2861C6CF0012D6CF /* AccountInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInformationViewController.swift; sourceTree = "<group>"; };
 		0248038E2861C85D0012D6CF /* AccountInformationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInformationViewModel.swift; sourceTree = "<group>"; };
@@ -618,6 +631,7 @@
 		02A1DB502809AAB600E5B89E /* ForgotPasswordView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForgotPasswordView.xib; sourceTree = "<group>"; };
 		02A261F02B24D10D004D26A1 /* DeleteAccountFeedbackSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountFeedbackSelection.swift; sourceTree = "<group>"; };
 		02A261F22B24DBE0004D26A1 /* PostDeleteAccountFeedbackTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDeleteAccountFeedbackTask.swift; sourceTree = "<group>"; };
+		02A439002E2BC95B007FD1BC /* View+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Additions.swift"; sourceTree = "<group>"; };
 		02A60CE12D0A291300B0FA80 /* Onboarding+Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = "Onboarding+Localizable.xcstrings"; sourceTree = "<group>"; };
 		02A824832881B202004351D0 /* MockRestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRestService.swift; sourceTree = "<group>"; };
 		02AC514028343DF1004C82E4 /* EmptyStatePresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStatePresentation.swift; sourceTree = "<group>"; };
@@ -1363,6 +1377,24 @@
 				023731B4286121A1005F1522 /* UIApplication+Extensions.swift */,
 			);
 			path = UIApplication;
+			sourceTree = "<group>";
+		};
+		023E74572E2B045F007457A3 /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				02A439002E2BC95B007FD1BC /* View+Additions.swift */,
+				023E745A2E2B04EA007457A3 /* View+BorderRounding.swift */,
+				023E74582E2B046E007457A3 /* View+CornerRounding.swift */,
+			);
+			path = SwiftUI;
+			sourceTree = "<group>";
+		};
+		023E745C2E2B96E3007457A3 /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				023E745D2E2B96EC007457A3 /* TagLayout.swift */,
+			);
+			path = SwiftUI;
 			sourceTree = "<group>";
 		};
 		0240C789292D6BD7009A9727 /* SectionHeader */ = {
@@ -2407,6 +2439,7 @@
 				B171155E279F239D00563A42 /* MusicGenresView.swift */,
 				B1711560279F23B400563A42 /* MusicGenresView.xib */,
 				B1711565279F29E600563A42 /* MusicGenresPresentation.swift */,
+				023E74532E2AEF98007457A3 /* MusicGenresSwiftUIView.swift */,
 			);
 			path = MusicGenres;
 			sourceTree = "<group>";
@@ -2414,6 +2447,7 @@
 		B1711567279F2CAB00563A42 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				023E74552E2AEFBF007457A3 /* MusicGenreItemSwiftUIView.swift */,
 				B1711568279F2CD300563A42 /* MusicGenreCell.swift */,
 				B1711569279F2CD300563A42 /* MusicGenreCell.xib */,
 				B1C92E47279F45EA00E7E3DC /* MusicGenreCellPresentation.swift */,
@@ -2545,6 +2579,7 @@
 		B188BB2C274994ED002FF3D4 /* Gradient */ = {
 			isa = PBXGroup;
 			children = (
+				021F760F2E2BDDCE00A3602B /* GradientSwiftUIView.swift */,
 				B188BB342749B09F002FF3D4 /* GradientPresentation.swift */,
 				B188BB2D274994FD002FF3D4 /* GradientView.swift */,
 				B188BB2F27499518002FF3D4 /* GradientView.xib */,
@@ -2735,6 +2770,7 @@
 		B1A77A9226D2BE1400CE94FA /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				023E74572E2B045F007457A3 /* SwiftUI */,
 				B17ECF9526DA2B1400DD535D /* Alamofire */,
 				B1A77A9326D2BE2F00CE94FA /* Foundation */,
 				B1A77A9726D2C00600CE94FA /* UIKit */,
@@ -3065,6 +3101,7 @@
 		B1E0C4F826DAC5140067DE6F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				023E745C2E2B96E3007457A3 /* SwiftUI */,
 				B18986BC26DAD5DC00B618E7 /* Avatar */,
 				02BDDEBB2B6C03EC005AB8FA /* BannerSlider */,
 				B18F7FEC2955F7C50006B975 /* CardView */,
@@ -3533,6 +3570,7 @@
 				B101B48329A8F878002A9EF0 /* NotNilOrEmpty.swift in Sources */,
 				02BDDEBE2B6C0407005AB8FA /* BannerSliderPresentation.swift in Sources */,
 				024803922861DB190012D6CF /* AccountInformationCoordinator.swift in Sources */,
+				023E745E2E2B96F1007457A3 /* TagLayout.swift in Sources */,
 				02AF996C28ED944E006669F4 /* PlaceAdvertViewModel.swift in Sources */,
 				02722A7D2C1B9F12003CD908 /* ServiceSelectionPresentation.swift in Sources */,
 				B18FEB4D27B5B0F700C8A2C0 /* NotificationCenter+Extensions.swift in Sources */,
@@ -3558,6 +3596,7 @@
 				B19BF210274C43A90034BBB8 /* AdvertViewController.swift in Sources */,
 				0217A0372B7156E100ADFB1E /* AdvertsCollectionHeaderView.swift in Sources */,
 				02DB3A34289512B20056BE3C /* LoginRequest.swift in Sources */,
+				021F76102E2BDDD800A3602B /* GradientSwiftUIView.swift in Sources */,
 				023731B5286121A1005F1522 /* UIApplication+Extensions.swift in Sources */,
 				B1B9F52A26E928BB0036252D /* AdvertCell.swift in Sources */,
 				02C4D6F6288BFD2D00FDF55F /* EmptyProfileSelectionPresentation.swift in Sources */,
@@ -3590,6 +3629,7 @@
 				B1C85DBE27BC1B2D00C3CE05 /* AuthenticationService.swift in Sources */,
 				B1772B3B2710CDA1001E544B /* Skill.swift in Sources */,
 				02E443F02C35DB8000AE0A13 /* ServiceResponse.swift in Sources */,
+				023E74592E2B047B007457A3 /* View+CornerRounding.swift in Sources */,
 				024B4DB228FDA65B00E61563 /* Deeplink+Register.swift in Sources */,
 				B17CA3A32745A69900F10336 /* ActivityIndicatorShowing.swift in Sources */,
 				B1A6FB2527A9B4CB00E1BEA5 /* RegistrationViewModel.swift in Sources */,
@@ -3705,6 +3745,7 @@
 				02C33AD02C9A110700AB332B /* AdvertListingView.swift in Sources */,
 				B1748F8D29B538EC00A833E7 /* MixPanelAnalytic.swift in Sources */,
 				025E0821284649D900063827 /* ProfileCoordinator.swift in Sources */,
+				02A439012E2BC963007FD1BC /* View+Additions.swift in Sources */,
 				B13997EC2A62D6E500D948DE /* MessageCountSocketHandler.swift in Sources */,
 				B171155F279F239D00563A42 /* MusicGenresView.swift in Sources */,
 				0297CD152D122EC00014D208 /* RegionsViewModel.swift in Sources */,
@@ -3751,6 +3792,7 @@
 				B19CB891295E0C96009A23AC /* LiveChatMessagePresentation.swift in Sources */,
 				B18CFC2629A8F28900B5784E /* ValidatableDropdownView.swift in Sources */,
 				B1E4218F27B43E1A00EBC232 /* UIWindow+Extensions.swift in Sources */,
+				023E74542E2AEF98007457A3 /* MusicGenresSwiftUIView.swift in Sources */,
 				02C4D6F2288BFD0900FDF55F /* LocationSelectionPresentation.swift in Sources */,
 				B1CF33BB29F0872C00B686A9 /* NSObject+Extensions.swift in Sources */,
 				B177347B26D43F2000BD7D39 /* NibLoadable.swift in Sources */,
@@ -3763,7 +3805,9 @@
 				B1E6D76127A72BA5003C86C6 /* UIView+IBInspectable.swift in Sources */,
 				B14055A226D9740D00D1E565 /* RestArrayResponse.swift in Sources */,
 				B140559526D96CCB00D1E565 /* Service.swift in Sources */,
+				023E74562E2AEFBF007457A3 /* MusicGenreItemSwiftUIView.swift in Sources */,
 				02D00FCF2913383000B84DD7 /* PutAvatarUpdateTask.swift in Sources */,
+				023E745B2E2B04F5007457A3 /* View+BorderRounding.swift in Sources */,
 				02156E32287B2F1F002DE494 /* LogOutBottomViewController.swift in Sources */,
 				023069A32929188900BDC42B /* GetLiveChatMessagesTask.swift in Sources */,
 				026FA8A5284CCDD700971645 /* Codable+Extensions.swift in Sources */,

@@ -11,6 +11,10 @@ public extension NSAttributedString {
 
     static let empty = NSAttributedString()
 
+    var attributed: AttributedString {
+        AttributedString(self)
+    }
+
     func width(for height: CGFloat) -> CGFloat {
         let rect = boundingRect(with: CGSize(width: .max, height: height),
                                 options: [.usesLineFragmentOrigin],

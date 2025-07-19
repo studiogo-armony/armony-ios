@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AvatarSwiftUIView: View {
+
     private let presentation: AvatarPresentation
 
     init(presentation: AvatarPresentation) {
@@ -22,7 +23,7 @@ struct AvatarSwiftUIView: View {
 
         case .custom(let configuration):
             makeImage(source: presentation.source)
-                .cornerRadius(configuration.radius.ifNil(.medium))
+                .cornerRadius(radius: configuration.radius.ifNil(.medium))
         }
     }
 
@@ -73,15 +74,5 @@ struct AvatarSwiftUIView: View {
         AvatarSwiftUIView(
             presentation: .init(kind: .custom(.init(size: .medium)), source: .static(.avatarPlaceholder))
         )
-    }
-}
-
-extension View {
-    func cornerRadius(_ radius: AppTheme.Radius) -> some View {
-        clipShape(.rect(cornerRadius: radius.rawValue))
-    }
-
-    func frame(size: CGSize) -> some View {
-        frame(width: size.width, height: size.width)
     }
 }

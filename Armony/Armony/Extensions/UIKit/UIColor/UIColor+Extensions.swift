@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 private struct Constants {
     static let numberOfHexDigit = 8
@@ -13,6 +14,10 @@ private struct Constants {
 }
 
 public extension UIColor {
+    var swiftUIColor: Color {
+        return Color(self)
+    }
+
     var alpha: CGFloat {
         var alpha: CGFloat = 0
         getRed(nil, green: nil, blue: nil, alpha: &alpha)
