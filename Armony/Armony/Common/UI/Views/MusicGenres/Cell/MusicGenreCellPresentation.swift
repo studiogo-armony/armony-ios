@@ -11,10 +11,16 @@ struct MusicGenreCellPresentation {
     let borderColor: UIColor
     let borderWidth: CGFloat
     let item: MusicGenreItemPresentation
+
+    init(borderColor: UIColor, borderWidth: AppTheme.Border, item: MusicGenreItemPresentation) {
+        self.borderColor = borderColor
+        self.borderWidth = borderWidth.rawValue
+        self.item = item
+    }
 }
 
 // MARK: - MusicGenreItemPresentation
-struct MusicGenreItemPresentation {
+struct MusicGenreItemPresentation: Hashable {
     let id: Int
     let title: NSAttributedString
 

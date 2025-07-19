@@ -68,7 +68,7 @@ extension MusicGenresView: UICollectionViewDataSource {
         let item = presentation.items[indexPath.row]
         let cellPresentation = MusicGenreCellPresentation(
             borderColor: presentation.cellBorderColor,
-            borderWidth: 1.0,
+            borderWidth: .default,
             item: item
         )
         cell.configure(with: cellPresentation)
