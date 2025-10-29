@@ -42,6 +42,7 @@
 		022160142883690000024D2A /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022160132883690000024D2A /* Validator.swift */; };
 		0221601628836AC900024D2A /* Validatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0221601528836AC900024D2A /* Validatable.swift */; };
 		0221601828836EA400024D2A /* Validation+RuleSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0221601728836EA400024D2A /* Validation+RuleSet.swift */; };
+		022312EC2EB254E500551560 /* MockURLNavigatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022312EB2EB254E300551560 /* MockURLNavigatable.swift */; };
 		02232526287CB5E000DB3600 /* GetTitlesTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02232525287CB5E000DB3600 /* GetTitlesTask.swift */; };
 		0223BAA0282D42EB0090314C /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0223BA9F282D42EB0090314C /* EmptyStateView.swift */; };
 		0223BAA2282D489F0090314C /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0223BAA1282D489F0090314C /* UIButton+Extensions.swift */; };
@@ -523,6 +524,7 @@
 		022160132883690000024D2A /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		0221601528836AC900024D2A /* Validatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validatable.swift; sourceTree = "<group>"; };
 		0221601728836EA400024D2A /* Validation+RuleSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Validation+RuleSet.swift"; sourceTree = "<group>"; };
+		022312EB2EB254E300551560 /* MockURLNavigatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLNavigatable.swift; sourceTree = "<group>"; };
 		02232525287CB5E000DB3600 /* GetTitlesTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTitlesTask.swift; sourceTree = "<group>"; };
 		0223BA9F282D42EB0090314C /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
 		0223BAA1282D489F0090314C /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
@@ -1028,8 +1030,9 @@
 			isa = PBXGroup;
 			children = (
 				02B1912E2EA6BED200E7878D /* DeeplinkTests.swift */,
-				02B02BD72E8AC11A0088789D /* URLNavigatorTests.swift */,
+				022312EB2EB254E300551560 /* MockURLNavigatable.swift */,
 				0205A4A02C53EF7B00D5821D /* UI */,
+				02B02BD72E8AC11A0088789D /* URLNavigatorTests.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -3928,6 +3931,7 @@
 				02B191352EA6D86000E7878D /* MockLoginCoordinator.swift in Sources */,
 				0205A49E2C53E5C600D5821D /* DropdownViewSnapshotTests.swift in Sources */,
 				02A824842881B202004351D0 /* MockRestService.swift in Sources */,
+				022312EC2EB254E500551560 /* MockURLNavigatable.swift in Sources */,
 				02FA5A4E2882293000E8AD5C /* MockAccountView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

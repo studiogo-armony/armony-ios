@@ -188,17 +188,3 @@ final class URLNavigatorTests: XCTestCase {
     }
 
 }
-
-// MARK: - Mock Classes
-
-class MockURLNavigatable: URLNavigatable {
-    var isAuthenticationRequired: Bool = false
-    
-    static var instance: URLNavigatable {
-        return MockURLNavigatable()
-    }
-    
-    static func register(navigator: URLNavigation) {
-
-    }
-}
