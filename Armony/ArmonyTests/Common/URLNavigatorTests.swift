@@ -158,8 +158,10 @@ final class URLNavigatorTests: XCTestCase {
         // Given
         let testPattern: Deeplink = "/test-pattern"
         var handlerCalled = false
+        let expectation = XCTestExpectation(description: "test_expetaction")
         let testHandler: URLPatternHandler = { _ in
             handlerCalled = true
+            expectation.fulfill()
         }
         
         mockCoordinator.isAuthenticationRequired = false
@@ -170,7 +172,9 @@ final class URLNavigatorTests: XCTestCase {
         // When
         let deeplink = Deeplink(stringLiteral: "\(navigator.scheme)://\(testPattern.description)")
         let result = navigator.open(deeplink, dismissToRoot: true)
-        
+
+        wait(for: [expectation], timeout: 1.0)
+
         // Then
         XCTAssertTrue(result, "Open metodu true dönmeli")
         XCTAssertTrue(mockDispatcher.invokedAsyncAfter, "Dispatcher asyncAfter çağrılmalı")
