@@ -74,6 +74,9 @@ EOF
 
 main() {
     # Create config directories
+    echo "Current path: $(pwd)"
+    ls -la
+
     CONFIG_DIR='../Armony/Resources/Configs'
     create_directory_if_not_exists "$CONFIG_DIR"
     
