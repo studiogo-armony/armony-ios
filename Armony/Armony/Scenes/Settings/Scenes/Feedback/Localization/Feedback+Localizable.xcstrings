@@ -1,91 +1,121 @@
 {
-  "sourceLanguage" : "en",
-  "strings" : {
-    "Feedback.SubjectSelection.Header.Title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Subject"
+  "sourceLanguage": "en",
+  "strings": {
+    "Feedback.SubjectSelection.Header.Title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Subject"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Konu"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Konu"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Assunto"
           }
         }
       }
     },
-    "Feedback.Submission.Succes.Title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Your feedback has been submitted successfully. Thank you!"
+    "Feedback.Submission.Succes.Title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your feedback has been submitted successfully. Thank you!"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Geri bildiriminiz başarıyla gönderildi. Teşekkür ederiz!"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geri bildiriminiz başarıyla gönderildi. Teşekkür ederiz!"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seu feedback foi enviado com sucesso. Obrigado!"
           }
         }
       }
     },
-    "Feedback.SubmitButton.Title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Submit"
+    "Feedback.SubmitButton.Title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Submit"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gönder"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gönder"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enviar"
           }
         }
       }
     },
-    "Feedback.TextView.Placeholder" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Please enter description. Minimum 15 character\""
+    "Feedback.TextView.Placeholder": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Please enter description. Minimum 15 character\""
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lütfen açıklama girin. Minimum 15 karakter"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lütfen açıklama girin. Minimum 15 karakter"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Por favor, insira uma descrição. Mínimo 15 caracteres"
           }
         }
       }
     },
-    "Feedback.Title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Contact Us"
+    "Feedback.Title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Contact Us"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bize Ulaşın"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bize Ulaşın"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fale Conosco"
           }
         }
       }
     }
   },
-  "version" : "1.0"
+  "version": "1.0"
 }

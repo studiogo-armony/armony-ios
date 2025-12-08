@@ -1,57 +1,75 @@
 {
-  "sourceLanguage" : "en",
-  "strings" : {
-    "Text-1" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Musicians and \nBands"
+  "sourceLanguage": "en",
+  "strings": {
+    "Text-1": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Musicians and \nBands"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Müzisyenler ve \nMüzik Grupları"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Müzisyenler ve \nMüzik Grupları"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Músicos e \nBandas"
           }
         }
       }
     },
-    "Text-2" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Music Coaching and \nEvent Solutions"
+    "Text-2": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Music Coaching and \nEvent Solutions"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Müzik Eğitmenliği ve \nEtkinlik Çözümleri"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Müzik Eğitmenliği ve \nEtkinlik Çözümleri"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Coaching Musical e \nSoluções para Eventos"
           }
         }
       }
     },
-    "Text-3" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "High-Quality Professional \nMusic Services"
+    "Text-3": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "High-Quality Professional \nMusic Services"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Yüksek Kaliteli Profesyonel \nMüzik Hizmetleri"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yüksek Kaliteli Profesyonel \nMüzik Hizmetleri"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Serviços Musicais \nProfissionais de Alta Qualidade"
           }
         }
       }
     }
   },
-  "version" : "1.0"
+  "version": "1.0"
 }

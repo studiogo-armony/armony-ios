@@ -1,464 +1,626 @@
 {
-  "sourceLanguage" : "en",
-  "strings" : {
-    "AccountInformation.Title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Account Settings"
+  "sourceLanguage": "en",
+  "strings": {
+    "AccountInformation.Title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Account Settings"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hesap Ayarları"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hesap Ayarları"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Configurações da Conta"
           }
         }
       }
     },
-    "AccountInformation.Update.Succes.Message" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Account information has been updated"
+    "AccountInformation.Update.Succes.Message": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Account information has been updated"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hesap bilgileriniz güncellendi"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hesap bilgileriniz güncellendi"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "As informações da conta foram atualizadas"
           }
         }
       }
     },
-    "ChangePassword.Success.Message" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Password has been updated"
+    "ChangePassword.Success.Message": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Password has been updated"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Şifreniz güncellendi"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Şifreniz güncellendi"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A senha foi atualizada"
           }
         }
       }
     },
-    "DeleteAccount" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Delete account"
+    "DeleteAccount": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete account"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hesabı Sil"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hesabı Sil"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Excluir conta"
           }
         }
       }
     },
-    "DeleteAccount.Alert.Title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Are you sure you want to delete your account?"
+    "DeleteAccount.Alert.Title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Are you sure you want to delete your account?"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hesabınızı silmek istediğinizden emin misiniz?"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hesabınızı silmek istediğinizden emin misiniz?"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tem certeza que deseja excluir sua conta?"
           }
         }
       }
     },
-    "Edit.Profile" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Edit profile"
+    "Edit.Profile": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edit profile"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Profili Düzenle"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Profili Düzenle"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Editar perfil"
           }
         }
       }
     },
-    "Musical.Profile" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Musical Profile"
+    "Musical.Profile": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Musical Profile"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Müzisyen Profili"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Müzisyen Profili"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Perfil Musical"
           }
         }
       }
     },
-    "MusicalProfile.EmptyState.Button.Title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Build profile"
+    "MusicalProfile.EmptyState.Button.Title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Build profile"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Profil Oluştur"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Profil Oluştur"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Criar perfil"
           }
         }
       }
     },
-    "MusicalProfile.EmptyState.Title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Set up your musician profile in minutes and post your first ad for free"
+    "MusicalProfile.EmptyState.Title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Set up your musician profile in minutes and post your first ad for free"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Müzisyen profilinizi dakikalar içinde oluşturun ve ilk ilanınızı ücretsiz yayınlayın"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Müzisyen profilinizi dakikalar içinde oluşturun ve ilk ilanınızı ücretsiz yayınlayın"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Configure seu perfil de músico em minutos e publique seu primeiro anúncio gratuitamente"
           }
         }
       }
     },
-    "My.Ads" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "My Ads"
+    "My.Ads": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "My Ads"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "İlanlarım"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İlanlarım"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meus Anúncios"
           }
         }
       }
     },
-    "My.Performances" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "My Performances"
+    "My.Performances": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "My Performances"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Performanslarım"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Performanslarım"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minhas Apresentações"
           }
         }
       }
     },
-    "MyPerformances.AddVideo.Error.Message" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "The link you entered is not valid YouTube link. Please enter valid link please"
+    "MyPerformances.AddVideo.Error.Message": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The link you entered is not valid YouTube link. Please enter valid link please"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Girdiğiniz bağlantı geçerli bir YouTube bağlantısı değil. Lütfen geçerli bir bağlantı girin"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Girdiğiniz bağlantı geçerli bir YouTube bağlantısı değil. Lütfen geçerli bir bağlantı girin"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O link que você inseriu não é um link válido do YouTube. Por favor, insira um link válido"
           }
         }
       }
     },
-    "MyPerformances.Alert.Message" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "You can add YouTube link here"
+    "MyPerformances.Alert.Message": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You can add YouTube link here"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "YouTube bağlantınızı buraya ekleyebilirsiniz"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "YouTube bağlantınızı buraya ekleyebilirsiniz"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Você pode adicionar um link do YouTube aqui"
           }
         }
       }
     },
-    "MyPerformances.Delete" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Delete video"
+    "MyPerformances.Delete": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete video"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Videoyu Sil"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Videoyu Sil"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Excluir vídeo"
           }
         }
       }
     },
-    "MyPerformances.EmptyState.Button.Title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Upload video"
+    "MyPerformances.EmptyState.Button.Title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Upload video"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Video Ekle"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Video Ekle"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adicionar vídeo"
           }
         }
       }
     },
-    "MyPerformances.EmptyState.Title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "You can upload YouTube videos and share your performance"
+    "MyPerformances.EmptyState.Title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You can upload YouTube videos and share your performance"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "YouTube videolarınızı ekleyerek performansınızı paylaşabilirsiniz"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "YouTube videolarınızı ekleyerek performansınızı paylaşabilirsiniz"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Você pode adicionar vídeos do YouTube e compartilhar suas apresentações"
           }
         }
       }
     },
-    "Profile" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Profile"
+    "Profile": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Profile"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Profil"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Profil"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Perfil"
           }
         }
       }
     },
-    "Profile.TextView.Placeholder" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Who are you? Share your story!"
+    "Profile.TextView.Placeholder": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Who are you? Share your story!"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Müzik yolculuğunuzu anlatın!"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Müzik yolculuğunuzu anlatın!"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conte sua história musical!"
           }
         }
       }
     },
-    "Profile.Update.Alert.Success.Title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Your profile has been updated successfully"
+    "Profile.Update.Alert.Success.Title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your profile has been updated successfully"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Profiliniz başarıyla güncellendi"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Profiliniz başarıyla güncellendi"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seu perfil foi atualizado com sucesso"
           }
         }
       }
     },
-    "Settings.DeleteAccount.PopUp.Title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Why do you want to delete your account?"
+    "Settings.DeleteAccount.PopUp.Title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Why do you want to delete your account?"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hesabınızı neden silmek istiyorsunuz?"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hesabınızı neden silmek istiyorsunuz?"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Por que você deseja excluir sua conta?"
           }
         }
       }
     },
-    "UserAds.EmptyState.Button.Title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Post an ad"
+    "UserAds.EmptyState.Button.Title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Post an ad"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "İlan Yayınla"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İlan Yayınla"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Publicar anúncio"
           }
         }
       }
     },
-    "UserAds.EmptyState.Title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Manage and view your published ads in this section"
+    "UserAds.EmptyState.Title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Manage and view your published ads in this section"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Yayınladığınız ilanları bu bölümden görüntüleyebilir ve yönetebilirsiniz"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yayınladığınız ilanları bu bölümden görüntüleyebilir ve yönetebilirsiniz"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gerencie e visualize seus anúncios publicados nesta seção"
           }
         }
       }
     },
-    "VisitedAccount.Ads" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Adverts"
+    "VisitedAccount.Ads": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adverts"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "İlanlar"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İlanlar"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anúncios"
           }
         }
       }
     },
-    "VisitedAccount.Medias.EmptyState.Title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No performances available"
+    "VisitedAccount.Medias.EmptyState.Title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No performances available"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Henüz performans videosu eklenmemiş"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Henüz performans videosu eklenmemiş"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nenhuma apresentação disponível"
           }
         }
       }
     },
-    "VisitedAccount.Musical.Profile" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Musical Profile"
+    "VisitedAccount.Musical.Profile": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Musical Profile"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Müzisyen Profili"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Müzisyen Profili"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Perfil Musical"
           }
         }
       }
     },
-    "VisitedAccount.MusicalProfile.EmptyState.Title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Profile has not been completed"
+    "VisitedAccount.MusicalProfile.EmptyState.Title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Profile has not been completed"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Profil henüz oluşturulmamış"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Profil henüz oluşturulmamış"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O perfil não foi completado"
           }
         }
       }
     },
-    "VisitedAccount.Performances" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Performances"
+    "VisitedAccount.Performances": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Performances"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Performanslar"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Performanslar"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apresentações"
           }
         }
       }
     }
   },
-  "version" : "1.0"
+  "version": "1.0"
 }

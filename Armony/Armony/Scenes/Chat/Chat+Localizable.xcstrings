@@ -1,91 +1,121 @@
 {
-  "sourceLanguage" : "en",
-  "strings" : {
-    "Chat.Delete.Button" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Delete"
+  "sourceLanguage": "en",
+  "strings": {
+    "Chat.Delete.Button": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sil"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sil"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Excluir"
           }
         }
       }
     },
-    "Chat.EmptyState.Title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "You haven't started any chats yet"
+    "Chat.EmptyState.Title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You haven't started any chats yet"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Henüz bir sohbet başlatmadınız"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Henüz bir sohbet başlatmadınız"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Você ainda não iniciou nenhuma conversa"
           }
         }
       }
     },
-    "Chat.Title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Chats"
+    "Chat.Title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chats"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mesajlar"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mesajlar"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conversas"
           }
         }
       }
     },
-    "Chat.Delete.Alert.Title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Delete Chat"
+    "Chat.Delete.Alert.Title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete Chat"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sohbeti Sil"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sohbeti Sil"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Excluir Conversa"
           }
         }
       }
     },
-    "Chat.Delete.Alert.Message" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Are you sure you want to delete this chat?"
+    "Chat.Delete.Alert.Message": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Are you sure you want to delete this chat?"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bu sohbeti silmek istediğinizden emin misiniz?"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu sohbeti silmek istediğinizden emin misiniz?"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tem certeza que deseja excluir esta conversa?"
           }
         }
       }
     }
   },
-  "version" : "1.0"
+  "version": "1.0"
 }

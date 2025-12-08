@@ -1,176 +1,236 @@
 {
-  "sourceLanguage" : "en",
-  "strings" : {
-    "Advert.Block.Confirmation" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Do you want to block this user?"
+  "sourceLanguage": "en",
+  "strings": {
+    "Advert.Block.Confirmation": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Do you want to block this user?"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bu kullanıcıyı engellemek istiyor musunuz?"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu kullanıcıyı engellemek istiyor musunuz?"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deseja bloquear este usuário?"
           }
         }
       }
     },
-    "Advert.Block.Description" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "When you block a user, their profile, ads, and messages will no longer be visible to you."
+    "Advert.Block.Description": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "When you block a user, their profile, ads, and messages will no longer be visible to you."
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bir kullanıcıyı engellediğinizde, onların profili, ilanları ve mesajları artık size görünmeyecektir."
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bir kullanıcıyı engellediğinizde, onların profili, ilanları ve mesajları artık size görünmeyecektir."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quando você bloqueia um usuário, o perfil, anúncios e mensagens dele não estarão mais visíveis para você."
           }
         }
       }
     },
-    "Advert.Delete.Feedback.Selection.Header.Title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Why do you want to delete your ad?"
+    "Advert.Delete.Feedback.Selection.Header.Title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Why do you want to delete your ad?"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "İlanınızı neden silmek istiyorsunuz?"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İlanınızı neden silmek istiyorsunuz?"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Por que você deseja excluir seu anúncio?"
           }
         }
       }
     },
-    "Advert.DeleteAd" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Delete advert"
+    "Advert.DeleteAd": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete advert"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "İlanı Sil"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İlanı Sil"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Excluir anúncio"
           }
         }
       }
     },
-    "Advert.DeleteAd.Message" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Are you sure you want to delete this ad?"
+    "Advert.DeleteAd.Message": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Are you sure you want to delete this ad?"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "İlanı silmek istediğinden emin misin?"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İlanı silmek istediğinden emin misin?"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tem certeza que deseja excluir este anúncio?"
           }
         }
       }
     },
-    "Advert.Expire.Warning" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "The 30-day publication period for your ad has ended, and it has been removed."
+    "Advert.Expire.Warning": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The 30-day publication period for your ad has ended, and it has been removed."
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "İlanınızın 30 günlük yayın süresi sona erdi ve kaldırıldı."
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İlanınızın 30 günlük yayın süresi sona erdi ve kaldırıldı."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O período de publicação de 30 dias do seu anúncio terminou e ele foi removido."
           }
         }
       }
     },
-    "Advert.RepostAd" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Publish again"
+    "Advert.RepostAd": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Publish again"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tekrar Yayınla"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tekrar Yayınla"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Publicar novamente"
           }
         }
       }
     },
-    "Advert.SendMessage" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Send Message"
+    "Advert.SendMessage": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Send Message"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mesaj Gönder"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mesaj Gönder"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enviar Mensagem"
           }
         }
       }
     },
-    "Adverts.EmptyState.Button.Title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "All ads"
+    "Adverts.EmptyState.Button.Title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All ads"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tüm İlanlar"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tüm İlanlar"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todos os anúncios"
           }
         }
       }
     },
-    "Adverts.EmptyState.Title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No ads available yet"
+    "Adverts.EmptyState.Title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No ads available yet"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Henüz ilan bulunmuyor"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Henüz ilan bulunmuyor"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nenhum anúncio disponível ainda"
           }
         }
       }
     }
   },
-  "version" : "1.0"
+  "version": "1.0"
 }

@@ -1,244 +1,328 @@
 {
-  "sourceLanguage" : "en",
-  "strings" : {
-    "Title_1" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Songwriter"
+  "sourceLanguage": "en",
+  "strings": {
+    "Title_1": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Songwriter"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Söz Yazarı"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Söz Yazarı"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Músico"
           }
         }
       }
     },
-    "Title_2" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Composer"
+    "Title_2": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Composer"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bestekar"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bestekar"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cantor"
           }
         }
       }
     },
-    "Title_3" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Musician"
+    "Title_3": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Musician"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Müzisyen"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Müzisyen"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Banda"
           }
         }
       }
     },
-    "Title_4" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mix & Mastering"
+    "Title_4": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mix & Mastering"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Miks ve Master"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miks ve Master"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Professor de Música"
           }
         }
       }
     },
-    "Title_5" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Podcast Editing & Mastering"
+    "Title_5": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Podcast Editing & Mastering"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Podcast Düzenleme ve Master"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Podcast Düzenleme ve Master"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Produtor Musical"
           }
         }
       }
     },
-    "Title_6" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Arranger"
+    "Title_6": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Arranger"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aranjör"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aranjör"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Engenheiro de Som"
           }
         }
       }
     },
-    "Title_7" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Producer"
+    "Title_7": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Producer"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Prodüktör"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prodüktör"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DJ"
           }
         }
       }
     },
-    "Title_8" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Prodüksiyon Ses Mikseri"
+    "Title_8": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prodüksiyon Ses Mikseri"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ses Mikseri"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ses Mikseri"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compositor"
           }
         }
       }
     },
-    "Title_9" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Remixing"
+    "Title_9": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remixing"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Remix"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remix"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Letrista"
           }
         }
       }
     },
-    "Title_10" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Restorasyon"
+    "Title_10": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restorasyon"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ses Restorasyonu"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ses Restorasyonu"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Arranjador"
           }
         }
       }
     },
-    "Title_11" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sound Design"
+    "Title_11": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sound Design"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ses Tasarımı"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ses Tasarımı"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maestro"
           }
         }
       }
     },
-    "Title_12" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Beat Makers"
+    "Title_12": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beat Makers"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Beat Yapımcısı"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beat Yapımcısı"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gerente de Eventos"
           }
         }
       }
     },
-    "Title_13" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Audio Engineer"
+    "Title_13": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Audio Engineer"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ses Mühendisi"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ses Mühendisi"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Organizador de Eventos"
           }
         }
       }
     },
-    "Title_14" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Müzik Eğitmeni"
+    "Title_14": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Müzik Eğitmeni"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Müzik Eğitmeni"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Müzik Eğitmeni"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Outro"
           }
         }
       }
     }
   },
-  "version" : "1.0"
+  "version": "1.0"
 }

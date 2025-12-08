@@ -1,159 +1,213 @@
 {
-  "sourceLanguage" : "en",
-  "strings" : {
-    "Setting_1" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Account Info"
+  "sourceLanguage": "en",
+  "strings": {
+    "Setting_1": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Account Info"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hesap Bilgileri"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hesap Bilgileri"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notificações Push"
           }
         }
       }
     },
-    "Setting_2" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Update Email"
+    "Setting_2": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Update Email"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "E-posta Güncelle"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "E-posta Güncelle"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notificações por Email"
           }
         }
       }
     },
-    "Setting_3" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Change Password"
+    "Setting_3": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Change Password"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Şifre Değiştir"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Şifre Değiştir"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modo Escuro"
           }
         }
       }
     },
-    "Setting_4" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Manage Notifications"
+    "Setting_4": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Manage Notifications"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bildirimleri Yönet"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bildirimleri Yönet"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Idioma"
           }
         }
       }
     },
-    "Setting_5" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Terms of Use"
+    "Setting_5": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terms of Use"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kullanım Şartları"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kullanım Şartları"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Privacidade"
           }
         }
       }
     },
-    "Setting_6" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Privacy Policy"
+    "Setting_6": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Privacy Policy"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gizlilik Politikası"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gizlilik Politikası"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Termos de Serviço"
           }
         }
       }
     },
-    "Setting_7" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Support & Contact"
+    "Setting_7": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Support & Contact"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Destek ve İletişim"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Destek ve İletişim"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Política de Privacidade"
           }
         }
       }
     },
-    "Setting_8" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Switch Region - %@"
+    "Setting_8": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Switch Region - %@"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bölge Değiştir - %@"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bölge Değiştir - %@"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sobre"
           }
         }
       }
     },
-    "Setting_9" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sign Out"
+    "Setting_9": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sign Out"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Çıkış Yap"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Çıkış Yap"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Versão"
           }
         }
       }
     }
   },
-  "version" : "1.0"
+  "version": "1.0"
 }

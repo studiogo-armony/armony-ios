@@ -1,40 +1,52 @@
 {
-  "sourceLanguage" : "en",
-  "strings" : {
-    "ServiceType_1" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "value" : "Online",
-            "state" : "translated"
+  "sourceLanguage": "en",
+  "strings": {
+    "ServiceType_1": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "Online",
+            "state": "translated"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "value" : "Çevrimiçi",
-            "state" : "translated"
+        "tr": {
+          "stringUnit": {
+            "value": "Çevrimiçi",
+            "state": "translated"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Online"
           }
         }
       }
     },
-    "ServiceType_2" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "value" : "In person",
-            "state" : "translated"
+    "ServiceType_2": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "In person",
+            "state": "translated"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "value" : "Yüz yüze",
-            "state" : "translated"
+        "tr": {
+          "stringUnit": {
+            "value": "Yüz yüze",
+            "state": "translated"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Presencial"
           }
         }
       }
     }
   },
-  "version" : "1.0"
+  "version": "1.0"
 }

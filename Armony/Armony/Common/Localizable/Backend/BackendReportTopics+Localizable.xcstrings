@@ -1,142 +1,190 @@
 {
-  "sourceLanguage" : "en",
-  "strings" : {
-    "ReportTopic_1" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "value" : "Hate Speech or Violence",
-            "state" : "translated"
+  "sourceLanguage": "en",
+  "strings": {
+    "ReportTopic_1": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "Hate Speech or Violence",
+            "state": "translated"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "value" : "Nefret / Şiddet Söylemi",
-            "state" : "translated"
+        "tr": {
+          "stringUnit": {
+            "value": "Nefret / Şiddet Söylemi",
+            "state": "translated"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spam"
           }
         }
       }
     },
-    "ReportTopic_2" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "value" : "Inappropriate Adult Content",
-            "state" : "translated"
+    "ReportTopic_2": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "Inappropriate Adult Content",
+            "state": "translated"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "value" : "Cinsel İçerik",
-            "state" : "translated"
+        "tr": {
+          "stringUnit": {
+            "value": "Cinsel İçerik",
+            "state": "translated"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conteúdo inadequado"
           }
         }
       }
     },
-    "ReportTopic_3" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "value" : "Misinformation or Spam",
-            "state" : "translated"
+    "ReportTopic_3": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "Misinformation or Spam",
+            "state": "translated"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "value" : "Hatalı / Yanıltıcı İçerik",
-            "state" : "translated"
+        "tr": {
+          "stringUnit": {
+            "value": "Hatalı / Yanıltıcı İçerik",
+            "state": "translated"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Assédio ou bullying"
           }
         }
       }
     },
-    "ReportTopic_4" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "value" : "Scam or Fraud",
-            "state" : "translated"
+    "ReportTopic_4": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "Scam or Fraud",
+            "state": "translated"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "value" : "Dolandırıcılık Şüphesi",
-            "state" : "translated"
+        "tr": {
+          "stringUnit": {
+            "value": "Dolandırıcılık Şüphesi",
+            "state": "translated"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Violência ou ameaça"
           }
         }
       }
     },
-    "ReportTopic_5" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "value" : "Hate Speech or Violence",
-            "state" : "translated"
+    "ReportTopic_5": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "Hate Speech or Violence",
+            "state": "translated"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "value" : "Nefret / Şiddet Söylemi",
-            "state" : "translated"
+        "tr": {
+          "stringUnit": {
+            "value": "Nefret / Şiddet Söylemi",
+            "state": "translated"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conteúdo sexual"
           }
         }
       }
     },
-    "ReportTopic_6" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "value" : "Inappropriate Adult Content",
-            "state" : "translated"
+    "ReportTopic_6": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "Inappropriate Adult Content",
+            "state": "translated"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "value" : "Cinsel İçerik",
-            "state" : "translated"
+        "tr": {
+          "stringUnit": {
+            "value": "Cinsel İçerik",
+            "state": "translated"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Informação falsa"
           }
         }
       }
     },
-    "ReportTopic_7" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "value" : "Misinformation or Spam",
-            "state" : "translated"
+    "ReportTopic_7": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "Misinformation or Spam",
+            "state": "translated"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "value" : "Hatalı / Yanıltıcı İçerik",
-            "state" : "translated"
+        "tr": {
+          "stringUnit": {
+            "value": "Hatalı / Yanıltıcı İçerik",
+            "state": "translated"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Discurso de ódio"
           }
         }
       }
     },
-    "ReportTopic_8" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "value" : "Scam or Fraud",
-            "state" : "translated"
+    "ReportTopic_8": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "Scam or Fraud",
+            "state": "translated"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "value" : "Dolandırıcılık Şüphesi",
-            "state" : "translated"
+        "tr": {
+          "stringUnit": {
+            "value": "Dolandırıcılık Şüphesi",
+            "state": "translated"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Outro"
           }
         }
       }
     }
   },
-  "version" : "1.0"
+  "version": "1.0"
 }
