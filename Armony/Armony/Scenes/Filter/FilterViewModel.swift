@@ -42,7 +42,7 @@ final class FilterViewModel: ViewModel {
 
     private weak var view: FilterViewDelegate?
     weak var delegate: FilterViewModelDelegate?
-    var coordinator: FilterCoordinator!
+    var coordinator: (any Coordinator)!
 
     var filters: Filters = .empty {
         didSet {
@@ -50,10 +50,13 @@ final class FilterViewModel: ViewModel {
         }
     }
 
-    init(view: FilterViewDelegate?, selectedFilters: Filters = .empty) {
+    init(view: FilterViewDelegate?,
+         selectedFilters: Filters = .empty,
+         service: RestService = .init(backend: .factory())) {
         self.view = view
         self.isEmptyFilters = selectedFilters.isEmpty
         self.filters = selectedFilters
+        super.init(service: service)
     }
 
     func advertTypeDropdownTapped() {
@@ -103,7 +106,7 @@ final class FilterViewModel: ViewModel {
 
     func applyButtonTapped() {
         handleEvents()
-        coordinator.dismiss { [weak self] in
+        coordinator.dismiss(animated: true) { [weak self] in
             self?.delegate?.applyButtonTapped(filters: self?.filters ?? .empty)
         }
     }

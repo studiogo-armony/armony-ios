@@ -27,3 +27,10 @@ extension Deeplink: Decodable {
         path = try container.decode(String.self)
     }
 }
+
+
+extension Deeplink: Equatable {
+    public static func == (lhs: Deeplink, rhs: Deeplink) -> Bool {
+        lhs.description == rhs.description
+    }
+}

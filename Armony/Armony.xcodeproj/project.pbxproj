@@ -120,6 +120,12 @@
 		026395A328845E320014CE0A /* Validation+Responder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026395A228845E320014CE0A /* Validation+Responder.swift */; };
 		0263B529281424D700E9378F /* AccountMusicalProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0263B528281424D700E9378F /* AccountMusicalProfileViewModel.swift */; };
 		0263B52B281424F500E9378F /* AccountMusicalProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0263B52A281424F500E9378F /* AccountMusicalProfileCoordinator.swift */; };
+		026789912EF09AD3009A266A /* SettingsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0267898F2EF09AD2009A266A /* SettingsViewModelTests.swift */; };
+		026789922EF09AD3009A266A /* MockCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0267898D2EF09AD2009A266A /* MockCoordinator.swift */; };
+		026789932EF09AD3009A266A /* MockSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0267898E2EF09AD2009A266A /* MockSettingsView.swift */; };
+		026789982EF0A8B9009A266A /* FilterViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026789942EF0A8B9009A266A /* FilterViewModelTests.swift */; };
+		026789992EF0A8B9009A266A /* MockFilterViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026789962EF0A8B9009A266A /* MockFilterViewModelDelegate.swift */; };
+		0267899A2EF0A8B9009A266A /* MockFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026789952EF0A8B9009A266A /* MockFilterView.swift */; };
 		026C4FD1280D5FA800C0B967 /* CommonConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026C4FD0280D5FA800C0B967 /* CommonConstants.swift */; };
 		026C4FD4280DA55900C0B967 /* GetUserTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026C4FD3280DA55900C0B967 /* GetUserTask.swift */; };
 		026DF38E28C2106600B73427 /* URLNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026DF38728C2106600B73427 /* URLNavigator.swift */; };
@@ -593,6 +599,12 @@
 		026395A228845E320014CE0A /* Validation+Responder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Validation+Responder.swift"; sourceTree = "<group>"; };
 		0263B528281424D700E9378F /* AccountMusicalProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountMusicalProfileViewModel.swift; sourceTree = "<group>"; };
 		0263B52A281424F500E9378F /* AccountMusicalProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountMusicalProfileCoordinator.swift; sourceTree = "<group>"; };
+		0267898D2EF09AD2009A266A /* MockCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCoordinator.swift; sourceTree = "<group>"; };
+		0267898E2EF09AD2009A266A /* MockSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSettingsView.swift; sourceTree = "<group>"; };
+		0267898F2EF09AD2009A266A /* SettingsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModelTests.swift; sourceTree = "<group>"; };
+		026789942EF0A8B9009A266A /* FilterViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewModelTests.swift; sourceTree = "<group>"; };
+		026789952EF0A8B9009A266A /* MockFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFilterView.swift; sourceTree = "<group>"; };
+		026789962EF0A8B9009A266A /* MockFilterViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFilterViewModelDelegate.swift; sourceTree = "<group>"; };
 		026B1E562B9111BD002D38F6 /* ReleaseConfiguration.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ReleaseConfiguration.xcconfig; sourceTree = "<group>"; };
 		026C4FD0280D5FA800C0B967 /* CommonConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonConstants.swift; sourceTree = "<group>"; };
 		026C4FD3280DA55900C0B967 /* GetUserTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserTask.swift; sourceTree = "<group>"; };
@@ -1610,6 +1622,26 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		026789902EF09AD2009A266A /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				0267898D2EF09AD2009A266A /* MockCoordinator.swift */,
+				0267898E2EF09AD2009A266A /* MockSettingsView.swift */,
+				0267898F2EF09AD2009A266A /* SettingsViewModelTests.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		026789972EF0A8B9009A266A /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+				026789942EF0A8B9009A266A /* FilterViewModelTests.swift */,
+				026789952EF0A8B9009A266A /* MockFilterView.swift */,
+				026789962EF0A8B9009A266A /* MockFilterViewModelDelegate.swift */,
+			);
+			path = Filter;
+			sourceTree = "<group>";
+		};
 		026B1E552B911197002D38F6 /* Configs */ = {
 			isa = PBXGroup;
 			children = (
@@ -1856,6 +1888,8 @@
 		02B786752D3ADB2700A8B6AE /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				026789972EF0A8B9009A266A /* Filter */,
+				026789902EF09AD2009A266A /* Settings */,
 				02B786742D3ADB2700A8B6AE /* Feedback */,
 			);
 			path = Scenes;
@@ -3933,6 +3967,12 @@
 				02A824842881B202004351D0 /* MockRestService.swift in Sources */,
 				022312EC2EB254E500551560 /* MockURLNavigatable.swift in Sources */,
 				02FA5A4E2882293000E8AD5C /* MockAccountView.swift in Sources */,
+				026789912EF09AD3009A266A /* SettingsViewModelTests.swift in Sources */,
+				026789982EF0A8B9009A266A /* FilterViewModelTests.swift in Sources */,
+				026789992EF0A8B9009A266A /* MockFilterViewModelDelegate.swift in Sources */,
+				0267899A2EF0A8B9009A266A /* MockFilterView.swift in Sources */,
+				026789922EF09AD3009A266A /* MockCoordinator.swift in Sources */,
+				026789932EF09AD3009A266A /* MockSettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

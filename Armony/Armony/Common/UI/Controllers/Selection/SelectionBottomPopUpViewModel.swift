@@ -47,7 +47,7 @@ final class SelectionBottomPopUpViewModel {
     }
 
     func continueButtonDidTap() {
-        coordinator.dismiss { [weak self] in
+        coordinator.dismiss(animated: true) { [weak self] in
             guard let self = self else { return }
             self.presentation.continueButtonTapped()
         }

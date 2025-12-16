@@ -66,7 +66,7 @@ final class SelectionBottomPopUpViewController: BottomPopupViewController, ViewC
         ])
 
         button.touchUpInsideAction = { [unowned self] _ in
-            self.viewModel.coordinator.dismiss()
+            self.viewModel.coordinator.dismiss(animated: true, completion: nil)
         }
     }
 

@@ -16,7 +16,7 @@ private struct Constants {
     }
 }
 
-public protocol AuthenticationProviding {
+public protocol AuthenticationProviding: AuthenticationObservable, ResetHandling  {
     var isAuthenticated: Bool { get }
     var userID: String { get }
     var refreshToken: String { get }
@@ -35,7 +35,7 @@ public protocol AuthenticationObservable {
     func addLogoutHandler(_ handler: @escaping Callback<Notification>) -> NotificationToken
 }
 
-public final class AuthenticationService: ResetHandling, AuthenticationProviding, AuthenticationObservable {
+public final class AuthenticationService: AuthenticationProviding {
 
     public static let shared = AuthenticationService(keychain: Keychain(service: Bundle.main.bundleIdentifier.emptyIfNil),
                                                      notifier: .default)

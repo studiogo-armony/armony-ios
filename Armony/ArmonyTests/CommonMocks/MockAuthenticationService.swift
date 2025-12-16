@@ -6,6 +6,7 @@
 //
 
 @testable import Armony
+import Foundation
 
 public class MockAuthenticationService: AuthenticationProviding {
 
@@ -79,5 +80,41 @@ public class MockAuthenticationService: AuthenticationProviding {
         invokedIdentifyCount += 1
         invokedIdentifyParameters = (accessToken, refreshToken)
         invokedIdentifyParametersList.append((accessToken, refreshToken))
+    }
+
+    var invokedAddLoginHandler = false
+    var invokedAddLoginHandlerCount = 0
+    var invokedAddLoginHandlerParameters: (handler: Callback<Notification>, Void)?
+    var invokedAddLoginHandlerParametersList = [(handler: Callback<Notification>, Void)]()
+    var stubbedAddLoginHandlerResult: NotificationToken!
+
+    public func addLoginHandler(_ handler: @escaping Callback<Notification>) -> NotificationToken {
+        invokedAddLoginHandler = true
+        invokedAddLoginHandlerCount += 1
+        invokedAddLoginHandlerParameters = (handler, ())
+        invokedAddLoginHandlerParametersList.append((handler, ()))
+        return stubbedAddLoginHandlerResult
+    }
+
+    var invokedAddLogoutHandler = false
+    var invokedAddLogoutHandlerCount = 0
+    var invokedAddLogoutHandlerParameters: (handler: Callback<Notification>, Void)?
+    var invokedAddLogoutHandlerParametersList = [(handler: Callback<Notification>, Void)]()
+    var stubbedAddLogoutHandlerResult: NotificationToken!
+
+    public func addLogoutHandler(_ handler: @escaping Callback<Notification>) -> NotificationToken {
+        invokedAddLogoutHandler = true
+        invokedAddLogoutHandlerCount += 1
+        invokedAddLogoutHandlerParameters = (handler, ())
+        invokedAddLogoutHandlerParametersList.append((handler, ()))
+        return stubbedAddLogoutHandlerResult
+    }
+
+    var invokedReset = false
+    var invokedResetCount = 0
+
+    public func reset() {
+        invokedReset = true
+        invokedResetCount += 1
     }
 }
