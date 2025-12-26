@@ -112,9 +112,7 @@ final class FilterViewController: UIViewController, ViewController {
 
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: clearFilterLeftButton)
 
-//        setDismissButton { [weak self] in
-//            self?.viewModel.coordinator.dismiss(animated: true)
-//        }
+        setDismissButton(completion: nil)
     }
 
     override func viewDidAppear(_ animated: Bool) {
