@@ -48,7 +48,7 @@ final class VisitedAccountAdvertsViewModel: ViewModel {
                 }
             }
             catch let error {
-                await AlertService.show(error: error.api, actions: [.okay()])
+                AlertService.show(error: error.api, actions: [.okay()])
             }
         }
     }
@@ -82,7 +82,7 @@ extension VisitedAccountAdvertsViewModel: ViewModelLifeCycle {
 
 // MARK: - EmptyStatePresentation
 private extension EmptyStatePresentation {
-    static var noContent: EmptyStatePresentation = {
+    static let noContent: EmptyStatePresentation = {
         let title = "Henüz hiçbir ilan yok."
         let presentation = EmptyStatePresentation(image: .advertsEmptystateIcon, title: title)
         return presentation

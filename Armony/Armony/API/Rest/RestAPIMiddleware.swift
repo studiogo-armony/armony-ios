@@ -149,7 +149,7 @@ final class RestAPIMiddleware: RequestInterceptor {
     /// - Handles authentication failure by logging out the user
     /// - Manages the waiting requests queue
     private func refreshToken() {
-        Task {
+        Task { @MainActor in
             do {
                 let request = RefreshTokenRequest(refreshToken: authenticator.refreshToken)
                 let response = try await tokenRestService.execute(

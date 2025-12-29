@@ -19,7 +19,7 @@ public struct APIError: Error, Decodable {
         self.status = NSNotFound
     }
     
-    private static var errorTitle = String("API.ERROR", table: .common)
+    private static let errorTitle = String("API.ERROR", table: .common)
     
 
     // TODO: - Localizable

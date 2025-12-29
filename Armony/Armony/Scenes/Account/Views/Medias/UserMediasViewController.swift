@@ -117,7 +117,7 @@ extension UserMediasViewController: EmptyStateShowing {
 
 // MARK: - EmptyStatePresentation
 private extension EmptyStatePresentation {
-    static var noContent: EmptyStatePresentation = {
+    static let noContent: EmptyStatePresentation = {
         let title = String(
             localized: "MyPerformances.EmptyState.Title", table: "Account+Localizable"
         ).emptyStateTitleAttributed

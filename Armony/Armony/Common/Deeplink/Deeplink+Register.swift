@@ -9,6 +9,7 @@ import Foundation
 
 public extension URLNavigation {
 
+    @MainActor
     static func initialize(_ navigation: Self) -> Self {
         AdvertsCoordinator.register(navigator: navigation)
         AccountCoordinator.register(navigator: navigation)

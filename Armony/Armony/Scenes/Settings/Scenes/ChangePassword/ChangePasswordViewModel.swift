@@ -37,7 +37,7 @@ final class ChangePasswordViewModel: ViewModel {
                 }
 
                 let message = String("ChangePassword.Success.Message", table: .account)
-                await AlertService.show(message: message,
+                AlertService.show(message: message,
                                         actions: [.okay(action: { [weak self] in
                     self?.coordinator.pop()
                 })])
@@ -46,7 +46,7 @@ final class ChangePasswordViewModel: ViewModel {
                 safeSync {
                     view?.stopSaveButtonActivityIndicatorView()
                 }
-                await AlertService.show(error: error.api, actions: [.okay()])
+                AlertService.show(error: error.api, actions: [.okay()])
             }
         }
     }

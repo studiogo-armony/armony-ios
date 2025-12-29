@@ -10,8 +10,8 @@ import UIKit
 public extension UIView {
 
     private struct AssociationKeys {
-        static var tapGestureRecognizer: UnsafeRawPointer = UnsafeRawPointer(bitPattern: "tapGestureRecognizer".hashValue)!
-        static var tapGestureRecognizerAction: UnsafeRawPointer = UnsafeRawPointer(bitPattern: "tapGestureRecognizerAction".hashValue)!
+        nonisolated(unsafe) static var tapGestureRecognizer: UnsafeRawPointer = UnsafeRawPointer(bitPattern: "tapGestureRecognizer".hashValue)!
+        nonisolated(unsafe) static var tapGestureRecognizerAction: UnsafeRawPointer = UnsafeRawPointer(bitPattern: "tapGestureRecognizerAction".hashValue)!
     }
 
     private var action: Callback<UIView>? {

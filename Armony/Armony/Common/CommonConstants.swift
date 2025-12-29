@@ -16,8 +16,8 @@ public struct Common {
     // MARK: - Durations
     public struct Durations {
         public struct BottomPopUp {
-            public static var dismiss: Double = 0.25
-            public static var present: Double = 0.25
+            public static let dismiss: Double = 0.25
+            public static let present: Double = 0.25
         }
     }
     

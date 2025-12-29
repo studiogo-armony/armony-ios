@@ -11,6 +11,7 @@ import SafariServices
 
 public typealias Navigator = UINavigationController
 
+@MainActor
 public protocol Coordinator {
 
     associatedtype Controller: ViewController

@@ -89,7 +89,7 @@ final class AdvertsViewModel: ViewModel {
                 }
             }
             catch let error {
-                await AlertService.show(error: error.api, actions: [.okay()])
+                AlertService.show(error: error.api, actions: [.okay()])
             }
         }
     }
@@ -141,7 +141,7 @@ final class AdvertsViewModel: ViewModel {
                     view?.endRefreshing()
                     view?.stopActivityIndicatorView()
                 }
-                await AlertService.show(error: error.api, actions: [.okay()])
+                AlertService.show(error: error.api, actions: [.okay()])
             }
         }
     }
@@ -283,7 +283,7 @@ extension AdvertsViewModel: ViewModelLifeCycle {
 
 // MARK: - EmptyStatePresentation
 private extension EmptyStatePresentation {
-    static var noContent: EmptyStatePresentation = {
+    static let noContent: EmptyStatePresentation = {
         let title = String("Adverts.EmptyState.Title", table: .home).emptyStateTitleAttributed
         let buttonTitle = String("Adverts.EmptyState.Button.Title", table: .home).emptyStateButtonAttributed
         let presentation = EmptyStatePresentation(image: .advertsEmptystateIcon,

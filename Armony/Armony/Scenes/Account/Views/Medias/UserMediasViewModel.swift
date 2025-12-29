@@ -47,8 +47,10 @@ final class UserMediasViewModel: ViewModel {
             catch let error {
                 stopEmptyStateActionButtomActivityIndicator?()
                 if error.api?.status == 400 {
-                    await AlertService.show(message: String(localized: "MyPerformances.AddVideo.Error.Message", table: "Account+Localizable"),
-                                            actions: [.okay()])
+                    AlertService.show(
+                        message: String(localized: "MyPerformances.AddVideo.Error.Message", table: "Account+Localizable"),
+                        actions: [.okay()]
+                    )
                 }
                 else {
                     error.showAlert()

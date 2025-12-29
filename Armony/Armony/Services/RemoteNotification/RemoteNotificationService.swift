@@ -66,7 +66,10 @@ extension RemoteNotificationService: UNUserNotificationCenterDelegate {
 
         if let urlString: String = response[.deeplink] {
             let deeplink = Deeplink(stringLiteral: urlString)
-            URLNavigator.shared.open(deeplink)
+
+            Task { @MainActor in
+                URLNavigator.shared.open(deeplink)
+            }
         }
         completionHandler()
     }

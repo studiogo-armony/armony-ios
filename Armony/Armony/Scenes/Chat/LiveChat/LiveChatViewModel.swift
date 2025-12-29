@@ -151,7 +151,7 @@ final class LiveChatViewModel: ViewModel {
                     view?.stopSendButtonActivityIndicatorView()
                     view?.stopRightBarButtonItemActivityIndicatorView()
                 }
-                await AlertService.show(error: error.api, actions: [.okay()])
+                AlertService.show(error: error.api, actions: [.okay()])
             }
         }
     }
@@ -177,7 +177,7 @@ final class LiveChatViewModel: ViewModel {
                     view?.stopSendButtonActivityIndicatorView()
                     view?.stopRightBarButtonItemActivityIndicatorView()
                 }
-                await AlertService.show(error: error.api, actions: [.okay()])
+                AlertService.show(error: error.api, actions: [.okay()])
             }
         }
     }
@@ -246,7 +246,7 @@ extension LiveChatViewModel: ReportSubjectSelectionDelegate {
                     view?.stopRightBarButtonItemActivityIndicatorView()
                 }
 
-                await AlertService.show(message: String("Common.Report.Success", table: .common), 
+                AlertService.show(message: String("Common.Report.Success", table: .common),
                                         actions: [.okay()])
             }
             catch let error {
@@ -254,7 +254,7 @@ extension LiveChatViewModel: ReportSubjectSelectionDelegate {
                     view?.stopSendButtonActivityIndicatorView()
                     view?.stopRightBarButtonItemActivityIndicatorView()
                 }
-                await AlertService.show(error: error.api, actions: [.okay()])
+                AlertService.show(error: error.api, actions: [.okay()])
             }
         }
     }

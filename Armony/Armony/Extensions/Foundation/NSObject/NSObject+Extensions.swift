@@ -10,7 +10,7 @@ import Foundation
 public extension NSObject {
 
     private struct AssociationKeys {
-        static var notificationTokens: UnsafeRawPointer = UnsafeRawPointer(bitPattern: "notificationTokens".hashValue)!
+        nonisolated(unsafe) static var notificationTokens: UnsafeRawPointer = UnsafeRawPointer(bitPattern: "notificationTokens".hashValue)!
     }
 
     private func setNotificationTokens(_ tokens: [NotificationToken]) {

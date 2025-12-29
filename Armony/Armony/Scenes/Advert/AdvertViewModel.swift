@@ -190,7 +190,7 @@ final class AdvertViewModel: ViewModel {
                 safeSync {
                     view?.stopSendMessageButtonActivityIndicatorView()
                 }
-                await AlertService.show(error: error.api, actions: [.okay()])
+                AlertService.show(error: error.api, actions: [.okay()])
             }
         }
     }
@@ -219,7 +219,7 @@ final class AdvertViewModel: ViewModel {
                 safeSync {
                     view?.stopSendMessageButtonActivityIndicatorView()
                 }
-                await AlertService.show(error: error.api, actions: [.okay()])
+                AlertService.show(error: error.api, actions: [.okay()])
             }
         }
     }
@@ -244,7 +244,7 @@ final class AdvertViewModel: ViewModel {
                 safeSync {
                     view?.stopSendMessageButtonActivityIndicatorView()
                 }
-                await AlertService.show(error: error.api, actions: [.okay()])
+                AlertService.show(error: error.api, actions: [.okay()])
             }
         }
     }
@@ -470,14 +470,14 @@ extension AdvertViewModel: ReportSubjectSelectionDelegate {
                     view?.stopSendMessageButtonActivityIndicatorView()
                 }
 
-                await AlertService.show(message: String("Common.Report.Success", table: .common), 
+                AlertService.show(message: String("Common.Report.Success", table: .common),
                                         actions: [.okay()])
             }
             catch let error {
                 safeSync {
                     view?.stopSendMessageButtonActivityIndicatorView()
                 }
-                await AlertService.show(error: error.api, actions: [.okay()])
+                AlertService.show(error: error.api, actions: [.okay()])
             }
         }
     }

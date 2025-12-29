@@ -34,7 +34,7 @@ extension SplashViewModel: ViewModelLifeCycle {
                         return
                     }
 
-                    await AlertService.show(
+                    AlertService.show(
                         title: "Armony'i Güncelle",
                         message: "Uygulamayı tüm güncel özellikleri ile kullanabilmeniz için son versiyonu yüklemeniz gerekmektedir.",
                         actions: [.okay(action: { [weak self] in
@@ -51,7 +51,7 @@ extension SplashViewModel: ViewModelLifeCycle {
                 }
             }
             catch {
-                await AlertService.show(message: "Tekrar Dene", actions: [.okay(action: { [weak self] in
+                AlertService.show(message: "Tekrar Dene", actions: [.okay(action: { [weak self] in
                     self?.viewWillAppear()
                 })])
             }

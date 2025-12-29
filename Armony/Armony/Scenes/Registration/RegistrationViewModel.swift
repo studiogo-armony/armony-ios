@@ -75,7 +75,7 @@ final class RegistrationViewModel: ViewModel {
                 AdjustRegistrationEvent().send()
             }
             catch let error {
-                await AlertService.show(message: AuthenticationErrorHandler.message(for: error.api), actions: [.okay()])
+                AlertService.show(message: AuthenticationErrorHandler.message(for: error.api), actions: [.okay()])
             }
             safeSync {
                 view.stopOkButtonActivityIndicatorView()

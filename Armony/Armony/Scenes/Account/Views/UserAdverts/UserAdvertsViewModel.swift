@@ -64,7 +64,7 @@ final class UserAdvertsViewModel: ViewModel {
                 }
             }
             catch let error {
-                await AlertService.show(error: error.api, actions: [.okay()])
+                AlertService.show(error: error.api, actions: [.okay()])
             }
         }
     }
@@ -122,7 +122,7 @@ extension UserAdvertsViewModel: ViewModelLifeCycle {
 
 // MARK: - EmptyStatePresentation
 private extension EmptyStatePresentation {
-    static var noContent: EmptyStatePresentation = {
+    static let noContent: EmptyStatePresentation = {
         let title = String(localized: "UserAds.EmptyState.Title", table: "Account+Localizable").emptyStateTitleAttributed
         let buttonTitle = String(localized: "UserAds.EmptyState.Button.Title", table: "Account+Localizable").emptyStateButtonAttributed
 

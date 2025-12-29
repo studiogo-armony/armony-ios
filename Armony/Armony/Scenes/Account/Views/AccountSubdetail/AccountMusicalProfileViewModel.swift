@@ -52,7 +52,7 @@ extension AccountMusicalProfileViewModel: ViewModelLifeCycle {
 
 // MARK: - EmptyStatePresentation
 private extension EmptyStatePresentation {
-    static var noContent: EmptyStatePresentation = {
+    static let noContent: EmptyStatePresentation = {
         let title = String(localized: "MusicalProfile.EmptyState.Title", table: "Account+Localizable").emptyStateTitleAttributed
         let buttonTitle = String(localized: "MusicalProfile.EmptyState.Button.Title", table: "Account+Localizable").emptyStateButtonAttributed
         let presentation = EmptyStatePresentation(title: title, buttonTitle: buttonTitle)

@@ -95,7 +95,7 @@ final class ChatsViewModel: ViewModel {
                 }
             }
             catch let error {
-                await AlertService.show(error: error.api, actions: [.okay()])
+                AlertService.show(error: error.api, actions: [.okay()])
             }
         }
     }
@@ -128,7 +128,7 @@ final class ChatsViewModel: ViewModel {
                     toggleEmptyState()
                 }
             } catch let error {
-                await AlertService.show(error: error.api, actions: [.okay()])
+                AlertService.show(error: error.api, actions: [.okay()])
             }
         }
     }
@@ -166,7 +166,7 @@ extension ChatsViewModel: ViewModelLifeCycle {
 // MARK: - EmptyStatePresentation
 private extension EmptyStatePresentation {
 
-    static var noContent: EmptyStatePresentation = {
+    static let noContent: EmptyStatePresentation = {
         let title = String("Chat.EmptyState.Title", table: .chat).emptyStateTitleAttributed
         return EmptyStatePresentation(image: .chatsEmptyStateIcon, title: title)
     }()

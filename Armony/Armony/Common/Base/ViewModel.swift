@@ -7,6 +7,7 @@
 
 import Foundation
 
+@MainActor
 class ViewModel {
 
     let service: RestService

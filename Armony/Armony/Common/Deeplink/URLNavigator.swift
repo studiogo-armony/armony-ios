@@ -1,8 +1,9 @@
 import UIKit
 
+@MainActor
 public final class URLNavigator: URLNavigation {
 
-    public static let shared: URLNavigator = .initialize(URLNavigator())
+    public static let shared: URLNavigator = .initialize(URLNavigator(loginCoordinator: .init()))
 
     public let scheme: String
 
@@ -15,7 +16,7 @@ public final class URLNavigator: URLNavigation {
     public init(
         authenticator: AuthenticationProviding = AuthenticationService.shared,
         dispatcher: DispatchQueueProtocol = DispatchQueue.main,
-        loginCoordinator: LoginCoordinator = LoginCoordinator()
+        loginCoordinator: LoginCoordinator
     ) {
         self.authenticator = authenticator
         self.dispatcher = dispatcher

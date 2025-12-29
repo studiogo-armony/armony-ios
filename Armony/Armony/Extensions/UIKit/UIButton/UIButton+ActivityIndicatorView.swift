@@ -10,10 +10,10 @@ import UIKit
 public extension UIButton {
 
     private struct AssociationKeys {
-        static var activityIndicatorView: UnsafeRawPointer = UnsafeRawPointer(bitPattern: "button_activityIndicatorView".hashValue)!
-        static var disabledTitle: UnsafeRawPointer = UnsafeRawPointer(bitPattern: "button_disabledTitle".hashValue)!
-        static var disabledAttributedTitle: UnsafeRawPointer = UnsafeRawPointer(bitPattern: "button_disabledAttributedTitle".hashValue)!
-        static var originalImage: UnsafeRawPointer = UnsafeRawPointer(bitPattern: "button_originalImage".hashValue)!
+        nonisolated(unsafe) static var activityIndicatorView: UnsafeRawPointer = UnsafeRawPointer(bitPattern: "button_activityIndicatorView".hashValue)!
+        nonisolated(unsafe) static var disabledTitle: UnsafeRawPointer = UnsafeRawPointer(bitPattern: "button_disabledTitle".hashValue)!
+        nonisolated(unsafe) static var disabledAttributedTitle: UnsafeRawPointer = UnsafeRawPointer(bitPattern: "button_disabledAttributedTitle".hashValue)!
+        nonisolated(unsafe) static var originalImage: UnsafeRawPointer = UnsafeRawPointer(bitPattern: "button_originalImage".hashValue)!
     }
 
     private var image: UIImage? {

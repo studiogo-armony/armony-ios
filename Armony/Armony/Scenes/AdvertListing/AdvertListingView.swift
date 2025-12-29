@@ -87,7 +87,7 @@ private struct ZuhalAcademyAdvertFirebaseEvent: FirebaseEvent {
 
 // MARK: - EmptyStatePresentation
 private extension EmptyStatePresentation {
-    static var noContent: EmptyStatePresentation = {
+    static let noContent: EmptyStatePresentation = {
         let title = "Henüz hiçbir ilan yok.".emptyStateTitleAttributed
         let presentation = EmptyStatePresentation(
             image: .advertsEmptystateIcon,

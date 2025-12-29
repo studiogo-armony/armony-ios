@@ -1,7 +1,7 @@
 import Foundation
 
 public protocol URLNavigatable {
-    var isAuthenticationRequired: Bool { get}
+    var isAuthenticationRequired: Bool { get }
 
     static var instance: URLNavigatable { get }
 

@@ -9,7 +9,7 @@ import UIKit
 
 public extension NSAttributedString {
 
-    static let empty = NSAttributedString()
+    nonisolated(unsafe) static let empty = NSAttributedString()
 
     func width(for height: CGFloat) -> CGFloat {
         let rect = boundingRect(with: CGSize(width: .max, height: height),

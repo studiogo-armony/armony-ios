@@ -7,6 +7,7 @@
 
 import UIKit
 
+@MainActor
 protocol SelectionBottomPopUpOpening {
     func selectionBottomPopUp(presentation: any SelectionPresentation)
 }

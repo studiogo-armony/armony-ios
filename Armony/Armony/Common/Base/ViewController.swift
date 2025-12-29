@@ -12,6 +12,7 @@ private struct Constants {
     static let seperator = "ViewController"
 }
 
+@MainActor
 public protocol ViewController {
     static var storyboardName: UIStoryboard.Name { get }
 }

@@ -41,5 +41,6 @@ public struct MusicGenresPresentation {
     }
 
     // MARK: - EMPTY
+    @MainActor
     static let empty = MusicGenresPresentation(title: .empty, cellBorderColor: .clear, separator: .empty, items: .empty)
 }

@@ -17,11 +17,13 @@ final class AppCoordinator {
         tabBarController = TabBarController()
     }
 
+    @MainActor
     func startAsArmony() {
         configureTabBarContent()
         window.setRootViewController(tabBarController, animated: true)
     }
 
+    @MainActor
     func configureTabBarContent() {
         var viewControllers: [UIViewController] = .empty
 
@@ -33,6 +35,7 @@ final class AppCoordinator {
         tabBarController.tabBarController(tabBarController, didSelect: viewControllers.first!)
     }
 
+    @MainActor
     func start() {
         SplashCoordinator(window: window).start()
         window.makeKeyAndVisible()

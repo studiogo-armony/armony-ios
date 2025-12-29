@@ -34,13 +34,13 @@ final class AccountInformationViewModel: ViewModel {
                         NotificationCenter.default.post(notification: .accountDetailDidUpdateInSettings)
                     }
                     let message = String("AccountInformation.Update.Succes.Message", table: .account)
-                    await AlertService.show(message: message,
+                    AlertService.show(message: message,
                                             actions: [.okay(action: { [weak self] in
                         self?.coordinator.pop()
                     })])
                 }
                 catch let error {
-                    await AlertService.show(error: error.api, actions: [.okay()])
+                    AlertService.show(error: error.api, actions: [.okay()])
                     safeSync {
                         view?.stopSaveButtonActivityIndicatorView()
                     }
@@ -141,7 +141,7 @@ extension AccountInformationViewModel: ViewModelLifeCycle {
                 }
             }
             catch let error {
-                await AlertService.show(error: error.api, actions: [.okay()])
+                AlertService.show(error: error.api, actions: [.okay()])
                 safeSync {
                     view?.stopActivityIndicatorView()
                 }

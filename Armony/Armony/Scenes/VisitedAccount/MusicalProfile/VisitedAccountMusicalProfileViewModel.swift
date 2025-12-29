@@ -40,7 +40,7 @@ extension VisitedAccountMusicalProfileViewModel: ViewModelLifeCycle {
 
 // MARK: - EmptyStatePresentation
 private extension EmptyStatePresentation {
-    static var noContent: EmptyStatePresentation = {
+    static let noContent: EmptyStatePresentation = {
         let title = String("VisitedAccount.MusicalProfile.EmptyState.Title", table: .account)
 
         let presentation = EmptyStatePresentation(title: title)

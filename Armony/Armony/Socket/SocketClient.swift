@@ -140,7 +140,7 @@ public class SocketClient {
     }
 
     private func refreshToken() {
-        Task {
+        Task { @MainActor in
             do {
                 let request = RefreshTokenRequest(refreshToken: authenticator.refreshToken)
                 let response = try await tokenRestService.execute(

@@ -7,7 +7,7 @@
 
 import UIKit
 
-public final class GradientPresentation {
+public struct GradientPresentation {
 
     // MARK: - Color
     public enum Color {
