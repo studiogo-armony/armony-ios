@@ -8,14 +8,14 @@
 import Foundation
 
 protocol MusicGenresSelectionDelegate: AnyObject {
-    func musicGenresDidSelect(genres: [SelectionInput]?)
+    func musicGenresDidSelect(genres: [any SelectionInput]?)
 }
 
 struct MusicGenresSelectionPresentation: SelectionPresentation {
     typealias Input = MusicGenresSelectionInput
     typealias Output = MultipleSelectionOutput<MusicGenresSelectionInput>
 
-    weak var delegate: MusicGenresSelectionDelegate?
+    weak var delegate: (any MusicGenresSelectionDelegate)?
     var items: [MusicGenresSelectionInput]
 
     var headerTitle: String = String("MusicGenre", table: .common)

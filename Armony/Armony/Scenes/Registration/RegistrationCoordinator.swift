@@ -46,12 +46,12 @@ extension RegistrationCoordinator: URLNavigatable {
         return false
     }
     
-    static var instance: URLNavigatable {
+    static var instance: any URLNavigatable {
         return RegistrationCoordinator()
     }
     
     
-    static func register(navigator: URLNavigation) {
+    static func register(navigator: any URLNavigation) {
         navigator.register(coordinator: instance, pattern: .registration) { _ in
             RegistrationCoordinator().start(registrationCompletion: nil, loginCompletion: nil)
         }

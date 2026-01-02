@@ -71,7 +71,7 @@ protocol SelectionPresentation {
 
 // MARK: - SelectionPresentation
 extension SelectionPresentation {
-    var selectedItems: [SelectionInput] {
+    var selectedItems: [any SelectionInput] {
         return items.filter { $0.isSelected }
     }
 

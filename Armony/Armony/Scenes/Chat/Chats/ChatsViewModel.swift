@@ -10,7 +10,7 @@ import Foundation
 final class ChatsViewModel: ViewModel {
 
     var coordinator: ChatsCoordinator!
-    private weak var view: ChatsViewDelegate?
+    private weak var view: (any ChatsViewDelegate)?
 
     private lazy var getChatsTask = GetChatsTask(userID: authenticator.userID)
     private lazy var paginator = Paginator(task: getChatsTask)
@@ -38,7 +38,7 @@ final class ChatsViewModel: ViewModel {
         return chats[indexPath.row]
     }
 
-    init(view: ChatsViewDelegate) {
+    init(view: any ChatsViewDelegate) {
         self.view = view
         super.init()
     }

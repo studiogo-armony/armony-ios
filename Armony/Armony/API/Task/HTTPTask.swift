@@ -50,7 +50,7 @@ public protocol HTTPTask: CustomStringConvertible {
     var urlQueryItems: [URLQueryItem]? { get }
     
     /// Parameter encoding strategy for the request
-    var encoding: ParameterEncoding { get }
+    var encoding: any ParameterEncoding { get }
     
     /// API version string (e.g., "v1", "v2")
     var apiVersion: String { get }
@@ -120,7 +120,7 @@ public extension HTTPTask {
      *
      * Override this property to use custom encoding strategies.
      */
-    var encoding: ParameterEncoding {
+    var encoding: any ParameterEncoding {
         switch method {
         case .post, .put:
             return JSONEncoding.default

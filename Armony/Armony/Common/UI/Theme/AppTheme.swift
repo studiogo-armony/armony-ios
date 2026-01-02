@@ -48,7 +48,7 @@ public final class AppTheme {
             return SwiftUI.Color(uiColor)
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let container = try decoder.singleValueContainer()
             let value = try container.decode(String.self)
 

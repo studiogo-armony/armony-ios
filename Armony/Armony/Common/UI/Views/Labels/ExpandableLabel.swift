@@ -29,7 +29,7 @@ import UIKit
     }
 
     /// The delegate of ExpandableLabel
-    @objc weak open var delegate: ExpandableLabelDelegate?
+    @objc weak open var delegate: (any ExpandableLabelDelegate)?
 
     /// Set 'true' if the label should be collapsed or 'false' for expanded.
     @IBInspectable open var collapsed: Bool = true {

@@ -12,7 +12,7 @@ protocol Localizable {
     var localized: String { get }
     var fileName: String { get }
 
-    func localized(_ arg: [CVarArg]) -> String
+    func localized(_ arg: [any CVarArg]) -> String
 }
 
 extension Localizable {
@@ -21,7 +21,7 @@ extension Localizable {
         return value.isEmpty ? rawValue : value
     }
 
-    func localized(_ arg: [CVarArg]) -> String {
+    func localized(_ arg: [any CVarArg]) -> String {
         return String(format: localized, arguments: arg)
     }
 }

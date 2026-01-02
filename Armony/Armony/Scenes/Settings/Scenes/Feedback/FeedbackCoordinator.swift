@@ -36,11 +36,11 @@ extension FeedbackCoordinator: URLNavigatable {
         return true
     }
 
-    static var instance: URLNavigatable {
+    static var instance: any URLNavigatable {
         return FeedbackCoordinator()
     }
     
-    static func register(navigator: URLNavigation) {
+    static func register(navigator: any URLNavigation) {
         navigator.register(coordinator: instance, pattern: .feedback) { result in
             FeedbackCoordinator(navigator: result.navigator).start()
         }

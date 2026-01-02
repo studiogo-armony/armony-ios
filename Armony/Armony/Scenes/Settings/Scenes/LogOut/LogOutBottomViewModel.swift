@@ -11,12 +11,12 @@ final class LogOutBottomPopUpViewModel: ViewModel {
 
     var coordinator: LogOutBottomPopUpCoordinator!
 
-    private weak var view: LogOutBottomPopUpViewDelegate?
+    private weak var view: (any LogOutBottomPopUpViewDelegate)?
     private let authenticator: AuthenticationService
 
     private let notifier: NotificationCenter = .default
 
-    init(view: LogOutBottomPopUpViewDelegate,
+    init(view: any LogOutBottomPopUpViewDelegate,
          authenticator: AuthenticationService = .shared) {
         self.view = view
         self.authenticator = authenticator

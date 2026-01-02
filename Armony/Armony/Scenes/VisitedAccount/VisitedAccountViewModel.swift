@@ -10,14 +10,14 @@ import Foundation
 final class VisitedAccountViewModel: ViewModel {
 
     var coordinator: VisitedAccountCoordinator!
-    private weak var view: VisitedAccountViewDelegate?
+    private weak var view: (any VisitedAccountViewDelegate)?
 
     private let userID: String
 
     private var response: UserDetail? = nil
     private var authenticator: AuthenticationService = .shared
 
-    init(view: VisitedAccountViewDelegate, userID: String) {
+    init(view: any VisitedAccountViewDelegate, userID: String) {
         self.view = view
         self.userID = userID
         super.init()

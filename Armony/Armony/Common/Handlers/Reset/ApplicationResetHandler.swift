@@ -19,7 +19,7 @@ public class ApplicationResetHandler: ApplicationResetHandling {
 
     public static let shared = ApplicationResetHandler()
 
-    private(set) var services: [ResetHandling] = [
+    private(set) var services: [any ResetHandling] = [
         AuthenticationService.shared,
         Defaults.shared,
         AppLaunchService.shared,

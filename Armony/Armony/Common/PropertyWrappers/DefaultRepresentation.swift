@@ -17,7 +17,7 @@ protocol DefaultRepresentation {
 struct DefaultDecodable<T: DefaultRepresentation>: Decodable where T.Value: Decodable {
     let wrappedValue: T.Value
 
-    init(from decoder: Decoder) throws {
+    init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         wrappedValue = try container.decode(T.Value.self)
     }

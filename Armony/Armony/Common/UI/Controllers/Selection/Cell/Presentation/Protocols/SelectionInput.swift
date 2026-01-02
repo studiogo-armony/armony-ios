@@ -87,7 +87,7 @@ final class EmptySelectionInput: SelectionInput {
 /**
  * Extension providing utility methods for arrays of SelectionInput items.
  */
-extension Array where Element == SelectionInput {
+extension Array where Element == any SelectionInput {
     /**
      * Creates a combined title string from multiple selection inputs.
      * 

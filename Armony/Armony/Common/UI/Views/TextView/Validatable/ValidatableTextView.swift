@@ -14,7 +14,7 @@ final class ValidatableTextView: TextView, ValidationResponder {
             validationDelegate?.responderDidValidate(self)
         }
     }
-    var validationDelegate: ValidationResponderDelegate?
+    var validationDelegate: (any ValidationResponderDelegate)?
 
     var rules: ValidationRuleSet<String> = ValidationRuleSet()
 

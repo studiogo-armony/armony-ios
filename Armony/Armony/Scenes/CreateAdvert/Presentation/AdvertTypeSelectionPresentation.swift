@@ -8,7 +8,7 @@
 import Foundation
 
 protocol AdvertTypeSelectionDelegate: AnyObject {
-    func advertTypeDidSelect(advert: SelectionInput?)
+    func advertTypeDidSelect(advert: (any SelectionInput)?)
 }
 
 struct AdvertTypeSelectionPresentation: SelectionPresentation {
@@ -17,7 +17,7 @@ struct AdvertTypeSelectionPresentation: SelectionPresentation {
 
     typealias Output = SingleSelectionOutput<Input>
 
-    weak var delegate: AdvertTypeSelectionDelegate?
+    weak var delegate: (any AdvertTypeSelectionDelegate)?
 
     var items: [AdvertTypeSelectionInput]
 

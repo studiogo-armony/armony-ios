@@ -56,7 +56,7 @@ final class AdvertsCoordinator: Coordinator {
         ChatsCoordinator(navigator: navigator).start()
     }
 
-    func filter(delegate: FilterViewModelDelegate, selectedFilters: FilterViewModel.Filters = .empty) {
+    func filter(delegate: any FilterViewModelDelegate, selectedFilters: FilterViewModel.Filters = .empty) {
         FilterCoordinator().start(navigatee: navigator, delegate: delegate, selectedFilters: selectedFilters)
     }
 }

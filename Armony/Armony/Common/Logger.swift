@@ -13,7 +13,7 @@ protocol Logger {
     associatedtype Model
 
     func log(exception: Model)
-    func log(error: Error?)
+    func log(error: (any Error)?)
 }
 
 struct Exception {
@@ -34,7 +34,7 @@ final class FirebaseCrashlyticsLogger: Logger {
 
     private var crashlytics: Crashlytics
 
-    private let authenticator: AuthenticationProviding = AuthenticationService.shared
+    private let authenticator: any AuthenticationProviding = AuthenticationService.shared
 
     init() {
         self.crashlytics = Crashlytics.crashlytics()
@@ -46,7 +46,7 @@ final class FirebaseCrashlyticsLogger: Logger {
         crashlytics.record(exceptionModel: exception)
     }
 
-    func log(error: Error?) {
+    func log(error: (any Error)?) {
         if let error {
             crashlytics.record(error: error)
         }

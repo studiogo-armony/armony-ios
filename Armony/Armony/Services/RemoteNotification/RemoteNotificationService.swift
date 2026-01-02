@@ -13,10 +13,10 @@ final class RemoteNotificationService: NSObject {
 
     static let shared = RemoteNotificationService(handlers: [FirebaseRemoteNotificationHandler.shared])
 
-    private let handlers: [RemoteNotificationHandler]
+    private let handlers: [any RemoteNotificationHandler]
     private let options: UNAuthorizationOptions
 
-    init(handlers: [RemoteNotificationHandler]) {
+    init(handlers: [any RemoteNotificationHandler]) {
         self.handlers = handlers
         self.options = [.badge, .sound, .alert]
     }

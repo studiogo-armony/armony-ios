@@ -10,7 +10,7 @@ import Foundation
 final class LoginViewModel: ViewModel {
 
     var coordinator: LoginCoordinator!
-    private weak var view: LoginViewDelegate?
+    private weak var view: (any LoginViewDelegate)?
     private let authenticator: AuthenticationService
 
     private(set) var registrationCompletion: VoidCallback?
@@ -18,7 +18,7 @@ final class LoginViewModel: ViewModel {
 
     private unowned var notifier: NotificationCenter
 
-    init(view: LoginViewDelegate,
+    init(view: any LoginViewDelegate,
          loginCompletion: VoidCallback?,
          registrationCompletion: VoidCallback?,
          authenticator authenticationService: AuthenticationService = .shared,

@@ -14,7 +14,7 @@ final class FilterCoordinator: Coordinator {
     weak var navigator: Navigator?
 
     func start(navigatee: Navigator?,
-               delegate: FilterViewModelDelegate?, selectedFilters: FilterViewModel.Filters = .empty) {
+               delegate: (any FilterViewModelDelegate)?, selectedFilters: FilterViewModel.Filters = .empty) {
         let view = createViewController()
         let viewModel = FilterViewModel(view: view, selectedFilters: selectedFilters)
         viewModel.coordinator = self

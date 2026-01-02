@@ -10,11 +10,11 @@ import UIKit
 
 final class ValidatableTextField: SkyFloatingLabelTextField, ValidationResponder {
 
-    private weak var proxyDelegate: UITextFieldDelegate?
+    private weak var proxyDelegate: (any UITextFieldDelegate)?
 
-    var validationDelegate: ValidationResponderDelegate?
+    var validationDelegate: (any ValidationResponderDelegate)?
 
-    public weak override var delegate: UITextFieldDelegate? {
+    public weak override var delegate: (any UITextFieldDelegate)? {
         didSet {
             if let delegate = delegate, delegate !== self {
                 proxyDelegate = delegate

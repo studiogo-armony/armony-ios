@@ -10,12 +10,12 @@ import Foundation
 final class VisitedAccountMusicalProfileViewModel: ViewModel {
     
     var coordinator: VisitedAccountMusicalProfileCoordinator!
-    private weak var view: VisitedAccountMusicalProfileViewDelegate?
+    private weak var view: (any VisitedAccountMusicalProfileViewDelegate)?
 
     private let skillsPresentation: SkillsPresentation
     private let musicGenresPresentation: MusicGenresPresentation
 
-    init(view: VisitedAccountMusicalProfileViewDelegate,
+    init(view: any VisitedAccountMusicalProfileViewDelegate,
          skills skillsPresentation: SkillsPresentation,
          musicGenres musicGenresPresentation: MusicGenresPresentation) {
         self.view = view

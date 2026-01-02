@@ -10,7 +10,7 @@ import Foundation
 final class OnboardingViewModel: ViewModel {
 
     var coordinator: OnboardingCoordinator!
-    private unowned var view: OnboardingViewDelegate
+    private unowned var view: any OnboardingViewDelegate
 
     private let presentation: [OnboardingPresentation] = [
         OnboardingPresentation(borderImageName: "onboarding-first-border",
@@ -28,7 +28,7 @@ final class OnboardingViewModel: ViewModel {
         return presentation.count
     }
 
-    init(view: OnboardingViewDelegate) {
+    init(view: any OnboardingViewDelegate) {
         self.view = view
         super.init()
     }

@@ -9,7 +9,7 @@ import Foundation
 
 public typealias VoidCallback = () -> Void
 public typealias Callback<T> = (_: T) -> Void
-public typealias EmptyResult = Swift.Result<(), Error>
+public typealias EmptyResult = Swift.Result<(), any Error>
 
 // MARK: - EmptyReponse
 struct EmptyResponse: Decodable { }

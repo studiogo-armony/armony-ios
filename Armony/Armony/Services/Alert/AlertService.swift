@@ -38,7 +38,7 @@ public final class AlertService {
                            message: String,
                            actions: [UIAlertAction],
                            inputPlaceholder: String? = nil,
-                           textFieldDelegate: UITextFieldDelegate? = nil,
+                           textFieldDelegate: (any UITextFieldDelegate)? = nil,
                            onto view: UIViewController? = nil) {
         safeSync {
             if let view = view ?? UIViewController.topMostViewController {

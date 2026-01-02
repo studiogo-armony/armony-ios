@@ -8,13 +8,13 @@
 import Foundation
 
 final class AnySelectionPresentation {
-    private(set) var items: [SelectionInput]
+    private(set) var items: [any SelectionInput]
 
     private(set) var headerTitle: String
 
     private(set) var isMultipleSelectionAllowed: Bool
 
-    var selectedItems: [SelectionInput] {
+    var selectedItems: [any SelectionInput] {
         return items.filter { $0.isSelected }
     }
 

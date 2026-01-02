@@ -10,10 +10,10 @@ import Foundation
 final class AccountInformationViewModel: ViewModel {
 
     var coordinator: AccountInformationCoordinator!
-    private weak var view: AccountInformationViewDelegate?
+    private weak var view: (any AccountInformationViewDelegate)?
     private let authenticator: AuthenticationService
 
-    init(view: AccountInformationViewDelegate, authenticator: AuthenticationService = .shared) {
+    init(view: any AccountInformationViewDelegate, authenticator: AuthenticationService = .shared) {
         self.view = view
         self.authenticator = authenticator
         super.init()

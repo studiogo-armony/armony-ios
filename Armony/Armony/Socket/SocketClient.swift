@@ -10,29 +10,29 @@ import Starscream
 
 protocol SocketClientDelegate: AnyObject {
 
-    var responseDecoder: SocketResponseDecoding { get }
+    var responseDecoder: any SocketResponseDecoding { get }
 
     func socketDidConnect(client: SocketClient)
     func socketDidDisconnect(client: SocketClient)
-    func socket(_ client: SocketClient, didDisconnectWithError error: Error?)
+    func socket(_ client: SocketClient, didDisconnectWithError error: (any Error)?)
     func socket(_ client: SocketClient, didReceive response: String)
 }
 
 extension SocketClientDelegate {
 
-    var responseDecoder: SocketResponseDecoding {
+    var responseDecoder: any SocketResponseDecoding {
         return SocketResponseDecoder.shared
     }
 
     func socketDidConnect(client: SocketClient) { }
     func socketDidDisconnect(client: SocketClient) { }
-    func socket(_ client: SocketClient, didDisconnectWithError error: Error?) { }
+    func socket(_ client: SocketClient, didDisconnectWithError error: (any Error)?) { }
 }
 
 public class SocketClient {
     private var socket: WebSocket
 
-    private weak var delegate: SocketClientDelegate?
+    private weak var delegate: (any SocketClientDelegate)?
 
     private var numberOfFailurePingAttempts: Int = .zero
 
@@ -48,7 +48,7 @@ public class SocketClient {
     private var isConnected: Bool = false
     private let socketURL: URL
 
-    init(socketURL: URL, delegate: SocketClientDelegate, pingTimeInterval: TimeInterval = 5.0) {
+    init(socketURL: URL, delegate: any SocketClientDelegate, pingTimeInterval: TimeInterval = 5.0) {
         self.socketURL = socketURL
         var urlRequest = URLRequest(url: socketURL)
         urlRequest.timeoutInterval = 10.0
@@ -169,7 +169,7 @@ public class SocketClient {
 // MARK: - WebSocketDelegate
 extension SocketClient: WebSocketDelegate {
 
-    public func didReceive(event: Starscream.WebSocketEvent, client: Starscream.WebSocketClient) {
+    public func didReceive(event: Starscream.WebSocketEvent, client: any Starscream.WebSocketClient) {
         switch event {
         case .connected:
             isConnected = true

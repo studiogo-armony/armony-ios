@@ -33,11 +33,11 @@ extension LiveChatCoordinator: URLNavigatable {
         return true
     }
 
-    static var instance: URLNavigatable {
+    static var instance: any URLNavigatable {
         return LiveChatCoordinator(navigator: nil)
     }
 
-    static func register(navigator: URLNavigation) {
+    static func register(navigator: any URLNavigation) {
 
         navigator.register(coordinator: instance, pattern: .liveChat) { result in
 

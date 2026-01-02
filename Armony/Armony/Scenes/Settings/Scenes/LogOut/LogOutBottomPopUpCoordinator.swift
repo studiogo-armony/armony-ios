@@ -32,11 +32,11 @@ extension LogOutBottomPopUpCoordinator: URLNavigatable {
         true
     }
     
-    static var instance: URLNavigatable {
+    static var instance: any URLNavigatable {
         return LogOutBottomPopUpCoordinator.init()
     }
     
-    static func register(navigator: URLNavigation) {
+    static func register(navigator: any URLNavigation) {
         navigator.register(coordinator: instance, pattern: .logOut) { result in
             if let navigation = result.navigator {
                 LogOutBottomPopUpCoordinator(navigator: navigation).start()

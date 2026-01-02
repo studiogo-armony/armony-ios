@@ -18,7 +18,7 @@ final class PageViewController: UIPageViewController {
     private var initialIndex: Int? = nil
     private var controllers: [UIViewController] = []
 
-    override var dataSource: UIPageViewControllerDataSource? {
+    override var dataSource: (any UIPageViewControllerDataSource)? {
         willSet {
             if newValue != nil {
                 assertionFailure("DataSource can not be nil")
@@ -26,7 +26,7 @@ final class PageViewController: UIPageViewController {
         }
     }
 
-    weak var additionalDelegate: PageViewControllerDelegate?
+    weak var additionalDelegate: (any PageViewControllerDelegate)?
 
     func setViewControllers(_ viewControllers: [UIViewController]?, initialIndex: Int? = nil) {
         self.initialIndex = initialIndex

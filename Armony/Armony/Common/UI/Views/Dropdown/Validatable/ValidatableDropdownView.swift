@@ -10,7 +10,7 @@ import Foundation
 // MARK: - ValidatableDropdownView
 final class ValidatableDropdownView: DropdownView, ValidationResponder {
 
-    var validationDelegate: ValidationResponderDelegate?
+    var validationDelegate: (any ValidationResponderDelegate)?
     var validationResult: Validation.Result?{
         didSet {
             validationDelegate?.responderDidValidate(self)

@@ -8,12 +8,12 @@
 import UIKit
 import Foundation
 
-public protocol TYLinkLabelDelegate: AnyObject {
+public protocol LinkLabelDelegate: AnyObject {
     func didSelect(_ link: LabelLink)
 }
 
-public final class TYLinkLabel: UILabel {
-    public weak var delegate: TYLinkLabelDelegate?
+public final class LinkLabel: UILabel {
+    public weak var delegate: (any LinkLabelDelegate)?
 
     private var linkTapHandlers: [LabelLink : (LabelLink) -> ()] = [:]
     private var allLinkTapHandler: ((LabelLink) -> ())?
@@ -147,7 +147,7 @@ public final class TYLinkLabel: UILabel {
     }
 
     @discardableResult
-    public func customize(_ block: (_ label: TYLinkLabel) -> ()) -> TYLinkLabel {
+    public func customize(_ block: (_ label: LinkLabel) -> ()) -> LinkLabel {
         customize = true
         block(self)
         customize = false

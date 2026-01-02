@@ -18,7 +18,7 @@ final class SegmentedControlView: UIView, NibLoadable {
 
     private(set) var currentSelectedIndex: Int = .zero
 
-    weak var delegate: SegmentedControlViewDelegate?
+    weak var delegate: (any SegmentedControlViewDelegate)?
 
     private var presentation: SegmentedControlPresentation = .empty {
         didSet {

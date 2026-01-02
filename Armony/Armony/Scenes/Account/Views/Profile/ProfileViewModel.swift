@@ -15,8 +15,8 @@ final class ProfileViewModel: ViewModel {
 
     var coordinator: ProfileCoordinator!
 
-    private weak var view: ProfileViewDelegate?
-    private weak var delegate: ProfileViewModelDelegate?
+    private weak var view: (any ProfileViewDelegate)?
+    private weak var delegate: (any ProfileViewModelDelegate)?
 
     private let authenticator: AuthenticationService = .shared
 
@@ -27,9 +27,9 @@ final class ProfileViewModel: ViewModel {
 
     private let isEmptyUser: Bool
 
-    init(view: ProfileViewDelegate,
+    init(view: any ProfileViewDelegate,
          presentation: ProfilePresentation,
-         delegate: ProfileViewModelDelegate?) {
+         delegate: (any ProfileViewModelDelegate)?) {
         self.view = view
         self.presentation = presentation
         self.isEmptyUser = presentation.isEmpty()
@@ -319,7 +319,7 @@ fileprivate extension TextViewPresentation {
 
 // MARK: - TitleSelectionDelegate
 extension ProfileViewModel: TitleSelectionDelegate {
-    func titleDidSelect(title: SelectionInput?) {
+    func titleDidSelect(title: (any SelectionInput)?) {
         if let title = title {
             let title = UserDetail.Title(id: title.id, title: title.title)
             request.title = title
@@ -334,7 +334,7 @@ extension ProfileViewModel: TitleSelectionDelegate {
 
 // MARK: - SkillsSelectionDelegate
 extension ProfileViewModel: SkillsSelectionDelegate {
-    func skillsDidSelect(skills: [SelectionInput]?) {
+    func skillsDidSelect(skills: [any SelectionInput]?) {
         let selectedSkills: [Skill]? = skills?.compactMap { item in
             return Skill(id: item.id,
                          iconURL: nil,
@@ -348,7 +348,7 @@ extension ProfileViewModel: SkillsSelectionDelegate {
 
 // MARK: - MusicGenresSelectionDelegate
 extension ProfileViewModel: MusicGenresSelectionDelegate {
-    func musicGenresDidSelect(genres: [SelectionInput]?) {
+    func musicGenresDidSelect(genres: [any SelectionInput]?) {
         let musicGenres: [MusicGenre]? = genres?.compactMap { item in
             return MusicGenre(id: item.id, name: item.title)
         }
@@ -359,7 +359,7 @@ extension ProfileViewModel: MusicGenresSelectionDelegate {
 
 // MARK: - LocationSelectionDelegate
 extension ProfileViewModel: LocationSelectionDelegate {
-    func locationDidSelect(location: SelectionInput?) {
+    func locationDidSelect(location: (any SelectionInput)?) {
         if let location = location {
             let location = Location(id: location.id, title: location.title)
             request.location = location

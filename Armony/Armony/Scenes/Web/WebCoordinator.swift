@@ -32,11 +32,11 @@ extension WebCoordinator: URLNavigatable {
         return false
     }
 
-    static var instance: URLNavigatable {
+    static var instance: any URLNavigatable {
         return WebCoordinator(navigator: nil)
     }
 
-    static func register(navigator: URLNavigation) {
+    static func register(navigator: any URLNavigation) {
         navigator.register(coordinator: instance, pattern: .web) { result in
             if let title: String = result.value(forKey: "Title"),
                let url: String = result.value(forKey: "url") {

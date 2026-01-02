@@ -10,7 +10,7 @@ import Foundation
 final class LiveChatViewModel: ViewModel {
 
     var coordinator: LiveChatCoordinator!
-    private weak var view: LiveChatViewDelegate?
+    private weak var view: (any LiveChatViewDelegate)?
 
     private(set) var socket: SocketClient!
     private lazy var authenticator: AuthenticationService = .shared
@@ -36,7 +36,7 @@ final class LiveChatViewModel: ViewModel {
         return presentation.cardPresentation
     }
 
-    init(view: LiveChatViewDelegate, id: Int) {
+    init(view: any LiveChatViewDelegate, id: Int) {
         self.view = view
         self.id = id
         super.init()
@@ -196,7 +196,7 @@ extension LiveChatViewModel: SocketClientDelegate {
         FirebaseCrashlyticsLogger.shared.log(exception: exception)
     }
 
-    func socket(_ client: SocketClient, didDisconnectWithError error: Error?) {
+    func socket(_ client: SocketClient, didDisconnectWithError error: (any Error)?) {
         view?.stopSendButtonActivityIndicatorView()
         print("didDisconnectWithError:", error.debugDescription)
         FirebaseCrashlyticsLogger.shared.log(error: error)
@@ -229,7 +229,7 @@ extension LiveChatViewModel: SocketClientDelegate {
 
 // MARK: - ReportSubjectSelectionDelegate
 extension LiveChatViewModel: ReportSubjectSelectionDelegate {
-    func reportSubjectDidSelect(subject: SelectionInput?) {
+    func reportSubjectDidSelect(subject: (any SelectionInput)?) {
         view?.startSendButtonActivityIndicatorView()
         view?.startRightBarButtonItemActivityIndicatorView()
         let receiverID = presentation.receiver.id

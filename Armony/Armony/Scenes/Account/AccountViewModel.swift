@@ -10,7 +10,7 @@ import Foundation
 final class AccountViewModel: ViewModel {
     
     var coordinator: AccountCoordinator!
-    private weak var view: AccountViewDelegate?
+    private weak var view: (any AccountViewDelegate)?
     private(set) var authenticator: AuthenticationService
 
     var currentSelectedSegmentIndex: Int = .zero
@@ -21,11 +21,11 @@ final class AccountViewModel: ViewModel {
     var shouldFetchUserDetail = false
     var isViewDidLoad = false
 
-    var profileViewModelDelegate: AccountMusicalProfileViewModelDelegate? {
+    var profileViewModelDelegate: (any AccountMusicalProfileViewModelDelegate)? {
         return self
     }
 
-    init(view: AccountViewDelegate,
+    init(view: any AccountViewDelegate,
          authenticator: AuthenticationService = .shared,
          service: RestService = RestService(backend: .factory())) {
         self.view = view

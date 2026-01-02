@@ -18,7 +18,7 @@ public protocol RevenueCatServiceProtocol {
 
 public final class RevenueCatService: NSObject, RevenueCatServiceProtocol {
 
-    public static let shared: RevenueCatServiceProtocol = RevenueCatService()
+    public static let shared: any RevenueCatServiceProtocol = RevenueCatService()
 
     private let authenticator: AuthenticationService = .shared
 

@@ -108,7 +108,7 @@ class RestService: Service {
     ///   - type: The expected response type that conforms to `APIResponse`
     /// - Returns: The API response of the specified type
     /// - Throws: Network errors, API errors, or connectivity errors
-    func execute<R>(task operataion: RestAPI.Operation, type: R.Type) async throws -> R where R : APIResponse {
+    func execute<R>(task operataion: any RestAPI.Operation, type: R.Type) async throws -> R where R : APIResponse {
         operations[operataion.description]?.cancel()
         guard internetConnectionService.isConnected else {
             FirebaseCrashlyticsLogger.shared.log(exception: .init(name: "RestService", reason: "internet is not connected"))
@@ -135,7 +135,7 @@ class RestService: Service {
     ///   - type: The expected response type that conforms to `APIResponse`
     /// - Returns: The API response of the specified type
     /// - Throws: Network errors, API errors, or connectivity errors
-    func upload<R>(task operataion: RestAPI.UploadOperation, type: R.Type) async throws -> R where R : APIResponse {
+    func upload<R>(task operataion: any RestAPI.UploadOperation, type: R.Type) async throws -> R where R : APIResponse {
         operations[operataion.description]?.cancel()
         guard internetConnectionService.isConnected else {
             FirebaseCrashlyticsLogger.shared.log(exception: .init(name: "RestService", reason: "internet is not connected"))

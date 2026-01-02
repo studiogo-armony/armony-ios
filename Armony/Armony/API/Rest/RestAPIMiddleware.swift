@@ -79,7 +79,7 @@ final class RestAPIMiddleware: RequestInterceptor {
     ///   - urlRequest: The original URL request to adapt
     ///   - session: The Alamofire session
     ///   - completion: Completion handler with the adapted request or error
-    func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Swift.Result<URLRequest, Error>) -> Void) {
+    func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Swift.Result<URLRequest, any Error>) -> Void) {
 
         var urlRequest = urlRequest
         urlRequest.setValue("IOS", forHTTPHeaderField: "Client-Type")
@@ -119,7 +119,7 @@ final class RestAPIMiddleware: RequestInterceptor {
     ///   - session: The Alamofire session
     ///   - error: The error that caused the failure
     ///   - completion: Completion handler with retry decision
-    func retry(_ request: Request, for session: Session, dueTo error: Error, completion: @escaping (RetryResult) -> Void) {
+    func retry(_ request: Request, for session: Session, dueTo error: any Error, completion: @escaping (RetryResult) -> Void) {
         let requestURLString = request.request?.url?.absoluteString
         let isWhiteListRequest = whiteListForRetry.first(where: { requestURLString.emptyIfNil.contains($0)}).isNil
 

@@ -9,7 +9,7 @@ import Foundation
 
 final class PlaceAdvertFirebasveEventsHandler {
 
-    static func track(event: FirebaseEvent) {
+    static func track(event: any FirebaseEvent) {
         event.send()
     }
 }

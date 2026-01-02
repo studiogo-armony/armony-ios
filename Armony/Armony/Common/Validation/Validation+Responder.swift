@@ -14,7 +14,7 @@ extension Validation {
 protocol ValidationResponder: AnyObject {
 
     var validationResult: Validation.Result? { get }
-    var validationDelegate: ValidationResponderDelegate? { get set }
+    var validationDelegate: (any ValidationResponderDelegate)? { get set }
 
     func revalidate()
 }
@@ -29,7 +29,7 @@ extension ValidationResponder {
 // MARK: - ValidationResponderDelegate
 
 protocol ValidationResponderDelegate: AnyObject {
-    func responderDidValidate(_ responder: Validation.Responder)
+    func responderDidValidate(_ responder: any Validation.Responder)
 }
 
 // MARK: - ValidationResponders
@@ -46,10 +46,10 @@ final class ValidationResponders {
         return optional.compactMap { $0.validationResult }.allSatisfy { $0.isValid }
     }
 
-    private let required: [Validation.Responder]
-    private let optional: [Validation.Responder]
+    private let required: [any ValidationResponder]
+    private let optional: [any Validation.Responder]
 
-    public init(required: [Validation.Responder], optional: [Validation.Responder] = .empty) {
+    public init(required: [any Validation.Responder], optional: [any Validation.Responder] = .empty) {
         self.required = required
         self.optional = optional
 
@@ -66,7 +66,7 @@ final class ValidationResponders {
 
 extension ValidationResponders: ValidationResponderDelegate {
 
-    public func responderDidValidate(_ responder: Validation.Responder) {
+    public func responderDidValidate(_ responder: any Validation.Responder) {
         didValidate?(self)
     }
 }

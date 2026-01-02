@@ -13,7 +13,7 @@ fileprivate typealias HomeData = (bannerResponse: RestObjectResponse<BannerSlide
 final class AdvertsViewModel: ViewModel {
 
     var coordinator: AdvertsCoordinator!
-    private weak var view: AdvertsViewDelegate?
+    private weak var view: (any AdvertsViewDelegate)?
 
     private lazy var messageCountSocketHandler = MessageCountSocketHandler.shared
 
@@ -53,7 +53,7 @@ final class AdvertsViewModel: ViewModel {
         return presentation.cards.count
     }
 
-    init(view: AdvertsViewDelegate, service: RestService = .init(backend: .factory())) {
+    init(view: any AdvertsViewDelegate, service: RestService = .init(backend: .factory())) {
         self.view = view
         super.init(service: service)
     }

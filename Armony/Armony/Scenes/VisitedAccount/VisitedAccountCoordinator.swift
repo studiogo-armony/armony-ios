@@ -38,11 +38,11 @@ extension VisitedAccountCoordinator: URLNavigatable {
         return false
     }
 
-    static var instance: URLNavigatable {
+    static var instance: any URLNavigatable {
         return VisitedAccountCoordinator()
     }
 
-    static func register(navigator: URLNavigation) {
+    static func register(navigator: any URLNavigation) {
         navigator.register(coordinator: instance, pattern: .visitedAccount) { result in
             if let userID: String = result.value(forKey: "UserID") {
                 

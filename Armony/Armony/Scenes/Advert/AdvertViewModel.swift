@@ -11,7 +11,7 @@ final class AdvertViewModel: ViewModel {
 
     var coordinator: AdvertCoordinator!
     private let id: Int
-    private weak var view: AdvertViewDelegate?
+    private weak var view: (any AdvertViewDelegate)?
     private var isRemovingActive: Bool = false
     private let authenticator: AuthenticationService = .shared
 
@@ -25,7 +25,7 @@ final class AdvertViewModel: ViewModel {
     }
     private var colorCode: String
 
-    init(view: AdvertViewDelegate, id: Int,
+    init(view: any AdvertViewDelegate, id: Int,
          colorCode: String = .empty,
          isRemovingActive: Bool = false,
          isPreviousPageLiveChat: Bool,
@@ -458,7 +458,7 @@ extension AdvertViewModel: ViewModelLifeCycle {
 
 // MARK: - ReportSubjectSelectionDelegate
 extension AdvertViewModel: ReportSubjectSelectionDelegate {
-    func reportSubjectDidSelect(subject: SelectionInput?) {
+    func reportSubjectDidSelect(subject: (any SelectionInput)?) {
         view?.startSendMessageButtonActivityIndicatorView()
         Task {
             let request = PostReportSubjectRequest(reportedAdId: id, reportedUserId: advert?.user.id ?? .empty, reportTopicId: subject?.id ?? .zero)

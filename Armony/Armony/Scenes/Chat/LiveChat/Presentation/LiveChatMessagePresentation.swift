@@ -46,12 +46,12 @@ struct LiveChatMessagePresentation: MessageType {
         }
     }
 
-    var sender: SenderType
+    var sender: any SenderType
     var messageId: String
     var sentDate: Date
     var kind: MessageKind
 
-    init(sender: SenderType, messageId: String, sentDate: String, kind: MessageKind) {
+    init(sender: any SenderType, messageId: String, sentDate: String, kind: MessageKind) {
         self.sender = sender
         self.messageId = messageId
         self.sentDate = Date()

@@ -33,11 +33,11 @@ extension SettingsCoordinator: URLNavigatable {
         return true
     }
 
-    static var instance: URLNavigatable {
+    static var instance: any URLNavigatable {
         return SettingsCoordinator(navigator: nil)
     }
 
-    static func register(navigator: URLNavigation) {
+    static func register(navigator: any URLNavigation) {
         navigator.register(coordinator: instance, pattern: .settings) { result in
             SettingsCoordinator(navigator: result.navigator!).start()
         }

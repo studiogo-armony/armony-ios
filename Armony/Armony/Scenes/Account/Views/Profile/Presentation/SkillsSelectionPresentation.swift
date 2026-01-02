@@ -8,7 +8,7 @@
 import Foundation
 
 protocol SkillsSelectionDelegate: AnyObject {
-    func skillsDidSelect(skills: [SelectionInput]?)
+    func skillsDidSelect(skills: [any SelectionInput]?)
 }
 
 struct SkillsSelectionPresentation: SelectionPresentation {
@@ -16,7 +16,7 @@ struct SkillsSelectionPresentation: SelectionPresentation {
     typealias Input = SkillsSelectionInput
     typealias Output = MultipleSelectionOutput<SkillsSelectionInput>
 
-    weak var delegate: SkillsSelectionDelegate?
+    weak var delegate: (any SkillsSelectionDelegate)?
     var items: [SkillsSelectionInput]
 
     var headerTitle: String = String("InstrumentsSkill", table: .common)

@@ -36,7 +36,7 @@ final class AdjustAnaltic: Analytic {
         Adjust.appDidLaunch(adjustConfig)
     }
     
-    func send(event: Event) {
+    func send(event: any Event) {
         let event = ADJEvent(eventToken: event.token)
         Adjust.trackEvent(event)
     }

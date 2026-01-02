@@ -12,7 +12,7 @@ final class SelectionCell: UITableViewCell {
     @IBOutlet private weak var checkboxImageView: UIImageView!
     @IBOutlet private weak var title: UILabel!
 
-    func configure(with presentation: SelectionInput, imageName: String) {
+    func configure(with presentation: any SelectionInput, imageName: String) {
         backgroundColor = .clear
         selectionStyle = .none
 

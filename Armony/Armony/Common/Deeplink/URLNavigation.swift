@@ -6,7 +6,7 @@ public typealias URLPatternHandler = Callback<URLNavigationResult>
 public protocol URLNavigation {
     @MainActor
     @discardableResult func open(_ deeplink: Deeplink, dismissToRoot: Bool) -> Bool
-    func register(coordinator: URLNavigatable, pattern: Deeplink, handler: @escaping URLPatternHandler)
+    func register(coordinator: any URLNavigatable, pattern: Deeplink, handler: @escaping URLPatternHandler)
 }
 
 public extension URLNavigation {

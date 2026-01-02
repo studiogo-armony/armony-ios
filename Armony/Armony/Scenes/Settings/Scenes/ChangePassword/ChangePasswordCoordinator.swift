@@ -32,11 +32,11 @@ extension ChangePasswordCoordinator: URLNavigatable {
         return true
     }
     
-    static var instance: URLNavigatable {
+    static var instance: any URLNavigatable {
         return ChangePasswordCoordinator.init()
     }
 
-    static func register(navigator: URLNavigation) {
+    static func register(navigator: any URLNavigation) {
         navigator.register(coordinator: instance, pattern: .changePassword) { result in
             ChangePasswordCoordinator(navigator: result.navigator).start()
         }

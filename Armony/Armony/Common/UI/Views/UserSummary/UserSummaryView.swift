@@ -26,7 +26,7 @@ final class UserSummaryView: UIView, NibLoadable {
     var didTapAvatarView: Callback<UIImage?>? = nil
     var didTapNameLabel: VoidCallback? = nil
 
-    weak var delegate: UserSummaryViewDelegate?
+    weak var delegate: (any UserSummaryViewDelegate)?
 
     override init(frame: CGRect) {
         super.init(frame: frame)

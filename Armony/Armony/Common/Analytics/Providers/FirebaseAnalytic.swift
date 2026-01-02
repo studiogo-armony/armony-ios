@@ -99,7 +99,7 @@ final class FirebaseAnalytic: NSObject, Analytic {
         LogoutFirebaseEvent().send()
     }
 
-    func send(event: Event) {
+    func send(event: any Event) {
         logger.log(event: event)
         Analytics.logEvent(event.name, parameters: event.eventParameters)
     }
@@ -118,7 +118,7 @@ final class FirebaseAnalytic: NSObject, Analytic {
 final class FirebaseEventLogger {
     static let shared = FirebaseEventLogger()
 
-    func log(event: FirebaseEvent) {
+    func log(event: any FirebaseEvent) {
         let randomEmoji = Common.instrumentEmojis.randomElement()!
         print(
             print(randomEmoji + " Firebase Event: \(event.name)\n\(event.eventParameters as AnyObject)")

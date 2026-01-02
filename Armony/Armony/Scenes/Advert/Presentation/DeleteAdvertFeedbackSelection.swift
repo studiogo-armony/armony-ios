@@ -18,7 +18,7 @@ struct DeleteAdvertFeedbackSelection: SelectionPresentation {
     var items: [DeleteAdvertFeedbackSelectionInput]
     var headerTitle: String = "Advert.Delete.Feedback.Selection.Header.Title".localized(table: .home)
     var isMultipleSelectionAllowed: Bool = false
-    weak var delegate: DeleteAdvertFeedbackSelectionDelegate?
+    weak var delegate: (any DeleteAdvertFeedbackSelectionDelegate)?
 
     func continueButtonTapped() {
         delegate?.deleteAdvertFeedbackDidSelect(output: output.output)

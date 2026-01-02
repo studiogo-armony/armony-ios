@@ -8,7 +8,7 @@
 import Foundation
 
 protocol FeedbackSubjectSelectionDelegate: AnyObject {
-    func feedbackSubjectDidSelect(subject: SelectionInput?)
+    func feedbackSubjectDidSelect(subject: (any SelectionInput)?)
 }
 
 // MARK: - FeedbackSubjectSelectionPresentation
@@ -17,7 +17,7 @@ struct FeedbackSubjectSelectionPresentation: SelectionPresentation {
     typealias Input = FeedbackSubjectSelectionInput
     typealias Output = SingleSelectionOutput<FeedbackSubjectSelectionInput>
 
-    weak var delegate: FeedbackSubjectSelectionDelegate?
+    weak var delegate: (any FeedbackSubjectSelectionDelegate)?
     var headerTitle: String = String(localized: "Feedback.SubjectSelection.Header.Title", table: "Feedback+Localizable")
     var isMultipleSelectionAllowed: Bool = false
 

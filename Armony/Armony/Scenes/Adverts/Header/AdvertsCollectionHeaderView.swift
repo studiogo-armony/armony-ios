@@ -22,7 +22,7 @@ final class AdvertsCollectionHeaderView: UICollectionReusableView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func configure(presentation: BannerSliderPresentation, delegate: BannerSliderViewDelegate?) {
+    func configure(presentation: BannerSliderPresentation, delegate: (any BannerSliderViewDelegate)?) {
         bannerSliderView.configure(presentation: presentation, delegate: delegate)
     }
 }

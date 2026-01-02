@@ -8,14 +8,14 @@
 import Foundation
 
 protocol ReportSubjectSelectionDelegate: AnyObject {
-    func reportSubjectDidSelect(subject: SelectionInput?)
+    func reportSubjectDidSelect(subject: (any SelectionInput)?)
 }
 
 struct ReportSubjectSelectionPresentation: SelectionPresentation {
     typealias Input = ReportSubjectSelectionInput
     typealias Output = SingleSelectionOutput<ReportSubjectSelectionInput>
 
-    weak var delegate: ReportSubjectSelectionDelegate?
+    weak var delegate: (any ReportSubjectSelectionDelegate)?
     var items: [ReportSubjectSelectionInput]
 
     var headerTitle: String = String("ReportReason", table: .common)

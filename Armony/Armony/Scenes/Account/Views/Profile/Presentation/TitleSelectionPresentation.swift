@@ -8,7 +8,7 @@
 import Foundation
 
 protocol TitleSelectionDelegate: AnyObject {
-    func titleDidSelect(title: SelectionInput?)
+    func titleDidSelect(title: (any SelectionInput)?)
 }
 
 struct TitleSelectionPresentation: SelectionPresentation {
@@ -16,7 +16,7 @@ struct TitleSelectionPresentation: SelectionPresentation {
     typealias Input = TitleSelectionInput
     typealias Output = SingleSelectionOutput<TitleSelectionInput>
 
-    weak var delegate: TitleSelectionDelegate?
+    weak var delegate: (any TitleSelectionDelegate)?
     var items: [TitleSelectionInput]
 
     var headerTitle: String = String("ProfileType", table: .common)

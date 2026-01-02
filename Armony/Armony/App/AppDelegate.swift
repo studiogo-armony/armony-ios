@@ -16,7 +16,7 @@ import AdSupport
 final class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: - Variables
-    private let navigation: URLNavigation = URLNavigator.shared
+    private let navigation: any URLNavigation = URLNavigator.shared
     private let authenticator = AuthenticationService.shared
     private let userDefaults = Defaults.shared
 

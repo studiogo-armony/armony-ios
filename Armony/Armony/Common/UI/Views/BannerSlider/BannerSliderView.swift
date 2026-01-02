@@ -39,7 +39,7 @@ final class BannerSliderView: UIView {
         return label
     }()
 
-    weak var delegate: BannerSliderViewDelegate?
+    weak var delegate: (any BannerSliderViewDelegate)?
 
     private var presentation: BannerSliderPresentation = .empty {
         didSet {
@@ -102,7 +102,7 @@ final class BannerSliderView: UIView {
         )
     }
 
-    func configure(presentation: BannerSliderPresentation, delegate: BannerSliderViewDelegate?) {
+    func configure(presentation: BannerSliderPresentation, delegate: (any BannerSliderViewDelegate)?) {
         self.presentation = presentation
         self.delegate = delegate
         sliderCounterLabel.text = "1/\(presentation.banners.count)"

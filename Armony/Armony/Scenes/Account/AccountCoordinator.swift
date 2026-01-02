@@ -41,7 +41,7 @@ final class AccountCoordinator: Coordinator {
         SettingsCoordinator(navigator: navigator).start()
     }
 
-    func profile(presentation: ProfilePresentation, delegate: ProfileViewModelDelegate?) {
+    func profile(presentation: ProfilePresentation, delegate: (any ProfileViewModelDelegate)?) {
         ProfileCoordinator(navigator: navigator).start(with: presentation, delegate: delegate)
     }
 
@@ -56,11 +56,11 @@ extension AccountCoordinator: URLNavigatable {
         return true
     }
 
-    static var instance: URLNavigatable {
+    static var instance: any URLNavigatable {
         return AccountCoordinator()
     }
 
-    static func register(navigator: URLNavigation) {
+    static func register(navigator: any URLNavigation) {
         navigator.register(coordinator: instance, pattern: .account) { result in
             let view = selectTab(tab: .account, shouldPopToRoot: true)
 

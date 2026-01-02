@@ -7,15 +7,15 @@ public final class URLNavigator: URLNavigation {
 
     public let scheme: String
 
-    private var handlers = [URLPattern: (handler: URLPatternHandler, coordinator: URLNavigatable)]()
+    private var handlers = [URLPattern: (handler: URLPatternHandler, coordinator: any URLNavigatable)]()
 
-    private let authenticator: AuthenticationProviding
-    private let dispatcher: DispatchQueueProtocol
+    private let authenticator: any AuthenticationProviding
+    private let dispatcher: any DispatchQueueProtocol
     private var loginCoordinator: LoginCoordinator
 
     public init(
-        authenticator: AuthenticationProviding = AuthenticationService.shared,
-        dispatcher: DispatchQueueProtocol = DispatchQueue.main,
+        authenticator: any AuthenticationProviding = AuthenticationService.shared,
+        dispatcher: any DispatchQueueProtocol = DispatchQueue.main,
         loginCoordinator: LoginCoordinator
     ) {
         self.authenticator = authenticator
@@ -25,8 +25,8 @@ public final class URLNavigator: URLNavigation {
     }
 
     private func handler(
-        for url: URLConvertible
-    ) -> (result: URLNavigationResult, coordinator: URLNavigatable)? {
+        for url: any URLConvertible
+    ) -> (result: URLNavigationResult, coordinator: any URLNavigatable)? {
         for (pattern, _) in handlers {
             if pattern.isMatched(with: url.path) {
                 let match = URLMatchResult(pattern: pattern, queryValues: url.queryParameters)
@@ -66,7 +66,7 @@ public final class URLNavigator: URLNavigation {
         return true
     }
 
-    public func register(coordinator: URLNavigatable, pattern: Deeplink, handler: @escaping URLPatternHandler) {
+    public func register(coordinator: any URLNavigatable, pattern: Deeplink, handler: @escaping URLPatternHandler) {
         handlers["\(scheme)://\(pattern)"] = (handler: handler, coordinator: coordinator)
     }
 }

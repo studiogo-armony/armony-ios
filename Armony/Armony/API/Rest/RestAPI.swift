@@ -36,7 +36,7 @@ final class RestAPI: API {
         return RestAPI(interceptor: RestAPIMiddleware())
     }
 
-    public func execute(operation: HTTPTask) throws -> DataRequest {
+    public func execute(operation: any HTTPTask) throws -> DataRequest {
         return try connector.request(
             operation.asURL(),
             method: operation.method,
@@ -45,7 +45,7 @@ final class RestAPI: API {
             headers: HTTPHeaders(operation.additionalHeader)).validate(statusCode: acceptableStatusCodes)
     }
 
-    public func upload(operation: HTTPUploadTask) throws -> DataRequest {
+    public func upload(operation: any HTTPUploadTask) throws -> DataRequest {
         return try connector.upload(
             multipartFormData: { $0.append(operation: operation) },
             to: operation.asURL(),
@@ -59,7 +59,7 @@ final class RestAPI: API {
 // MARK: Alamofire.Session
 public extension Alamofire.Session {
 
-    convenience init(additionalHeaders: HTTPHeaders, interceptor: RequestInterceptor) {
+    convenience init(additionalHeaders: HTTPHeaders, interceptor: any RequestInterceptor) {
 
         var defaultHeaders = HTTPHeaders.default
         additionalHeaders.forEach {
@@ -81,14 +81,14 @@ public extension Alamofire.Session {
                 let data = try SecurityKeyConverter.createDataFromPEM(publicKey)
                 let secKey = try SecurityKeyConverter.convertPublicKeyToSecretKey(data)
 
-                let evaluators: [String: ServerTrustEvaluating] = [
+                let evaluators: [String: any ServerTrustEvaluating] = [
                     RemoteConfigService.shared[.apiHost]: PublicKeysTrustEvaluator(keys: [secKey])
                 ]
                 let serverTrustManager = ServerTrustManager(evaluators: evaluators)
                 self.init(configuration: configuration, interceptor: interceptor, serverTrustManager: serverTrustManager)
             }
             catch {
-                let evaluators: [String: ServerTrustEvaluating] = [
+                let evaluators: [String: any ServerTrustEvaluating] = [
                     RemoteConfigService.shared[.apiHost]: PublicKeysTrustEvaluator()
                 ]
                 let serverTrustManager = ServerTrustManager(evaluators: evaluators)
@@ -104,7 +104,7 @@ public extension Alamofire.Session {
 // MARK: - Alamofire.MultipartFormData
 public extension Alamofire.MultipartFormData {
 
-    func append(operation: HTTPUploadTask) {
+    func append(operation: any HTTPUploadTask) {
         operation.files.forEach { file in
             append(file.data, withName: file.key, fileName: file.name, mimeType: file.type.description)
         }

@@ -11,8 +11,8 @@ final class SettingsViewModel: ViewModel {
 
     var coordinator: (any Coordinator)!
 
-    private weak var view: SettingsViewDelegate?
-    private let authenticator: AuthenticationProviding
+    private weak var view: (any SettingsViewDelegate)?
+    private let authenticator: any AuthenticationProviding
 
     var numberOfRowsInSection: Int {
         return presentation.items.count
@@ -26,8 +26,8 @@ final class SettingsViewModel: ViewModel {
         }
     }
 
-    init(view: SettingsViewDelegate,
-         authenticator: AuthenticationProviding = AuthenticationService.shared,
+    init(view: any SettingsViewDelegate,
+         authenticator: any AuthenticationProviding = AuthenticationService.shared,
          service: RestService = .init(backend: .factory())) {
         self.view = view
         self.authenticator = authenticator

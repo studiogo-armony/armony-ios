@@ -40,8 +40,8 @@ final class FilterViewModel: ViewModel {
 
     private let isEmptyFilters: Bool
 
-    private weak var view: FilterViewDelegate?
-    weak var delegate: FilterViewModelDelegate?
+    private weak var view: (any FilterViewDelegate)?
+    weak var delegate: (any FilterViewModelDelegate)?
     var coordinator: (any Coordinator)!
 
     var filters: Filters = .empty {
@@ -50,7 +50,7 @@ final class FilterViewModel: ViewModel {
         }
     }
 
-    init(view: FilterViewDelegate?,
+    init(view: (any FilterViewDelegate)?,
          selectedFilters: Filters = .empty,
          service: RestService = .init(backend: .factory())) {
         self.view = view
@@ -129,7 +129,7 @@ final class FilterViewModel: ViewModel {
 // MARK: - AdvertTypeSelectionDelegate
 extension FilterViewModel: AdvertTypeSelectionDelegate {
 
-    func advertTypeDidSelect(advert: SelectionInput?) {
+    func advertTypeDidSelect(advert: (any SelectionInput)?) {
         if let advert {
             filters.advert = Filter(id: advert.id, title: advert.title)
         }
@@ -143,7 +143,7 @@ extension FilterViewModel: AdvertTypeSelectionDelegate {
 // MARK: - AdvertTypeSelectionDelegate
 extension FilterViewModel: LocationSelectionDelegate {
 
-    func locationDidSelect(location: SelectionInput?) {
+    func locationDidSelect(location: (any SelectionInput)?) {
         if let location {
             filters.location = Filter(id: location.id, title: location.title)
         }

@@ -17,7 +17,7 @@ final class ProfileCoordinator: Coordinator {
         self.navigator = navigator
     }
 
-    func start(with presentation: ProfilePresentation, delegate: ProfileViewModelDelegate?) {
+    func start(with presentation: ProfilePresentation, delegate: (any ProfileViewModelDelegate)?) {
         let view = createViewController()
 
         let viewModel = ProfileViewModel(view: view, presentation: presentation, delegate: delegate)

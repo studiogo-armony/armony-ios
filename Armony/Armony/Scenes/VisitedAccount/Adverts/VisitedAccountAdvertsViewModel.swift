@@ -10,7 +10,7 @@ import Foundation
 final class VisitedAccountAdvertsViewModel: ViewModel {
 
     var coordinator: VisitedAccountAdvertsCoordinator!
-    private weak var view: VisitedAccountAdvertsViewDelegate?
+    private weak var view: (any VisitedAccountAdvertsViewDelegate)?
     private let userID: String
 
     var presentation: AdvertsPresentation = .empty {
@@ -24,7 +24,7 @@ final class VisitedAccountAdvertsViewModel: ViewModel {
         return presentation.cards.count
     }
 
-    init(view: VisitedAccountAdvertsViewDelegate, userID: String) {
+    init(view: any VisitedAccountAdvertsViewDelegate, userID: String) {
         self.view = view
         self.userID = userID
         super.init()

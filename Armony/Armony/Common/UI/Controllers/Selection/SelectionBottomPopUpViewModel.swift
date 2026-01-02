@@ -11,7 +11,7 @@ import Foundation
 final class SelectionBottomPopUpViewModel {
 
     var coordinator: SelectionBottomPopUpCoordinator!
-    private weak var view: SelectionBottomPopUpViewDelegate?
+    private weak var view: (any SelectionBottomPopUpViewDelegate)?
 
     var numberOfRowsInSection: Int {
         return presentation.items.count
@@ -31,19 +31,19 @@ final class SelectionBottomPopUpViewModel {
         }
     }
 
-    init(view: SelectionBottomPopUpViewDelegate, presentation: any SelectionPresentation) {
+    init(view: any SelectionBottomPopUpViewDelegate, presentation: any SelectionPresentation) {
         self.view = view
         self.presentation = presentation
     }
 
-    func imageName(for item: SelectionInput) -> String {
+    func imageName(for item: any SelectionInput) -> String {
         if item.isSelected {
             return presentation.selectedImageName
         }
         return presentation.defaultImageName
     }
 
-    func items(at indexPath: IndexPath) -> SelectionInput {
+    func items(at indexPath: IndexPath) -> any SelectionInput {
         return presentation.items[indexPath.row]
     }
 

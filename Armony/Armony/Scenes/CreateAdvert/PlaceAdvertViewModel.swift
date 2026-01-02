@@ -38,7 +38,7 @@ final class PlaceAdvertViewModel: ViewModel {
     }
 
     var coordinator: PlaceAdvertCoordinator!
-    private weak var view: PlaceAdvertViewDelegate?
+    private weak var view: (any PlaceAdvertViewDelegate)?
     private let notificationService: PlaceAdvertNotificationService = .shared
     private let authenticator: AuthenticationService = .shared
 
@@ -46,14 +46,14 @@ final class PlaceAdvertViewModel: ViewModel {
     private var request: PlaceAdvertRequest
     private var advertsResponse: [Advert.Properties] = .empty
     private(set) var hasUserAdverts: Bool = false
-    private(set) var userAdsCountRequestError: Error?
+    private(set) var userAdsCountRequestError: (any Error)?
     private var description: String? = nil {
         didSet {
             self.request.description = description.isNotNilOrEmpty ? description : nil
         }
     }
 
-    init(view: PlaceAdvertViewDelegate) {
+    init(view: any PlaceAdvertViewDelegate) {
         self.view = view
         self.request = .empty
         super.init()
@@ -282,7 +282,7 @@ final class PlaceAdvertViewModel: ViewModel {
 // MARK: - AdvertTypeSelectionDelegate
 extension PlaceAdvertViewModel: AdvertTypeSelectionDelegate {
 
-    func advertTypeDidSelect(advert: SelectionInput?) {
+    func advertTypeDidSelect(advert: (any SelectionInput)?) {
         selectedIDStorage = .empty
         request = .empty
         if selectedIDStorage.advert != advert?.id {
@@ -334,7 +334,7 @@ extension PlaceAdvertViewModel: AdvertTypeSelectionDelegate {
 // MARK: - LocationSelectionDelegate
 extension PlaceAdvertViewModel: LocationSelectionDelegate {
 
-    func locationDidSelect(location: SelectionInput?) {
+    func locationDidSelect(location: (any SelectionInput)?) {
         selectedIDStorage.location = location?.id
         view?.updateLocation(title: location?.title)
         request.location = location.map { selectedLocation in
@@ -346,7 +346,7 @@ extension PlaceAdvertViewModel: LocationSelectionDelegate {
 // MARK: - SkillsSelectionDelegate
 extension PlaceAdvertViewModel: SkillsSelectionDelegate {
 
-    func skillsDidSelect(skills: [SelectionInput]?) {
+    func skillsDidSelect(skills: [any SelectionInput]?) {
         selectedIDStorage.skills = skills.ifNil(.empty).compactMap { $0.id }
         view?.updateSkills(title: skills?.title)
 
@@ -359,7 +359,7 @@ extension PlaceAdvertViewModel: SkillsSelectionDelegate {
 // MARK: - MusicGenresSelectionDelegate
 extension PlaceAdvertViewModel: MusicGenresSelectionDelegate {
 
-    func musicGenresDidSelect(genres: [SelectionInput]?) {
+    func musicGenresDidSelect(genres: [any SelectionInput]?) {
         selectedIDStorage.musicGenres = genres.ifNil(.empty).compactMap { $0.id }
         view?.updateMusicGenres(title: genres?.title)
 

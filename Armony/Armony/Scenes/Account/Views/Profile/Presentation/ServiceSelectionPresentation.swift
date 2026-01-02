@@ -8,14 +8,14 @@
 import Foundation
 
 protocol ServiceSelectionDelegate: AnyObject {
-    func serviceDidSelect(services: [SelectionInput]?)
+    func serviceDidSelect(services: [any SelectionInput]?)
 }
 
 struct ServiceSelectionPresentation: SelectionPresentation {
     typealias Input = ServiceSelectionInput
     typealias Output = MultipleSelectionOutput<ServiceSelectionInput>
 
-    weak var delegate: ServiceSelectionDelegate?
+    weak var delegate: (any ServiceSelectionDelegate)?
     var items: [ServiceSelectionInput]
 
     var headerTitle: String = String("LessonFormat", table: .common)

@@ -23,7 +23,7 @@ class TextView: UIView, NibLoadable {
     @IBOutlet private(set) weak var textView: UITextView!
     @IBOutlet private weak var counterLabel: UILabel!
 
-    weak var delegate: TextViewDelegate?
+    weak var delegate: (any TextViewDelegate)?
 
     private var presentation: TextViewPresentation = .empty
 

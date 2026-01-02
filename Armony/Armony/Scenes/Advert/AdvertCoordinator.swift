@@ -69,7 +69,7 @@ extension AdvertCoordinator: URLNavigatable {
         return false
     }
 
-    static var instance: URLNavigatable {
+    static var instance: any URLNavigatable {
         return AdvertCoordinator()
     }
     
@@ -81,7 +81,7 @@ extension AdvertCoordinator: URLNavigatable {
         }
     }
 
-    static func register(navigator: URLNavigation) {
+    static func register(navigator: any URLNavigation) {
         navigator.register(coordinator: instance, pattern: .advert, handler: show)
     }
 }

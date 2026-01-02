@@ -11,14 +11,14 @@ final class RegistrationViewModel: ViewModel {
 
     var coordinator: RegistrationCoordinator!
 
-    private weak var view: RegistrationViewDelegate?
+    private weak var view: (any RegistrationViewDelegate)?
     private unowned var notifier: NotificationCenter
     private let authenticator: AuthenticationService
 
     private(set) var registrationCompletion: VoidCallback?
     private(set) var loginCompletion: VoidCallback?
 
-    init(view: RegistrationViewDelegate,
+    init(view: any RegistrationViewDelegate,
          registrationCompletion: VoidCallback?,
          loginCompletion: VoidCallback?,
          notifier: NotificationCenter = .default,

@@ -36,12 +36,12 @@ extension AccountInformationCoordinator: URLNavigatable {
         return true
     }
 
-    static var instance: URLNavigatable {
+    static var instance: any URLNavigatable {
         AccountInformationCoordinator(navigator: nil)
     }
     
 
-    static func register(navigator: URLNavigation) {
+    static func register(navigator: any URLNavigation) {
         navigator.register(coordinator: instance, pattern: .accountInformation) { result in
             if let navigation = result.navigator {
                 AccountInformationCoordinator(navigator: navigation).start()

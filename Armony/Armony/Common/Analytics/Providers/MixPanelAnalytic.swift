@@ -44,7 +44,7 @@ class MixPanelAnalytic: Analytic {
         NotificationCenter.default.addObserver(self, selector: #selector(userDidLogout), name: .userLoggedOut, object: nil)
     }
 
-    func send(event: MixPanelContext) {
+    func send(event: any MixPanelContext) {
         Mixpanel.mainInstance().track(event: event.name, properties: event.parameters)
     }
 

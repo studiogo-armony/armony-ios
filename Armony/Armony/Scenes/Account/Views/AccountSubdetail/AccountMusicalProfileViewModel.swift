@@ -13,16 +13,16 @@ protocol AccountMusicalProfileViewModelDelegate: AnyObject {
 
 final class AccountMusicalProfileViewModel: ViewModel {
     var coordinator: AccountMusicalProfileCoordinator!
-    private weak var view: AccountMusicalProfileViewDelegate?
+    private weak var view: (any AccountMusicalProfileViewDelegate)?
 
-    private weak var delegate: AccountMusicalProfileViewModelDelegate?
+    private weak var delegate: (any AccountMusicalProfileViewModelDelegate)?
     private let skillsPresentation: SkillsPresentation
     private let musicGenresPresentation: MusicGenresPresentation
 
-    init(view: AccountMusicalProfileViewDelegate,
+    init(view: any AccountMusicalProfileViewDelegate,
          skills skillsPresentation: SkillsPresentation,
          musicGenres musicGenresPresentation: MusicGenresPresentation,
-         delegate: AccountMusicalProfileViewModelDelegate?) {
+         delegate: (any AccountMusicalProfileViewModelDelegate)?) {
         self.view = view
         self.skillsPresentation = skillsPresentation
         self.musicGenresPresentation = musicGenresPresentation

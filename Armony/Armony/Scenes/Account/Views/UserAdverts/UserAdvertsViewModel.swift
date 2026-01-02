@@ -10,7 +10,7 @@ import Foundation
 final class UserAdvertsViewModel: ViewModel {
 
     var coordinator: UserAdvertsCoordinator!
-    private weak var view: UserAdvertsViewDelegate?
+    private weak var view: (any UserAdvertsViewDelegate)?
     private let authenticator: AuthenticationService
 
     private var advertDidRemoveNotificationToken: NotificationToken? = nil
@@ -27,7 +27,7 @@ final class UserAdvertsViewModel: ViewModel {
         return presentation.cards.count
     }
 
-    init(view: UserAdvertsViewDelegate, authenticator: AuthenticationService = .shared) {
+    init(view: any UserAdvertsViewDelegate, authenticator: AuthenticationService = .shared) {
         self.view = view
         self.authenticator = authenticator
         super.init()

@@ -18,7 +18,7 @@ struct DeleteAccountFeedbackSelection: SelectionPresentation {
     var items: [DeleteAccountFeedbackSelectionInput]
     var headerTitle: String = "Settings.DeleteAccount.PopUp.Title".localized(table: .account)
     var isMultipleSelectionAllowed: Bool = false
-    weak var delegate: DeleteAccountFeedbackSelectionDelegate?
+    weak var delegate: (any DeleteAccountFeedbackSelectionDelegate)?
 
     func continueButtonTapped() {
         delegate?.deleteAccountFeedbackDidSelect(output: output.output)

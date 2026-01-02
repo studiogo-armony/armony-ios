@@ -9,10 +9,10 @@ import Foundation
 
 final class ChangePasswordViewModel: ViewModel {
     var coordinator: ChangePasswordCoordinator!
-    private weak var view: ChangePasswordViewDelegate?
+    private weak var view: (any ChangePasswordViewDelegate)?
     
     
-    init(view: ChangePasswordViewDelegate) {
+    init(view: any ChangePasswordViewDelegate) {
         self.view = view
         super.init()
     }

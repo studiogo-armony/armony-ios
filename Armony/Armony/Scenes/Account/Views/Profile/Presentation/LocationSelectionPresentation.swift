@@ -8,7 +8,7 @@
 import Foundation
 
 protocol LocationSelectionDelegate: AnyObject {
-    func locationDidSelect(location: SelectionInput?)
+    func locationDidSelect(location: (any SelectionInput)?)
 }
 
 struct LocationSelectionPresentation: SelectionPresentation {
@@ -16,7 +16,7 @@ struct LocationSelectionPresentation: SelectionPresentation {
     typealias Input = LocationSelectionInput
     typealias Output = SingleSelectionOutput<LocationSelectionInput>
 
-    weak var delegate: LocationSelectionDelegate?
+    weak var delegate: (any LocationSelectionDelegate)?
     var items: [LocationSelectionInput]
 
     var headerTitle: String = String("Location", table: .common)

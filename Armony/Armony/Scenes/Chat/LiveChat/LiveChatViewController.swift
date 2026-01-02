@@ -158,7 +158,7 @@ extension LiveChatViewController: LiveChatViewDelegate {
 // MARK: - MessagesDataSource
 extension LiveChatViewController: MessagesDataSource {
 
-    var currentSender: SenderType {
+    var currentSender: any SenderType {
         return viewModel.currentUser
     }
 
@@ -166,11 +166,11 @@ extension LiveChatViewController: MessagesDataSource {
         return viewModel.numberOfItemsInSection
     }
 
-    func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
+    func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> any MessageType {
         return viewModel.message(at: indexPath)
     }
 
-    func enabledDetectors(for message: MessageType,
+    func enabledDetectors(for message: any MessageType,
                           at indexPath: IndexPath,
                           in messagesCollectionView: MessagesCollectionView) -> [DetectorType] {
         return [.url, .phoneNumber, .hashtag]
@@ -208,13 +208,13 @@ extension LiveChatViewController: MessagesDataSource {
 // MARK: - MessagesDisplayDelegate, MessagesLayoutDelegate
 extension LiveChatViewController: MessagesDisplayDelegate, MessagesLayoutDelegate {
     func configureAvatarView(_ avatarView: MessageKit.AvatarView,
-                             for message: MessageType,
+                             for message: any MessageType,
                              at indexPath: IndexPath,
                              in messagesCollectionView: MessagesCollectionView) {
         avatarView.isHidden = true
     }
 
-    func messageStyle(for message: MessageType,
+    func messageStyle(for message: any MessageType,
                       at indexPath: IndexPath,
                       in messagesCollectionView: MessagesCollectionView) -> MessageStyle {
         return .custom { containerView in
@@ -222,13 +222,13 @@ extension LiveChatViewController: MessagesDisplayDelegate, MessagesLayoutDelegat
         }
     }
 
-    func textColor(for message: MessageType,
+    func textColor(for message: any MessageType,
                    at indexPath: IndexPath,
                    in messagesCollectionView: MessagesCollectionView) -> UIColor {
         return .armonyBlack
     }
 
-    func backgroundColor(for message: MessageType,
+    func backgroundColor(for message: any MessageType,
                          at indexPath: IndexPath,
                          in messagesCollectionView: MessagesCollectionView) -> UIColor {
         if isFromCurrentSender(message: message) {

@@ -17,9 +17,9 @@ public final class ImagePickerHandler: NSObject {
 
     private let imagePickerController: UIImagePickerController
     private weak var viewContoller: UIViewController?
-    private weak var delegate: ImagePickerHandlerDelegate?
+    private weak var delegate: (any ImagePickerHandlerDelegate)?
 
-    public init(to viewContoller: UIViewController, delegate: ImagePickerHandlerDelegate) {
+    public init(to viewContoller: UIViewController, delegate: any ImagePickerHandlerDelegate) {
         self.imagePickerController = UIImagePickerController()
         self.delegate = delegate
         self.viewContoller = viewContoller

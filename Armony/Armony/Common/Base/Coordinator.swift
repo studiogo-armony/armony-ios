@@ -51,7 +51,7 @@ public extension Coordinator where Controller: UIViewController {
 
 public extension Coordinator {
 
-    var urlNavigator: URLNavigation {
+    var urlNavigator: any URLNavigation {
         return URLNavigator.shared
     }
 

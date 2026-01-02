@@ -2,13 +2,13 @@ import Foundation
 
 public struct Deeplink: CustomStringConvertible, ExpressibleByStringLiteral {
 
-    private let path: URLConvertible
+    private let path: any URLConvertible
 
     public init(stringLiteral value: String) {
         self.path = value
     }
 
-    private init(path: URLConvertible) {
+    private init(path: any URLConvertible) {
         self.path = path
     }
 
@@ -22,7 +22,7 @@ public struct Deeplink: CustomStringConvertible, ExpressibleByStringLiteral {
 
 // MARK: - Decodable
 extension Deeplink: Decodable {
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         path = try container.decode(String.self)
     }

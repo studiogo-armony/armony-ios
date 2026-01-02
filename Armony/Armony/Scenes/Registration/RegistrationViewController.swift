@@ -24,7 +24,7 @@ final class RegistrationViewController: UIViewController, ViewController {
     @IBOutlet private weak var nameTextField: ValidatableTextField!
     @IBOutlet private weak var emailTextField: ValidatableTextField!
     @IBOutlet private weak var passwordTextField: ValidatableTextField!
-    @IBOutlet private weak var linkLabel: TYLinkLabel!
+    @IBOutlet private weak var linkLabel: LinkLabel!
 
     @IBOutlet private weak var okayButton: UIButton!
     @IBOutlet private weak var goLoginButton: UIButton!
