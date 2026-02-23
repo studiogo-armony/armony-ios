@@ -14,7 +14,7 @@ import Foundation
 /// requirements for object-based data.
 /// 
 /// - Generic Parameter `T`: The type of the object, must conform to `Decodable`
-struct RestObjectResponse<T: Decodable>: RestResponse {
+struct RestObjectResponse<T: Decodable & Sendable>: RestResponse {
     
     /// The data type is the generic type T (single object)
     typealias Data = T

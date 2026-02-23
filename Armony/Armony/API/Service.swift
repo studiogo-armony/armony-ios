@@ -15,7 +15,7 @@ import Foundation
 /// network requests and provide implementations for the required methods.
 /// 
 /// - Associated Type `Backend`: The API implementation that creates executable network requests
-protocol Service {
+protocol Service: Sendable {
 
     /// The API implementation that creates executable network requests
     associatedtype Backend: API
@@ -41,13 +41,4 @@ protocol Service {
     /// - Returns: The API response of the specified type
     /// - Throws: Network errors, decoding errors, or API errors
     func upload<R: APIResponse>(task operataion: Backend.UploadOperation, type: R.Type) async throws -> R
-
-    /// Loads and decodes an API response from a JSON string.
-    /// 
-    /// - Parameters:
-    ///   - jsonString: The JSON string to decode
-    ///   - type: The expected response type that conforms to `APIResponse`
-    /// - Returns: The decoded API response
-    /// - Throws: Decoding errors if the JSON cannot be parsed
-    func load<R: APIResponse>(from jsonString: String, type: R.Type) throws -> R
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol Sendable {
+protocol EventSendable {
     func send()
 }
 
@@ -17,7 +17,7 @@ protocol Analytic {
     func send(event: Event)
 }
 
-protocol Event: Sendable {
+protocol Event: EventSendable {
     var shouldRemoveIfEventValueEmpty: Bool { get }
 }
 

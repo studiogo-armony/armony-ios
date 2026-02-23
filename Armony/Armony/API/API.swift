@@ -8,8 +8,8 @@
 import Foundation
 import Alamofire
 
-protocol API {
-    
+protocol API: Sendable {
+
     associatedtype Operation
     associatedtype UploadOperation
     associatedtype Executable

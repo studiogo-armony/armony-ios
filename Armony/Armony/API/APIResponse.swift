@@ -11,7 +11,7 @@ import Foundation
 /// 
 /// Provides standardized error handling and success state checking for API responses.
 /// All response types should conform to this protocol to ensure consistent error handling.
-protocol APIResponse: Decodable {
+protocol APIResponse: Decodable, Sendable {
     
     /// Optional API error information. Contains details about what went wrong if the request failed.
     /// See `APIError` for the structure of error information including code, description, and status.

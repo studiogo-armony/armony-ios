@@ -14,7 +14,7 @@ import Foundation
 /// requirements for array-based data.
 /// 
 /// - Generic Parameter `T`: The type of objects in the array, must conform to `Decodable`
-struct RestArrayResponse<T: Decodable>: RestResponse {
+struct RestArrayResponse<T: Decodable & Sendable>: RestResponse {
 
     /// The data type is an array of the generic type T
     typealias Data = [T]

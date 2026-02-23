@@ -32,7 +32,7 @@ import Alamofire
  * }
  * ```
  */
-public protocol HTTPTask: CustomStringConvertible {
+public protocol HTTPTask: CustomStringConvertible, Sendable {
     
     /// Additional HTTP headers to include in the request
     var additionalHeader: [String: String] { get }

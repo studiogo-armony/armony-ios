@@ -8,10 +8,14 @@
 import Foundation
 import Alamofire
 
+extension HTTPMethod: @retroactive @unchecked Sendable {
+
+}
+
 struct PostRefreshTokenTask: HTTPTask {
-    var method: HTTPMethod = .post
-    var path: String = "/auth/refresh"
-    var body: Parameters?
+    let method: HTTPMethod = .post
+    let path: String = "/auth/refresh"
+    let body: Parameters?
 
     init(request: RefreshTokenRequest) {
         body = request.body()

@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Alamofire
+@preconcurrency import Alamofire
 
 typealias NetworkResult<T> = Swift.Result<T, APIError>
 public let NSHTTPURLResponseTokenExpiredStatusCode: Int = 401
@@ -17,9 +17,9 @@ final class RestAPI: API {
     typealias Operation = HTTPTask
     typealias UploadOperation = HTTPUploadTask
 
-    private var connector: Session
+    private let connector: Session
 
-    public lazy var acceptableStatusCodes: [Int] = {
+    private let acceptableStatusCodes: [Int] = {
         var acceptableStatusCodes = [Int]()
         acceptableStatusCodes.append(contentsOf: 200...299)
         acceptableStatusCodes.append(contentsOf: 400...499)

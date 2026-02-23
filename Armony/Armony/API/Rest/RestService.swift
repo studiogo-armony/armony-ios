@@ -61,7 +61,7 @@ import Alamofire
 ///     type: RestObjectResponse<User>.self
 /// )
 /// ```
-class RestService: Service {
+actor RestService: Service {
 
     /// The backend type is RestAPI which creates executable DataRequest objects
     typealias Backend = RestAPI
@@ -75,12 +75,9 @@ class RestService: Service {
     /// Service to check internet connectivity
     private let internetConnectionService: InternetConnectionService = .shared
 
-    /// Concurrent queue for safely adding operations
-    private let addOperationQueue = DispatchQueue(label: "addOperationQueue", attributes: .concurrent)
-
     /// Initializes the service with a RestAPI backend
     /// - Parameter backend: The RestAPI instance that creates executable network requests
-    required init(backend: RestAPI) {
+    init(backend: RestAPI) {
         self.backend = backend
         self.operations = [String: DataRequest]()
     }
@@ -90,9 +87,7 @@ class RestService: Service {
     ///   - key: The operation identifier
     ///   - value: The Alamofire DataRequest to store
     private func addOperation(key: String, value: DataRequest?) {
-        addOperationQueue.async(flags: .barrier) {
-            self.operations[key] = value
-        }
+        operations[key] = value
     }
 
     // MARK: - Execute Operations
@@ -197,22 +192,6 @@ class RestService: Service {
     }
 
     // MARK: - Local Provider
-    
-    /// Loads and decodes an API response from a JSON string.
-    /// 
-    /// - Parameters:
-    ///   - jsonString: The JSON string to decode
-    ///   - type: The expected response type that conforms to `APIResponse`
-    /// - Returns: The decoded API response
-    /// - Throws: Decoding errors if the JSON cannot be parsed
-    func load<R>(from jsonString: String, type: R.Type) throws -> R where R : APIResponse {
-        let data = jsonString.data(using: .utf8)
-        guard let data = data else {
-            throw APIError.noData
-        }
-        let decodedObject = try JSONDecoder().decode(R.self, from: data)
-        return decodedObject
-    }
 
     /// Loads and decodes an API response from a JSON file in the app bundle.
     /// 
@@ -235,6 +214,9 @@ class RestService: Service {
 
     /// Deinitializer that cancels all operations when the service is deallocated.
     deinit {
-        cancelAll()
+        let _self = self
+        Task {
+            await _self.cancelAll()
+        }
     }
 }
