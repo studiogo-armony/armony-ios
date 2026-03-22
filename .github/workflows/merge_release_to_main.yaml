@@ -50,7 +50,8 @@ jobs:
         VERSION=$(echo "$BRANCH" | sed 's/Releases\/Release//')
         gh pr create \
           --title "Merge $BRANCH into main" \
-          --body "## Release $VERSION
+          --body "$(cat <<EOF
+## Release $VERSION
 
 This PR merges \`$BRANCH\` into \`main\`.
 
@@ -60,7 +61,9 @@ This PR merges \`$BRANCH\` into \`main\`.
 - [ ] Release notes finalised on App Store Connect
 - [ ] Staged rollout plan confirmed
 
-> Created automatically by the [Merge Release to Main](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) workflow." \
+> Created automatically by the [Merge Release to Main](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) workflow.
+EOF
+)" \
           --base main \
           --head "$BRANCH"
       env:

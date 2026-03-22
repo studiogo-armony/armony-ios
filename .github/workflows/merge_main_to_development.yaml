@@ -33,7 +33,8 @@ jobs:
       run: |
         gh pr create \
           --title "Sync ${SOURCE_BRANCH} into development" \
-          --body "## Sync \`${SOURCE_BRANCH}\` → \`development\`
+          --body "$(cat <<EOF
+## Sync \`${SOURCE_BRANCH}\` into \`development\`
 
 This PR syncs \`${SOURCE_BRANCH}\` back into \`development\` after a release merge.
 
@@ -41,7 +42,9 @@ This PR syncs \`${SOURCE_BRANCH}\` back into \`development\` after a release mer
 - Resolve any conflicts before merging
 - This keeps \`development\` up to date with production
 
-> Created automatically by the [Merge Main into Development](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) workflow." \
+> Created automatically by the [Merge Main into Development](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) workflow.
+EOF
+)" \
           --base development \
           --head "${SOURCE_BRANCH}"
       env:

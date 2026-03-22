@@ -87,21 +87,24 @@ jobs:
       run: |
         gh pr create \
           --title "Release ${{ steps.version.outputs.new_version }}" \
-          --body "## Release ${{ steps.version.outputs.new_version }}
+          --body "$(cat <<'EOF'
+## Release ${{ steps.version.outputs.new_version }}
 
-This PR merges \`${{ steps.check_branch.outputs.branch_name }}\` into \`main\`.
+This PR merges `${{ steps.check_branch.outputs.branch_name }}` into `main`.
 
 ### Changes
-- Version bumped to \`${{ steps.version.outputs.new_version }}\` (${{ github.event.inputs.version_type }} increment)
+- Version bumped to `${{ steps.version.outputs.new_version }}` (${{ github.event.inputs.version_type }} increment)
 
 ### Checklist
 - [ ] Xcode Cloud build passed
 - [ ] TestFlight build verified
 - [ ] Release notes updated
 
-> Created automatically by the [Create Release Branch](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) workflow." \
+> Created automatically by the [Create Release Branch](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) workflow.
+EOF
+)" \
           --base main \
-          --head ${{ steps.check_branch.outputs.branch_name }}
+          --head "${{ steps.check_branch.outputs.branch_name }}"
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
