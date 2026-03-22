@@ -110,6 +110,7 @@ jobs:
           -H "Authorization: Bearer $JWT" \
           -H "Content-Type: application/json" \
           "https://api.appstoreconnect.apple.com/v1/apps/$ASC_APP_ID/appStoreVersions?filter[versionString]=$VERSION&filter[platform]=IOS")
+        echo "API Response: $RESPONSE"
         COUNT=$(echo "$RESPONSE" | python3 -c "import json,sys; d=json.load(sys.stdin); print(len(d.get('data', [])))")
         if [ "$COUNT" -gt "0" ]; then
           EXISTING_ID=$(echo "$RESPONSE" | python3 /tmp/extract.py "data.0.id")
