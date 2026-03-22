@@ -3,6 +3,8 @@ run-name: Create App Store Version ${{ github.event.inputs.version || github.ref
 
 on:
   create:
+    branches:
+      - 'Releases/Release**'
   workflow_dispatch:
     inputs:
       version:
@@ -111,15 +113,7 @@ jobs:
           -H "Content-Type: application/json" \
           "https://api.appstoreconnect.apple.com/v1/apps/$ASC_APP_ID/appStoreVersions?filter[versionString]=$VERSION&filter[platform]=IOS" \
           -o /tmp/asc_response.json
-        python3 -c "
-import json
-d = json.load(open('/tmp/asc_response.json'))
-if 'errors' in d:
-    for e in d['errors']:
-        print('ASC Error:', e.get('title'), '-', e.get('detail'))
-else:
-    print('Response keys:', list(d.keys()))
-"
+        python3 -c "import json; d=json.load(open('/tmp/asc_response.json')); [print('ASC Error:', e.get('title'), '-', e.get('detail')) for e in d.get('errors', [])] or print('Response keys:', list(d.keys()))"
         RESPONSE=$(cat /tmp/asc_response.json)
         COUNT=$(echo "$RESPONSE" | python3 -c "import json,sys; d=json.load(sys.stdin); print(len(d.get('data', [])))")
         if [ "$COUNT" -gt "0" ]; then
