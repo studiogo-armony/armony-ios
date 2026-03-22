@@ -111,12 +111,31 @@ jobs:
       run: |
         if [ -z "$JWT" ]; then echo "ERROR: JWT is empty" >&2; exit 1; fi
         if [ -z "$ASC_APP_ID" ]; then echo "ERROR: ASC_APP_ID is empty" >&2; exit 1; fi
-        RESPONSE=$(curl -s \
+        curl -s -o /tmp/asc_check.json -w "%{http_code}" \
           -H "Authorization: Bearer $JWT" \
           -H "Content-Type: application/json" \
-          "https://api.appstoreconnect.apple.com/v1/apps/$ASC_APP_ID/appStoreVersions?filter[versionString]=$VERSION&filter[platform]=IOS")
-        if [ -z "$RESPONSE" ]; then echo "ERROR: Empty response from API" >&2; exit 1; fi
-        COUNT=$(echo "$RESPONSE" | python3 -c "import json,sys; d=json.load(sys.stdin); print(len(d.get('data', [])))")
+          "https://api.appstoreconnect.apple.com/v1/apps/$ASC_APP_ID/appStoreVersions?filter[versionString]=$VERSION&filter[platform]=IOS" > /tmp/asc_http_status.txt
+        HTTP_CODE=$(cat /tmp/asc_http_status.txt)
+        echo "HTTP status code: $HTTP_CODE"
+        RESPONSE_SIZE=$(wc -c < /tmp/asc_check.json)
+        echo "Response size: $RESPONSE_SIZE bytes"
+        python3 -c "
+import json, sys
+try:
+    d = json.load(open('/tmp/asc_check.json'))
+    errs = d.get('errors', [])
+    if errs:
+        for e in errs:
+            print('API Error:', e.get('status'), e.get('title'), '-', e.get('detail'))
+    else:
+        print('Keys:', list(d.keys()))
+except Exception as ex:
+    content = open('/tmp/asc_check.json').read()
+    print('JSON parse error:', ex)
+    print('Response prefix:', content[:200])
+    sys.exit(1)
+"
+        COUNT=$(python3 -c "import json; d=json.load(open('/tmp/asc_check.json')); print(len(d.get('data', [])))")
         if [ "$COUNT" -gt "0" ]; then
           EXISTING_ID=$(echo "$RESPONSE" | python3 /tmp/extract.py "data.0.id")
           echo "exists=true" >> $GITHUB_OUTPUT
