@@ -59,32 +59,24 @@ jobs:
         for item in d.get("data", []):
             print(item["id"] + ":" + item["attributes"]["locale"])
         PYEOF
-        cat > /tmp/check_version.py << 'PYEOF'
-        import urllib.request, urllib.error, json, os, sys
-        token = os.environ["JWT"].strip()
-        app_id = os.environ["ASC_APP_ID"].strip()
-        version = os.environ["VERSION"].strip()
-        url = ("https://api.appstoreconnect.apple.com/v1/apps/" + app_id
-               + "/appStoreVersions?filter[versionString]=" + version
-               + "&filter[platform]=IOS")
-        req = urllib.request.Request(url, headers={
-            "Authorization": "Bearer " + token,
-            "Content-Type": "application/json"
-        })
-        try:
-            with urllib.request.urlopen(req) as resp:
-                data = json.loads(resp.read())
-                items = data.get("data", [])
-                if items:
-                    print("EXISTS:" + items[0]["id"])
-                else:
-                    print("NOTFOUND")
-        except urllib.error.HTTPError as e:
-            body = e.read().decode()
-            sys.stderr.write("HTTP " + str(e.code) + ": " + body[:300] + "\n")
-            sys.exit(1)
-        PYEOF
-        sed -i 's/^        //' /tmp/gen_jwt.py /tmp/extract.py /tmp/list_locs.py /tmp/check_version.py
+        sed -i 's/^        //' /tmp/gen_jwt.py /tmp/extract.py /tmp/list_locs.py
+        printf '%s\n' \
+          'import urllib.request, urllib.error, json, os, sys' \
+          'token = os.environ["JWT"].strip()' \
+          'app_id = os.environ["ASC_APP_ID"].strip()' \
+          'version = os.environ["VERSION"].strip()' \
+          'base = "https://api.appstoreconnect.apple.com/v1/apps/"' \
+          'url = base + app_id + "/appStoreVersions?filter[versionString]=" + version + "&filter[platform]=IOS"' \
+          'req = urllib.request.Request(url, headers={"Authorization": "Bearer " + token, "Content-Type": "application/json"})' \
+          'try:' \
+          '    resp = urllib.request.urlopen(req)' \
+          '    data = json.loads(resp.read())' \
+          '    items = data.get("data", [])' \
+          '    print("EXISTS:" + items[0]["id"] if items else "NOTFOUND")' \
+          'except urllib.error.HTTPError as e:' \
+          '    sys.stderr.write("HTTP " + str(e.code) + ": " + e.read().decode()[:300] + "\n")' \
+          '    sys.exit(1)' \
+          > /tmp/check_version.py
         chmod +x /tmp/gen_jwt.py /tmp/extract.py /tmp/list_locs.py /tmp/check_version.py
 
     - name: Extract version
