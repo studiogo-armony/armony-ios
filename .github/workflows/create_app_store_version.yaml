@@ -1,0 +1,260 @@
+name: Create App Store Version
+run-name: Create App Store Version ${{ github.event.inputs.version || 'from merged PR' }} by ${{ github.actor }}
+
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'App version to create (e.g. 1.5.3)'
+        required: true
+        type: string
+      release_notes:
+        description: "Release notes (What's New). Leave empty for default."
+        required: false
+        default: ''
+        type: string
+
+jobs:
+  create-app-store-version:
+    runs-on: ubuntu-latest
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.pull_request.merged == true &&
+       startsWith(github.event.pull_request.head.ref, 'Releases/Release'))
+    permissions:
+      contents: read
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v5
+
+    - name: Install PyJWT
+      run: pip install PyJWT cryptography --quiet
+
+    - name: Write helper scripts
+      run: |
+        cat > /tmp/gen_jwt.py << 'PYEOF'
+        import jwt, time, os, sys
+        key = open(sys.argv[1]).read()
+        payload = {"iss": os.environ["ASC_ISSUER_ID"], "iat": int(time.time()), "exp": int(time.time()) + 1100, "aud": "appstoreconnect-v1"}
+        headers = {"kid": os.environ["ASC_KEY_ID"]}
+        print(jwt.encode(payload, key, algorithm="ES256", headers=headers))
+        PYEOF
+        cat > /tmp/extract.py << 'PYEOF'
+        import json, sys
+        d = json.load(sys.stdin)
+        path = sys.argv[1].split(".")
+        for key in path:
+            if key.isdigit():
+                d = d[int(key)]
+            else:
+                d = d[key]
+        print(d)
+        PYEOF
+        cat > /tmp/list_locs.py << 'PYEOF'
+        import json, sys
+        d = json.load(sys.stdin)
+        for item in d.get("data", []):
+            print(item["id"] + ":" + item["attributes"]["locale"])
+        PYEOF
+        chmod +x /tmp/gen_jwt.py /tmp/extract.py /tmp/list_locs.py
+
+    - name: Extract version
+      id: version
+      run: |
+        if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+          VERSION="${{ github.event.inputs.version }}"
+        else
+          BRANCH="${{ github.event.pull_request.head.ref }}"
+          VERSION=$(echo "$BRANCH" | sed 's/Releases\/Release//')
+        fi
+        if [ -z "$VERSION" ]; then
+          echo "Error: Could not determine version." >&2
+          exit 1
+        fi
+        echo "version=$VERSION" >> $GITHUB_OUTPUT
+        echo "Detected version: $VERSION"
+
+    - name: Set release notes
+      id: notes
+      env:
+        INPUT_NOTES: ${{ github.event.inputs.release_notes }}
+      run: |
+        NOTES="$INPUT_NOTES"
+        if [ -z "$NOTES" ]; then
+          NOTES="Bug fixes and performance improvements."
+        fi
+        echo "release_notes=$NOTES" >> $GITHUB_OUTPUT
+        echo "Release notes: $NOTES"
+
+    - name: Generate JWT
+      id: jwt
+      env:
+        ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+        ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+        ASC_PRIVATE_KEY: ${{ secrets.ASC_PRIVATE_KEY }}
+      run: |
+        echo "$ASC_PRIVATE_KEY" > /tmp/asc_key.p8
+        chmod 600 /tmp/asc_key.p8
+        TOKEN=$(python3 /tmp/gen_jwt.py /tmp/asc_key.p8)
+        rm -f /tmp/asc_key.p8
+        echo "token=$TOKEN" >> $GITHUB_OUTPUT
+
+    - name: Check if App Store version already exists
+      id: check_version
+      env:
+        JWT: ${{ steps.jwt.outputs.token }}
+        ASC_APP_ID: ${{ secrets.ASC_APP_ID }}
+        VERSION: ${{ steps.version.outputs.version }}
+      run: |
+        RESPONSE=$(curl -s \
+          -H "Authorization: Bearer $JWT" \
+          -H "Content-Type: application/json" \
+          "https://api.appstoreconnect.apple.com/v1/apps/$ASC_APP_ID/appStoreVersions?filter[versionString]=$VERSION&filter[platform]=IOS")
+        COUNT=$(echo "$RESPONSE" | python3 -c "import json,sys; d=json.load(sys.stdin); print(len(d.get('data', [])))")
+        if [ "$COUNT" -gt "0" ]; then
+          EXISTING_ID=$(echo "$RESPONSE" | python3 /tmp/extract.py "data.0.id")
+          echo "exists=true" >> $GITHUB_OUTPUT
+          echo "version_id=$EXISTING_ID" >> $GITHUB_OUTPUT
+          echo "Version $VERSION already exists (id: $EXISTING_ID)."
+        else
+          echo "exists=false" >> $GITHUB_OUTPUT
+          echo "Version $VERSION does not exist. Will create."
+        fi
+
+    - name: Create App Store version
+      id: create_version
+      if: steps.check_version.outputs.exists == 'false'
+      env:
+        JWT: ${{ steps.jwt.outputs.token }}
+        ASC_APP_ID: ${{ secrets.ASC_APP_ID }}
+        VERSION: ${{ steps.version.outputs.version }}
+      run: |
+        RESPONSE=$(curl -s -X POST \
+          -H "Authorization: Bearer $JWT" \
+          -H "Content-Type: application/json" \
+          -d "{\"data\":{\"type\":\"appStoreVersions\",\"attributes\":{\"platform\":\"IOS\",\"versionString\":\"$VERSION\",\"releaseType\":\"MANUAL\"},\"relationships\":{\"app\":{\"data\":{\"type\":\"apps\",\"id\":\"$ASC_APP_ID\"}}}}}" \
+          "https://api.appstoreconnect.apple.com/v1/appStoreVersions")
+        VERSION_ID=$(echo "$RESPONSE" | python3 /tmp/extract.py "data.id" 2>/dev/null || true)
+        if [ -z "$VERSION_ID" ]; then
+          echo "Error: Failed to create App Store version." >&2
+          echo "$RESPONSE" >&2
+          exit 1
+        fi
+        echo "version_id=$VERSION_ID" >> $GITHUB_OUTPUT
+        echo "Created App Store version $VERSION (id: $VERSION_ID)"
+
+    - name: Resolve version ID
+      id: version_id
+      run: |
+        if [ "${{ steps.check_version.outputs.exists }}" = "true" ]; then
+          echo "version_id=${{ steps.check_version.outputs.version_id }}" >> $GITHUB_OUTPUT
+        else
+          echo "version_id=${{ steps.create_version.outputs.version_id }}" >> $GITHUB_OUTPUT
+        fi
+
+    - name: Wait for valid TestFlight build
+      id: build
+      env:
+        ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+        ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+        ASC_PRIVATE_KEY: ${{ secrets.ASC_PRIVATE_KEY }}
+        ASC_APP_ID: ${{ secrets.ASC_APP_ID }}
+        VERSION: ${{ steps.version.outputs.version }}
+      run: |
+        MAX_ATTEMPTS=20
+        SLEEP_SECONDS=60
+        ATTEMPT=0
+        while [ $ATTEMPT -lt $MAX_ATTEMPTS ]; do
+          ATTEMPT=$((ATTEMPT + 1))
+          echo "Attempt $ATTEMPT/$MAX_ATTEMPTS: Checking for VALID build for version $VERSION..."
+          echo "$ASC_PRIVATE_KEY" > /tmp/asc_key.p8
+          chmod 600 /tmp/asc_key.p8
+          JWT=$(python3 /tmp/gen_jwt.py /tmp/asc_key.p8)
+          rm -f /tmp/asc_key.p8
+          RESPONSE=$(curl -s \
+            -H "Authorization: Bearer $JWT" \
+            -H "Content-Type: application/json" \
+            "https://api.appstoreconnect.apple.com/v1/builds?filter[app]=$ASC_APP_ID&filter[platform]=IOS&filter[preReleaseVersion.version]=$VERSION&filter[processingState]=VALID&sort=-uploadedDate&limit=1")
+          BUILD_ID=$(echo "$RESPONSE" | python3 /tmp/extract.py "data.0.id" 2>/dev/null || true)
+          if [ -n "$BUILD_ID" ]; then
+            echo "Found VALID build: $BUILD_ID"
+            echo "build_id=$BUILD_ID" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+          echo "No VALID build yet. Waiting ${SLEEP_SECONDS}s..."
+          sleep $SLEEP_SECONDS
+        done
+        echo "Error: No VALID build found for version $VERSION after $((MAX_ATTEMPTS * SLEEP_SECONDS / 60)) minutes." >&2
+        exit 1
+
+    - name: Attach build to App Store version
+      env:
+        JWT: ${{ steps.jwt.outputs.token }}
+        VERSION_ID: ${{ steps.version_id.outputs.version_id }}
+        BUILD_ID: ${{ steps.build.outputs.build_id }}
+      run: |
+        RESPONSE=$(curl -s -X PATCH \
+          -H "Authorization: Bearer $JWT" \
+          -H "Content-Type: application/json" \
+          -d "{\"data\":{\"type\":\"appStoreVersions\",\"id\":\"$VERSION_ID\",\"relationships\":{\"build\":{\"data\":{\"type\":\"builds\",\"id\":\"$BUILD_ID\"}}}}}" \
+          "https://api.appstoreconnect.apple.com/v1/appStoreVersions/$VERSION_ID")
+        RESULT=$(echo "$RESPONSE" | python3 /tmp/extract.py "data.id" 2>/dev/null || true)
+        if [ -z "$RESULT" ]; then
+          echo "Error: Failed to attach build." >&2
+          echo "$RESPONSE" >&2
+          exit 1
+        fi
+        echo "Build $BUILD_ID attached to App Store version $VERSION_ID."
+
+    - name: Update release notes for all localizations
+      env:
+        JWT: ${{ steps.jwt.outputs.token }}
+        VERSION_ID: ${{ steps.version_id.outputs.version_id }}
+        RELEASE_NOTES: ${{ steps.notes.outputs.release_notes }}
+      run: |
+        RESPONSE=$(curl -s \
+          -H "Authorization: Bearer $JWT" \
+          -H "Content-Type: application/json" \
+          "https://api.appstoreconnect.apple.com/v1/appStoreVersions/$VERSION_ID/appStoreVersionLocalizations")
+        LOCALIZATIONS=$(echo "$RESPONSE" | python3 /tmp/list_locs.py 2>/dev/null || true)
+        if [ -z "$LOCALIZATIONS" ]; then
+          echo "No localizations found. Skipping release notes update."
+          exit 0
+        fi
+        echo "$LOCALIZATIONS" | while IFS=':' read -r LOC_ID LOCALE; do
+          echo "Updating release notes for locale: $LOCALE (id: $LOC_ID)"
+          PATCH_RESPONSE=$(curl -s -X PATCH \
+            -H "Authorization: Bearer $JWT" \
+            -H "Content-Type: application/json" \
+            -d "{\"data\":{\"type\":\"appStoreVersionLocalizations\",\"id\":\"$LOC_ID\",\"attributes\":{\"whatsNew\":\"$RELEASE_NOTES\"}}}" \
+            "https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/$LOC_ID")
+          RESULT=$(echo "$PATCH_RESPONSE" | python3 /tmp/extract.py "data.id" 2>/dev/null || true)
+          if [ -z "$RESULT" ]; then
+            echo "Warning: Failed to update release notes for locale $LOCALE." >&2
+          else
+            echo "Updated release notes for $LOCALE."
+          fi
+        done
+
+    - name: Summary
+      env:
+        VERSION: ${{ steps.version.outputs.version }}
+        VERSION_ID: ${{ steps.version_id.outputs.version_id }}
+        BUILD_ID: ${{ steps.build.outputs.build_id }}
+        RELEASE_NOTES: ${{ steps.notes.outputs.release_notes }}
+      run: |
+        echo "### App Store Version Created" >> $GITHUB_STEP_SUMMARY
+        echo "| Field | Value |" >> $GITHUB_STEP_SUMMARY
+        echo "|-------|-------|" >> $GITHUB_STEP_SUMMARY
+        echo "| Version | $VERSION |" >> $GITHUB_STEP_SUMMARY
+        echo "| App Store Version ID | $VERSION_ID |" >> $GITHUB_STEP_SUMMARY
+        echo "| Build ID | $BUILD_ID |" >> $GITHUB_STEP_SUMMARY
+        echo "| Release Notes | $RELEASE_NOTES |" >> $GITHUB_STEP_SUMMARY
+        echo "| Status | PREPARE_FOR_SUBMISSION |" >> $GITHUB_STEP_SUMMARY
+        echo "Version is ready for metadata review and App Store submission." >> $GITHUB_STEP_SUMMARY
