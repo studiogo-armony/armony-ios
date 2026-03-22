@@ -109,14 +109,13 @@ jobs:
         ASC_APP_ID: ${{ secrets.ASC_APP_ID }}
         VERSION: ${{ steps.version.outputs.version }}
       run: |
-        RESPONSE=$(curl -s -w "\nHTTP_STATUS:%{http_code}" \
+        if [ -z "$JWT" ]; then echo "ERROR: JWT is empty" >&2; exit 1; fi
+        if [ -z "$ASC_APP_ID" ]; then echo "ERROR: ASC_APP_ID is empty" >&2; exit 1; fi
+        RESPONSE=$(curl -s \
           -H "Authorization: Bearer $JWT" \
           -H "Content-Type: application/json" \
           "https://api.appstoreconnect.apple.com/v1/apps/$ASC_APP_ID/appStoreVersions?filter[versionString]=$VERSION&filter[platform]=IOS")
-        echo "Raw response: $RESPONSE"
-        HTTP_STATUS=$(echo "$RESPONSE" | grep "HTTP_STATUS:" | cut -d: -f2)
-        RESPONSE=$(echo "$RESPONSE" | grep -v "HTTP_STATUS:")
-        echo "HTTP status: $HTTP_STATUS"
+        if [ -z "$RESPONSE" ]; then echo "ERROR: Empty response from API" >&2; exit 1; fi
         COUNT=$(echo "$RESPONSE" | python3 -c "import json,sys; d=json.load(sys.stdin); print(len(d.get('data', [])))")
         if [ "$COUNT" -gt "0" ]; then
           EXISTING_ID=$(echo "$RESPONSE" | python3 /tmp/extract.py "data.0.id")
