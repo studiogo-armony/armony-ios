@@ -30,70 +30,13 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v5
 
-    - name: Install PyJWT
-      run: pip install PyJWT cryptography --quiet
-
-    - name: Write helper scripts
-      run: |
-        cat > /tmp/gen_jwt.py << 'PYEOF'
-        import jwt, time, os, sys
-        key = open(sys.argv[1]).read()
-        payload = {"iss": os.environ["ASC_ISSUER_ID"], "iat": int(time.time()), "exp": int(time.time()) + 1100, "aud": "appstoreconnect-v1"}
-        headers = {"kid": os.environ["ASC_KEY_ID"]}
-        print(jwt.encode(payload, key, algorithm="ES256", headers=headers))
-        PYEOF
-        cat > /tmp/extract.py << 'PYEOF'
-        import json, sys
-        d = json.load(sys.stdin)
-        path = sys.argv[1].split(".")
-        for key in path:
-            if key.isdigit():
-                d = d[int(key)]
-            else:
-                d = d[key]
-        print(d)
-        PYEOF
-        cat > /tmp/list_locs.py << 'PYEOF'
-        import json, sys
-        d = json.load(sys.stdin)
-        for item in d.get("data", []):
-            print(item["id"] + ":" + item["attributes"]["locale"])
-        PYEOF
-        sed -i 's/^        //' /tmp/gen_jwt.py /tmp/extract.py /tmp/list_locs.py
-        printf '%s\n' \
-          'import urllib.request, urllib.error, json, os, sys' \
-          'token = os.environ["JWT"].strip()' \
-          'app_id = os.environ["ASC_APP_ID"].strip()' \
-          'version = os.environ["VERSION"].strip()' \
-          'body = json.dumps({"data":{"type":"appStoreVersions","attributes":{"platform":"IOS","versionString":version,"releaseType":"MANUAL"},"relationships":{"app":{"data":{"type":"apps","id":app_id}}}}}).encode()' \
-          'req = urllib.request.Request("https://api.appstoreconnect.apple.com/v1/appStoreVersions", data=body, headers={"Authorization":"Bearer "+token,"Content-Type":"application/json"}, method="POST")' \
-          'try:' \
-          '    resp = urllib.request.urlopen(req)' \
-          '    data = json.loads(resp.read())' \
-          '    print(data["data"]["id"])' \
-          'except urllib.error.HTTPError as e:' \
-          '    body = e.read().decode()' \
-          '    sys.stderr.write("HTTP " + str(e.code) + ": " + body[:500] + "\n")' \
-          '    sys.exit(1)' \
-          > /tmp/create_version.py
-        printf '%s\n' \
-          'import urllib.request, urllib.error, json, os, sys' \
-          'token = os.environ["JWT"].strip()' \
-          'app_id = os.environ["ASC_APP_ID"].strip()' \
-          'version = os.environ["VERSION"].strip()' \
-          'base = "https://api.appstoreconnect.apple.com/v1/apps/"' \
-          'url = base + app_id + "/appStoreVersions?filter[versionString]=" + version + "&filter[platform]=IOS"' \
-          'req = urllib.request.Request(url, headers={"Authorization": "Bearer " + token, "Content-Type": "application/json"})' \
-          'try:' \
-          '    resp = urllib.request.urlopen(req)' \
-          '    data = json.loads(resp.read())' \
-          '    items = data.get("data", [])' \
-          '    print("EXISTS:" + items[0]["id"] if items else "NOTFOUND")' \
-          'except urllib.error.HTTPError as e:' \
-          '    sys.stderr.write("HTTP " + str(e.code) + ": " + e.read().decode()[:300] + "\n")' \
-          '    sys.exit(1)' \
-          > /tmp/check_version.py
-        chmod +x /tmp/gen_jwt.py /tmp/extract.py /tmp/list_locs.py /tmp/check_version.py /tmp/create_version.py
+    - name: Generate ASC JWT
+      id: jwt
+      uses: ./.github/actions/asc-jwt
+      env:
+        ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+        ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+        ASC_PRIVATE_KEY: ${{ secrets.ASC_PRIVATE_KEY }}
 
     - name: Extract version
       id: version
@@ -122,19 +65,6 @@ jobs:
         echo "release_notes=$NOTES" >> $GITHUB_OUTPUT
         echo "Release notes: $NOTES"
 
-    - name: Generate JWT
-      id: jwt
-      env:
-        ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
-        ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
-        ASC_PRIVATE_KEY: ${{ secrets.ASC_PRIVATE_KEY }}
-      run: |
-        echo "$ASC_PRIVATE_KEY" > /tmp/asc_key.p8
-        chmod 600 /tmp/asc_key.p8
-        TOKEN=$(python3 /tmp/gen_jwt.py /tmp/asc_key.p8)
-        rm -f /tmp/asc_key.p8
-        echo "token=$TOKEN" >> $GITHUB_OUTPUT
-
     - name: Check if App Store version already exists
       id: check_version
       env:
@@ -142,7 +72,7 @@ jobs:
         ASC_APP_ID: ${{ secrets.ASC_APP_ID }}
         VERSION: ${{ steps.version.outputs.version }}
       run: |
-        RESULT=$(python3 /tmp/check_version.py)
+        RESULT=$(python3 .github/scripts/asc_check_version.py)
         if [[ "$RESULT" == EXISTS:* ]]; then
           EXISTING_ID="${RESULT#EXISTS:}"
           echo "exists=true" >> $GITHUB_OUTPUT
@@ -161,7 +91,7 @@ jobs:
         ASC_APP_ID: ${{ secrets.ASC_APP_ID }}
         VERSION: ${{ steps.version.outputs.version }}
       run: |
-        VERSION_ID=$(python3 /tmp/create_version.py)
+        VERSION_ID=$(python3 .github/scripts/asc_create_version.py)
         echo "version_id=$VERSION_ID" >> $GITHUB_OUTPUT
         echo "Created App Store version $VERSION (id: $VERSION_ID)"
 
@@ -180,23 +110,14 @@ jobs:
         VERSION_ID: ${{ steps.version_id.outputs.version_id }}
         RELEASE_NOTES: ${{ steps.notes.outputs.release_notes }}
       run: |
-        RESPONSE=$(curl -s \
-          -H "Authorization: Bearer $JWT" \
-          -H "Content-Type: application/json" \
-          "https://api.appstoreconnect.apple.com/v1/appStoreVersions/$VERSION_ID/appStoreVersionLocalizations")
-        LOCALIZATIONS=$(echo "$RESPONSE" | python3 /tmp/list_locs.py 2>/dev/null || true)
+        LOCALIZATIONS=$(python3 .github/scripts/asc_list_localizations.py)
         if [ -z "$LOCALIZATIONS" ]; then
           echo "No localizations found. Skipping release notes update."
           exit 0
         fi
         echo "$LOCALIZATIONS" | while IFS=':' read -r LOC_ID LOCALE; do
           echo "Updating release notes for locale: $LOCALE (id: $LOC_ID)"
-          PATCH_RESPONSE=$(curl -s -X PATCH \
-            -H "Authorization: Bearer $JWT" \
-            -H "Content-Type: application/json" \
-            -d "{\"data\":{\"type\":\"appStoreVersionLocalizations\",\"id\":\"$LOC_ID\",\"attributes\":{\"whatsNew\":\"$RELEASE_NOTES\"}}}" \
-            "https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations/$LOC_ID")
-          RESULT=$(echo "$PATCH_RESPONSE" | python3 /tmp/extract.py "data.id" 2>/dev/null || true)
+          RESULT=$(LOC_ID="$LOC_ID" python3 .github/scripts/asc_update_localization.py 2>/dev/null || true)
           if [ -z "$RESULT" ]; then
             echo "Warning: Failed to update release notes for locale $LOCALE." >&2
           else
