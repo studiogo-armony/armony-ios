@@ -45,26 +45,23 @@ jobs:
         echo "branch_name=$BRANCH_NAME" >> $GITHUB_OUTPUT
         
     - name: Create PR to main
-      run: |
-        BRANCH="${{ steps.get_branch.outputs.branch_name }}"
-        VERSION=$(echo "$BRANCH" | sed 's/Releases\/Release//')
-        gh pr create \
-          --title "Merge $BRANCH into main" \
-          --body "$(cat <<EOF
-## Release $VERSION
-
-This PR merges \`$BRANCH\` into \`main\`.
-
-### Pre-merge checklist
-- [ ] All Xcode Cloud checks passed
-- [ ] TestFlight build verified on staging
-- [ ] Release notes finalised on App Store Connect
-- [ ] Staged rollout plan confirmed
-
-> Created automatically by the [Merge Release to Main](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) workflow.
-EOF
-)" \
-          --base main \
-          --head "$BRANCH"
       env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        PR_BODY: |
+          ## Release ${{ steps.get_branch.outputs.branch_name }}
+
+          This PR merges `${{ steps.get_branch.outputs.branch_name }}` into `main`.
+
+          ### Pre-merge checklist
+          - [ ] All Xcode Cloud checks passed
+          - [ ] TestFlight build verified on staging
+          - [ ] Release notes finalised on App Store Connect
+          - [ ] Staged rollout plan confirmed
+
+          > Created automatically by the [Merge Release to Main](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) workflow.
+      run: |
+        gh pr create \
+          --title "Merge ${{ steps.get_branch.outputs.branch_name }} into main" \
+          --body "$PR_BODY" \
+          --base main \
+          --head "${{ steps.get_branch.outputs.branch_name }}" 

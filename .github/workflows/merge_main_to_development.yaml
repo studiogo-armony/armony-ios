@@ -30,23 +30,22 @@ jobs:
         ref: development
         
     - name: Create PR to development
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SOURCE_BRANCH: ${{ github.event.inputs.source_branch || 'main' }}
+        PR_BODY: |
+          ## Sync `${{ github.event.inputs.source_branch || 'main' }}` into `development`
+
+          This PR syncs `${{ github.event.inputs.source_branch || 'main' }}` back into `development` after a release merge.
+
+          ### Notes
+          - Resolve any conflicts before merging
+          - This keeps `development` up to date with production
+
+          > Created automatically by the [Merge Main into Development](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) workflow.
       run: |
         gh pr create \
           --title "Sync ${SOURCE_BRANCH} into development" \
-          --body "$(cat <<EOF
-## Sync \`${SOURCE_BRANCH}\` into \`development\`
-
-This PR syncs \`${SOURCE_BRANCH}\` back into \`development\` after a release merge.
-
-### Notes
-- Resolve any conflicts before merging
-- This keeps \`development\` up to date with production
-
-> Created automatically by the [Merge Main into Development](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) workflow.
-EOF
-)" \
+          --body "$PR_BODY" \
           --base development \
-          --head "${SOURCE_BRANCH}"
-      env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SOURCE_BRANCH: ${{ github.event.inputs.source_branch || 'main' }} 
+          --head "${SOURCE_BRANCH}" 
