@@ -109,13 +109,36 @@ jobs:
         ASC_APP_ID: ${{ secrets.ASC_APP_ID }}
         VERSION: ${{ steps.version.outputs.version }}
       run: |
-        RESPONSE=$(curl -s \
-          -H "Authorization: Bearer $JWT" \
-          -H "Content-Type: application/json" \
-          "https://api.appstoreconnect.apple.com/v1/apps/$ASC_APP_ID/appStoreVersions?filter[versionString]=$VERSION&filter[platform]=IOS")
-        COUNT=$(echo "$RESPONSE" | python3 -c "import json,sys; d=json.load(sys.stdin); print(len(d.get('data', [])))")
-        if [ "$COUNT" -gt "0" ]; then
-          EXISTING_ID=$(echo "$RESPONSE" | python3 /tmp/extract.py "data.0.id")
+        RESULT=$(python3 - <<'PYEOF'
+import urllib.request, urllib.error, json, os, sys
+
+token = os.environ["JWT"].strip()
+app_id = os.environ["ASC_APP_ID"].strip()
+version = os.environ["VERSION"].strip()
+
+print(f"JWT length: {len(token)}, APP_ID length: {len(app_id)}", file=sys.stderr)
+
+url = f"https://api.appstoreconnect.apple.com/v1/apps/{app_id}/appStoreVersions?filter[versionString]={version}&filter[platform]=IOS"
+req = urllib.request.Request(url, headers={
+    "Authorization": f"Bearer {token}",
+    "Content-Type": "application/json"
+})
+try:
+    with urllib.request.urlopen(req) as resp:
+        data = json.loads(resp.read())
+        items = data.get("data", [])
+        if items:
+            print(f"EXISTS:{items[0]['id']}")
+        else:
+            print("NOTFOUND")
+except urllib.error.HTTPError as e:
+    body = e.read().decode()
+    print(f"HTTP {e.code}: {body[:300]}", file=sys.stderr)
+    sys.exit(1)
+PYEOF
+)
+        if [[ "$RESULT" == EXISTS:* ]]; then
+          EXISTING_ID="${RESULT#EXISTS:}"
           echo "exists=true" >> $GITHUB_OUTPUT
           echo "version_id=$EXISTING_ID" >> $GITHUB_OUTPUT
           echo "Version $VERSION already exists (id: $EXISTING_ID)."
