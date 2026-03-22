@@ -109,10 +109,14 @@ jobs:
         ASC_APP_ID: ${{ secrets.ASC_APP_ID }}
         VERSION: ${{ steps.version.outputs.version }}
       run: |
-        RESPONSE=$(curl -s \
+        RESPONSE=$(curl -s -w "\nHTTP_STATUS:%{http_code}" \
           -H "Authorization: Bearer $JWT" \
           -H "Content-Type: application/json" \
           "https://api.appstoreconnect.apple.com/v1/apps/$ASC_APP_ID/appStoreVersions?filter[versionString]=$VERSION&filter[platform]=IOS")
+        echo "Raw response: $RESPONSE"
+        HTTP_STATUS=$(echo "$RESPONSE" | grep "HTTP_STATUS:" | cut -d: -f2)
+        RESPONSE=$(echo "$RESPONSE" | grep -v "HTTP_STATUS:")
+        echo "HTTP status: $HTTP_STATUS"
         COUNT=$(echo "$RESPONSE" | python3 -c "import json,sys; d=json.load(sys.stdin); print(len(d.get('data', [])))")
         if [ "$COUNT" -gt "0" ]; then
           EXISTING_ID=$(echo "$RESPONSE" | python3 /tmp/extract.py "data.0.id")
