@@ -169,7 +169,7 @@ final class AdvertViewModel: ViewModel {
 
     private func apply() {
         guard !isPreviousPageLiveChat else {
-            coordinator.dismiss()
+            coordinator.dismiss(animated: true, completion: nil)
             return
         }
         view?.startSendMessageButtonActivityIndicatorView()
@@ -210,7 +210,7 @@ final class AdvertViewModel: ViewModel {
 
                 safeSync {
                     view?.stopSendMessageButtonActivityIndicatorView()
-                    coordinator.dismiss { [weak self] in
+                    coordinator.dismiss(animated: true) { [weak self] in
                         self?.dismissCompletion?(true)
                     }
                 }

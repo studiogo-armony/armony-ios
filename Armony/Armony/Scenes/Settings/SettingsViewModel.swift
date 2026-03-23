@@ -9,10 +9,10 @@ import Foundation
 
 final class SettingsViewModel: ViewModel {
 
-    var coordinator: SettingsCoordinator!
+    var coordinator: (any Coordinator)!
 
     private weak var view: SettingsViewDelegate?
-    private let authenticator: AuthenticationService
+    private let authenticator: AuthenticationProviding
 
     var numberOfRowsInSection: Int {
         return presentation.items.count
@@ -27,10 +27,11 @@ final class SettingsViewModel: ViewModel {
     }
 
     init(view: SettingsViewDelegate,
-         authenticator: AuthenticationService = .shared) {
+         authenticator: AuthenticationProviding = AuthenticationService.shared,
+         service: RestService = .init(backend: .factory())) {
         self.view = view
         self.authenticator = authenticator
-        super.init()
+        super.init(service: service)
     }
 
     func setting(at indexPath: IndexPath) -> SettingPresentation {

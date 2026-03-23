@@ -37,7 +37,7 @@ final class LogOutBottomPopUpViewController: BottomPopupViewController, ViewCont
     }
 
     @IBAction private func cancelTapped() {
-        viewModel.coordinator.dismiss()
+        viewModel.coordinator.dismiss(animated: true, completion: nil)
     }
 
     override func viewDidAppear(_ animated: Bool) {

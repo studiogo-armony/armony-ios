@@ -33,8 +33,4 @@ final class SelectionBottomPopUpCoordinator: Coordinator {
         view.viewModel = viewModel
         navigator?.present(view, animated: true)
     }
-
-    func dismiss(completion: @escaping VoidCallback) {
-        navigator?.dismiss(animated: true, completion: completion)
-    }
 }

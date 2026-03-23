@@ -23,6 +23,8 @@ public protocol Coordinator {
     func dismiss(animated: Bool, completion: VoidCallback?)
     func pop(animated: Bool)
     func popToRootViewController(animated: Bool)
+
+    func open(deeplink: Deeplink)
 }
 
 public extension Coordinator where Controller: UIViewController {
@@ -44,8 +46,37 @@ public extension Coordinator where Controller: UIViewController {
         let view = navigator.rootViewController as! Controller
         return (navigator: navigator, view: view)
     }
+}
 
-    func dismiss(animated: Bool = true, completion: VoidCallback? = nil) {
+public extension Coordinator {
+
+    var urlNavigator: URLNavigation {
+        return URLNavigator.shared
+    }
+
+    func open(deeplink: Deeplink) {
+        urlNavigator.open(deeplink)
+    }
+
+    func open(url: URL) {
+        UIApplication.shared.open(url)
+    }
+
+    func open(urlString: String) {
+        if let url = URL(string: urlString) {
+            open(url: url)
+        }
+    }
+
+    func openAtSafariViewController(url: URL) {
+        let config = SFSafariViewController.Configuration()
+        config.entersReaderIfAvailable = true
+
+        let view = SFSafariViewController(url: url, configuration: config)
+        navigator.ifNil(UIViewController.topMostViewController as! Navigator).present(view, animated: true)
+    }
+
+    func dismiss(animated: Bool, completion: VoidCallback?) {
         navigator?.dismiss(animated: animated, completion: completion)
     }
 
@@ -79,35 +110,6 @@ public extension Coordinator where Controller: UIViewController {
             tabBarControllerViewControllers?.element(at: tab.index)?.navigator?.popToRootViewController(animated: true)
         }
         return tabBarControllerViewControllers?.element(at: tab.index)?.navigator?.rootViewController
-    }
-}
-
-extension Coordinator {
-
-    var urlNavigator: URLNavigation {
-        return URLNavigator.shared
-    }
-
-    func open(deeplink: Deeplink) {
-        urlNavigator.open(deeplink)
-    }
-
-    func open(url: URL) {
-        UIApplication.shared.open(url)
-    }
-
-    func open(urlString: String) {
-        if let url = URL(string: urlString) {
-            open(url: url)
-        }
-    }
-
-    func openAtSafariViewController(url: URL) {
-        let config = SFSafariViewController.Configuration()
-        config.entersReaderIfAvailable = true
-
-        let view = SFSafariViewController(url: url, configuration: config)
-        navigator.ifNil(UIViewController.topMostViewController as! Navigator).present(view, animated: true)
     }
 }
 

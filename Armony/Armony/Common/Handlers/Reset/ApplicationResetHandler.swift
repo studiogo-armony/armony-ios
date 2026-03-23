@@ -11,7 +11,7 @@ protocol ApplicationResetHandling {
     func reset()
 }
 
-protocol ResetHandling {
+public protocol ResetHandling {
     func reset()
 }
 
