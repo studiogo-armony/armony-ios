@@ -1,5 +1,5 @@
 name: Merge Release to Main
-run-name: ${{ github.actor }} is merging release branch to main 🚀
+run-name: Merge ${{ github.event.inputs.release_branch || 'latest release' }} to main by ${{ github.actor }}
 
 on:
   workflow_dispatch:
@@ -9,22 +9,24 @@ on:
         required: false
         type: string
 
+concurrency:
+  group: merge-to-main
+  cancel-in-progress: false
+
 jobs:
   merge-to-main:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
     
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
       with:
         fetch-depth: 0
         ref: main
         
-    - name: Set up Git
-      run: |
-        git config user.name "github-actions[bot]"
-        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-    
     - name: Get latest release branch
       id: get_branch
       run: |
@@ -42,12 +44,24 @@ jobs:
         echo "Found branch: '$BRANCH_NAME'"
         echo "branch_name=$BRANCH_NAME" >> $GITHUB_OUTPUT
         
-    - name: Merge release branch to main
-      run: |
-        git fetch origin
-        git checkout main
-        git pull origin main
-        git merge origin/${{ steps.get_branch.outputs.branch_name }} --no-ff -m "Merge ${{ steps.get_branch.outputs.branch_name }} into main"
-        git push origin main
+    - name: Create PR to main
       env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        PR_BODY: |
+          ## Release ${{ steps.get_branch.outputs.branch_name }}
+
+          This PR merges `${{ steps.get_branch.outputs.branch_name }}` into `main`.
+
+          ### Pre-merge checklist
+          - [ ] All Xcode Cloud checks passed
+          - [ ] TestFlight build verified on staging
+          - [ ] Release notes finalised on App Store Connect
+          - [ ] Staged rollout plan confirmed
+
+          > Created automatically by the [Merge Release to Main](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) workflow.
+      run: |
+        gh pr create \
+          --title "Merge ${{ steps.get_branch.outputs.branch_name }} into main" \
+          --body "$PR_BODY" \
+          --base main \
+          --head "${{ steps.get_branch.outputs.branch_name }}" 

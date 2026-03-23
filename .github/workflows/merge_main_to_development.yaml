@@ -1,5 +1,5 @@
 name: Merge Main into Development
-run-name: ${{ github.actor }} is syncing development with main 🔄
+run-name: Sync ${{ github.event.inputs.source_branch || 'main' }} into development by ${{ github.actor }}
 
 on:
   workflow_dispatch:
@@ -16,28 +16,36 @@ on:
 
 jobs:
   sync-development:
-    runs-on: macos-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event.workflow_run == null }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' }}
     
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
       with:
         fetch-depth: 0
         ref: development
         
-    - name: Set up Git
-      run: |
-        git config user.name "github-actions[bot]"
-        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-    
-    - name: Merge into development
-      run: |
-        git fetch origin
-        git checkout development
-        git pull origin development
-        git merge origin/${SOURCE_BRANCH} --no-ff
-        git push origin development
+    - name: Create PR to development
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SOURCE_BRANCH: ${{ github.event.inputs.source_branch || 'main' }} 
+        SOURCE_BRANCH: ${{ github.event.inputs.source_branch || 'main' }}
+        PR_BODY: |
+          ## Sync `${{ github.event.inputs.source_branch || 'main' }}` into `development`
+
+          This PR syncs `${{ github.event.inputs.source_branch || 'main' }}` back into `development` after a release merge.
+
+          ### Notes
+          - Resolve any conflicts before merging
+          - This keeps `development` up to date with production
+
+          > Created automatically by the [Merge Main into Development](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) workflow.
+      run: |
+        gh pr create \
+          --title "Sync ${SOURCE_BRANCH} into development" \
+          --body "$PR_BODY" \
+          --base development \
+          --head "${SOURCE_BRANCH}" 

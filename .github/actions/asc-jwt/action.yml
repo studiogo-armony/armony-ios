@@ -1,0 +1,28 @@
+name: Generate ASC JWT
+description: Installs PyJWT and generates an App Store Connect API JWT token.
+
+outputs:
+  token:
+    description: The signed JWT for use with App Store Connect API
+    value: ${{ steps.generate.outputs.token }}
+
+runs:
+  using: composite
+  steps:
+    - name: Install PyJWT
+      shell: bash
+      run: pip install PyJWT cryptography --quiet
+
+    - name: Generate token
+      id: generate
+      shell: bash
+      env:
+        ASC_ISSUER_ID: ${{ env.ASC_ISSUER_ID }}
+        ASC_KEY_ID: ${{ env.ASC_KEY_ID }}
+        ASC_PRIVATE_KEY: ${{ env.ASC_PRIVATE_KEY }}
+      run: |
+        echo "$ASC_PRIVATE_KEY" > /tmp/asc_key.p8
+        chmod 600 /tmp/asc_key.p8
+        TOKEN=$(python3 ${{ github.action_path }}/../../scripts/asc_gen_jwt.py /tmp/asc_key.p8)
+        rm -f /tmp/asc_key.p8
+        echo "token=$TOKEN" >> $GITHUB_OUTPUT

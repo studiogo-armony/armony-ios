@@ -1,0 +1,141 @@
+name: Create App Store Version
+run-name: Create App Store Version ${{ github.event.inputs.version || github.ref_name }} by ${{ github.actor }}
+
+on:
+  create:
+    branches:
+      - 'Releases/Release**'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'App version to create (e.g. 1.5.3)'
+        required: true
+        type: string
+      release_notes:
+        description: "Release notes (What's New). Leave empty for default."
+        required: false
+        default: ''
+        type: string
+
+jobs:
+  create-app-store-version:
+    runs-on: ubuntu-latest
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      startsWith(github.ref, 'refs/heads/Releases/Release')
+    permissions:
+      contents: read
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v5
+
+    - name: Generate ASC JWT
+      id: jwt
+      uses: ./.github/actions/asc-jwt
+      env:
+        ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+        ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+        ASC_PRIVATE_KEY: ${{ secrets.ASC_PRIVATE_KEY }}
+
+    - name: Extract version
+      id: version
+      run: |
+        if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+          VERSION="${{ github.event.inputs.version }}"
+        else
+          VERSION=$(echo "${{ github.ref_name }}" | sed 's/Releases\/Release//')
+        fi
+        if [ -z "$VERSION" ]; then
+          echo "Error: Could not determine version." >&2
+          exit 1
+        fi
+        echo "version=$VERSION" >> $GITHUB_OUTPUT
+        echo "Detected version: $VERSION"
+
+    - name: Set release notes
+      id: notes
+      env:
+        INPUT_NOTES: ${{ github.event.inputs.release_notes }}
+      run: |
+        NOTES="$INPUT_NOTES"
+        if [ -z "$NOTES" ]; then
+          NOTES="Bug fixes and performance improvements."
+        fi
+        echo "release_notes=$NOTES" >> $GITHUB_OUTPUT
+        echo "Release notes: $NOTES"
+
+    - name: Check if App Store version already exists
+      id: check_version
+      env:
+        JWT: ${{ steps.jwt.outputs.token }}
+        ASC_APP_ID: ${{ secrets.ASC_APP_ID }}
+        VERSION: ${{ steps.version.outputs.version }}
+      run: |
+        RESULT=$(python3 .github/scripts/asc_check_version.py)
+        if [[ "$RESULT" == EXISTS:* ]]; then
+          EXISTING_ID="${RESULT#EXISTS:}"
+          echo "exists=true" >> $GITHUB_OUTPUT
+          echo "version_id=$EXISTING_ID" >> $GITHUB_OUTPUT
+          echo "Version $VERSION already exists (id: $EXISTING_ID)."
+        else
+          echo "exists=false" >> $GITHUB_OUTPUT
+          echo "Version $VERSION does not exist. Will create."
+        fi
+
+    - name: Create App Store version
+      id: create_version
+      if: steps.check_version.outputs.exists == 'false'
+      env:
+        JWT: ${{ steps.jwt.outputs.token }}
+        ASC_APP_ID: ${{ secrets.ASC_APP_ID }}
+        VERSION: ${{ steps.version.outputs.version }}
+      run: |
+        VERSION_ID=$(python3 .github/scripts/asc_create_version.py)
+        echo "version_id=$VERSION_ID" >> $GITHUB_OUTPUT
+        echo "Created App Store version $VERSION (id: $VERSION_ID)"
+
+    - name: Resolve version ID
+      id: version_id
+      run: |
+        if [ "${{ steps.check_version.outputs.exists }}" = "true" ]; then
+          echo "version_id=${{ steps.check_version.outputs.version_id }}" >> $GITHUB_OUTPUT
+        else
+          echo "version_id=${{ steps.create_version.outputs.version_id }}" >> $GITHUB_OUTPUT
+        fi
+
+    - name: Update release notes for all localizations
+      env:
+        JWT: ${{ steps.jwt.outputs.token }}
+        VERSION_ID: ${{ steps.version_id.outputs.version_id }}
+        RELEASE_NOTES: ${{ steps.notes.outputs.release_notes }}
+      run: |
+        LOCALIZATIONS=$(python3 .github/scripts/asc_list_localizations.py)
+        if [ -z "$LOCALIZATIONS" ]; then
+          echo "No localizations found. Skipping release notes update."
+          exit 0
+        fi
+        echo "$LOCALIZATIONS" | while IFS=':' read -r LOC_ID LOCALE; do
+          echo "Updating release notes for locale: $LOCALE (id: $LOC_ID)"
+          RESULT=$(LOC_ID="$LOC_ID" python3 .github/scripts/asc_update_localization.py 2>/dev/null || true)
+          if [ -z "$RESULT" ]; then
+            echo "Warning: Failed to update release notes for locale $LOCALE." >&2
+          else
+            echo "Updated release notes for $LOCALE."
+          fi
+        done
+
+    - name: Summary
+      env:
+        VERSION: ${{ steps.version.outputs.version }}
+        VERSION_ID: ${{ steps.version_id.outputs.version_id }}
+        RELEASE_NOTES: ${{ steps.notes.outputs.release_notes }}
+      run: |
+        echo "### App Store Version Created" >> $GITHUB_STEP_SUMMARY
+        echo "| Field | Value |" >> $GITHUB_STEP_SUMMARY
+        echo "|-------|-------|" >> $GITHUB_STEP_SUMMARY
+        echo "| Version | $VERSION |" >> $GITHUB_STEP_SUMMARY
+        echo "| App Store Version ID | $VERSION_ID |" >> $GITHUB_STEP_SUMMARY
+        echo "| Release Notes | $RELEASE_NOTES |" >> $GITHUB_STEP_SUMMARY
+        echo "| Status | PREPARE_FOR_SUBMISSION |" >> $GITHUB_STEP_SUMMARY
+        echo "Version is ready. Attach build and submit for review on App Store Connect." >> $GITHUB_STEP_SUMMARY

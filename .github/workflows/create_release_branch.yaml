@@ -1,5 +1,5 @@
 name: Create Release Branch
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+run-name: Create Release Branch (${{ github.event.inputs.version_type }}) by ${{ github.actor }}
 on: 
     workflow_dispatch:
       inputs:
@@ -16,10 +16,13 @@ on:
 jobs:
   create-branch:
     runs-on: macos-latest
+    permissions:
+      contents: write
+      pull-requests: write
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
       with:
         ref: development
         fetch-depth: 0
@@ -57,10 +60,11 @@ jobs:
         fi
         echo "branch_name=$BRANCH_NAME" >> $GITHUB_OUTPUT
 
-    - name: Delete existing branch if exists
+    - name: Fail if branch already exists
       if: steps.check_branch.outputs.exists == 'true'
       run: |
-        git push origin --delete ${{ steps.check_branch.outputs.branch_name }}
+        echo "Error: Branch ${{ steps.check_branch.outputs.branch_name }} already exists. Delete it manually if you want to recreate it." >&2
+        exit 1
       
     - name: Create new branch
       run: |
@@ -73,9 +77,33 @@ jobs:
 
     - name: Git add, commit and push
       run: |
-        git add .
+        git add Armony/Armony.xcodeproj/project.pbxproj Armony/Armony/Resources/Info.plist Armony/ArmonyTests/Info.plist Armony/ArmonyUITests/Info.plist
         git commit -m "Bump version number to ${{ steps.version.outputs.new_version }}"
         git push origin ${{ steps.check_branch.outputs.branch_name }}
       env:
-        GITHUB_TOKEN: ${{ secrets.TEST }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Create PR to main
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        PR_BODY: |
+          ## Release ${{ steps.version.outputs.new_version }}
+
+          This PR merges `${{ steps.check_branch.outputs.branch_name }}` into `main`.
+
+          ### Changes
+          - Version bumped to `${{ steps.version.outputs.new_version }}` (${{ github.event.inputs.version_type }} increment)
+
+          ### Checklist
+          - [ ] Xcode Cloud build passed
+          - [ ] TestFlight build verified
+          - [ ] Release notes updated
+
+          > Created automatically by the [Create Release Branch](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) workflow.
+      run: |
+        gh pr create \
+          --title "Release ${{ steps.version.outputs.new_version }}" \
+          --body "$PR_BODY" \
+          --base main \
+          --head "${{ steps.check_branch.outputs.branch_name }}"
 
