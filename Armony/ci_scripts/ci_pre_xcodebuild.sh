@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 set -e # Exit on error
 
@@ -13,7 +13,8 @@ log_info() {
 }
 
 log_error() {
-    echo "${RED}[ERROR]${NC} $1" >&2
+    echo "${RED}[ERROR]${NC} $1"
+    exit 1
 }
 
 log_warning() {
@@ -63,7 +64,6 @@ check_required_env_vars() {
     
     if [ ${#missing_vars[@]} -ne 0 ]; then
         log_error "Missing required environment variables: ${missing_vars[*]}"
-        exit 1
     fi
 }
 
@@ -75,20 +75,12 @@ setup_config_path() {
     fi
 }
 
-setup_plist_path() {
-    if [ "$CI_XCODE_SCHEME" == "Armony" ]; then
-        echo '../Armony/Resources/Firebase/GoogleService-Info.plist'
-    else
-        echo '../Armony/Resources/Firebase/GoogleService-Info-Debug.plist'
-    fi
-}
-
 update_config_file() {
     local config_file=$1
     local key=$2
     local value=$3
     
-    echo "$key = \"$value\"" >> "$config_file"
+    echo "$key = $value" >> "$config_file"
     log_info "Updated $key in config file"
 }
 
@@ -121,7 +113,7 @@ update_firebase_config() {
     )
     
     for config in "${firebase_configs[@]}"; do
-        IFS=':' read -r config_key env_key <<< "$config"
+        IFS=':' read -r plist_key env_key <<< "$config"
         update_config_file "$config_file" "$env_key" "${!env_key}"
     done
 }
@@ -193,7 +185,11 @@ main() {
     update_analytics_config "$CONFIG_PLIST_PATH"
     
     # Setup Google plist path
-    INFO_PLIST_PATH=$(setup_plist_path)
+    if [ "$CI_XCODE_SCHEME" == "Armony" ]; then
+        INFO_PLIST_PATH='../Armony/Resources/Firebase/GoogleService-Info.plist'
+    else
+        INFO_PLIST_PATH='../Armony/Resources/Firebase/GoogleService-Info-Debug.plist'
+    fi
     log_info "Using Google plist path: $INFO_PLIST_PATH"
     
     # Update Google plist

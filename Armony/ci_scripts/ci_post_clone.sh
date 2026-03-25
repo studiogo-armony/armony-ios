@@ -5,20 +5,14 @@ set -e # Exit on error
 # Colors for logging
 RED='\033[0;31m'
 GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
 log_info() {
     echo "${GREEN}[INFO]${NC} $1"
 }
 
-log_warning() {
-    echo "${YELLOW}[WARNING]${NC} $1"
-}
-
 log_error() {
     echo "${RED}[ERROR]${NC} $1"
-    exit 1
 }
 
 create_directory_if_not_exists() {
@@ -80,12 +74,15 @@ EOF
 
 main() {
     # Create config directories
+    echo "Current path: $(pwd)"
+    ls -la
+
     CONFIG_DIR='../Armony/Resources/Configs'
     create_directory_if_not_exists "$CONFIG_DIR"
     
     # Create config files
-    printf '' > "$CONFIG_DIR/ReleaseConfiguration.xcconfig"
-    printf '' > "$CONFIG_DIR/DebugConfiguration.xcconfig"
+    touch "$CONFIG_DIR/ReleaseConfiguration.xcconfig"
+    touch "$CONFIG_DIR/DebugConfiguration.xcconfig"
     log_info "Created configuration files"
     
     # Create Firebase directory and files
