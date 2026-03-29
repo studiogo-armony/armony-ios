@@ -12,6 +12,7 @@
 		020476EE2B37349500C41C57 /* PlaceAdvertFirebasveEventsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020476ED2B37349500C41C57 /* PlaceAdvertFirebasveEventsHandler.swift */; };
 		020476F22B37419A00C41C57 /* PlaceAdvertAdjustEventsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020476F12B37419A00C41C57 /* PlaceAdvertAdjustEventsHandler.swift */; };
 		0205A49E2C53E5C600D5821D /* DropdownViewSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0205A49D2C53E5C600D5821D /* DropdownViewSnapshotTests.swift */; };
+		68C86E612BD9488E8B59DA64 /* NotchViewSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C86E602BD9488E8B59DA64 /* NotchViewSnapshotTests.swift */; };
 		020645452CCC58DC00251428 /* EmptyStateView+SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020645442CCC58DC00251428 /* EmptyStateView+SwiftUI.swift */; };
 		02079B25280F5841004644A1 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02079B24280F5841004644A1 /* PageViewController.swift */; };
 		020891DE29107A8A006E520D /* DeleteUserAdvertTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020891DD29107A8A006E520D /* DeleteUserAdvertTask.swift */; };
@@ -500,6 +501,7 @@
 		020476ED2B37349500C41C57 /* PlaceAdvertFirebasveEventsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceAdvertFirebasveEventsHandler.swift; sourceTree = "<group>"; };
 		020476F12B37419A00C41C57 /* PlaceAdvertAdjustEventsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceAdvertAdjustEventsHandler.swift; sourceTree = "<group>"; };
 		0205A49D2C53E5C600D5821D /* DropdownViewSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownViewSnapshotTests.swift; sourceTree = "<group>"; };
+		68C86E602BD9488E8B59DA64 /* NotchViewSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchViewSnapshotTests.swift; sourceTree = "<group>"; };
 		020645442CCC58DC00251428 /* EmptyStateView+SwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EmptyStateView+SwiftUI.swift"; sourceTree = "<group>"; };
 		02079B24280F5841004644A1 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		020891DD29107A8A006E520D /* DeleteUserAdvertTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteUserAdvertTask.swift; sourceTree = "<group>"; };
@@ -1053,6 +1055,7 @@
 			isa = PBXGroup;
 			children = (
 				0205A49D2C53E5C600D5821D /* DropdownViewSnapshotTests.swift */,
+				68C86E602BD9488E8B59DA64 /* NotchViewSnapshotTests.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -3964,6 +3967,7 @@
 				02B786772D3ADB2700A8B6AE /* MockFeedbackView.swift in Sources */,
 				02B191352EA6D86000E7878D /* MockLoginCoordinator.swift in Sources */,
 				0205A49E2C53E5C600D5821D /* DropdownViewSnapshotTests.swift in Sources */,
+				68C86E612BD9488E8B59DA64 /* NotchViewSnapshotTests.swift in Sources */,
 				02A824842881B202004351D0 /* MockRestService.swift in Sources */,
 				022312EC2EB254E500551560 /* MockURLNavigatable.swift in Sources */,
 				02FA5A4E2882293000E8AD5C /* MockAccountView.swift in Sources */,
