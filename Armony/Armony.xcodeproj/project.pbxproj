@@ -17,6 +17,9 @@
 		46320E41FD9C4528AA5401D5 /* TitleAccessoryViewSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46320E41FD9C4527AA5401D5 /* TitleAccessoryViewSnapshotTests.swift */; };
 		04C390AD1A4F4E8DBFFE066A /* NavigationHeaderViewSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C390AC1A4F4E8DBFFE066A /* NavigationHeaderViewSnapshotTests.swift */; };
 		67494E79D0F240DCA90967C1 /* EmptyStateViewSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67494E78D0F240DCA90967C1 /* EmptyStateViewSnapshotTests.swift */; };
+		6F8987B04EBA4FC4B6509A5C /* AvatarViewSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8987AF4EBA4FC4B6509A5C /* AvatarViewSnapshotTests.swift */; };
+		10B03450BA344EE19CF38335 /* ExpandableLabelSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B0344FBA344EE19CF38335 /* ExpandableLabelSnapshotTests.swift */; };
+		C38803A2B9A24FBF9FA76C03 /* SegmentedControlViewSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38803A1B9A24FBF9FA76C03 /* SegmentedControlViewSnapshotTests.swift */; };
 		020645452CCC58DC00251428 /* EmptyStateView+SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020645442CCC58DC00251428 /* EmptyStateView+SwiftUI.swift */; };
 		02079B25280F5841004644A1 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02079B24280F5841004644A1 /* PageViewController.swift */; };
 		020891DE29107A8A006E520D /* DeleteUserAdvertTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020891DD29107A8A006E520D /* DeleteUserAdvertTask.swift */; };
@@ -510,6 +513,9 @@
 		46320E41FD9C4527AA5401D5 /* TitleAccessoryViewSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleAccessoryViewSnapshotTests.swift; sourceTree = "<group>"; };
 		04C390AC1A4F4E8DBFFE066A /* NavigationHeaderViewSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationHeaderViewSnapshotTests.swift; sourceTree = "<group>"; };
 		67494E78D0F240DCA90967C1 /* EmptyStateViewSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateViewSnapshotTests.swift; sourceTree = "<group>"; };
+		6F8987AF4EBA4FC4B6509A5C /* AvatarViewSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarViewSnapshotTests.swift; sourceTree = "<group>"; };
+		10B0344FBA344EE19CF38335 /* ExpandableLabelSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableLabelSnapshotTests.swift; sourceTree = "<group>"; };
+		C38803A1B9A24FBF9FA76C03 /* SegmentedControlViewSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControlViewSnapshotTests.swift; sourceTree = "<group>"; };
 		020645442CCC58DC00251428 /* EmptyStateView+SwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EmptyStateView+SwiftUI.swift"; sourceTree = "<group>"; };
 		02079B24280F5841004644A1 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		020891DD29107A8A006E520D /* DeleteUserAdvertTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteUserAdvertTask.swift; sourceTree = "<group>"; };
@@ -1062,11 +1068,14 @@
 		0205A4A02C53EF7B00D5821D /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				6F8987AF4EBA4FC4B6509A5C /* AvatarViewSnapshotTests.swift */,
 				0205A49D2C53E5C600D5821D /* DropdownViewSnapshotTests.swift */,
 				67494E78D0F240DCA90967C1 /* EmptyStateViewSnapshotTests.swift */,
+				10B0344FBA344EE19CF38335 /* ExpandableLabelSnapshotTests.swift */,
 				548D351ED3DF43D2A362EED1 /* GradientViewSnapshotTests.swift */,
 				04C390AC1A4F4E8DBFFE066A /* NavigationHeaderViewSnapshotTests.swift */,
 				68C86E602BD9488E8B59DA64 /* NotchViewSnapshotTests.swift */,
+				C38803A1B9A24FBF9FA76C03 /* SegmentedControlViewSnapshotTests.swift */,
 				46320E41FD9C4527AA5401D5 /* TitleAccessoryViewSnapshotTests.swift */,
 			);
 			path = UI;
@@ -3984,6 +3993,9 @@
 				46320E41FD9C4528AA5401D5 /* TitleAccessoryViewSnapshotTests.swift in Sources */,
 				04C390AD1A4F4E8DBFFE066A /* NavigationHeaderViewSnapshotTests.swift in Sources */,
 				67494E79D0F240DCA90967C1 /* EmptyStateViewSnapshotTests.swift in Sources */,
+				6F8987B04EBA4FC4B6509A5C /* AvatarViewSnapshotTests.swift in Sources */,
+				10B03450BA344EE19CF38335 /* ExpandableLabelSnapshotTests.swift in Sources */,
+				C38803A2B9A24FBF9FA76C03 /* SegmentedControlViewSnapshotTests.swift in Sources */,
 				02A824842881B202004351D0 /* MockRestService.swift in Sources */,
 				022312EC2EB254E500551560 /* MockURLNavigatable.swift in Sources */,
 				02FA5A4E2882293000E8AD5C /* MockAccountView.swift in Sources */,
