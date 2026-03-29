@@ -5,9 +5,11 @@ import SnapshotTesting
 final class EmptyStateViewSnapshotTests: XCTestCase {
     var sut: EmptyStateView!
 
+    private let width: CGFloat = 375
+
     override func setUp() {
         super.setUp()
-        sut = EmptyStateView(frame: .init(origin: .zero, size: .init(width: 375, height: 300)))
+        sut = EmptyStateView(frame: .init(origin: .zero, size: .init(width: width, height: 0)))
         sut.backgroundColor = .armonyBlack
     }
 
@@ -19,8 +21,8 @@ final class EmptyStateViewSnapshotTests: XCTestCase {
     func testEmptyStateWithTitleOnly() {
         let presentation = EmptyStatePresentation(title: "No results found")
         sut.configure(with: presentation)
-        sut.layoutIfNeeded()
-        assertSnapshot(of: sut, as: .image)
+        let size = fittingSize()
+        assertSnapshot(of: sut, as: .image(size: size))
     }
 
     func testEmptyStateWithTitleAndSubtitle() {
@@ -29,8 +31,8 @@ final class EmptyStateViewSnapshotTests: XCTestCase {
             subtitle: "Try adjusting your search filters"
         )
         sut.configure(with: presentation)
-        sut.layoutIfNeeded()
-        assertSnapshot(of: sut, as: .image)
+        let size = fittingSize()
+        assertSnapshot(of: sut, as: .image(size: size))
     }
 
     func testEmptyStateWithAllElements() {
@@ -41,7 +43,19 @@ final class EmptyStateViewSnapshotTests: XCTestCase {
             buttonTitle: "Clear Filters"
         )
         sut.configure(with: presentation)
-        sut.layoutIfNeeded()
-        assertSnapshot(of: sut, as: .image)
+        let size = fittingSize()
+        assertSnapshot(of: sut, as: .image(size: size))
+    }
+
+    // MARK: - Helpers
+
+    private func fittingSize() -> CGSize {
+        let targetSize = CGSize(width: width, height: UIView.layoutFittingCompressedSize.height)
+        let fittedSize = sut.systemLayoutSizeFitting(
+            targetSize,
+            withHorizontalFittingPriority: .required,
+            verticalFittingPriority: .fittingSizeLevel
+        )
+        return CGSize(width: width, height: fittedSize.height)
     }
 }
