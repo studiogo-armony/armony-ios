@@ -12,8 +12,6 @@
 		020476EE2B37349500C41C57 /* PlaceAdvertFirebasveEventsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020476ED2B37349500C41C57 /* PlaceAdvertFirebasveEventsHandler.swift */; };
 		020476F22B37419A00C41C57 /* PlaceAdvertAdjustEventsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020476F12B37419A00C41C57 /* PlaceAdvertAdjustEventsHandler.swift */; };
 		0205A49E2C53E5C600D5821D /* DropdownViewSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0205A49D2C53E5C600D5821D /* DropdownViewSnapshotTests.swift */; };
-		A1B2C3D4E5F647A8B9C0D1E3 /* SelectionBottomPopUpViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F647A8B9C0D1E2 /* SelectionBottomPopUpViewControllerSnapshotTests.swift */; };
-		B2C3D4E5F6A748B9C0D1E2F4 /* PageViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C3D4E5F6A748B9C0D1E2F3 /* PageViewControllerSnapshotTests.swift */; };
 		020645452CCC58DC00251428 /* EmptyStateView+SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020645442CCC58DC00251428 /* EmptyStateView+SwiftUI.swift */; };
 		02079B25280F5841004644A1 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02079B24280F5841004644A1 /* PageViewController.swift */; };
 		020891DE29107A8A006E520D /* DeleteUserAdvertTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020891DD29107A8A006E520D /* DeleteUserAdvertTask.swift */; };
@@ -119,6 +117,9 @@
 		025E1EF5284A9030005D2F83 /* SelectionInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025E1EF4284A9030005D2F83 /* SelectionInput.swift */; };
 		025E1EF9284A9257005D2F83 /* SelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025E1EF7284A9257005D2F83 /* SelectionCell.swift */; };
 		025E1EFA284A9257005D2F83 /* SelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 025E1EF8284A9257005D2F83 /* SelectionCell.xib */; };
+		026283F12F7F0DC9002BB66B /* MockSelectionBottomPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026283EF2F7F0DC9002BB66B /* MockSelectionBottomPopUpView.swift */; };
+		026283F22F7F0DC9002BB66B /* MockSelectionBottomPopUpCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026283EE2F7F0DC9002BB66B /* MockSelectionBottomPopUpCoordinator.swift */; };
+		026283F32F7F0DC9002BB66B /* SelectionBottomPopUpViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026283F02F7F0DC9002BB66B /* SelectionBottomPopUpViewModelTests.swift */; };
 		026395A328845E320014CE0A /* Validation+Responder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026395A228845E320014CE0A /* Validation+Responder.swift */; };
 		0263B529281424D700E9378F /* AccountMusicalProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0263B528281424D700E9378F /* AccountMusicalProfileViewModel.swift */; };
 		0263B52B281424F500E9378F /* AccountMusicalProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0263B52A281424F500E9378F /* AccountMusicalProfileCoordinator.swift */; };
@@ -292,6 +293,7 @@
 		67494E79D0F240DCA90967C1 /* EmptyStateViewSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67494E78D0F240DCA90967C1 /* EmptyStateViewSnapshotTests.swift */; };
 		68C86E612BD9488E8B59DA64 /* NotchViewSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C86E602BD9488E8B59DA64 /* NotchViewSnapshotTests.swift */; };
 		6F8987B04EBA4FC4B6509A5C /* AvatarViewSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8987AF4EBA4FC4B6509A5C /* AvatarViewSnapshotTests.swift */; };
+		A1B2C3D4E5F647A8B9C0D1E3 /* SelectionBottomPopUpViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F647A8B9C0D1E2 /* SelectionBottomPopUpViewControllerSnapshotTests.swift */; };
 		B101B48329A8F878002A9EF0 /* NotNilOrEmpty.swift in Sources */ = {isa = PBXBuildFile; fileRef = B101B48229A8F878002A9EF0 /* NotNilOrEmpty.swift */; };
 		B106BCF126E428EB001CE109 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B106BCF026E428EB001CE109 /* Colors.xcassets */; };
 		B10825C1274C3BE60089F561 /* ArmonyUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10825C0274C3BE60089F561 /* ArmonyUser.swift */; };
@@ -485,6 +487,7 @@
 		B1FC54742710CAF800E8F4D1 /* SkillsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1FC54732710CAF800E8F4D1 /* SkillsView.xib */; };
 		B1FEFB1C29D8B84500F03EA0 /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = B1FEFB1B29D8B84500F03EA0 /* FacebookCore */; };
 		B1FEFB1F29D8E9AD00F03EA0 /* ExpandableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FEFB1E29D8E9AD00F03EA0 /* ExpandableLabel.swift */; };
+		B2C3D4E5F6A748B9C0D1E2F4 /* PageViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C3D4E5F6A748B9C0D1E2F3 /* PageViewControllerSnapshotTests.swift */; };
 		C38803A2B9A24FBF9FA76C03 /* SegmentedControlViewSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38803A1B9A24FBF9FA76C03 /* SegmentedControlViewSnapshotTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -511,8 +514,6 @@
 		020476ED2B37349500C41C57 /* PlaceAdvertFirebasveEventsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceAdvertFirebasveEventsHandler.swift; sourceTree = "<group>"; };
 		020476F12B37419A00C41C57 /* PlaceAdvertAdjustEventsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceAdvertAdjustEventsHandler.swift; sourceTree = "<group>"; };
 		0205A49D2C53E5C600D5821D /* DropdownViewSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownViewSnapshotTests.swift; sourceTree = "<group>"; };
-		A1B2C3D4E5F647A8B9C0D1E2 /* SelectionBottomPopUpViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionBottomPopUpViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
-		B2C3D4E5F6A748B9C0D1E2F3 /* PageViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
 		020645442CCC58DC00251428 /* EmptyStateView+SwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EmptyStateView+SwiftUI.swift"; sourceTree = "<group>"; };
 		02079B24280F5841004644A1 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		020891DD29107A8A006E520D /* DeleteUserAdvertTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteUserAdvertTask.swift; sourceTree = "<group>"; };
@@ -609,6 +610,9 @@
 		025E1EF4284A9030005D2F83 /* SelectionInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionInput.swift; sourceTree = "<group>"; };
 		025E1EF7284A9257005D2F83 /* SelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionCell.swift; sourceTree = "<group>"; };
 		025E1EF8284A9257005D2F83 /* SelectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectionCell.xib; sourceTree = "<group>"; };
+		026283EE2F7F0DC9002BB66B /* MockSelectionBottomPopUpCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSelectionBottomPopUpCoordinator.swift; sourceTree = "<group>"; };
+		026283EF2F7F0DC9002BB66B /* MockSelectionBottomPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSelectionBottomPopUpView.swift; sourceTree = "<group>"; };
+		026283F02F7F0DC9002BB66B /* SelectionBottomPopUpViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionBottomPopUpViewModelTests.swift; sourceTree = "<group>"; };
 		026395A228845E320014CE0A /* Validation+Responder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Validation+Responder.swift"; sourceTree = "<group>"; };
 		0263B528281424D700E9378F /* AccountMusicalProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountMusicalProfileViewModel.swift; sourceTree = "<group>"; };
 		0263B52A281424F500E9378F /* AccountMusicalProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountMusicalProfileCoordinator.swift; sourceTree = "<group>"; };
@@ -775,6 +779,7 @@
 		67494E78D0F240DCA90967C1 /* EmptyStateViewSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateViewSnapshotTests.swift; sourceTree = "<group>"; };
 		68C86E602BD9488E8B59DA64 /* NotchViewSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchViewSnapshotTests.swift; sourceTree = "<group>"; };
 		6F8987AF4EBA4FC4B6509A5C /* AvatarViewSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarViewSnapshotTests.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F647A8B9C0D1E2 /* SelectionBottomPopUpViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionBottomPopUpViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
 		B101B48229A8F878002A9EF0 /* NotNilOrEmpty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotNilOrEmpty.swift; sourceTree = "<group>"; };
 		B106BCF026E428EB001CE109 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		B10825C0274C3BE60089F561 /* ArmonyUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArmonyUser.swift; sourceTree = "<group>"; };
@@ -972,6 +977,7 @@
 		B1FC54712710CA5600E8F4D1 /* SkillsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillsView.swift; sourceTree = "<group>"; };
 		B1FC54732710CAF800E8F4D1 /* SkillsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SkillsView.xib; sourceTree = "<group>"; };
 		B1FEFB1E29D8E9AD00F03EA0 /* ExpandableLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableLabel.swift; sourceTree = "<group>"; };
+		B2C3D4E5F6A748B9C0D1E2F3 /* PageViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
 		C38803A1B9A24FBF9FA76C03 /* SegmentedControlViewSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControlViewSnapshotTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1086,6 +1092,7 @@
 				46320E41FD9C4527AA5401D5 /* TitleAccessoryViewSnapshotTests.swift */,
 				A1B2C3D4E5F647A8B9C0D1E2 /* SelectionBottomPopUpViewControllerSnapshotTests.swift */,
 				B2C3D4E5F6A748B9C0D1E2F3 /* PageViewControllerSnapshotTests.swift */,
+				C3D4E5F6A7B849CAD1E2F3A0 /* SelectionBottomPopUp */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -3380,6 +3387,16 @@
 			path = Labels;
 			sourceTree = "<group>";
 		};
+		C3D4E5F6A7B849CAD1E2F3A0 /* SelectionBottomPopUp */ = {
+			isa = PBXGroup;
+			children = (
+				026283EE2F7F0DC9002BB66B /* MockSelectionBottomPopUpCoordinator.swift */,
+				026283EF2F7F0DC9002BB66B /* MockSelectionBottomPopUpView.swift */,
+				026283F02F7F0DC9002BB66B /* SelectionBottomPopUpViewModelTests.swift */,
+			);
+			path = SelectionBottomPopUp;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -3989,6 +4006,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1B55C9D26CEFAE300FDE884 /* AccountViewModelTests.swift in Sources */,
+				026283F12F7F0DC9002BB66B /* MockSelectionBottomPopUpView.swift in Sources */,
+				026283F22F7F0DC9002BB66B /* MockSelectionBottomPopUpCoordinator.swift in Sources */,
+				026283F32F7F0DC9002BB66B /* SelectionBottomPopUpViewModelTests.swift in Sources */,
 				02B786762D3ADB2700A8B6AE /* FeedbackViewModelTests.swift in Sources */,
 				02B26C482E931367003EF74E /* MockAuthenticationService.swift in Sources */,
 				02B191332EA6D82500E7878D /* MockDispatchQueue.swift in Sources */,

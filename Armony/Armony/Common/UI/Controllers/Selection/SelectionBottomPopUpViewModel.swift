@@ -7,9 +7,15 @@
 
 import Foundation
 
+protocol SelectionBottomPopUpCoordinating: AnyObject {
+    func dismiss(animated: Bool, completion: VoidCallback?)
+}
+
+extension SelectionBottomPopUpCoordinator: SelectionBottomPopUpCoordinating { }
+
 final class SelectionBottomPopUpViewModel {
 
-    var coordinator: SelectionBottomPopUpCoordinator!
+    var coordinator: SelectionBottomPopUpCoordinating!
     private weak var view: SelectionBottomPopUpViewDelegate?
 
     var numberOfRowsInSection: Int {
