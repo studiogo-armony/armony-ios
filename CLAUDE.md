@@ -82,6 +82,95 @@ Treat any file that holds secrets as **local-only** unless the project explicitl
 - **GitHub Actions:** [`.github/workflows/`](.github/workflows/) — e.g. `create_release_branch.yaml`, `merge_release_to_main.yaml`, `merge_main_to_development.yaml` (release branching and branch sync).  
 - **Xcode Cloud–style scripts:** [`Armony/ci_scripts/`](Armony/ci_scripts/) — `ci_pre_xcodebuild.sh`, `ci_post_clone.sh`, `ci_post_xcodebuild.sh` (validate env, configure plists, post-build steps as documented in README).
 
+## Unit testing
+
+### Test target & structure
+
+- Test target: **`ArmonyTests`** — inside `Armony/Armony.xcodeproj`.
+- Tests live under **`Armony/ArmonyTests/Scenes/<FeatureName>/`** mirroring the main target structure.
+- Common mocks live under **`Armony/ArmonyTests/CommonMocks/`**.
+- JSON fixtures for `MockRestService.load(fromJSONFile:)` live under **`ArmonyTests/Scenes/<FeatureName>/JSONs/`** and must be added to the test target's **Copy Bundle Resources** build phase (not Sources).
+- New `.swift` files must be added to `project.pbxproj` manually (Xcode does not auto-discover files on disk).
+
+### Simulator for CLI builds
+
+```
+platform=iOS Simulator,id=1844D0EE-B1AC-46CC-BA8F-0DB59522559E  # iPhone 16
+```
+
+### Testability conventions
+
+To make a view model testable, follow this checklist:
+
+1. **View protocol** — the view controller conforms to a `*ViewDelegate` protocol; the view model holds `private weak var view: *ViewDelegate?`.
+2. **Service injection** — `ViewModel` base accepts `RestService`; subclass `init` must expose it: `init(view:, service: RestService = RestService(backend: .factory()))`.
+3. **Coordinator protocol** — each feature that needs coordinator mocking gets a `*Coordinating` protocol extending `CoordinatorInterface` (defined in `Coordinator.swift`). The coordinator conforms to both `Coordinator` and `*Coordinating`. The view model's `coordinator` property is typed `(any *Coordinating)!`.
+4. **Service singletons** — singletons used inside a view model (e.g. `AuthenticationService`, `RevenueCatPurchaseStorageService`, `AppRatingService`) must be injected via a protocol with a default value pointing to `.shared`. Never call `.shared` directly inside business logic.
+
+### Protocol hierarchy
+
+```
+CoordinatorInterface          — dismiss, pop, popToRootViewController, open(deeplink:), selectTab
+    └── Coordinator           — adds associatedtype Controller, navigator, createViewController
+    └── *Coordinating         — adds feature-specific methods (e.g. profileSelection)
+```
+
+`MockCoordinator` conforms to `CoordinatorInterface + FilterCoordinating` and is the general-purpose coordinator mock for Settings/Filter tests.
+
+### Mock conventions
+
+Mocks follow the **invoked / invokedCount / invokedParameters / stubbed** naming pattern:
+
+```swift
+var invokedFoo = false
+var invokedFooCount = 0
+var invokedFooParameters: (bar: String, Void)?
+var stubbedFooResult: Bool = false
+
+func foo(bar: String) -> Bool {
+    invokedFoo = true
+    invokedFooCount += 1
+    invokedFooParameters = (bar, ())
+    return stubbedFooResult
+}
+```
+
+For async tests that need a synchronisation point, add an `on*: VoidCallback?` property to the mock and call it at the end of the relevant method — then use `XCTestExpectation` + `fulfillment(of:timeout:)` in the test.
+
+### MockRestService — sequential responses
+
+`MockRestService` supports two stubbing modes:
+
+- `stubbedResult: APIResponse?` — every `execute` call returns the same value (cast to the expected type).
+- `stubbedResults: [APIResponse]` — responses are consumed in order (FIFO). Use this when a single flow triggers multiple `execute` calls with different response types (e.g. `submitButtonTapped` calls `hasUserAds` then `createAd`).
+
+**Important:** `executeExpectation.fulfill()` is only called when both `stubbedResult` and `stubbedResults` fail to cast — i.e. the error path. Do **not** use `executeExpectation` as a signal for success; use `mockView.on*` callbacks instead.
+
+### Async test pattern
+
+```swift
+func test_foo_whenSuccess_doesBar() async throws {
+    let expectation = expectation(description: "bar called")
+    mockView.onBar = { expectation.fulfill() }
+    mockService.stubbedResult = /* stub */
+
+    sut.foo()
+
+    await fulfillment(of: [expectation], timeout: 2.0)
+    XCTAssertTrue(mockView.invokedBar)
+}
+```
+
+### JSON fixtures
+
+CodingKeys must match the **server-side** key names, not the Swift property names. Cross-check `CodingKeys` enums in the model before writing a fixture. Example gotchas in this codebase:
+
+| Swift property | JSON key    |
+|----------------|-------------|
+| `type`         | `adType`    |
+| `location`     | `city`      |
+| `updateDate`   | `updatedAt` |
+
 ## Working agreement for AI changes
 
 - Prefer **small, focused diffs** that match existing naming, folder structure, and patterns in the touched feature.  
