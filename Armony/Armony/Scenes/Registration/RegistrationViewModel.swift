@@ -9,26 +9,29 @@ import Foundation
 
 final class RegistrationViewModel: ViewModel {
 
-    var coordinator: RegistrationCoordinator!
+    var coordinator: (any RegistrationCoordinating)!
 
     private weak var view: RegistrationViewDelegate?
-    private unowned var notifier: NotificationCenter
-    private let authenticator: AuthenticationService
+    private var notifier: any NotificationPosting
+    private let authenticator: any AuthenticationProviding
 
     private(set) var registrationCompletion: VoidCallback?
     private(set) var loginCompletion: VoidCallback?
 
-    init(view: RegistrationViewDelegate,
-         registrationCompletion: VoidCallback?,
-         loginCompletion: VoidCallback?,
-         notifier: NotificationCenter = .default,
-         authenticationService authenticator: AuthenticationService = .shared) {
+    init(
+        view: RegistrationViewDelegate,
+        registrationCompletion: VoidCallback?,
+        loginCompletion: VoidCallback?,
+        notifier: any NotificationPosting = NotificationCenter.default,
+        authenticator: any AuthenticationProviding = AuthenticationService.shared,
+        service: RestService = RestService(backend: .factory())
+    ) {
         self.view = view
         self.registrationCompletion = registrationCompletion
         self.loginCompletion = loginCompletion
         self.notifier = notifier
         self.authenticator = authenticator
-        super.init()
+        super.init(service: service)
     }
 
     // Singup

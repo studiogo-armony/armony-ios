@@ -8,6 +8,12 @@
 import Foundation
 import UIKit
 
+public protocol NotificationPosting: AnyObject {
+    func post(notification: Notification.Name, object: Any?, userInfo: [HashableKey: Any]?)
+}
+
+extension NotificationCenter: NotificationPosting {}
+
 public extension NotificationCenter {
 
     @discardableResult

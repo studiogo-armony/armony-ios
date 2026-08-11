@@ -130,6 +130,12 @@
 		026789992EF0A8B9009A266A /* MockFilterViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026789962EF0A8B9009A266A /* MockFilterViewModelDelegate.swift */; };
 		0267899A2EF0A8B9009A266A /* MockFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026789952EF0A8B9009A266A /* MockFilterView.swift */; };
 		02CA1A012F800000001CA001 /* PlaceAdvertCoordinating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CA1A002F800000001CA001 /* PlaceAdvertCoordinating.swift */; };
+		AA000001000000000000AA01 /* RegistrationCoordinating.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001000000000000AA00 /* RegistrationCoordinating.swift */; };
+		AA000001000000000000AA02 /* MockNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001000000000000AA03 /* MockNotificationCenter.swift */; };
+		AA000001000000000000AA04 /* MockRegistrationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001000000000000AA05 /* MockRegistrationCoordinator.swift */; };
+		AA000001000000000000AA06 /* MockRegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001000000000000AA07 /* MockRegistrationView.swift */; };
+		AA000001000000000000AA08 /* RegistrationViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001000000000000AA09 /* RegistrationViewModelTests.swift */; };
+		AA000001000000000000AA0A /* Registration-Token-Sample.json in Resources */ = {isa = PBXBuildFile; fileRef = AA000001000000000000AA0B /* Registration-Token-Sample.json */; };
 		02CA1A022F800000001CA002 /* PlaceAdvertViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CA1A032F800000001CA003 /* PlaceAdvertViewModelTests.swift */; };
 		02CA1A042F800000001CA004 /* MockPlaceAdvertCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CA1A052F800000001CA005 /* MockPlaceAdvertCoordinator.swift */; };
 		02CA1A062F800000001CA006 /* MockPlaceAdvertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CA1A072F800000001CA007 /* MockPlaceAdvertView.swift */; };
@@ -694,6 +700,12 @@
 		02AF996B28ED944E006669F4 /* PlaceAdvertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceAdvertViewModel.swift; sourceTree = "<group>"; };
 		02AF996D28ED9476006669F4 /* PlaceAdvertCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceAdvertCoordinator.swift; sourceTree = "<group>"; };
 		02CA1A002F800000001CA001 /* PlaceAdvertCoordinating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceAdvertCoordinating.swift; sourceTree = "<group>"; };
+		AA000001000000000000AA00 /* RegistrationCoordinating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCoordinating.swift; sourceTree = "<group>"; };
+		AA000001000000000000AA03 /* MockNotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNotificationCenter.swift; sourceTree = "<group>"; };
+		AA000001000000000000AA05 /* MockRegistrationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRegistrationCoordinator.swift; sourceTree = "<group>"; };
+		AA000001000000000000AA07 /* MockRegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRegistrationView.swift; sourceTree = "<group>"; };
+		AA000001000000000000AA09 /* RegistrationViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModelTests.swift; sourceTree = "<group>"; };
+		AA000001000000000000AA0B /* Registration-Token-Sample.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "Registration-Token-Sample.json"; sourceTree = "<group>"; };
 		02CA1A032F800000001CA003 /* PlaceAdvertViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceAdvertViewModelTests.swift; sourceTree = "<group>"; };
 		02CA1A052F800000001CA005 /* MockPlaceAdvertCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPlaceAdvertCoordinator.swift; sourceTree = "<group>"; };
 		02CA1A072F800000001CA007 /* MockPlaceAdvertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPlaceAdvertView.swift; sourceTree = "<group>"; };
@@ -1895,6 +1907,7 @@
 				02B191322EA6D82400E7878D /* MockDispatchQueue.swift */,
 				02B191342EA6D85500E7878D /* MockLoginCoordinator.swift */,
 				02B26C472E931365003EF74E /* MockAuthenticationService.swift */,
+				AA000001000000000000AA03 /* MockNotificationCenter.swift */,
 				02A824832881B202004351D0 /* MockRestService.swift */,
 				02AB1001AA001001001AA001 /* MockRevenueCatPurchaseStorageService.swift */,
 				02AB1003AA001001001AA003 /* MockAppRatingService.swift */,
@@ -1970,8 +1983,28 @@
 				026789902EF09AD2009A266A /* Settings */,
 				02B786742D3ADB2700A8B6AE /* Feedback */,
 				02CA1A082F800000001CA008 /* CreateAdvert */,
+				AA000001000000000000AA0C /* Registration */,
 			);
 			path = Scenes;
+			sourceTree = "<group>";
+		};
+		AA000001000000000000AA0C /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+				AA000001000000000000AA09 /* RegistrationViewModelTests.swift */,
+				AA000001000000000000AA05 /* MockRegistrationCoordinator.swift */,
+				AA000001000000000000AA07 /* MockRegistrationView.swift */,
+				AA000001000000000000AA0D /* JSONs */,
+			);
+			path = Registration;
+			sourceTree = "<group>";
+		};
+		AA000001000000000000AA0D /* JSONs */ = {
+			isa = PBXGroup;
+			children = (
+				AA000001000000000000AA0B /* Registration-Token-Sample.json */,
+			);
+			path = JSONs;
 			sourceTree = "<group>";
 		};
 		02B7CA5F29259AE10055B181 /* Chat */ = {
@@ -2913,6 +2946,7 @@
 			children = (
 				028C4AFA2892E3D600707101 /* API */,
 				B1A6FB2627A9B51D00E1BEA5 /* RegistrationCoordinator.swift */,
+				AA000001000000000000AA00 /* RegistrationCoordinating.swift */,
 				B1A6FB2827A9B6F900E1BEA5 /* RegistrationViewController.swift */,
 				B1A6FB2427A9B4CB00E1BEA5 /* RegistrationViewModel.swift */,
 				B1A6FB2227A9B4AB00E1BEA5 /* Registration.storyboard */,
@@ -3663,6 +3697,7 @@
 			files = (
 				02FA5A4928820D8300E8AD5C /* Account-Sample-Data.json in Resources */,
 				02AB1006AA001001001AA006 /* PlaceAdvert-Sample-Data.json in Resources */,
+				AA000001000000000000AA0A /* Registration-Token-Sample.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3814,6 +3849,7 @@
 				B1B6132029AEA7D500A0A0AA /* ValidatableTextView.swift in Sources */,
 				02AF996E28ED9476006669F4 /* PlaceAdvertCoordinator.swift in Sources */,
 				02CA1A012F800000001CA001 /* PlaceAdvertCoordinating.swift in Sources */,
+				AA000001000000000000AA01 /* RegistrationCoordinating.swift in Sources */,
 				02311023284139A500CB2488 /* SettingsViewModel.swift in Sources */,
 				02C4D6EC288BFCD500FDF55F /* TitleSelectionPresentation.swift in Sources */,
 				0248038F2861C85D0012D6CF /* AccountInformationViewModel.swift in Sources */,
@@ -4085,6 +4121,10 @@
 				02CA1A062F800000001CA006 /* MockPlaceAdvertView.swift in Sources */,
 				02AB1002AA001001001AA002 /* MockRevenueCatPurchaseStorageService.swift in Sources */,
 				02AB1004AA001001001AA004 /* MockAppRatingService.swift in Sources */,
+				AA000001000000000000AA02 /* MockNotificationCenter.swift in Sources */,
+				AA000001000000000000AA04 /* MockRegistrationCoordinator.swift in Sources */,
+				AA000001000000000000AA06 /* MockRegistrationView.swift in Sources */,
+				AA000001000000000000AA08 /* RegistrationViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

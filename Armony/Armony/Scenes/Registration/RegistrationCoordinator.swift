@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class RegistrationCoordinator: Coordinator {
+final class RegistrationCoordinator: Coordinator, RegistrationCoordinating {
 
     typealias Controller = RegistrationViewController
 
