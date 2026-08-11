@@ -11,7 +11,17 @@ import SafariServices
 
 public typealias Navigator = UINavigationController
 
-public protocol Coordinator {
+public protocol CoordinatorInterface: AnyObject {
+    func dismiss(animated: Bool, completion: VoidCallback?)
+    func pop(animated: Bool)
+    func popToRootViewController(animated: Bool)
+    func open(deeplink: Deeplink)
+
+    @discardableResult
+    func selectTab(tab: Common.Tab, shouldPopToRoot: Bool) -> UIViewController?
+}
+
+public protocol Coordinator: CoordinatorInterface {
 
     associatedtype Controller: ViewController
 
@@ -19,12 +29,6 @@ public protocol Coordinator {
 
     func createViewController() -> Controller
     func createNavigatorWithRootViewController() -> (navigator: Navigator, view: Controller)
-    
-    func dismiss(animated: Bool, completion: VoidCallback?)
-    func pop(animated: Bool)
-    func popToRootViewController(animated: Bool)
-
-    func open(deeplink: Deeplink)
 }
 
 public extension Coordinator where Controller: UIViewController {
@@ -48,14 +52,29 @@ public extension Coordinator where Controller: UIViewController {
     }
 }
 
+public extension CoordinatorInterface {
+
+    func open(deeplink: Deeplink) {
+        URLNavigator.shared.open(deeplink)
+    }
+
+    @discardableResult
+    func selectTab(tab: Common.Tab, shouldPopToRoot: Bool = false) -> UIViewController? {
+        let tabBarController = UIApplication.tabBarController
+        let tabBarControllerViewControllers = UIApplication.tabBarController?.viewControllers
+
+        tabBarController?.selectedIndex = tab.index
+        if shouldPopToRoot {
+            tabBarControllerViewControllers?.element(at: tab.index)?.navigator?.popToRootViewController(animated: true)
+        }
+        return tabBarControllerViewControllers?.element(at: tab.index)?.navigator?.rootViewController
+    }
+}
+
 public extension Coordinator {
 
     var urlNavigator: URLNavigation {
         return URLNavigator.shared
-    }
-
-    func open(deeplink: Deeplink) {
-        urlNavigator.open(deeplink)
     }
 
     func open(url: URL) {
@@ -86,18 +105,6 @@ public extension Coordinator {
 
     func popToRootViewController(animated: Bool) {
         navigator?.popToRootViewController(animated: animated)
-    }
-
-    @discardableResult
-    func selectTab(tab: Common.Tab, shouldPopToRoot: Bool = false) -> UIViewController? {
-        let tabBarController = UIApplication.tabBarController
-        let tabBarControllerViewControllers = UIApplication.tabBarController?.viewControllers
-
-        tabBarController?.selectedIndex = tab.index
-        if shouldPopToRoot {
-            tabBarControllerViewControllers?.element(at: tab.index)?.navigator?.popToRootViewController(animated: true)
-        }
-        return tabBarControllerViewControllers?.element(at: tab.index)?.navigator?.rootViewController
     }
 
     @discardableResult

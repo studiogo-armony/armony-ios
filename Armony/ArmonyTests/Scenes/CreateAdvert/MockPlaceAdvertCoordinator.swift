@@ -1,5 +1,5 @@
 //
-//  MockCoordinator.swift
+//  MockPlaceAdvertCoordinator.swift
 //  ArmonyTests
 //
 //  Created by Koray Yıldız on 11.08.26.
@@ -8,83 +8,73 @@
 import UIKit
 @testable import Armony
 
-final class MockUIViewController: UIViewController, ViewController {
-    static var storyboardName: UIStoryboard.Name = .none
-}
+final class MockPlaceAdvertCoordinator: PlaceAdvertCoordinating {
 
-final class MockCoordinator: CoordinatorInterface, FilterCoordinating {
+    // MARK: - profileSelection
+    var invokedProfileSelection = false
+    var invokedProfileSelectionCount = 0
+    var invokedProfileSelectionParameters: (presentation: any SelectionPresentation, Void)?
 
-    // MARK: - navigator
-    var navigator: Navigator?
+    func profileSelection(presentation: any SelectionPresentation) {
+        invokedProfileSelection = true
+        invokedProfileSelectionCount += 1
+        invokedProfileSelectionParameters = (presentation, ())
+    }
 
     // MARK: - dismiss
     var invokedDismiss = false
     var invokedDismissCount = 0
     var invokedDismissParameters: (animated: Bool, completion: VoidCallback?)?
-    var invokedDismissParametersList = [(animated: Bool, completion: VoidCallback?)]()
-    var stubbedDismissCompletionResult: VoidCallback?
 
     func dismiss(animated: Bool, completion: VoidCallback?) {
         invokedDismiss = true
         invokedDismissCount += 1
         invokedDismissParameters = (animated, completion)
-        invokedDismissParametersList.append((animated, completion))
-        stubbedDismissCompletionResult = completion
         completion?()
     }
 
     // MARK: - pop
     var invokedPop = false
     var invokedPopCount = 0
-    var invokedPopParameters: (animated: Bool, Void)?
-    var invokedPopParametersList = [(animated: Bool, Void)]()
 
     func pop(animated: Bool) {
         invokedPop = true
         invokedPopCount += 1
-        invokedPopParameters = (animated, ())
-        invokedPopParametersList.append((animated, ()))
     }
 
     // MARK: - popToRootViewController
     var invokedPopToRootViewController = false
     var invokedPopToRootViewControllerCount = 0
-    var invokedPopToRootViewControllerParameters: (animated: Bool, Void)?
-    var invokedPopToRootViewControllerParametersList = [(animated: Bool, Void)]()
 
     func popToRootViewController(animated: Bool) {
         invokedPopToRootViewController = true
         invokedPopToRootViewControllerCount += 1
-        invokedPopToRootViewControllerParameters = (animated, ())
-        invokedPopToRootViewControllerParametersList.append((animated, ()))
     }
 
     // MARK: - open(deeplink:)
     var invokedOpen = false
     var invokedOpenCount = 0
     var invokedOpenParameters: (deeplink: Deeplink, Void)?
-    var invokedOpenParametersList = [(deeplink: Deeplink, Void)]()
 
     func open(deeplink: Deeplink) {
         invokedOpen = true
         invokedOpenCount += 1
         invokedOpenParameters = (deeplink, ())
-        invokedOpenParametersList.append((deeplink, ()))
     }
 
     // MARK: - selectTab
     var invokedSelectTab = false
     var invokedSelectTabCount = 0
     var invokedSelectTabParameters: (tab: Common.Tab, shouldPopToRoot: Bool)?
-    var invokedSelectTabParametersList = [(tab: Common.Tab, shouldPopToRoot: Bool)]()
     var stubbedSelectTabResult: UIViewController?
+    var onSelectTab: VoidCallback?
 
     @discardableResult
     func selectTab(tab: Common.Tab, shouldPopToRoot: Bool) -> UIViewController? {
         invokedSelectTab = true
         invokedSelectTabCount += 1
         invokedSelectTabParameters = (tab, shouldPopToRoot)
-        invokedSelectTabParametersList.append((tab, shouldPopToRoot))
+        onSelectTab?()
         return stubbedSelectTabResult
     }
 }

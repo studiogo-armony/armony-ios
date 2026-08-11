@@ -37,10 +37,12 @@ final class PlaceAdvertViewModel: ViewModel {
         )
     }
 
-    var coordinator: PlaceAdvertCoordinator!
+    var coordinator: (any PlaceAdvertCoordinating)!
     private weak var view: PlaceAdvertViewDelegate?
     private let notificationService: PlaceAdvertNotificationService = .shared
-    private let authenticator: AuthenticationService = .shared
+    private let authenticator: any AuthenticationProviding
+    private let purchaseStorage: any RevenueCatPurchaseStoring
+    private let appRating: any AppRating
 
     private var selectedIDStorage: SelectedIDStorage = .empty
     private var request: PlaceAdvertRequest
@@ -53,10 +55,19 @@ final class PlaceAdvertViewModel: ViewModel {
         }
     }
 
-    init(view: PlaceAdvertViewDelegate) {
+    init(
+        view: PlaceAdvertViewDelegate,
+        authenticator: any AuthenticationProviding = AuthenticationService.shared,
+        purchaseStorage: any RevenueCatPurchaseStoring = RevenueCatPurchaseStorageService.shared,
+        appRating: any AppRating = AppRatingService.shared,
+        service: RestService = RestService(backend: .factory())
+    ) {
         self.view = view
+        self.authenticator = authenticator
+        self.purchaseStorage = purchaseStorage
+        self.appRating = appRating
         self.request = .empty
-        super.init()
+        super.init(service: service)
     }
 
     func descriptionTextViewDidChange(description: String?) {
@@ -208,7 +219,7 @@ final class PlaceAdvertViewModel: ViewModel {
             do {
                 let hasUserAds = try await hasUserAds()
                 view?.stopSubmitButtonActivityIndicatorView()
-                if hasUserAds, RevenueCatPurchaseStorageService.shared.identifiers.isEmpty {
+                if hasUserAds, purchaseStorage.identifiers.isEmpty {
                     view?.showPaywall()
                 }
                 else {
@@ -256,11 +267,11 @@ final class PlaceAdvertViewModel: ViewModel {
                 )
 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                    AppRatingService.shared.requestReviewIfNeeded()
+                    self.appRating.requestReviewIfNeeded()
                 }
 
                 if let transactionID {
-                    RevenueCatPurchaseStorageService.shared.remove(transactionID: transactionID)
+                    purchaseStorage.remove(transactionID: transactionID)
                 }
             }
             catch let error {

@@ -11,8 +11,9 @@ import XCTest
 
 final class MockRestService: RestService {
     static var shared: MockRestService = MockRestService(backend: .factory())
-    
+
     var stubbedResult: APIResponse?
+    var stubbedResults: [APIResponse] = []
     var error: Error?
 
     var executeExpectation = XCTestExpectation(description: "executeExpectation")
@@ -21,7 +22,14 @@ final class MockRestService: RestService {
         if let error = error {
             throw error
         }
-        
+
+        if !stubbedResults.isEmpty {
+            let next = stubbedResults.removeFirst()
+            if let result = next as? R {
+                return result
+            }
+        }
+
         if let result = stubbedResult as? R {
             return result
         }

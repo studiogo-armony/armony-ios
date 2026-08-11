@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class FilterCoordinator: Coordinator {
+final class FilterCoordinator: Coordinator, FilterCoordinating {
 
     typealias Controller = FilterViewController
 

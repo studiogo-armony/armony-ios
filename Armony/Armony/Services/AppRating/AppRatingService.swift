@@ -6,11 +6,15 @@
 import Foundation
 import StoreKit
 
-final class AppRatingService {
+protocol AppRating: AnyObject {
+    func requestReviewIfNeeded()
+}
+
+final class AppRatingService: AppRating {
     static let shared = AppRatingService()
-    
+
     private let minimumDaysBetweenRequests: TimeInterval = 60 * 24 * 60 * 60 // 60 days
-    
+
     private init() { }
     
     func requestReviewIfNeeded() {

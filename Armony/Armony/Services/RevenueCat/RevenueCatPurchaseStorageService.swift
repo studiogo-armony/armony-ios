@@ -12,7 +12,13 @@ private struct Constants {
     static let keychainServiceName = Bundle.main.bundleIdentifier.emptyIfNil + "RevenueCatPurchaseStorageService"
 }
 
-final class RevenueCatPurchaseStorageService {
+protocol RevenueCatPurchaseStoring: AnyObject {
+    var identifiers: [String] { get }
+    func store(transactionID: String)
+    func remove(transactionID: String)
+}
+
+final class RevenueCatPurchaseStorageService: RevenueCatPurchaseStoring {
 
     static let shared = RevenueCatPurchaseStorageService()
 

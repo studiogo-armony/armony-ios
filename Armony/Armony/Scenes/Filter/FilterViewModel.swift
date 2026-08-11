@@ -42,7 +42,7 @@ final class FilterViewModel: ViewModel {
 
     private weak var view: FilterViewDelegate?
     weak var delegate: FilterViewModelDelegate?
-    var coordinator: (any Coordinator)!
+    var coordinator: (any FilterCoordinating)!
 
     var filters: Filters = .empty {
         didSet {

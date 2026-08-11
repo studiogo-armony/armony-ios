@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class PlaceAdvertCoordinator: Coordinator {
+final class PlaceAdvertCoordinator: Coordinator, PlaceAdvertCoordinating {
 
     typealias Controller = PlaceAdvertViewController
 

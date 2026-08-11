@@ -9,7 +9,7 @@ import Foundation
 
 final class SettingsViewModel: ViewModel {
 
-    var coordinator: (any Coordinator)!
+    var coordinator: (any CoordinatorInterface)!
 
     private weak var view: SettingsViewDelegate?
     private let authenticator: AuthenticationProviding
