@@ -7,6 +7,8 @@
 
 import Foundation
 
+// Test commit message
+
 public extension HashableKey {
     // MARK: Deeplink
     static let deeplink: HashableKey = "deeplink"
