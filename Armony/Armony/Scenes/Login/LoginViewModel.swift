@@ -9,26 +9,27 @@ import Foundation
 
 final class LoginViewModel: ViewModel {
 
-    var coordinator: LoginCoordinator!
+    var coordinator: (any LoginCoordinating)!
     private weak var view: LoginViewDelegate?
-    private let authenticator: AuthenticationService
+    private let authenticator: any AuthenticationProviding
 
     private(set) var registrationCompletion: VoidCallback?
     private(set) var loginCompletion: VoidCallback?
 
-    private unowned var notifier: NotificationCenter
+    private var notifier: any NotificationPosting
 
     init(view: LoginViewDelegate,
          loginCompletion: VoidCallback?,
          registrationCompletion: VoidCallback?,
-         authenticator authenticationService: AuthenticationService = .shared,
-         notifier: NotificationCenter = .default) {
+         authenticator authenticationService: any AuthenticationProviding = AuthenticationService.shared,
+         notifier: any NotificationPosting = NotificationCenter.default,
+         service: RestService = RestService(backend: .factory())) {
         self.authenticator = authenticationService
         self.notifier = notifier
         self.view = view
         self.loginCompletion = loginCompletion
         self.registrationCompletion = registrationCompletion
-        super.init()
+        super.init(service: service)
     }
 
     func forgetPasswordButtonTapped(email: String) {
@@ -46,15 +47,15 @@ final class LoginViewModel: ViewModel {
                     type: RestObjectResponse<EmptyResponse>.self
                 )
 
-                self.notifier.post(name: .passwordResetEmailDidFail, object: self)
+                self.notifier.post(notification: .passwordResetEmailDidFail, object: self, userInfo: nil)
 
                 AlertService.show(message: "An email has been sent to address \(email) to reset your password.", actions: await [.okay(action: { [weak self] in
-                    self?.notifier.post(name: .passwordResetEmailDidSend, object: self)
+                    self?.notifier.post(notification: .passwordResetEmailDidSend, object: self, userInfo: nil)
                 })])
             }
             catch let error {
                 await AlertService.show(message: AuthenticationErrorHandler.message(for: error.api), actions: [.okay()])
-                self.notifier.post(name: .passwordResetEmailDidFail, object: self)
+                self.notifier.post(notification: .passwordResetEmailDidFail, object: self, userInfo: nil)
             }
         }
     }

@@ -119,10 +119,12 @@ final class MockPlaceAdvertView: PlaceAdvertViewDelegate {
 
     var invokedStopAdvertTypeActivityIndicator = false
     var invokedStopAdvertTypeActivityIndicatorCount = 0
+    var onStopAdvertTypeActivityIndicator: VoidCallback?
 
     func stopAdvertTypeDropdownViewActivityIndicatorView() {
         invokedStopAdvertTypeActivityIndicator = true
         invokedStopAdvertTypeActivityIndicatorCount += 1
+        onStopAdvertTypeActivityIndicator?()
     }
 
     // MARK: - Skills Activity Indicator
@@ -136,10 +138,12 @@ final class MockPlaceAdvertView: PlaceAdvertViewDelegate {
 
     var invokedStopSkillsActivityIndicator = false
     var invokedStopSkillsActivityIndicatorCount = 0
+    var onStopSkillsActivityIndicator: VoidCallback?
 
     func stopSkillsDropdownViewActivityIndicatorView() {
         invokedStopSkillsActivityIndicator = true
         invokedStopSkillsActivityIndicatorCount += 1
+        onStopSkillsActivityIndicator?()
     }
 
     // MARK: - Music Genres Activity Indicator
@@ -153,10 +157,12 @@ final class MockPlaceAdvertView: PlaceAdvertViewDelegate {
 
     var invokedStopMusicGenresActivityIndicator = false
     var invokedStopMusicGenresActivityIndicatorCount = 0
+    var onStopMusicGenresActivityIndicator: VoidCallback?
 
     func stopMusicGenresDropdownViewActivityIndicatorView() {
         invokedStopMusicGenresActivityIndicator = true
         invokedStopMusicGenresActivityIndicatorCount += 1
+        onStopMusicGenresActivityIndicator?()
     }
 
     // MARK: - setMusicGenresDropdownViewVisibility
@@ -181,10 +187,12 @@ final class MockPlaceAdvertView: PlaceAdvertViewDelegate {
 
     var invokedStopLocationActivityIndicator = false
     var invokedStopLocationActivityIndicatorCount = 0
+    var onStopLocationActivityIndicator: VoidCallback?
 
     func stopLocationDropdownViewActivityIndicatorView() {
         invokedStopLocationActivityIndicator = true
         invokedStopLocationActivityIndicatorCount += 1
+        onStopLocationActivityIndicator?()
     }
 
     // MARK: - Instruction Type Activity Indicator
@@ -198,10 +206,12 @@ final class MockPlaceAdvertView: PlaceAdvertViewDelegate {
 
     var invokedStopInstructionTypeActivityIndicator = false
     var invokedStopInstructionTypeActivityIndicatorCount = 0
+    var onStopInstructionTypeActivityIndicator: VoidCallback?
 
     func stopInstructionTypeDropdownViewActivityIndicatorView() {
         invokedStopInstructionTypeActivityIndicator = true
         invokedStopInstructionTypeActivityIndicatorCount += 1
+        onStopInstructionTypeActivityIndicator?()
     }
 
     // MARK: - setInstructionTypeDropdownViewVisibility

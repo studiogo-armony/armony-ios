@@ -1,0 +1,9 @@
+{
+    "data": {
+        "accessToken": "access-token-123",
+        "refreshToken": "refresh-token-456",
+        "userId": "user-789"
+    },
+    "error": null,
+    "metadata": null
+}

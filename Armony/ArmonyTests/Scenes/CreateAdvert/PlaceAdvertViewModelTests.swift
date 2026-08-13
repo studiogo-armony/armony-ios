@@ -93,12 +93,20 @@ final class PlaceAdvertViewModelTests: XCTestCase {
 
     // MARK: - submitButtonTapped
 
-    func test_submitButtonTapped_startsActivityIndicator() {
-        mockService.stubbedResult = RestArrayResponse<Advert>(data: [], metadata: nil, error: nil)
+    func test_submitButtonTapped_startsActivityIndicator() async throws {
+        let expectation = expectation(description: "createAd completed — resetTextView triggered")
+        mockView.onResetTextView = { expectation.fulfill() }
+        let advertResponse = mockService.load(fromJSONFile: "PlaceAdvert-Sample-Data",
+                                              type: RestObjectResponse<Advert>.self)
+        mockService.stubbedResults = [
+            RestArrayResponse<Advert>(data: [], metadata: nil, error: nil),
+            advertResponse
+        ]
 
         sut.submitButtonTapped()
 
         XCTAssertTrue(mockView.invokedStartSubmitButtonActivityIndicator)
+        await fulfillment(of: [expectation], timeout: 2.0)
     }
 
     func test_submitButtonTapped_whenNoUserAds_andNoPurchase_callsCreateAd() async throws {
@@ -137,11 +145,18 @@ final class PlaceAdvertViewModelTests: XCTestCase {
     }
 
     func test_submitButtonTapped_whenHasUserAds_andHasPurchase_doesNotShowPaywall() async throws {
-        let expectation = expectation(description: "stopSubmitButton called after hasUserAds")
-        mockView.onStopSubmitButtonActivityIndicator = {
+        let expectation = expectation(description: "createAd completed — resetTextView triggered")
+        mockView.onResetTextView = {
             expectation.fulfill()
         }
-        mockService.stubbedResult = RestArrayResponse<Advert>(data: [makeAdvert()], metadata: nil, error: nil)
+        let advertResponse = mockService.load(fromJSONFile: "PlaceAdvert-Sample-Data",
+                                              type: RestObjectResponse<Advert>.self)
+        // 1st execute: hasUserAds → non-empty array (has purchase → skip paywall)
+        // 2nd execute: createAd → single advert object
+        mockService.stubbedResults = [
+            RestArrayResponse<Advert>(data: [makeAdvert()], metadata: nil, error: nil),
+            advertResponse
+        ]
         mockPurchaseStorage.stubbedIdentifiers = ["txn-123"]
 
         sut.submitButtonTapped()
@@ -240,203 +255,240 @@ final class PlaceAdvertViewModelTests: XCTestCase {
     // MARK: - advertTypeDropdownTapped
 
     func test_advertTypeDropdownTapped_startsActivityIndicator() async throws {
+        let expectation = expectation(description: "stopAdvertType called")
+        mockView.onStopAdvertTypeActivityIndicator = { expectation.fulfill() }
         mockService.stubbedResult = RestArrayResponse<Advert.Properties>(data: [], metadata: nil, error: nil)
 
         sut.advertTypeDropdownTapped()
-        try await Task.sleep(nanoseconds: 50_000_000)
 
         XCTAssertTrue(mockView.invokedStartAdvertTypeActivityIndicator)
+        await fulfillment(of: [expectation], timeout: 2.0)
     }
 
     func test_advertTypeDropdownTapped_onSuccess_stopsActivityIndicator() async throws {
+        let expectation = expectation(description: "stopAdvertType called")
+        mockView.onStopAdvertTypeActivityIndicator = { expectation.fulfill() }
         mockService.stubbedResult = RestArrayResponse<Advert.Properties>(data: [], metadata: nil, error: nil)
 
         sut.advertTypeDropdownTapped()
-        try await Task.sleep(nanoseconds: 100_000_000)
 
+        await fulfillment(of: [expectation], timeout: 2.0)
         XCTAssertTrue(mockView.invokedStopAdvertTypeActivityIndicator)
     }
 
     func test_advertTypeDropdownTapped_onSuccess_callsCoordinatorProfileSelection() async throws {
+        let expectation = expectation(description: "stopAdvertType called")
+        mockView.onStopAdvertTypeActivityIndicator = { expectation.fulfill() }
         mockService.stubbedResult = RestArrayResponse<Advert.Properties>(data: [], metadata: nil, error: nil)
 
         sut.advertTypeDropdownTapped()
-        try await Task.sleep(nanoseconds: 100_000_000)
 
+        await fulfillment(of: [expectation], timeout: 2.0)
         XCTAssertTrue(mockCoordinator.invokedProfileSelection)
     }
 
     func test_advertTypeDropdownTapped_onError_stopsActivityIndicator() async throws {
+        let expectation = expectation(description: "stopAdvertType called on error")
+        mockView.onStopAdvertTypeActivityIndicator = { expectation.fulfill() }
         mockService.error = APIError.network
 
         sut.advertTypeDropdownTapped()
-        try await Task.sleep(nanoseconds: 100_000_000)
 
+        await fulfillment(of: [expectation], timeout: 2.0)
         XCTAssertTrue(mockView.invokedStopAdvertTypeActivityIndicator)
     }
 
     func test_advertTypeDropdownTapped_onError_doesNotCallCoordinator() async throws {
+        let expectation = expectation(description: "stopAdvertType called on error")
+        mockView.onStopAdvertTypeActivityIndicator = { expectation.fulfill() }
         mockService.error = APIError.network
 
         sut.advertTypeDropdownTapped()
-        try await Task.sleep(nanoseconds: 100_000_000)
 
+        await fulfillment(of: [expectation], timeout: 2.0)
         XCTAssertFalse(mockCoordinator.invokedProfileSelection)
     }
 
     // MARK: - musicGenresDropdownTapped
 
     func test_musicGenresDropdownTapped_startsActivityIndicator() async throws {
+        let expectation = expectation(description: "stopMusicGenres called")
+        mockView.onStopMusicGenresActivityIndicator = { expectation.fulfill() }
         mockService.stubbedResult = RestArrayResponse<MusicGenre>(data: [], metadata: nil, error: nil)
 
         sut.musicGenresDropdownTapped()
-        try await Task.sleep(nanoseconds: 50_000_000)
 
         XCTAssertTrue(mockView.invokedStartMusicGenresActivityIndicator)
+        await fulfillment(of: [expectation], timeout: 2.0)
     }
 
     func test_musicGenresDropdownTapped_onSuccess_stopsActivityIndicator() async throws {
+        let expectation = expectation(description: "stopMusicGenres called")
+        mockView.onStopMusicGenresActivityIndicator = { expectation.fulfill() }
         mockService.stubbedResult = RestArrayResponse<MusicGenre>(data: [], metadata: nil, error: nil)
 
         sut.musicGenresDropdownTapped()
-        try await Task.sleep(nanoseconds: 100_000_000)
 
+        await fulfillment(of: [expectation], timeout: 2.0)
         XCTAssertTrue(mockView.invokedStopMusicGenresActivityIndicator)
     }
 
     func test_musicGenresDropdownTapped_onSuccess_callsCoordinatorProfileSelection() async throws {
+        let expectation = expectation(description: "stopMusicGenres called")
+        mockView.onStopMusicGenresActivityIndicator = { expectation.fulfill() }
         mockService.stubbedResult = RestArrayResponse<MusicGenre>(data: [], metadata: nil, error: nil)
 
         sut.musicGenresDropdownTapped()
-        try await Task.sleep(nanoseconds: 100_000_000)
 
+        await fulfillment(of: [expectation], timeout: 2.0)
         XCTAssertTrue(mockCoordinator.invokedProfileSelection)
     }
 
     func test_musicGenresDropdownTapped_onError_stopsActivityIndicator() async throws {
+        let expectation = expectation(description: "stopMusicGenres called on error")
+        mockView.onStopMusicGenresActivityIndicator = { expectation.fulfill() }
         mockService.error = APIError.network
 
         sut.musicGenresDropdownTapped()
-        try await Task.sleep(nanoseconds: 100_000_000)
 
+        await fulfillment(of: [expectation], timeout: 2.0)
         XCTAssertTrue(mockView.invokedStopMusicGenresActivityIndicator)
     }
 
     // MARK: - skillsDropdownTapped
 
     func test_skillsDropdownTapped_startsActivityIndicator() async throws {
+        let expectation = expectation(description: "stopSkills called")
+        mockView.onStopSkillsActivityIndicator = { expectation.fulfill() }
         mockService.stubbedResult = RestArrayResponse<Skill>(data: [], metadata: nil, error: nil)
 
         sut.skillsDropdownTapped()
-        try await Task.sleep(nanoseconds: 50_000_000)
 
         XCTAssertTrue(mockView.invokedStartSkillsActivityIndicator)
+        await fulfillment(of: [expectation], timeout: 2.0)
     }
 
     func test_skillsDropdownTapped_onSuccess_stopsActivityIndicator() async throws {
+        let expectation = expectation(description: "stopSkills called")
+        mockView.onStopSkillsActivityIndicator = { expectation.fulfill() }
         mockService.stubbedResult = RestArrayResponse<Skill>(data: [], metadata: nil, error: nil)
 
         sut.skillsDropdownTapped()
-        try await Task.sleep(nanoseconds: 100_000_000)
 
+        await fulfillment(of: [expectation], timeout: 2.0)
         XCTAssertTrue(mockView.invokedStopSkillsActivityIndicator)
     }
 
     func test_skillsDropdownTapped_onSuccess_callsCoordinatorProfileSelection() async throws {
+        let expectation = expectation(description: "stopSkills called")
+        mockView.onStopSkillsActivityIndicator = { expectation.fulfill() }
         mockService.stubbedResult = RestArrayResponse<Skill>(data: [], metadata: nil, error: nil)
 
         sut.skillsDropdownTapped()
-        try await Task.sleep(nanoseconds: 100_000_000)
 
+        await fulfillment(of: [expectation], timeout: 2.0)
         XCTAssertTrue(mockCoordinator.invokedProfileSelection)
     }
 
     func test_skillsDropdownTapped_onError_stopsActivityIndicator() async throws {
+        let expectation = expectation(description: "stopSkills called on error")
+        mockView.onStopSkillsActivityIndicator = { expectation.fulfill() }
         mockService.error = APIError.network
 
         sut.skillsDropdownTapped()
-        try await Task.sleep(nanoseconds: 100_000_000)
 
+        await fulfillment(of: [expectation], timeout: 2.0)
         XCTAssertTrue(mockView.invokedStopSkillsActivityIndicator)
     }
 
     // MARK: - locationDropdownTapped
 
     func test_locationDropdownTapped_startsActivityIndicator() async throws {
+        let expectation = expectation(description: "stopLocation called")
+        mockView.onStopLocationActivityIndicator = { expectation.fulfill() }
         mockService.stubbedResult = RestArrayResponse<Location>(data: [], metadata: nil, error: nil)
 
         sut.locationDropdownTapped()
-        try await Task.sleep(nanoseconds: 50_000_000)
 
         XCTAssertTrue(mockView.invokedStartLocationActivityIndicator)
+        await fulfillment(of: [expectation], timeout: 2.0)
     }
 
     func test_locationDropdownTapped_onSuccess_stopsActivityIndicator() async throws {
+        let expectation = expectation(description: "stopLocation called")
+        mockView.onStopLocationActivityIndicator = { expectation.fulfill() }
         mockService.stubbedResult = RestArrayResponse<Location>(data: [], metadata: nil, error: nil)
 
         sut.locationDropdownTapped()
-        try await Task.sleep(nanoseconds: 100_000_000)
 
+        await fulfillment(of: [expectation], timeout: 2.0)
         XCTAssertTrue(mockView.invokedStopLocationActivityIndicator)
     }
 
     func test_locationDropdownTapped_onSuccess_callsCoordinatorProfileSelection() async throws {
+        let expectation = expectation(description: "stopLocation called")
+        mockView.onStopLocationActivityIndicator = { expectation.fulfill() }
         mockService.stubbedResult = RestArrayResponse<Location>(data: [], metadata: nil, error: nil)
 
         sut.locationDropdownTapped()
-        try await Task.sleep(nanoseconds: 100_000_000)
 
+        await fulfillment(of: [expectation], timeout: 2.0)
         XCTAssertTrue(mockCoordinator.invokedProfileSelection)
     }
 
     func test_locationDropdownTapped_onError_stopsActivityIndicator() async throws {
+        let expectation = expectation(description: "stopLocation called on error")
+        mockView.onStopLocationActivityIndicator = { expectation.fulfill() }
         mockService.error = APIError.network
 
         sut.locationDropdownTapped()
-        try await Task.sleep(nanoseconds: 100_000_000)
 
+        await fulfillment(of: [expectation], timeout: 2.0)
         XCTAssertTrue(mockView.invokedStopLocationActivityIndicator)
     }
 
     // MARK: - instructionTypeDropdownView
 
-    func test_instructionTypeDropdownView_withNoAdvertSelected_startsIndicatorButDoesNotCallService() async throws {
-        mockService.stubbedResult = RestArrayResponse<ServiceResponse>(data: [], metadata: nil, error: nil)
-
+    func test_instructionTypeDropdownView_withNoAdvertSelected_startsIndicatorButDoesNotCallService() {
         sut.instructionTypeDropdownView()
-        try await Task.sleep(nanoseconds: 100_000_000)
 
         XCTAssertTrue(mockView.invokedStartInstructionTypeActivityIndicator)
         XCTAssertFalse(mockCoordinator.invokedProfileSelection)
     }
 
     func test_instructionTypeDropdownView_withAdvertSelected_onSuccess_stopsActivityIndicator() async throws {
+        let expectation = expectation(description: "stopInstructionType called")
+        mockView.onStopInstructionTypeActivityIndicator = { expectation.fulfill() }
         sut.advertTypeDidSelect(advert: EmptySelectionInput(id: 4, title: "Instructor", isSelected: true))
         mockService.stubbedResult = RestArrayResponse<ServiceResponse>(data: [], metadata: nil, error: nil)
 
         sut.instructionTypeDropdownView()
-        try await Task.sleep(nanoseconds: 100_000_000)
 
+        await fulfillment(of: [expectation], timeout: 2.0)
         XCTAssertTrue(mockView.invokedStopInstructionTypeActivityIndicator)
     }
 
     func test_instructionTypeDropdownView_withAdvertSelected_onSuccess_callsCoordinatorProfileSelection() async throws {
+        let expectation = expectation(description: "stopInstructionType called")
+        mockView.onStopInstructionTypeActivityIndicator = { expectation.fulfill() }
         sut.advertTypeDidSelect(advert: EmptySelectionInput(id: 4, title: "Instructor", isSelected: true))
         mockService.stubbedResult = RestArrayResponse<ServiceResponse>(data: [], metadata: nil, error: nil)
 
         sut.instructionTypeDropdownView()
-        try await Task.sleep(nanoseconds: 100_000_000)
 
+        await fulfillment(of: [expectation], timeout: 2.0)
         XCTAssertTrue(mockCoordinator.invokedProfileSelection)
     }
 
     func test_instructionTypeDropdownView_withAdvertSelected_onError_stopsActivityIndicator() async throws {
+        let expectation = expectation(description: "stopInstructionType called on error")
+        mockView.onStopInstructionTypeActivityIndicator = { expectation.fulfill() }
         sut.advertTypeDidSelect(advert: EmptySelectionInput(id: 4, title: "Instructor", isSelected: true))
         mockService.error = APIError.network
 
         sut.instructionTypeDropdownView()
-        try await Task.sleep(nanoseconds: 100_000_000)
 
+        await fulfillment(of: [expectation], timeout: 2.0)
         XCTAssertTrue(mockView.invokedStopInstructionTypeActivityIndicator)
     }
 

@@ -8,7 +8,7 @@
 import UIKit
 import SwiftMessages
 
-public class LoginCoordinator: Coordinator {
+public class LoginCoordinator: Coordinator, LoginCoordinating {
 
     public typealias Controller = LoginViewController
 

@@ -136,6 +136,11 @@
 		AA000001000000000000AA06 /* MockRegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001000000000000AA07 /* MockRegistrationView.swift */; };
 		AA000001000000000000AA08 /* RegistrationViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001000000000000AA09 /* RegistrationViewModelTests.swift */; };
 		AA000001000000000000AA0A /* Registration-Token-Sample.json in Resources */ = {isa = PBXBuildFile; fileRef = AA000001000000000000AA0B /* Registration-Token-Sample.json */; };
+		AA000001000000000000AA0F /* LoginCoordinating.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001000000000000AA0E /* LoginCoordinating.swift */; };
+		AA000001000000000000AA11 /* MockLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001000000000000AA10 /* MockLoginView.swift */; };
+		AA000001000000000000AA13 /* MockLoginCoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001000000000000AA12 /* MockLoginCoordinatorProtocol.swift */; };
+		AA000001000000000000AA15 /* LoginViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001000000000000AA14 /* LoginViewModelTests.swift */; };
+		AA000001000000000000AA17 /* Login-Token-Sample.json in Resources */ = {isa = PBXBuildFile; fileRef = AA000001000000000000AA16 /* Login-Token-Sample.json */; };
 		02CA1A022F800000001CA002 /* PlaceAdvertViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CA1A032F800000001CA003 /* PlaceAdvertViewModelTests.swift */; };
 		02CA1A042F800000001CA004 /* MockPlaceAdvertCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CA1A052F800000001CA005 /* MockPlaceAdvertCoordinator.swift */; };
 		02CA1A062F800000001CA006 /* MockPlaceAdvertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CA1A072F800000001CA007 /* MockPlaceAdvertView.swift */; };
@@ -706,6 +711,11 @@
 		AA000001000000000000AA07 /* MockRegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRegistrationView.swift; sourceTree = "<group>"; };
 		AA000001000000000000AA09 /* RegistrationViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModelTests.swift; sourceTree = "<group>"; };
 		AA000001000000000000AA0B /* Registration-Token-Sample.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "Registration-Token-Sample.json"; sourceTree = "<group>"; };
+		AA000001000000000000AA0E /* LoginCoordinating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinating.swift; sourceTree = "<group>"; };
+		AA000001000000000000AA10 /* MockLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLoginView.swift; sourceTree = "<group>"; };
+		AA000001000000000000AA12 /* MockLoginCoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLoginCoordinatorProtocol.swift; sourceTree = "<group>"; };
+		AA000001000000000000AA14 /* LoginViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelTests.swift; sourceTree = "<group>"; };
+		AA000001000000000000AA16 /* Login-Token-Sample.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "Login-Token-Sample.json"; sourceTree = "<group>"; };
 		02CA1A032F800000001CA003 /* PlaceAdvertViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceAdvertViewModelTests.swift; sourceTree = "<group>"; };
 		02CA1A052F800000001CA005 /* MockPlaceAdvertCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPlaceAdvertCoordinator.swift; sourceTree = "<group>"; };
 		02CA1A072F800000001CA007 /* MockPlaceAdvertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPlaceAdvertView.swift; sourceTree = "<group>"; };
@@ -1984,8 +1994,28 @@
 				02B786742D3ADB2700A8B6AE /* Feedback */,
 				02CA1A082F800000001CA008 /* CreateAdvert */,
 				AA000001000000000000AA0C /* Registration */,
+				AA000001000000000000AA18 /* Login */,
 			);
 			path = Scenes;
+			sourceTree = "<group>";
+		};
+		AA000001000000000000AA18 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				AA000001000000000000AA14 /* LoginViewModelTests.swift */,
+				AA000001000000000000AA10 /* MockLoginView.swift */,
+				AA000001000000000000AA12 /* MockLoginCoordinatorProtocol.swift */,
+				AA000001000000000000AA19 /* JSONs */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		AA000001000000000000AA19 /* JSONs */ = {
+			isa = PBXGroup;
+			children = (
+				AA000001000000000000AA16 /* Login-Token-Sample.json */,
+			);
+			path = JSONs;
 			sourceTree = "<group>";
 		};
 		AA000001000000000000AA0C /* Registration */ = {
@@ -2616,6 +2646,7 @@
 				B15F22E127A0886B001F5B78 /* LoginCoordinator.swift */,
 				B15F22DD27A087D1001F5B78 /* LoginViewController.swift */,
 				B15F22DF27A08836001F5B78 /* LoginViewModel.swift */,
+				AA000001000000000000AA0E /* LoginCoordinating.swift */,
 				B15F22DB27A0879B001F5B78 /* Login.storyboard */,
 			);
 			path = Login;
@@ -3698,6 +3729,7 @@
 				02FA5A4928820D8300E8AD5C /* Account-Sample-Data.json in Resources */,
 				02AB1006AA001001001AA006 /* PlaceAdvert-Sample-Data.json in Resources */,
 				AA000001000000000000AA0A /* Registration-Token-Sample.json in Resources */,
+				AA000001000000000000AA17 /* Login-Token-Sample.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3792,6 +3824,7 @@
 				0263B529281424D700E9378F /* AccountMusicalProfileViewModel.swift in Sources */,
 				B1A6FB2927A9B6F900E1BEA5 /* RegistrationViewController.swift in Sources */,
 				02DB3A362895130C0056BE3C /* PostLoginTask.swift in Sources */,
+				AA000001000000000000AA0F /* LoginCoordinating.swift in Sources */,
 				B19258552A1D54FE0058E73E /* GetReportSubjectTask.swift in Sources */,
 				0215BAEB2AE03B9C007BB949 /* VisitedAccountMediasCoordinator.swift in Sources */,
 				025E1EEA284A8FAA005D2F83 /* SelectionBottomPopUpViewModel.swift in Sources */,
@@ -4125,6 +4158,9 @@
 				AA000001000000000000AA04 /* MockRegistrationCoordinator.swift in Sources */,
 				AA000001000000000000AA06 /* MockRegistrationView.swift in Sources */,
 				AA000001000000000000AA08 /* RegistrationViewModelTests.swift in Sources */,
+				AA000001000000000000AA11 /* MockLoginView.swift in Sources */,
+				AA000001000000000000AA13 /* MockLoginCoordinatorProtocol.swift in Sources */,
+				AA000001000000000000AA15 /* LoginViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
