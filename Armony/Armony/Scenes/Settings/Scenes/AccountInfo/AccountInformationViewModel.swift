@@ -9,14 +9,18 @@ import Foundation
 
 final class AccountInformationViewModel: ViewModel {
 
-    var coordinator: AccountInformationCoordinator!
+    var coordinator: (any AccountInformationCoordinating)!
     private weak var view: AccountInformationViewDelegate?
-    private let authenticator: AuthenticationService
+    private let authenticator: AuthenticationProviding
 
-    init(view: AccountInformationViewDelegate, authenticator: AuthenticationService = .shared) {
+    init(
+        view: AccountInformationViewDelegate,
+        authenticator: AuthenticationProviding = AuthenticationService.shared,
+        service: RestService = RestService(backend: .factory())
+    ) {
         self.view = view
         self.authenticator = authenticator
-        super.init()
+        super.init(service: service)
     }
 
     func saveButtonTapped(name: String) {
@@ -36,7 +40,7 @@ final class AccountInformationViewModel: ViewModel {
                     let message = String("AccountInformation.Update.Succes.Message", table: .account)
                     await AlertService.show(message: message,
                                             actions: [.okay(action: { [weak self] in
-                        self?.coordinator.pop()
+                        self?.coordinator.pop(animated: true)
                     })])
                 }
                 catch let error {

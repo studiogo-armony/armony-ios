@@ -1,0 +1,8 @@
+{
+    "data": [
+        { "id": 1, "name": "Spam" },
+        { "id": 2, "name": "Inappropriate" }
+    ],
+    "error": null,
+    "metadata": null
+}

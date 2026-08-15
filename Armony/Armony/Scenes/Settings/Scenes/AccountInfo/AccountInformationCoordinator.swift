@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class AccountInformationCoordinator: Coordinator, SelectionBottomPopUpOpening {
+final class AccountInformationCoordinator: Coordinator, SelectionBottomPopUpOpening, AccountInformationCoordinating {
     typealias Controller = AccountInformationViewController
 
     weak var navigator: Navigator?
@@ -18,7 +18,7 @@ final class AccountInformationCoordinator: Coordinator, SelectionBottomPopUpOpen
 
     func start() {
         let view = createViewController()
-        let viewModel = AccountInformationViewModel(view: view)
+        let viewModel = AccountInformationViewModel(view: view, authenticator: AuthenticationService.shared)
         viewModel.coordinator = self
         view.viewModel = viewModel
 

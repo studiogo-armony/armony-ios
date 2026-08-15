@@ -198,6 +198,12 @@
 		8FB01A389363409EA6DC9562 /* UserDetail-Sample-Data.json in Resources */ = {isa = PBXBuildFile; fileRef = A94D98CBAC8B4DCE92240BBB /* UserDetail-Sample-Data.json */; };
 		3B0B75BF025E43D0952A7D58 /* UserDetail-Sample-Data-NilBio.json in Resources */ = {isa = PBXBuildFile; fileRef = 0CA53A7789204F3785A18FCE /* UserDetail-Sample-Data-NilBio.json */; };
 		D1E2F3A4B5C6D7E8F9001122 /* UserDetail-Sample-Data-WithGenres.json in Resources */ = {isa = PBXBuildFile; fileRef = CB95ED1F2A3B4C5D6E7F8091 /* UserDetail-Sample-Data-WithGenres.json */; };
+		4F31EB69DAE83BFABA46D739 /* AccountInformationCoordinating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9D8E05DB2EB665C45F7D08 /* AccountInformationCoordinating.swift */; };
+		E0044FDABB6DEC4027B410C1 /* MockAccountInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EEFD8B62873DD4153E2AB01 /* MockAccountInformationView.swift */; };
+		107848443A352C836B0A8A1F /* MockAccountInformationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12E02BAD7BC06C064FD5DE9 /* MockAccountInformationCoordinator.swift */; };
+		C447C1EFD9A948097C4E78D7 /* AccountInformationViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7F9BA71917ADBAA323376A /* AccountInformationViewModelTests.swift */; };
+		79ADB4DE5E3FFA45D4342CBE /* AccountInfo-Sample-Data.json in Resources */ = {isa = PBXBuildFile; fileRef = 0DD92F6E659987F1DEABBDA7 /* AccountInfo-Sample-Data.json */; };
+		146AC1C8FB16F21064A3C75E /* FeedbackSubjects-Sample-Data.json in Resources */ = {isa = PBXBuildFile; fileRef = 4DFAEA990E429D72CF5830A4 /* FeedbackSubjects-Sample-Data.json */; };
 		02AA55EE302E69730047CE53 /* Advert-Sample-Data-ExternalLink.json in Resources */ = {isa = PBXBuildFile; fileRef = 02AA55E8302E69730047CE53 /* Advert-Sample-Data-ExternalLink.json */; };
 		02AA55EF302E69730047CE53 /* Advert-Sample-Data.json in Resources */ = {isa = PBXBuildFile; fileRef = 02AA55E6302E69730047CE53 /* Advert-Sample-Data.json */; };
 		02AA55F0302E69730047CE53 /* Advert-Sample-Data-AutoInactive.json in Resources */ = {isa = PBXBuildFile; fileRef = 02AA55E7302E69730047CE53 /* Advert-Sample-Data-AutoInactive.json */; };
@@ -724,6 +730,12 @@
 		A94D98CBAC8B4DCE92240BBB /* UserDetail-Sample-Data.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "UserDetail-Sample-Data.json"; sourceTree = "<group>"; };
 		0CA53A7789204F3785A18FCE /* UserDetail-Sample-Data-NilBio.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "UserDetail-Sample-Data-NilBio.json"; sourceTree = "<group>"; };
 		CB95ED1F2A3B4C5D6E7F8091 /* UserDetail-Sample-Data-WithGenres.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "UserDetail-Sample-Data-WithGenres.json"; sourceTree = "<group>"; };
+		0C9D8E05DB2EB665C45F7D08 /* AccountInformationCoordinating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInformationCoordinating.swift; sourceTree = "<group>"; };
+		9EEFD8B62873DD4153E2AB01 /* MockAccountInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAccountInformationView.swift; sourceTree = "<group>"; };
+		B12E02BAD7BC06C064FD5DE9 /* MockAccountInformationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAccountInformationCoordinator.swift; sourceTree = "<group>"; };
+		8B7F9BA71917ADBAA323376A /* AccountInformationViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInformationViewModelTests.swift; sourceTree = "<group>"; };
+		0DD92F6E659987F1DEABBDA7 /* AccountInfo-Sample-Data.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "AccountInfo-Sample-Data.json"; sourceTree = "<group>"; };
+		4DFAEA990E429D72CF5830A4 /* FeedbackSubjects-Sample-Data.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "FeedbackSubjects-Sample-Data.json"; sourceTree = "<group>"; };
 		02AA55E6302E69730047CE53 /* Advert-Sample-Data.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "Advert-Sample-Data.json"; sourceTree = "<group>"; };
 		02AA55E7302E69730047CE53 /* Advert-Sample-Data-AutoInactive.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "Advert-Sample-Data-AutoInactive.json"; sourceTree = "<group>"; };
 		02AA55E8302E69730047CE53 /* Advert-Sample-Data-ExternalLink.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "Advert-Sample-Data-ExternalLink.json"; sourceTree = "<group>"; };
@@ -1560,6 +1572,7 @@
 				024803912861DB190012D6CF /* AccountInformationCoordinator.swift */,
 				0248038C2861C6CF0012D6CF /* AccountInformationViewController.swift */,
 				0248038E2861C85D0012D6CF /* AccountInformationViewModel.swift */,
+				0C9D8E05DB2EB665C45F7D08 /* AccountInformationCoordinating.swift */,
 				02A261F02B24D10D004D26A1 /* DeleteAccountFeedbackSelection.swift */,
 			);
 			path = AccountInfo;
@@ -2003,6 +2016,26 @@
 			path = VisitedAccount;
 			sourceTree = "<group>";
 		};
+		8D59666E43AA9AB9D86DB931 /* AccountInformation */ = {
+			isa = PBXGroup;
+			children = (
+				C5E266DB2FF8F56A862C056F /* JSONs */,
+				8B7F9BA71917ADBAA323376A /* AccountInformationViewModelTests.swift */,
+				B12E02BAD7BC06C064FD5DE9 /* MockAccountInformationCoordinator.swift */,
+				9EEFD8B62873DD4153E2AB01 /* MockAccountInformationView.swift */,
+			);
+			path = AccountInformation;
+			sourceTree = "<group>";
+		};
+		C5E266DB2FF8F56A862C056F /* JSONs */ = {
+			isa = PBXGroup;
+			children = (
+				0DD92F6E659987F1DEABBDA7 /* AccountInfo-Sample-Data.json */,
+				4DFAEA990E429D72CF5830A4 /* FeedbackSubjects-Sample-Data.json */,
+			);
+			path = JSONs;
+			sourceTree = "<group>";
+		};
 		8818E12585A54E2BB6EA75DF /* JSONs */ = {
 			isa = PBXGroup;
 			children = (
@@ -2065,6 +2098,7 @@
 				AA000001000000000000AA0C /* Registration */,
 				AA000001000000000000AA18 /* Login */,
 				FBA56F7480CA43099329BEAD /* VisitedAccount */,
+				8D59666E43AA9AB9D86DB931 /* AccountInformation */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -3822,6 +3856,8 @@
 				8FB01A389363409EA6DC9562 /* UserDetail-Sample-Data.json in Resources */,
 				3B0B75BF025E43D0952A7D58 /* UserDetail-Sample-Data-NilBio.json in Resources */,
 				D1E2F3A4B5C6D7E8F9001122 /* UserDetail-Sample-Data-WithGenres.json in Resources */,
+				79ADB4DE5E3FFA45D4342CBE /* AccountInfo-Sample-Data.json in Resources */,
+				146AC1C8FB16F21064A3C75E /* FeedbackSubjects-Sample-Data.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3910,6 +3946,7 @@
 				B101B48329A8F878002A9EF0 /* NotNilOrEmpty.swift in Sources */,
 				02BDDEBE2B6C0407005AB8FA /* BannerSliderPresentation.swift in Sources */,
 				024803922861DB190012D6CF /* AccountInformationCoordinator.swift in Sources */,
+				4F31EB69DAE83BFABA46D739 /* AccountInformationCoordinating.swift in Sources */,
 				02AF996C28ED944E006669F4 /* PlaceAdvertViewModel.swift in Sources */,
 				02722A7D2C1B9F12003CD908 /* ServiceSelectionPresentation.swift in Sources */,
 				B18FEB4D27B5B0F700C8A2C0 /* NotificationCenter+Extensions.swift in Sources */,
@@ -4254,6 +4291,9 @@
 				82A9499FA44345AFB1FBEA4C /* MockVisitedAccountView.swift in Sources */,
 				4D603F164AE1446C89161C10 /* MockVisitedAccountCoordinator.swift in Sources */,
 				13EEE78DD5EE406D9EAD901A /* VisitedAccountViewModelTests.swift in Sources */,
+				E0044FDABB6DEC4027B410C1 /* MockAccountInformationView.swift in Sources */,
+				107848443A352C836B0A8A1F /* MockAccountInformationCoordinator.swift in Sources */,
+				C447C1EFD9A948097C4E78D7 /* AccountInformationViewModelTests.swift in Sources */,
 				AA000001000000000000AA02 /* MockNotificationCenter.swift in Sources */,
 				AA000001000000000000AA04 /* MockRegistrationCoordinator.swift in Sources */,
 				AA000001000000000000AA06 /* MockRegistrationView.swift in Sources */,
