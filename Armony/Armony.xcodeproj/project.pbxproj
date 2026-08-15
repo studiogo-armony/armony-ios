@@ -191,6 +191,13 @@
 		02A824842881B202004351D0 /* MockRestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A824832881B202004351D0 /* MockRestService.swift */; };
 		02A9C1F72E3D615A0031A636 /* RevenueCatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A9C1F62E3D614A0031A636 /* RevenueCatService.swift */; };
 		02AA55E5302E69280047CE53 /* AdvertCoordinating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02AA55E4302E69280047CE53 /* AdvertCoordinating.swift */; };
+		4C572FBEB7624C07BDB33F65 /* VisitedAccountCoordinating.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE93DA0E3E4A4260AD9E7D02 /* VisitedAccountCoordinating.swift */; };
+		82A9499FA44345AFB1FBEA4C /* MockVisitedAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB95ED1F07B34E358034F119 /* MockVisitedAccountView.swift */; };
+		4D603F164AE1446C89161C10 /* MockVisitedAccountCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789FA5E998B4452E8FDAE245 /* MockVisitedAccountCoordinator.swift */; };
+		13EEE78DD5EE406D9EAD901A /* VisitedAccountViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A511550CA604F50BDB502F8 /* VisitedAccountViewModelTests.swift */; };
+		8FB01A389363409EA6DC9562 /* UserDetail-Sample-Data.json in Resources */ = {isa = PBXBuildFile; fileRef = A94D98CBAC8B4DCE92240BBB /* UserDetail-Sample-Data.json */; };
+		3B0B75BF025E43D0952A7D58 /* UserDetail-Sample-Data-NilBio.json in Resources */ = {isa = PBXBuildFile; fileRef = 0CA53A7789204F3785A18FCE /* UserDetail-Sample-Data-NilBio.json */; };
+		D1E2F3A4B5C6D7E8F9001122 /* UserDetail-Sample-Data-WithGenres.json in Resources */ = {isa = PBXBuildFile; fileRef = CB95ED1F2A3B4C5D6E7F8091 /* UserDetail-Sample-Data-WithGenres.json */; };
 		02AA55EE302E69730047CE53 /* Advert-Sample-Data-ExternalLink.json in Resources */ = {isa = PBXBuildFile; fileRef = 02AA55E8302E69730047CE53 /* Advert-Sample-Data-ExternalLink.json */; };
 		02AA55EF302E69730047CE53 /* Advert-Sample-Data.json in Resources */ = {isa = PBXBuildFile; fileRef = 02AA55E6302E69730047CE53 /* Advert-Sample-Data.json */; };
 		02AA55F0302E69730047CE53 /* Advert-Sample-Data-AutoInactive.json in Resources */ = {isa = PBXBuildFile; fileRef = 02AA55E7302E69730047CE53 /* Advert-Sample-Data-AutoInactive.json */; };
@@ -710,6 +717,13 @@
 		02A824832881B202004351D0 /* MockRestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRestService.swift; sourceTree = "<group>"; };
 		02A9C1F62E3D614A0031A636 /* RevenueCatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevenueCatService.swift; sourceTree = "<group>"; };
 		02AA55E4302E69280047CE53 /* AdvertCoordinating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertCoordinating.swift; sourceTree = "<group>"; };
+		BE93DA0E3E4A4260AD9E7D02 /* VisitedAccountCoordinating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitedAccountCoordinating.swift; sourceTree = "<group>"; };
+		CB95ED1F07B34E358034F119 /* MockVisitedAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockVisitedAccountView.swift; sourceTree = "<group>"; };
+		789FA5E998B4452E8FDAE245 /* MockVisitedAccountCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockVisitedAccountCoordinator.swift; sourceTree = "<group>"; };
+		8A511550CA604F50BDB502F8 /* VisitedAccountViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitedAccountViewModelTests.swift; sourceTree = "<group>"; };
+		A94D98CBAC8B4DCE92240BBB /* UserDetail-Sample-Data.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "UserDetail-Sample-Data.json"; sourceTree = "<group>"; };
+		0CA53A7789204F3785A18FCE /* UserDetail-Sample-Data-NilBio.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "UserDetail-Sample-Data-NilBio.json"; sourceTree = "<group>"; };
+		CB95ED1F2A3B4C5D6E7F8091 /* UserDetail-Sample-Data-WithGenres.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "UserDetail-Sample-Data-WithGenres.json"; sourceTree = "<group>"; };
 		02AA55E6302E69730047CE53 /* Advert-Sample-Data.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "Advert-Sample-Data.json"; sourceTree = "<group>"; };
 		02AA55E7302E69730047CE53 /* Advert-Sample-Data-AutoInactive.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "Advert-Sample-Data-AutoInactive.json"; sourceTree = "<group>"; };
 		02AA55E8302E69730047CE53 /* Advert-Sample-Data-ExternalLink.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "Advert-Sample-Data-ExternalLink.json"; sourceTree = "<group>"; };
@@ -1978,6 +1992,27 @@
 			path = Advert;
 			sourceTree = "<group>";
 		};
+		FBA56F7480CA43099329BEAD /* VisitedAccount */ = {
+			isa = PBXGroup;
+			children = (
+				8818E12585A54E2BB6EA75DF /* JSONs */,
+				8A511550CA604F50BDB502F8 /* VisitedAccountViewModelTests.swift */,
+				789FA5E998B4452E8FDAE245 /* MockVisitedAccountCoordinator.swift */,
+				CB95ED1F07B34E358034F119 /* MockVisitedAccountView.swift */,
+			);
+			path = VisitedAccount;
+			sourceTree = "<group>";
+		};
+		8818E12585A54E2BB6EA75DF /* JSONs */ = {
+			isa = PBXGroup;
+			children = (
+				A94D98CBAC8B4DCE92240BBB /* UserDetail-Sample-Data.json */,
+				0CA53A7789204F3785A18FCE /* UserDetail-Sample-Data-NilBio.json */,
+				CB95ED1F2A3B4C5D6E7F8091 /* UserDetail-Sample-Data-WithGenres.json */,
+			);
+			path = JSONs;
+			sourceTree = "<group>";
+		};
 		02AB1007AA001001001AA007 /* JSONs */ = {
 			isa = PBXGroup;
 			children = (
@@ -2029,6 +2064,7 @@
 				02CA1A082F800000001CA008 /* CreateAdvert */,
 				AA000001000000000000AA0C /* Registration */,
 				AA000001000000000000AA18 /* Login */,
+				FBA56F7480CA43099329BEAD /* VisitedAccount */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -2455,6 +2491,7 @@
 				B1C9095C29467D850080804C /* VisitedAccountViewController.swift */,
 				B1C9095E294680ED0080804C /* VisitedAccountViewModel.swift */,
 				B1C909602946821D0080804C /* VisitedAccountCoordinator.swift */,
+				BE93DA0E3E4A4260AD9E7D02 /* VisitedAccountCoordinating.swift */,
 				B1C9095B29467B090080804C /* VisitedAccount.storyboard */,
 			);
 			path = VisitedAccount;
@@ -3782,6 +3819,9 @@
 				02AA55F8302E6F670047CE53 /* Advert-Sample-Data-Type4.json in Resources */,
 				02AA55F9302E6F670047CE53 /* Advert-Sample-Data-WithGenres.json in Resources */,
 				AA000001000000000000AA17 /* Login-Token-Sample.json in Resources */,
+				8FB01A389363409EA6DC9562 /* UserDetail-Sample-Data.json in Resources */,
+				3B0B75BF025E43D0952A7D58 /* UserDetail-Sample-Data-NilBio.json in Resources */,
+				D1E2F3A4B5C6D7E8F9001122 /* UserDetail-Sample-Data-WithGenres.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4156,6 +4196,7 @@
 				B171156A279F2CD300563A42 /* MusicGenreCell.swift in Sources */,
 				02BDBB0A2ADCA3E5008BB2A3 /* YoutubeMediaCell.swift in Sources */,
 				02AA55E5302E69280047CE53 /* AdvertCoordinating.swift in Sources */,
+				4C572FBEB7624C07BDB33F65 /* VisitedAccountCoordinating.swift in Sources */,
 				025E1EF5284A9030005D2F83 /* SelectionInput.swift in Sources */,
 				B1E4218B27B4360200EBC232 /* Error+Extensions.swift in Sources */,
 				02A9C1F72E3D615A0031A636 /* RevenueCatService.swift in Sources */,
@@ -4210,6 +4251,9 @@
 				02CA1A062F800000001CA006 /* MockPlaceAdvertView.swift in Sources */,
 				02AB1002AA001001001AA002 /* MockRevenueCatPurchaseStorageService.swift in Sources */,
 				02AB1004AA001001001AA004 /* MockAppRatingService.swift in Sources */,
+				82A9499FA44345AFB1FBEA4C /* MockVisitedAccountView.swift in Sources */,
+				4D603F164AE1446C89161C10 /* MockVisitedAccountCoordinator.swift in Sources */,
+				13EEE78DD5EE406D9EAD901A /* VisitedAccountViewModelTests.swift in Sources */,
 				AA000001000000000000AA02 /* MockNotificationCenter.swift in Sources */,
 				AA000001000000000000AA04 /* MockRegistrationCoordinator.swift in Sources */,
 				AA000001000000000000AA06 /* MockRegistrationView.swift in Sources */,

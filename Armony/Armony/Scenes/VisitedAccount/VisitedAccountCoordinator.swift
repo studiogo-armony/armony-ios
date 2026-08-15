@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class VisitedAccountCoordinator: Coordinator {
+final class VisitedAccountCoordinator: Coordinator, VisitedAccountCoordinating {
     typealias Controller = VisitedAccountViewController
 
     weak var navigator: Navigator?

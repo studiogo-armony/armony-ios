@@ -1,0 +1,14 @@
+{
+    "data": {
+        "id": "user123",
+        "name": "Test User",
+        "bio": null,
+        "photoUrl": null,
+        "city": null,
+        "genres": [],
+        "title": null,
+        "skills": []
+    },
+    "error": null,
+    "metadata": null
+}

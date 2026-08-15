@@ -1,0 +1,20 @@
+{
+    "data": {
+        "id": "user123",
+        "name": "Test User",
+        "bio": "Test bio text",
+        "photoUrl": null,
+        "city": {
+            "id": 34,
+            "name": "Istanbul"
+        },
+        "genres": [],
+        "title": {
+            "id": 1,
+            "name": "Guitarist"
+        },
+        "skills": []
+    },
+    "error": null,
+    "metadata": null
+}
