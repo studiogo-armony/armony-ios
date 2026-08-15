@@ -161,6 +161,15 @@ func test_foo_whenSuccess_doesBar() async throws {
 }
 ```
 
+### Reference implementations
+
+The most complete and testable view models in the codebase — use these as the gold standard when writing new tests or making an existing view model testable:
+
+- **`PlaceAdvertViewModel`** (`Armony/Armony/Scenes/CreateAdvert/`) + tests in `ArmonyTests/Scenes/CreateAdvert/` — covers dropdown flows, sequential stubbing, paywall, delegate callbacks.
+- **`AdvertViewModel`** (`Armony/Armony/Scenes/Advert/`) + tests in `ArmonyTests/Scenes/Advert/` — covers async coordinator flows, multiple singleton injections (`authenticator`, `purchaseStorage`), extracted AlertService closures, 99%+ line coverage.
+
+Both follow the full testability checklist: coordinating protocol, injectable singletons, `on*` callbacks on the mock view, and `expectedFulfillmentCount` where a method is called multiple times.
+
 ### JSON fixtures
 
 CodingKeys must match the **server-side** key names, not the Swift property names. Cross-check `CodingKeys` enums in the model before writing a fixture. Example gotchas in this codebase:
