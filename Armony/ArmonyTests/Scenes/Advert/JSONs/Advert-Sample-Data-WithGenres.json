@@ -1,0 +1,37 @@
+{
+    "data": {
+        "id": 42,
+        "city": {
+            "id": 34,
+            "name": "Istanbul"
+        },
+        "description": "Musician with genres",
+        "adType": {
+            "id": 1,
+            "name": "Musician",
+            "colorCode": "#3498DB",
+            "skillTitle": "Skills"
+        },
+        "genres": [
+            {"id": 1, "name": "Rock"},
+            {"id": 2, "name": "Jazz"}
+        ],
+        "isActive": true,
+        "skills": [
+            {"id": 1, "name": "Guitar", "imageUrl": null}
+        ],
+        "user": {
+            "id": "user123",
+            "name": "Test User",
+            "photoUrl": null,
+            "email": null,
+            "token": null
+        },
+        "status": "active",
+        "updatedAt": "2026-01-01",
+        "serviceTypes": [],
+        "external_link": null
+    },
+    "error": null,
+    "metadata": null
+}

@@ -9,11 +9,12 @@ import Foundation
 
 final class AdvertViewModel: ViewModel {
 
-    var coordinator: AdvertCoordinator!
+    var coordinator: (any AdvertCoordinating)!
     private let id: Int
     private weak var view: AdvertViewDelegate?
     private var isRemovingActive: Bool = false
-    private let authenticator: AuthenticationService = .shared
+    private let authenticator: any AuthenticationProviding
+    private let purchaseStorage: any RevenueCatPurchaseStoring
 
     private(set) var dismissCompletion: Callback<Bool>? = nil
     private var isPreviousPageLiveChat: Bool = false
@@ -23,20 +24,26 @@ final class AdvertViewModel: ViewModel {
         let isOwner = (advert?.user.id == authenticator.userID)
         return isOwner && (advert?.status == .autoInactive)
     }
+
     private var colorCode: String
 
     init(view: AdvertViewDelegate, id: Int,
          colorCode: String = .empty,
          isRemovingActive: Bool = false,
          isPreviousPageLiveChat: Bool,
-         dismissCompletion: Callback<Bool>? = nil) {
+         dismissCompletion: Callback<Bool>? = nil,
+         authenticator: any AuthenticationProviding = AuthenticationService.shared,
+         purchaseStorage: any RevenueCatPurchaseStoring = RevenueCatPurchaseStorageService.shared,
+         service: RestService = RestService(backend: .factory())) {
         self.view = view
         self.id = id
         self.colorCode = colorCode
         self.isRemovingActive = isRemovingActive
         self.isPreviousPageLiveChat = isPreviousPageLiveChat
         self.dismissCompletion = dismissCompletion
-        super.init()
+        self.authenticator = authenticator
+        self.purchaseStorage = purchaseStorage
+        super.init(service: service)
     }
 
     func removeAdvertsButtonDidTap() {
@@ -83,7 +90,7 @@ final class AdvertViewModel: ViewModel {
                     type: RestObjectResponse<EmptyResponse>.self
                 )
                 let _ = try await service.execute(
-                    task: DeleteUserAdvertTask(userID: AuthenticationService.shared.userID, advertID: id),
+                    task: DeleteUserAdvertTask(userID: authenticator.userID, advertID: id),
                     type: RestObjectResponse<EmptyResponse>.self
                 )
 
@@ -144,9 +151,7 @@ final class AdvertViewModel: ViewModel {
                 if isOwner {
                     AlertService.show(message: "Kendi oluşturduğunuz ilana mesaj gönderemezsiniz.",
                                       actions: [.okay(action: { [weak self] in
-                        self?.view?.setApplyButtonButtonVisibility(isHidden: isOwner)
-                        self?.view?.setRemoveAdvertsButtonVisibility(isHidden: !isOwner)
-
+                        self?.showOwnerWarning(isOwner: isOwner)
                     })])
                 }
                 else {
@@ -165,6 +170,11 @@ final class AdvertViewModel: ViewModel {
             ]).send()
             apply()
         }
+    }
+
+    func showOwnerWarning(isOwner: Bool) {
+        view?.setApplyButtonButtonVisibility(isHidden: isOwner)
+        view?.setRemoveAdvertsButtonVisibility(isHidden: !isOwner)
     }
 
     private func apply() {
@@ -259,11 +269,11 @@ final class AdvertViewModel: ViewModel {
         Task { @MainActor in
             do {
                 let hasUserAds = try await hasUserAds()
-                if hasUserAds, RevenueCatPurchaseStorageService.shared.identifiers.isEmpty {
+                if hasUserAds, purchaseStorage.identifiers.isEmpty {
                     view?.showPaywall()
                 }
                 else {
-                    activateAd(transactionID: RevenueCatPurchaseStorageService.shared.identifiers.first)
+                    activateAd(transactionID: purchaseStorage.identifiers.first)
                 }
                 view?.stopActivateAdvertButtonActivityIndicatorView()
             }
@@ -283,7 +293,7 @@ final class AdvertViewModel: ViewModel {
                 let _ = try await service.execute(task: task, type: RestObjectResponse<EmptyResponse>.self)
                 ActivateAdvertFirebaseEvent(label: advert.type.title, parameters: advert.eventParameters()).send()
                 if let transactionID {
-                    RevenueCatPurchaseStorageService.shared.remove(transactionID: transactionID)
+                    purchaseStorage.remove(transactionID: transactionID)
                 }
                 safeSync {
                     view?.stopActivateAdvertButtonActivityIndicatorView()
@@ -342,10 +352,10 @@ extension AdvertViewModel: ViewModelLifeCycle {
                     )
 
                     prepareUserSummary(response.data)
-                    view?.setRemoveAdvertsButtonVisibility(isHidden: response.data.user.id != AuthenticationService.shared.userID)
+                    view?.setRemoveAdvertsButtonVisibility(isHidden: response.data.user.id != authenticator.userID)
 
-                    let isOwner = (response.data.user.id == AuthenticationService.shared.userID)
-                    let isApplyButtonHidden = AuthenticationService.shared.isAuthenticated ? isOwner : false
+                    let isOwner = (response.data.user.id == authenticator.userID)
+                    let isApplyButtonHidden = authenticator.isAuthenticated ? isOwner : false
                     view?.setApplyButtonButtonVisibility(isHidden: isApplyButtonHidden)
 
                     view?.setDescriptionLabel(description: response.data.description.emptyIfNil)
@@ -361,7 +371,7 @@ extension AdvertViewModel: ViewModelLifeCycle {
     }
     
     private func prepareUserSummary(_ advert: Advert) {
-        let shouldShowDotsButton = advert.user.id != AuthenticationService.shared.userID
+        let shouldShowDotsButton = advert.user.id != authenticator.userID
         let avatarPresentation = AvatarPresentation(
             kind: .custom(.init(size: .custom(72), radius: .medium)),
             source: .url(advert.user.avatarURL)
@@ -515,10 +525,14 @@ extension AdvertViewModel: DeleteAdvertFeedbackSelectionDelegate {
         )
         let removeAction = AlertService.action(title: String("Advert.DeleteAd", table: .home),
                                                style: .destructive, action: { [weak self] in
-            self?.remove(feedback: request)
+            self?.confirmRemove(feedback: request)
         })
         AlertService.show(message: String("Advert.DeleteAd.Message", table: .home),
                           actions: [removeAction, .cancel()])
+    }
+
+    func confirmRemove(feedback: FeedbackRequest) {
+        remove(feedback: feedback)
     }
 }
 

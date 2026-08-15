@@ -1,0 +1,34 @@
+{
+    "data": {
+        "id": 42,
+        "city": {
+            "id": 34,
+            "name": "Istanbul"
+        },
+        "description": "Event advert",
+        "adType": {
+            "id": 3,
+            "name": "Event",
+            "colorCode": "#2ECC71",
+            "skillTitle": "Skills"
+        },
+        "genres": [],
+        "isActive": true,
+        "skills": [
+            {"id": 1, "name": "Bass", "imageUrl": null}
+        ],
+        "user": {
+            "id": "user123",
+            "name": "Test User",
+            "photoUrl": null,
+            "email": null,
+            "token": null
+        },
+        "status": "active",
+        "updatedAt": "2026-01-01",
+        "serviceTypes": [],
+        "external_link": null
+    },
+    "error": null,
+    "metadata": null
+}

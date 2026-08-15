@@ -129,21 +129,6 @@
 		026789982EF0A8B9009A266A /* FilterViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026789942EF0A8B9009A266A /* FilterViewModelTests.swift */; };
 		026789992EF0A8B9009A266A /* MockFilterViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026789962EF0A8B9009A266A /* MockFilterViewModelDelegate.swift */; };
 		0267899A2EF0A8B9009A266A /* MockFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026789952EF0A8B9009A266A /* MockFilterView.swift */; };
-		02CA1A012F800000001CA001 /* PlaceAdvertCoordinating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CA1A002F800000001CA001 /* PlaceAdvertCoordinating.swift */; };
-		AA000001000000000000AA01 /* RegistrationCoordinating.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001000000000000AA00 /* RegistrationCoordinating.swift */; };
-		AA000001000000000000AA02 /* MockNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001000000000000AA03 /* MockNotificationCenter.swift */; };
-		AA000001000000000000AA04 /* MockRegistrationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001000000000000AA05 /* MockRegistrationCoordinator.swift */; };
-		AA000001000000000000AA06 /* MockRegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001000000000000AA07 /* MockRegistrationView.swift */; };
-		AA000001000000000000AA08 /* RegistrationViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001000000000000AA09 /* RegistrationViewModelTests.swift */; };
-		AA000001000000000000AA0A /* Registration-Token-Sample.json in Resources */ = {isa = PBXBuildFile; fileRef = AA000001000000000000AA0B /* Registration-Token-Sample.json */; };
-		AA000001000000000000AA0F /* LoginCoordinating.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001000000000000AA0E /* LoginCoordinating.swift */; };
-		AA000001000000000000AA11 /* MockLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001000000000000AA10 /* MockLoginView.swift */; };
-		AA000001000000000000AA13 /* MockLoginCoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001000000000000AA12 /* MockLoginCoordinatorProtocol.swift */; };
-		AA000001000000000000AA15 /* LoginViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001000000000000AA14 /* LoginViewModelTests.swift */; };
-		AA000001000000000000AA17 /* Login-Token-Sample.json in Resources */ = {isa = PBXBuildFile; fileRef = AA000001000000000000AA16 /* Login-Token-Sample.json */; };
-		02CA1A022F800000001CA002 /* PlaceAdvertViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CA1A032F800000001CA003 /* PlaceAdvertViewModelTests.swift */; };
-		02CA1A042F800000001CA004 /* MockPlaceAdvertCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CA1A052F800000001CA005 /* MockPlaceAdvertCoordinator.swift */; };
-		02CA1A062F800000001CA006 /* MockPlaceAdvertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CA1A072F800000001CA007 /* MockPlaceAdvertView.swift */; };
 		026C4FD1280D5FA800C0B967 /* CommonConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026C4FD0280D5FA800C0B967 /* CommonConstants.swift */; };
 		026C4FD4280DA55900C0B967 /* GetUserTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026C4FD3280DA55900C0B967 /* GetUserTask.swift */; };
 		026DF38E28C2106600B73427 /* URLNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026DF38728C2106600B73427 /* URLNavigator.swift */; };
@@ -205,6 +190,19 @@
 		02A60CE22D0A291300B0FA80 /* Onboarding+Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 02A60CE12D0A291300B0FA80 /* Onboarding+Localizable.xcstrings */; };
 		02A824842881B202004351D0 /* MockRestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A824832881B202004351D0 /* MockRestService.swift */; };
 		02A9C1F72E3D615A0031A636 /* RevenueCatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A9C1F62E3D614A0031A636 /* RevenueCatService.swift */; };
+		02AA55E5302E69280047CE53 /* AdvertCoordinating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02AA55E4302E69280047CE53 /* AdvertCoordinating.swift */; };
+		02AA55EE302E69730047CE53 /* Advert-Sample-Data-ExternalLink.json in Resources */ = {isa = PBXBuildFile; fileRef = 02AA55E8302E69730047CE53 /* Advert-Sample-Data-ExternalLink.json */; };
+		02AA55EF302E69730047CE53 /* Advert-Sample-Data.json in Resources */ = {isa = PBXBuildFile; fileRef = 02AA55E6302E69730047CE53 /* Advert-Sample-Data.json */; };
+		02AA55F0302E69730047CE53 /* Advert-Sample-Data-AutoInactive.json in Resources */ = {isa = PBXBuildFile; fileRef = 02AA55E7302E69730047CE53 /* Advert-Sample-Data-AutoInactive.json */; };
+		02AA55F1302E69730047CE53 /* MockAdvertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02AA55EC302E69730047CE53 /* MockAdvertView.swift */; };
+		02AA55F2302E69730047CE53 /* MockAdvertCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02AA55EB302E69730047CE53 /* MockAdvertCoordinator.swift */; };
+		02AA55F3302E69730047CE53 /* AdvertViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02AA55EA302E69730047CE53 /* AdvertViewModelTests.swift */; };
+		02AA55F7302E6F670047CE53 /* Advert-Sample-Data-Type3.json in Resources */ = {isa = PBXBuildFile; fileRef = 02AA55F4302E6F670047CE53 /* Advert-Sample-Data-Type3.json */; };
+		02AA55F8302E6F670047CE53 /* Advert-Sample-Data-Type4.json in Resources */ = {isa = PBXBuildFile; fileRef = 02AA55F5302E6F670047CE53 /* Advert-Sample-Data-Type4.json */; };
+		02AA55F9302E6F670047CE53 /* Advert-Sample-Data-WithGenres.json in Resources */ = {isa = PBXBuildFile; fileRef = 02AA55F6302E6F670047CE53 /* Advert-Sample-Data-WithGenres.json */; };
+		02AB1002AA001001001AA002 /* MockRevenueCatPurchaseStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02AB1001AA001001001AA001 /* MockRevenueCatPurchaseStorageService.swift */; };
+		02AB1004AA001001001AA004 /* MockAppRatingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02AB1003AA001001001AA003 /* MockAppRatingService.swift */; };
+		02AB1006AA001001001AA006 /* PlaceAdvert-Sample-Data.json in Resources */ = {isa = PBXBuildFile; fileRef = 02AB1005AA001001001AA005 /* PlaceAdvert-Sample-Data.json */; };
 		02AC514128343DF1004C82E4 /* EmptyStatePresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02AC514028343DF1004C82E4 /* EmptyStatePresentation.swift */; };
 		02AC514328343E65004C82E4 /* EmptyStateShowing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02AC514228343E65004C82E4 /* EmptyStateShowing.swift */; };
 		02AD97AD2DEB92CE00B51B0C /* BackendTitles+Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 02AD97AC2DEB92CE00B51B0C /* BackendTitles+Localizable.xcstrings */; };
@@ -216,9 +214,6 @@
 		02B191332EA6D82500E7878D /* MockDispatchQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B191322EA6D82400E7878D /* MockDispatchQueue.swift */; };
 		02B191352EA6D86000E7878D /* MockLoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B191342EA6D85500E7878D /* MockLoginCoordinator.swift */; };
 		02B26C482E931367003EF74E /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B26C472E931365003EF74E /* MockAuthenticationService.swift */; };
-		02AB1002AA001001001AA002 /* MockRevenueCatPurchaseStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02AB1001AA001001001AA001 /* MockRevenueCatPurchaseStorageService.swift */; };
-		02AB1004AA001001001AA004 /* MockAppRatingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02AB1003AA001001001AA003 /* MockAppRatingService.swift */; };
-		02AB1006AA001001001AA006 /* PlaceAdvert-Sample-Data.json in Resources */ = {isa = PBXBuildFile; fileRef = 02AB1005AA001001001AA005 /* PlaceAdvert-Sample-Data.json */; };
 		02B786762D3ADB2700A8B6AE /* FeedbackViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B786722D3ADB2700A8B6AE /* FeedbackViewModelTests.swift */; };
 		02B786772D3ADB2700A8B6AE /* MockFeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B786732D3ADB2700A8B6AE /* MockFeedbackView.swift */; };
 		02B7CA6129259B1F0055B181 /* ChatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B7CA6029259B1F0055B181 /* ChatsViewController.swift */; };
@@ -253,6 +248,11 @@
 		02C5AC4629283DC20092068D /* LiveChatCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C5AC4529283DC20092068D /* LiveChatCoordinator.swift */; };
 		02C9538E285A819200A2B107 /* NotchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C9538D285A819200A2B107 /* NotchView.swift */; };
 		02C95390285A81BF00A2B107 /* NotchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02C9538F285A81BF00A2B107 /* NotchView.xib */; };
+		02CA1A012F800000001CA001 /* PlaceAdvertCoordinating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CA1A002F800000001CA001 /* PlaceAdvertCoordinating.swift */; };
+		02CA1A022F800000001CA002 /* PlaceAdvertViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CA1A032F800000001CA003 /* PlaceAdvertViewModelTests.swift */; };
+		02CA1A042F800000001CA004 /* MockPlaceAdvertCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CA1A052F800000001CA005 /* MockPlaceAdvertCoordinator.swift */; };
+		02CA1A062F800000001CA006 /* MockPlaceAdvertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CA1A072F800000001CA007 /* MockPlaceAdvertView.swift */; };
+		02CA1B012F800000001CB001 /* FilterCoordinating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CA1B002F800000001CB000 /* FilterCoordinating.swift */; };
 		02CAA4AE284BCEA1004C118D /* ProfileUpdatePutTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CAA4AD284BCEA1004C118D /* ProfileUpdatePutTask.swift */; };
 		02D00FCD2913254100B84DD7 /* HTTPUploadTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D00FCC2913254100B84DD7 /* HTTPUploadTask.swift */; };
 		02D00FCF2913383000B84DD7 /* PutAvatarUpdateTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D00FCE2913383000B84DD7 /* PutAvatarUpdateTask.swift */; };
@@ -312,6 +312,17 @@
 		68C86E612BD9488E8B59DA64 /* NotchViewSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C86E602BD9488E8B59DA64 /* NotchViewSnapshotTests.swift */; };
 		6F8987B04EBA4FC4B6509A5C /* AvatarViewSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8987AF4EBA4FC4B6509A5C /* AvatarViewSnapshotTests.swift */; };
 		A1B2C3D4E5F647A8B9C0D1E3 /* SelectionBottomPopUpViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F647A8B9C0D1E2 /* SelectionBottomPopUpViewControllerSnapshotTests.swift */; };
+		AA000001000000000000AA01 /* RegistrationCoordinating.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001000000000000AA00 /* RegistrationCoordinating.swift */; };
+		AA000001000000000000AA02 /* MockNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001000000000000AA03 /* MockNotificationCenter.swift */; };
+		AA000001000000000000AA04 /* MockRegistrationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001000000000000AA05 /* MockRegistrationCoordinator.swift */; };
+		AA000001000000000000AA06 /* MockRegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001000000000000AA07 /* MockRegistrationView.swift */; };
+		AA000001000000000000AA08 /* RegistrationViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001000000000000AA09 /* RegistrationViewModelTests.swift */; };
+		AA000001000000000000AA0A /* Registration-Token-Sample.json in Resources */ = {isa = PBXBuildFile; fileRef = AA000001000000000000AA0B /* Registration-Token-Sample.json */; };
+		AA000001000000000000AA0F /* LoginCoordinating.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001000000000000AA0E /* LoginCoordinating.swift */; };
+		AA000001000000000000AA11 /* MockLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001000000000000AA10 /* MockLoginView.swift */; };
+		AA000001000000000000AA13 /* MockLoginCoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001000000000000AA12 /* MockLoginCoordinatorProtocol.swift */; };
+		AA000001000000000000AA15 /* LoginViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001000000000000AA14 /* LoginViewModelTests.swift */; };
+		AA000001000000000000AA17 /* Login-Token-Sample.json in Resources */ = {isa = PBXBuildFile; fileRef = AA000001000000000000AA16 /* Login-Token-Sample.json */; };
 		B101B48329A8F878002A9EF0 /* NotNilOrEmpty.swift in Sources */ = {isa = PBXBuildFile; fileRef = B101B48229A8F878002A9EF0 /* NotNilOrEmpty.swift */; };
 		B106BCF126E428EB001CE109 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B106BCF026E428EB001CE109 /* Colors.xcassets */; };
 		B10825C1274C3BE60089F561 /* ArmonyUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10825C0274C3BE60089F561 /* ArmonyUser.swift */; };
@@ -354,7 +365,6 @@
 		B1461E132A326E1400BF8AC3 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1461E122A326E1400BF8AC3 /* FilterViewController.swift */; };
 		B1461E162A3281AE00BF8AC3 /* FilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1461E152A3281AE00BF8AC3 /* FilterViewModel.swift */; };
 		B1461E182A3281ED00BF8AC3 /* FilterCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1461E172A3281ED00BF8AC3 /* FilterCoordinator.swift */; };
-		02CA1B012F800000001CB001 /* FilterCoordinating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CA1B002F800000001CB000 /* FilterCoordinating.swift */; };
 		B14745D6297890E5004AECBF /* OnboardingPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14745D5297890E5004AECBF /* OnboardingPresentation.swift */; };
 		B149349727414EC2005E33C8 /* ConfigReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B149349627414EC2005E33C8 /* ConfigReader.swift */; };
 		B149349A27414FBD005E33C8 /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B149349927414FBD005E33C8 /* Bundle+Extensions.swift */; };
@@ -699,35 +709,30 @@
 		02A60CE12D0A291300B0FA80 /* Onboarding+Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = "Onboarding+Localizable.xcstrings"; sourceTree = "<group>"; };
 		02A824832881B202004351D0 /* MockRestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRestService.swift; sourceTree = "<group>"; };
 		02A9C1F62E3D614A0031A636 /* RevenueCatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevenueCatService.swift; sourceTree = "<group>"; };
+		02AA55E4302E69280047CE53 /* AdvertCoordinating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertCoordinating.swift; sourceTree = "<group>"; };
+		02AA55E6302E69730047CE53 /* Advert-Sample-Data.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "Advert-Sample-Data.json"; sourceTree = "<group>"; };
+		02AA55E7302E69730047CE53 /* Advert-Sample-Data-AutoInactive.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "Advert-Sample-Data-AutoInactive.json"; sourceTree = "<group>"; };
+		02AA55E8302E69730047CE53 /* Advert-Sample-Data-ExternalLink.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "Advert-Sample-Data-ExternalLink.json"; sourceTree = "<group>"; };
+		02AA55EA302E69730047CE53 /* AdvertViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertViewModelTests.swift; sourceTree = "<group>"; };
+		02AA55EB302E69730047CE53 /* MockAdvertCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAdvertCoordinator.swift; sourceTree = "<group>"; };
+		02AA55EC302E69730047CE53 /* MockAdvertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAdvertView.swift; sourceTree = "<group>"; };
+		02AA55F4302E6F670047CE53 /* Advert-Sample-Data-Type3.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "Advert-Sample-Data-Type3.json"; sourceTree = "<group>"; };
+		02AA55F5302E6F670047CE53 /* Advert-Sample-Data-Type4.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "Advert-Sample-Data-Type4.json"; sourceTree = "<group>"; };
+		02AA55F6302E6F670047CE53 /* Advert-Sample-Data-WithGenres.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "Advert-Sample-Data-WithGenres.json"; sourceTree = "<group>"; };
+		02AB1001AA001001001AA001 /* MockRevenueCatPurchaseStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRevenueCatPurchaseStorageService.swift; sourceTree = "<group>"; };
+		02AB1003AA001001001AA003 /* MockAppRatingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAppRatingService.swift; sourceTree = "<group>"; };
+		02AB1005AA001001001AA005 /* PlaceAdvert-Sample-Data.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "PlaceAdvert-Sample-Data.json"; sourceTree = "<group>"; };
 		02AC514028343DF1004C82E4 /* EmptyStatePresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStatePresentation.swift; sourceTree = "<group>"; };
 		02AC514228343E65004C82E4 /* EmptyStateShowing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateShowing.swift; sourceTree = "<group>"; };
 		02AD97AC2DEB92CE00B51B0C /* BackendTitles+Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = "BackendTitles+Localizable.xcstrings"; sourceTree = "<group>"; };
 		02AF996B28ED944E006669F4 /* PlaceAdvertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceAdvertViewModel.swift; sourceTree = "<group>"; };
 		02AF996D28ED9476006669F4 /* PlaceAdvertCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceAdvertCoordinator.swift; sourceTree = "<group>"; };
-		02CA1A002F800000001CA001 /* PlaceAdvertCoordinating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceAdvertCoordinating.swift; sourceTree = "<group>"; };
-		AA000001000000000000AA00 /* RegistrationCoordinating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCoordinating.swift; sourceTree = "<group>"; };
-		AA000001000000000000AA03 /* MockNotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNotificationCenter.swift; sourceTree = "<group>"; };
-		AA000001000000000000AA05 /* MockRegistrationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRegistrationCoordinator.swift; sourceTree = "<group>"; };
-		AA000001000000000000AA07 /* MockRegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRegistrationView.swift; sourceTree = "<group>"; };
-		AA000001000000000000AA09 /* RegistrationViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModelTests.swift; sourceTree = "<group>"; };
-		AA000001000000000000AA0B /* Registration-Token-Sample.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "Registration-Token-Sample.json"; sourceTree = "<group>"; };
-		AA000001000000000000AA0E /* LoginCoordinating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinating.swift; sourceTree = "<group>"; };
-		AA000001000000000000AA10 /* MockLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLoginView.swift; sourceTree = "<group>"; };
-		AA000001000000000000AA12 /* MockLoginCoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLoginCoordinatorProtocol.swift; sourceTree = "<group>"; };
-		AA000001000000000000AA14 /* LoginViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelTests.swift; sourceTree = "<group>"; };
-		AA000001000000000000AA16 /* Login-Token-Sample.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "Login-Token-Sample.json"; sourceTree = "<group>"; };
-		02CA1A032F800000001CA003 /* PlaceAdvertViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceAdvertViewModelTests.swift; sourceTree = "<group>"; };
-		02CA1A052F800000001CA005 /* MockPlaceAdvertCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPlaceAdvertCoordinator.swift; sourceTree = "<group>"; };
-		02CA1A072F800000001CA007 /* MockPlaceAdvertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPlaceAdvertView.swift; sourceTree = "<group>"; };
 		02AF996F28ED9C95006669F4 /* DropdownPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownPresentation.swift; sourceTree = "<group>"; };
 		02B02BD72E8AC11A0088789D /* URLNavigatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLNavigatorTests.swift; sourceTree = "<group>"; };
 		02B1912E2EA6BED200E7878D /* DeeplinkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeeplinkTests.swift; sourceTree = "<group>"; };
 		02B191322EA6D82400E7878D /* MockDispatchQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDispatchQueue.swift; sourceTree = "<group>"; };
 		02B191342EA6D85500E7878D /* MockLoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLoginCoordinator.swift; sourceTree = "<group>"; };
 		02B26C472E931365003EF74E /* MockAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAuthenticationService.swift; sourceTree = "<group>"; };
-		02AB1001AA001001001AA001 /* MockRevenueCatPurchaseStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRevenueCatPurchaseStorageService.swift; sourceTree = "<group>"; };
-		02AB1003AA001001001AA003 /* MockAppRatingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAppRatingService.swift; sourceTree = "<group>"; };
-		02AB1005AA001001001AA005 /* PlaceAdvert-Sample-Data.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "PlaceAdvert-Sample-Data.json"; sourceTree = "<group>"; };
 		02B786722D3ADB2700A8B6AE /* FeedbackViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewModelTests.swift; sourceTree = "<group>"; };
 		02B786732D3ADB2700A8B6AE /* MockFeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFeedbackView.swift; sourceTree = "<group>"; };
 		02B7CA6029259B1F0055B181 /* ChatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsViewController.swift; sourceTree = "<group>"; };
@@ -760,6 +765,11 @@
 		02C5AC4529283DC20092068D /* LiveChatCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveChatCoordinator.swift; sourceTree = "<group>"; };
 		02C9538D285A819200A2B107 /* NotchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchView.swift; sourceTree = "<group>"; };
 		02C9538F285A81BF00A2B107 /* NotchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotchView.xib; sourceTree = "<group>"; };
+		02CA1A002F800000001CA001 /* PlaceAdvertCoordinating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceAdvertCoordinating.swift; sourceTree = "<group>"; };
+		02CA1A032F800000001CA003 /* PlaceAdvertViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceAdvertViewModelTests.swift; sourceTree = "<group>"; };
+		02CA1A052F800000001CA005 /* MockPlaceAdvertCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPlaceAdvertCoordinator.swift; sourceTree = "<group>"; };
+		02CA1A072F800000001CA007 /* MockPlaceAdvertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPlaceAdvertView.swift; sourceTree = "<group>"; };
+		02CA1B002F800000001CB000 /* FilterCoordinating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCoordinating.swift; sourceTree = "<group>"; };
 		02CAA4AD284BCEA1004C118D /* ProfileUpdatePutTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUpdatePutTask.swift; sourceTree = "<group>"; };
 		02D00FCC2913254100B84DD7 /* HTTPUploadTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPUploadTask.swift; sourceTree = "<group>"; };
 		02D00FCE2913383000B84DD7 /* PutAvatarUpdateTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PutAvatarUpdateTask.swift; sourceTree = "<group>"; };
@@ -817,6 +827,17 @@
 		68C86E602BD9488E8B59DA64 /* NotchViewSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchViewSnapshotTests.swift; sourceTree = "<group>"; };
 		6F8987AF4EBA4FC4B6509A5C /* AvatarViewSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarViewSnapshotTests.swift; sourceTree = "<group>"; };
 		A1B2C3D4E5F647A8B9C0D1E2 /* SelectionBottomPopUpViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionBottomPopUpViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
+		AA000001000000000000AA00 /* RegistrationCoordinating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCoordinating.swift; sourceTree = "<group>"; };
+		AA000001000000000000AA03 /* MockNotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNotificationCenter.swift; sourceTree = "<group>"; };
+		AA000001000000000000AA05 /* MockRegistrationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRegistrationCoordinator.swift; sourceTree = "<group>"; };
+		AA000001000000000000AA07 /* MockRegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRegistrationView.swift; sourceTree = "<group>"; };
+		AA000001000000000000AA09 /* RegistrationViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModelTests.swift; sourceTree = "<group>"; };
+		AA000001000000000000AA0B /* Registration-Token-Sample.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "Registration-Token-Sample.json"; sourceTree = "<group>"; };
+		AA000001000000000000AA0E /* LoginCoordinating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinating.swift; sourceTree = "<group>"; };
+		AA000001000000000000AA10 /* MockLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLoginView.swift; sourceTree = "<group>"; };
+		AA000001000000000000AA12 /* MockLoginCoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLoginCoordinatorProtocol.swift; sourceTree = "<group>"; };
+		AA000001000000000000AA14 /* LoginViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelTests.swift; sourceTree = "<group>"; };
+		AA000001000000000000AA16 /* Login-Token-Sample.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "Login-Token-Sample.json"; sourceTree = "<group>"; };
 		B101B48229A8F878002A9EF0 /* NotNilOrEmpty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotNilOrEmpty.swift; sourceTree = "<group>"; };
 		B106BCF026E428EB001CE109 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		B10825C0274C3BE60089F561 /* ArmonyUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArmonyUser.swift; sourceTree = "<group>"; };
@@ -859,7 +880,6 @@
 		B1461E122A326E1400BF8AC3 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		B1461E152A3281AE00BF8AC3 /* FilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewModel.swift; sourceTree = "<group>"; };
 		B1461E172A3281ED00BF8AC3 /* FilterCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCoordinator.swift; sourceTree = "<group>"; };
-		02CA1B002F800000001CB000 /* FilterCoordinating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCoordinating.swift; sourceTree = "<group>"; };
 		B14745D5297890E5004AECBF /* OnboardingPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPresentation.swift; sourceTree = "<group>"; };
 		B149349627414EC2005E33C8 /* ConfigReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigReader.swift; sourceTree = "<group>"; };
 		B149349927414FBD005E33C8 /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
@@ -1934,6 +1954,38 @@
 			path = RevenueCat;
 			sourceTree = "<group>";
 		};
+		02AA55E9302E69730047CE53 /* JSONs */ = {
+			isa = PBXGroup;
+			children = (
+				02AA55F4302E6F670047CE53 /* Advert-Sample-Data-Type3.json */,
+				02AA55F5302E6F670047CE53 /* Advert-Sample-Data-Type4.json */,
+				02AA55F6302E6F670047CE53 /* Advert-Sample-Data-WithGenres.json */,
+				02AA55E6302E69730047CE53 /* Advert-Sample-Data.json */,
+				02AA55E7302E69730047CE53 /* Advert-Sample-Data-AutoInactive.json */,
+				02AA55E8302E69730047CE53 /* Advert-Sample-Data-ExternalLink.json */,
+			);
+			path = JSONs;
+			sourceTree = "<group>";
+		};
+		02AA55ED302E69730047CE53 /* Advert */ = {
+			isa = PBXGroup;
+			children = (
+				02AA55E9302E69730047CE53 /* JSONs */,
+				02AA55EA302E69730047CE53 /* AdvertViewModelTests.swift */,
+				02AA55EB302E69730047CE53 /* MockAdvertCoordinator.swift */,
+				02AA55EC302E69730047CE53 /* MockAdvertView.swift */,
+			);
+			path = Advert;
+			sourceTree = "<group>";
+		};
+		02AB1007AA001001001AA007 /* JSONs */ = {
+			isa = PBXGroup;
+			children = (
+				02AB1005AA001001001AA005 /* PlaceAdvert-Sample-Data.json */,
+			);
+			path = JSONs;
+			sourceTree = "<group>";
+		};
 		02AD97A92DEB929000B51B0C /* Backend */ = {
 			isa = PBXGroup;
 			children = (
@@ -1967,28 +2019,10 @@
 			path = Feedback;
 			sourceTree = "<group>";
 		};
-		02CA1A082F800000001CA008 /* CreateAdvert */ = {
-			isa = PBXGroup;
-			children = (
-				02CA1A032F800000001CA003 /* PlaceAdvertViewModelTests.swift */,
-				02CA1A052F800000001CA005 /* MockPlaceAdvertCoordinator.swift */,
-				02CA1A072F800000001CA007 /* MockPlaceAdvertView.swift */,
-				02AB1007AA001001001AA007 /* JSONs */,
-			);
-			path = CreateAdvert;
-			sourceTree = "<group>";
-		};
-		02AB1007AA001001001AA007 /* JSONs */ = {
-			isa = PBXGroup;
-			children = (
-				02AB1005AA001001001AA005 /* PlaceAdvert-Sample-Data.json */,
-			);
-			path = JSONs;
-			sourceTree = "<group>";
-		};
 		02B786752D3ADB2700A8B6AE /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				02AA55ED302E69730047CE53 /* Advert */,
 				026789972EF0A8B9009A266A /* Filter */,
 				026789902EF09AD2009A266A /* Settings */,
 				02B786742D3ADB2700A8B6AE /* Feedback */,
@@ -1997,44 +2031,6 @@
 				AA000001000000000000AA18 /* Login */,
 			);
 			path = Scenes;
-			sourceTree = "<group>";
-		};
-		AA000001000000000000AA18 /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				AA000001000000000000AA14 /* LoginViewModelTests.swift */,
-				AA000001000000000000AA10 /* MockLoginView.swift */,
-				AA000001000000000000AA12 /* MockLoginCoordinatorProtocol.swift */,
-				AA000001000000000000AA19 /* JSONs */,
-			);
-			path = Login;
-			sourceTree = "<group>";
-		};
-		AA000001000000000000AA19 /* JSONs */ = {
-			isa = PBXGroup;
-			children = (
-				AA000001000000000000AA16 /* Login-Token-Sample.json */,
-			);
-			path = JSONs;
-			sourceTree = "<group>";
-		};
-		AA000001000000000000AA0C /* Registration */ = {
-			isa = PBXGroup;
-			children = (
-				AA000001000000000000AA09 /* RegistrationViewModelTests.swift */,
-				AA000001000000000000AA05 /* MockRegistrationCoordinator.swift */,
-				AA000001000000000000AA07 /* MockRegistrationView.swift */,
-				AA000001000000000000AA0D /* JSONs */,
-			);
-			path = Registration;
-			sourceTree = "<group>";
-		};
-		AA000001000000000000AA0D /* JSONs */ = {
-			isa = PBXGroup;
-			children = (
-				AA000001000000000000AA0B /* Registration-Token-Sample.json */,
-			);
-			path = JSONs;
 			sourceTree = "<group>";
 		};
 		02B7CA5F29259AE10055B181 /* Chat */ = {
@@ -2150,6 +2146,17 @@
 				02C9538F285A81BF00A2B107 /* NotchView.xib */,
 			);
 			path = NotchView;
+			sourceTree = "<group>";
+		};
+		02CA1A082F800000001CA008 /* CreateAdvert */ = {
+			isa = PBXGroup;
+			children = (
+				02CA1A032F800000001CA003 /* PlaceAdvertViewModelTests.swift */,
+				02CA1A052F800000001CA005 /* MockPlaceAdvertCoordinator.swift */,
+				02CA1A072F800000001CA007 /* MockPlaceAdvertView.swift */,
+				02AB1007AA001001001AA007 /* JSONs */,
+			);
+			path = CreateAdvert;
 			sourceTree = "<group>";
 		};
 		02D3283C2D276E6200B7E4BE /* AppRating */ = {
@@ -2373,6 +2380,44 @@
 				02FA5A4D2882293000E8AD5C /* MockAccountView.swift */,
 			);
 			path = Account;
+			sourceTree = "<group>";
+		};
+		AA000001000000000000AA0C /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+				AA000001000000000000AA09 /* RegistrationViewModelTests.swift */,
+				AA000001000000000000AA05 /* MockRegistrationCoordinator.swift */,
+				AA000001000000000000AA07 /* MockRegistrationView.swift */,
+				AA000001000000000000AA0D /* JSONs */,
+			);
+			path = Registration;
+			sourceTree = "<group>";
+		};
+		AA000001000000000000AA0D /* JSONs */ = {
+			isa = PBXGroup;
+			children = (
+				AA000001000000000000AA0B /* Registration-Token-Sample.json */,
+			);
+			path = JSONs;
+			sourceTree = "<group>";
+		};
+		AA000001000000000000AA18 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				AA000001000000000000AA14 /* LoginViewModelTests.swift */,
+				AA000001000000000000AA10 /* MockLoginView.swift */,
+				AA000001000000000000AA12 /* MockLoginCoordinatorProtocol.swift */,
+				AA000001000000000000AA19 /* JSONs */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		AA000001000000000000AA19 /* JSONs */ = {
+			isa = PBXGroup;
+			children = (
+				AA000001000000000000AA16 /* Login-Token-Sample.json */,
+			);
+			path = JSONs;
 			sourceTree = "<group>";
 		};
 		B10CCD74274103F600BB313D /* Model */ = {
@@ -2925,6 +2970,7 @@
 				B1143B412798AC910081C634 /* Task */,
 				B19CB885295E0908009A23AC /* Model */,
 				B19BF20F274C43A90034BBB8 /* AdvertViewController.swift */,
+				02AA55E4302E69280047CE53 /* AdvertCoordinating.swift */,
 				B1978AC9274D6CD600FF25BC /* AdvertCoordinator.swift */,
 				B1978ACB274D6D0800FF25BC /* AdvertViewModel.swift */,
 			);
@@ -3729,6 +3775,12 @@
 				02FA5A4928820D8300E8AD5C /* Account-Sample-Data.json in Resources */,
 				02AB1006AA001001001AA006 /* PlaceAdvert-Sample-Data.json in Resources */,
 				AA000001000000000000AA0A /* Registration-Token-Sample.json in Resources */,
+				02AA55EE302E69730047CE53 /* Advert-Sample-Data-ExternalLink.json in Resources */,
+				02AA55EF302E69730047CE53 /* Advert-Sample-Data.json in Resources */,
+				02AA55F0302E69730047CE53 /* Advert-Sample-Data-AutoInactive.json in Resources */,
+				02AA55F7302E6F670047CE53 /* Advert-Sample-Data-Type3.json in Resources */,
+				02AA55F8302E6F670047CE53 /* Advert-Sample-Data-Type4.json in Resources */,
+				02AA55F9302E6F670047CE53 /* Advert-Sample-Data-WithGenres.json in Resources */,
 				AA000001000000000000AA17 /* Login-Token-Sample.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4103,6 +4155,7 @@
 				022F9860292809DC00D8D783 /* GetChatsTask.swift in Sources */,
 				B171156A279F2CD300563A42 /* MusicGenreCell.swift in Sources */,
 				02BDBB0A2ADCA3E5008BB2A3 /* YoutubeMediaCell.swift in Sources */,
+				02AA55E5302E69280047CE53 /* AdvertCoordinating.swift in Sources */,
 				025E1EF5284A9030005D2F83 /* SelectionInput.swift in Sources */,
 				B1E4218B27B4360200EBC232 /* Error+Extensions.swift in Sources */,
 				02A9C1F72E3D615A0031A636 /* RevenueCatService.swift in Sources */,
@@ -4117,6 +4170,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02AA55F1302E69730047CE53 /* MockAdvertView.swift in Sources */,
+				02AA55F2302E69730047CE53 /* MockAdvertCoordinator.swift in Sources */,
+				02AA55F3302E69730047CE53 /* AdvertViewModelTests.swift in Sources */,
 				B1B55C9D26CEFAE300FDE884 /* AccountViewModelTests.swift in Sources */,
 				026283F12F7F0DC9002BB66B /* MockSelectionBottomPopUpView.swift in Sources */,
 				026283F22F7F0DC9002BB66B /* MockSelectionBottomPopUpCoordinator.swift in Sources */,

@@ -63,6 +63,9 @@ final class AdvertCoordinator: Coordinator, SelectionBottomPopUpOpening {
     }
 }
 
+// MARK: - AdvertCoordinating
+extension AdvertCoordinator: AdvertCoordinating {}
+
 // MARK: - URLNavigatable
 extension AdvertCoordinator: URLNavigatable {
     var isAuthenticationRequired: Bool {

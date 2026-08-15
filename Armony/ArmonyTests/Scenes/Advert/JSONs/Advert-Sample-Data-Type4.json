@@ -1,0 +1,36 @@
+{
+    "data": {
+        "id": 42,
+        "city": {
+            "id": 34,
+            "name": "Istanbul"
+        },
+        "description": "Instructor advert",
+        "adType": {
+            "id": 4,
+            "name": "Instructor",
+            "colorCode": "#E74C3C",
+            "skillTitle": "Instrument"
+        },
+        "genres": [],
+        "isActive": true,
+        "skills": [
+            {"id": 1, "name": "Guitar", "imageUrl": null}
+        ],
+        "user": {
+            "id": "user123",
+            "name": "Test User",
+            "photoUrl": null,
+            "email": null,
+            "token": null
+        },
+        "status": "active",
+        "updatedAt": "2026-01-01",
+        "serviceTypes": [
+            {"id": 1, "name": "Online"}
+        ],
+        "external_link": null
+    },
+    "error": null,
+    "metadata": null
+}
