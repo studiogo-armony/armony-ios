@@ -18,12 +18,12 @@ final class AdvertListingViewModel: ViewModel, ObservableObject {
     @Published var cards: [CardPresentation]
     @Published var state: State
 
-    var coordinator: AdvertListingCoordinator!
+    var coordinator: (any AdvertListingCoordinating)!
 
-    init() {
+    override init(service: RestService = RestService(backend: .factory())) {
         self.cards = .empty
         self.state = .loading
-        super.init()
+        super.init(service: service)
     }
 
     @MainActor

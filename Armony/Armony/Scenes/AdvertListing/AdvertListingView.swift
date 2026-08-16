@@ -43,7 +43,7 @@ struct AdvertListingView: View {
                 }
             case .empty:
                 EmptyStateSwiftUIView(presentation: .noContent) { _ in
-                    self.viewModel.coordinator.pop()
+                    self.viewModel.coordinator.pop(animated: true)
                 }
             case .loading:
                 ProgressView()

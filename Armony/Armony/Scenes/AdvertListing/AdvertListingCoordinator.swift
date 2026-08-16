@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-final class AdvertListingCoordinator: SwiftUICoordinator {
+final class AdvertListingCoordinator: SwiftUICoordinator, AdvertListingCoordinating {
 
     var navigator: Navigator?
 

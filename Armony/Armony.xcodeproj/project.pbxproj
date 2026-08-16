@@ -209,6 +209,10 @@
 		C447C1EFD9A948097C4E78D7 /* AccountInformationViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7F9BA71917ADBAA323376A /* AccountInformationViewModelTests.swift */; };
 		79ADB4DE5E3FFA45D4342CBE /* AccountInfo-Sample-Data.json in Resources */ = {isa = PBXBuildFile; fileRef = 0DD92F6E659987F1DEABBDA7 /* AccountInfo-Sample-Data.json */; };
 		146AC1C8FB16F21064A3C75E /* FeedbackSubjects-Sample-Data.json in Resources */ = {isa = PBXBuildFile; fileRef = 4DFAEA990E429D72CF5830A4 /* FeedbackSubjects-Sample-Data.json */; };
+		3B9F3835D0AC4C39846194E9 /* AdvertListingCoordinating.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15E9D7D18864685B4ECED49 /* AdvertListingCoordinating.swift */; };
+		6D70A6972F854D44B525A20C /* AdvertListingViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BEA3D311954DA787227254 /* AdvertListingViewModelTests.swift */; };
+		8D56FF1EE38B422BA1D1FF53 /* MockAdvertListingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F77DF002867428B9D288E53 /* MockAdvertListingCoordinator.swift */; };
+		D69BB6C8B1734DF5B16550A8 /* ExternalAdverts-Sample-Data.json in Resources */ = {isa = PBXBuildFile; fileRef = 5CE9BDF2626E41AEAB99F7AE /* ExternalAdverts-Sample-Data.json */; };
 		02AA55EE302E69730047CE53 /* Advert-Sample-Data-ExternalLink.json in Resources */ = {isa = PBXBuildFile; fileRef = 02AA55E8302E69730047CE53 /* Advert-Sample-Data-ExternalLink.json */; };
 		02AA55EF302E69730047CE53 /* Advert-Sample-Data.json in Resources */ = {isa = PBXBuildFile; fileRef = 02AA55E6302E69730047CE53 /* Advert-Sample-Data.json */; };
 		02AA55F0302E69730047CE53 /* Advert-Sample-Data-AutoInactive.json in Resources */ = {isa = PBXBuildFile; fileRef = 02AA55E7302E69730047CE53 /* Advert-Sample-Data-AutoInactive.json */; };
@@ -799,6 +803,10 @@
 		02C33ACF2C9A110700AB332B /* AdvertListingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertListingView.swift; sourceTree = "<group>"; };
 		02C33AD22C9A39EC00AB332B /* AdvertListingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertListingViewModel.swift; sourceTree = "<group>"; };
 		02C33AD42C9A3A0900AB332B /* AdvertListingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertListingCoordinator.swift; sourceTree = "<group>"; };
+		C15E9D7D18864685B4ECED49 /* AdvertListingCoordinating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertListingCoordinating.swift; sourceTree = "<group>"; };
+		30BEA3D311954DA787227254 /* AdvertListingViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertListingViewModelTests.swift; sourceTree = "<group>"; };
+		4F77DF002867428B9D288E53 /* MockAdvertListingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAdvertListingCoordinator.swift; sourceTree = "<group>"; };
+		5CE9BDF2626E41AEAB99F7AE /* ExternalAdverts-Sample-Data.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "ExternalAdverts-Sample-Data.json"; sourceTree = "<group>"; };
 		02C4D6EB288BFCD500FDF55F /* TitleSelectionPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSelectionPresentation.swift; sourceTree = "<group>"; };
 		02C4D6ED288BFCE800FDF55F /* SkillsSelectionPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillsSelectionPresentation.swift; sourceTree = "<group>"; };
 		02C4D6EF288BFCF100FDF55F /* MusicGenresSelectionPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicGenresSelectionPresentation.swift; sourceTree = "<group>"; };
@@ -2088,6 +2096,24 @@
 			path = LogOut;
 			sourceTree = "<group>";
 		};
+		01088CBD899B4E90AB56594E /* AdvertListing */ = {
+			isa = PBXGroup;
+			children = (
+				F1B8CD6FD94A4F679FE438CD /* JSONs */,
+				30BEA3D311954DA787227254 /* AdvertListingViewModelTests.swift */,
+				4F77DF002867428B9D288E53 /* MockAdvertListingCoordinator.swift */,
+			);
+			path = AdvertListing;
+			sourceTree = "<group>";
+		};
+		F1B8CD6FD94A4F679FE438CD /* JSONs */ = {
+			isa = PBXGroup;
+			children = (
+				5CE9BDF2626E41AEAB99F7AE /* ExternalAdverts-Sample-Data.json */,
+			);
+			path = JSONs;
+			sourceTree = "<group>";
+		};
 		C5E266DB2FF8F56A862C056F /* JSONs */ = {
 			isa = PBXGroup;
 			children = (
@@ -2163,6 +2189,7 @@
 				80DF30700FD54C9FACFE3A57 /* Splash */,
 				E83B4C1DA3D745F880AE7502 /* ChangePassword */,
 				A15170AC07624EC0AC32BCF1 /* LogOut */,
+				01088CBD899B4E90AB56594E /* AdvertListing */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -2269,6 +2296,7 @@
 				02C33ACF2C9A110700AB332B /* AdvertListingView.swift */,
 				02C33AD22C9A39EC00AB332B /* AdvertListingViewModel.swift */,
 				02C33AD42C9A3A0900AB332B /* AdvertListingCoordinator.swift */,
+				C15E9D7D18864685B4ECED49 /* AdvertListingCoordinating.swift */,
 			);
 			path = AdvertListing;
 			sourceTree = "<group>";
@@ -3924,6 +3952,7 @@
 				D1E2F3A4B5C6D7E8F9001122 /* UserDetail-Sample-Data-WithGenres.json in Resources */,
 				79ADB4DE5E3FFA45D4342CBE /* AccountInfo-Sample-Data.json in Resources */,
 				146AC1C8FB16F21064A3C75E /* FeedbackSubjects-Sample-Data.json in Resources */,
+				D69BB6C8B1734DF5B16550A8 /* ExternalAdverts-Sample-Data.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4309,6 +4338,7 @@
 				B152FB9A298F073F001D2F00 /* DeleteAccountTask.swift in Sources */,
 				B111223726DA7777009C7B3E /* UIViewController+Extensions.swift in Sources */,
 				02C33AD52C9A3A0900AB332B /* AdvertListingCoordinator.swift in Sources */,
+				3B9F3835D0AC4C39846194E9 /* AdvertListingCoordinating.swift in Sources */,
 				B18F7FF5295609650006B975 /* TitleAccessoryPresentation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4381,6 +4411,8 @@
 				AA000001000000000000AA11 /* MockLoginView.swift in Sources */,
 				AA000001000000000000AA13 /* MockLoginCoordinatorProtocol.swift in Sources */,
 				AA000001000000000000AA15 /* LoginViewModelTests.swift in Sources */,
+				6D70A6972F854D44B525A20C /* AdvertListingViewModelTests.swift in Sources */,
+				8D56FF1EE38B422BA1D1FF53 /* MockAdvertListingCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
