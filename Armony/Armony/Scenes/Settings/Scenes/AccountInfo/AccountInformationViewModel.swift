@@ -12,14 +12,17 @@ final class AccountInformationViewModel: ViewModel {
     var coordinator: (any AccountInformationCoordinating)!
     private weak var view: AccountInformationViewDelegate?
     private let authenticator: AuthenticationProviding
+    private let resetHandler: ApplicationResetHandling
 
     init(
         view: AccountInformationViewDelegate,
         authenticator: AuthenticationProviding = AuthenticationService.shared,
+        resetHandler: ApplicationResetHandling = ApplicationResetHandler.shared,
         service: RestService = RestService(backend: .factory())
     ) {
         self.view = view
         self.authenticator = authenticator
+        self.resetHandler = resetHandler
         super.init(service: service)
     }
 
@@ -107,7 +110,7 @@ final class AccountInformationViewModel: ViewModel {
                 DeleteAccountAdjustEvent().send()
 
                 safeSync {
-                    ApplicationResetHandler.shared.reset()
+                    resetHandler.reset()
                     coordinator.startFromSktratch()
                 }
             }

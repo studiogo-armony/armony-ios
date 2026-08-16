@@ -201,6 +201,7 @@
 		4F31EB69DAE83BFABA46D739 /* AccountInformationCoordinating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9D8E05DB2EB665C45F7D08 /* AccountInformationCoordinating.swift */; };
 		E0044FDABB6DEC4027B410C1 /* MockAccountInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EEFD8B62873DD4153E2AB01 /* MockAccountInformationView.swift */; };
 		107848443A352C836B0A8A1F /* MockAccountInformationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12E02BAD7BC06C064FD5DE9 /* MockAccountInformationCoordinator.swift */; };
+		5B4B99693F3048F29A0535B7 /* MockApplicationResetHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A332D1D7B44094BAA5986C /* MockApplicationResetHandler.swift */; };
 		C447C1EFD9A948097C4E78D7 /* AccountInformationViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7F9BA71917ADBAA323376A /* AccountInformationViewModelTests.swift */; };
 		79ADB4DE5E3FFA45D4342CBE /* AccountInfo-Sample-Data.json in Resources */ = {isa = PBXBuildFile; fileRef = 0DD92F6E659987F1DEABBDA7 /* AccountInfo-Sample-Data.json */; };
 		146AC1C8FB16F21064A3C75E /* FeedbackSubjects-Sample-Data.json in Resources */ = {isa = PBXBuildFile; fileRef = 4DFAEA990E429D72CF5830A4 /* FeedbackSubjects-Sample-Data.json */; };
@@ -733,6 +734,7 @@
 		0C9D8E05DB2EB665C45F7D08 /* AccountInformationCoordinating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInformationCoordinating.swift; sourceTree = "<group>"; };
 		9EEFD8B62873DD4153E2AB01 /* MockAccountInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAccountInformationView.swift; sourceTree = "<group>"; };
 		B12E02BAD7BC06C064FD5DE9 /* MockAccountInformationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAccountInformationCoordinator.swift; sourceTree = "<group>"; };
+		E6A332D1D7B44094BAA5986C /* MockApplicationResetHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockApplicationResetHandler.swift; sourceTree = "<group>"; };
 		8B7F9BA71917ADBAA323376A /* AccountInformationViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInformationViewModelTests.swift; sourceTree = "<group>"; };
 		0DD92F6E659987F1DEABBDA7 /* AccountInfo-Sample-Data.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "AccountInfo-Sample-Data.json"; sourceTree = "<group>"; };
 		4DFAEA990E429D72CF5830A4 /* FeedbackSubjects-Sample-Data.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "FeedbackSubjects-Sample-Data.json"; sourceTree = "<group>"; };
@@ -2022,6 +2024,7 @@
 				C5E266DB2FF8F56A862C056F /* JSONs */,
 				8B7F9BA71917ADBAA323376A /* AccountInformationViewModelTests.swift */,
 				B12E02BAD7BC06C064FD5DE9 /* MockAccountInformationCoordinator.swift */,
+				E6A332D1D7B44094BAA5986C /* MockApplicationResetHandler.swift */,
 				9EEFD8B62873DD4153E2AB01 /* MockAccountInformationView.swift */,
 			);
 			path = AccountInformation;
@@ -4293,6 +4296,7 @@
 				13EEE78DD5EE406D9EAD901A /* VisitedAccountViewModelTests.swift in Sources */,
 				E0044FDABB6DEC4027B410C1 /* MockAccountInformationView.swift in Sources */,
 				107848443A352C836B0A8A1F /* MockAccountInformationCoordinator.swift in Sources */,
+				5B4B99693F3048F29A0535B7 /* MockApplicationResetHandler.swift in Sources */,
 				C447C1EFD9A948097C4E78D7 /* AccountInformationViewModelTests.swift in Sources */,
 				AA000001000000000000AA02 /* MockNotificationCenter.swift in Sources */,
 				AA000001000000000000AA04 /* MockRegistrationCoordinator.swift in Sources */,

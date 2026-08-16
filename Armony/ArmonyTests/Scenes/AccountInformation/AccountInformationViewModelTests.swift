@@ -14,6 +14,7 @@ final class AccountInformationViewModelTests: XCTestCase {
     var mockCoordinator: MockAccountInformationCoordinator!
     var mockService: MockRestService!
     var mockAuthenticator: MockAuthenticationService!
+    var mockResetHandler: MockApplicationResetHandler!
     var sut: AccountInformationViewModel!
 
     override func setUpWithError() throws {
@@ -22,10 +23,12 @@ final class AccountInformationViewModelTests: XCTestCase {
         mockService = MockRestService(backend: .factory())
         mockAuthenticator = MockAuthenticationService()
         mockAuthenticator.stubbedUserID = "user123"
+        mockResetHandler = MockApplicationResetHandler()
 
         sut = AccountInformationViewModel(
             view: mockView,
             authenticator: mockAuthenticator,
+            resetHandler: mockResetHandler,
             service: mockService
         )
         sut.coordinator = mockCoordinator
@@ -36,6 +39,7 @@ final class AccountInformationViewModelTests: XCTestCase {
         mockCoordinator = nil
         mockService = nil
         mockAuthenticator = nil
+        mockResetHandler = nil
         sut = nil
     }
 
@@ -278,8 +282,18 @@ final class AccountInformationViewModelTests: XCTestCase {
         XCTAssertTrue(mockView.invokedStartSaveButtonActivityIndicatorView)
     }
 
-    // Note: test_deleteAccount_onSuccess_callsStartFromSktratch is not testable because
-    // ApplicationResetHandler.shared.reset() terminates the test process.
+    func test_deleteAccount_onSuccess_callsResetAndStartFromSktratch() async throws {
+        let expectation = expectation(description: "startFromSktratch called")
+        mockCoordinator.onStartFromSktratch = { expectation.fulfill() }
+        let emptyResponse = RestObjectResponse<EmptyResponse>(data: EmptyResponse(), metadata: nil, error: nil)
+        mockService.stubbedResults = [emptyResponse, emptyResponse]
+
+        sut.deleteAccount(feedback: makeFeedbackRequest())
+
+        await fulfillment(of: [expectation], timeout: 2.0)
+        XCTAssertTrue(mockResetHandler.invokedReset)
+        XCTAssertTrue(mockCoordinator.invokedStartFromSktratch)
+    }
 
     func test_deleteAccount_onError_stopsActivityIndicators() async throws {
         let expectation = expectation(description: "stopDeleteButton called on error")
