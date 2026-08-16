@@ -419,6 +419,11 @@
 		B17DFAB827B6801900A82C41 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17DFAB727B6801900A82C41 /* SplashViewController.swift */; };
 		B17DFABA27B6861800A82C41 /* SplashCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17DFAB927B6861800A82C41 /* SplashCoordinator.swift */; };
 		B17DFABC27B6864900A82C41 /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17DFABB27B6864900A82C41 /* SplashViewModel.swift */; };
+		4E63F6AC9A27446E94D8D3DC /* SplashCoordinating.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF7C63BDE2C4838BB2642B2 /* SplashCoordinating.swift */; };
+		B1F81111F9A24960BAB678CE /* SplashViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10A6E926824495C96A596F5 /* SplashViewModelTests.swift */; };
+		FB789A0C0F9A424990D8080C /* MockSplashCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F230F0D3634AF289F96619 /* MockSplashCoordinator.swift */; };
+		3AEA39C9DF2842F6839354BC /* MockRemoteConfigService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F3C36EF9274348A8780669 /* MockRemoteConfigService.swift */; };
+		0FAD757195F8485DA9E95105 /* MockForceUpdateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087EEE5357394640B504100F /* MockForceUpdateHandler.swift */; };
 		B17ECF9726DA2B2E00DD535D /* Alamofire+NetworkActivityLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17ECF9626DA2B2E00DD535D /* Alamofire+NetworkActivityLogger.swift */; };
 		B17ECF9A26DA31D800DD535D /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17ECF9926DA31D800DD535D /* Array+Extensions.swift */; };
 		B17ECF9C26DA39F600DD535D /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17ECF9B26DA39F600DD535D /* ViewModel.swift */; };
@@ -948,6 +953,11 @@
 		B17DFAB727B6801900A82C41 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		B17DFAB927B6861800A82C41 /* SplashCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashCoordinator.swift; sourceTree = "<group>"; };
 		B17DFABB27B6864900A82C41 /* SplashViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
+		DBF7C63BDE2C4838BB2642B2 /* SplashCoordinating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashCoordinating.swift; sourceTree = "<group>"; };
+		A10A6E926824495C96A596F5 /* SplashViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModelTests.swift; sourceTree = "<group>"; };
+		39F230F0D3634AF289F96619 /* MockSplashCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSplashCoordinator.swift; sourceTree = "<group>"; };
+		D0F3C36EF9274348A8780669 /* MockRemoteConfigService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRemoteConfigService.swift; sourceTree = "<group>"; };
+		087EEE5357394640B504100F /* MockForceUpdateHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockForceUpdateHandler.swift; sourceTree = "<group>"; };
 		B17ECF9626DA2B2E00DD535D /* Alamofire+NetworkActivityLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alamofire+NetworkActivityLogger.swift"; sourceTree = "<group>"; };
 		B17ECF9926DA31D800DD535D /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
 		B17ECF9B26DA39F600DD535D /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
@@ -2030,6 +2040,17 @@
 			path = AccountInformation;
 			sourceTree = "<group>";
 		};
+		80DF30700FD54C9FACFE3A57 /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				A10A6E926824495C96A596F5 /* SplashViewModelTests.swift */,
+				39F230F0D3634AF289F96619 /* MockSplashCoordinator.swift */,
+				D0F3C36EF9274348A8780669 /* MockRemoteConfigService.swift */,
+				087EEE5357394640B504100F /* MockForceUpdateHandler.swift */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
 		C5E266DB2FF8F56A862C056F /* JSONs */ = {
 			isa = PBXGroup;
 			children = (
@@ -2102,6 +2123,7 @@
 				AA000001000000000000AA18 /* Login */,
 				FBA56F7480CA43099329BEAD /* VisitedAccount */,
 				8D59666E43AA9AB9D86DB931 /* AccountInformation */,
+				80DF30700FD54C9FACFE3A57 /* Splash */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -2881,6 +2903,7 @@
 			isa = PBXGroup;
 			children = (
 				B17DFAB927B6861800A82C41 /* SplashCoordinator.swift */,
+				DBF7C63BDE2C4838BB2642B2 /* SplashCoordinating.swift */,
 				B17DFABB27B6864900A82C41 /* SplashViewModel.swift */,
 				B17DFAB727B6801900A82C41 /* SplashViewController.swift */,
 				B17DFAB527B6800800A82C41 /* Splash.storyboard */,
@@ -3919,6 +3942,7 @@
 				B10825C1274C3BE60089F561 /* ArmonyUser.swift in Sources */,
 				B14745D6297890E5004AECBF /* OnboardingPresentation.swift in Sources */,
 				B17DFABA27B6861800A82C41 /* SplashCoordinator.swift in Sources */,
+				4E63F6AC9A27446E94D8D3DC /* SplashCoordinating.swift in Sources */,
 				B155675A296B07EC00745FEE /* SelectionBottomPopUpFooterView.swift in Sources */,
 				B1A77AA226D2CC8800CE94FA /* AdvertsCoordinator.swift in Sources */,
 				02C5AC4429283D900092068D /* LiveChatViewModel.swift in Sources */,
@@ -4298,6 +4322,10 @@
 				107848443A352C836B0A8A1F /* MockAccountInformationCoordinator.swift in Sources */,
 				5B4B99693F3048F29A0535B7 /* MockApplicationResetHandler.swift in Sources */,
 				C447C1EFD9A948097C4E78D7 /* AccountInformationViewModelTests.swift in Sources */,
+				B1F81111F9A24960BAB678CE /* SplashViewModelTests.swift in Sources */,
+				FB789A0C0F9A424990D8080C /* MockSplashCoordinator.swift in Sources */,
+				3AEA39C9DF2842F6839354BC /* MockRemoteConfigService.swift in Sources */,
+				0FAD757195F8485DA9E95105 /* MockForceUpdateHandler.swift in Sources */,
 				AA000001000000000000AA02 /* MockNotificationCenter.swift in Sources */,
 				AA000001000000000000AA04 /* MockRegistrationCoordinator.swift in Sources */,
 				AA000001000000000000AA06 /* MockRegistrationView.swift in Sources */,

@@ -9,11 +9,16 @@ import Foundation
 
 final class SplashViewModel: ViewModel {
 
-    var coordinator: SplashCoordinator!
-    private let forceUpdateHandler: ForceUpdateHandler = .init()
-    private let remoteConfigService: RemoteConfigService = .shared
+    var coordinator: (any SplashCoordinating)!
+    private let remoteConfigService: RemoteConfigProviding
+    private let forceUpdateHandler: ForceUpdateHandling
 
-    init() {
+    init(
+        remoteConfigService: RemoteConfigProviding = RemoteConfigService.shared,
+        forceUpdateHandler: ForceUpdateHandling = ForceUpdateHandler()
+    ) {
+        self.remoteConfigService = remoteConfigService
+        self.forceUpdateHandler = forceUpdateHandler
         super.init()
     }
 }

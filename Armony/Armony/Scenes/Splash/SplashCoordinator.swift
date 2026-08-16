@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class SplashCoordinator: Coordinator {
+final class SplashCoordinator: Coordinator, SplashCoordinating {
     typealias Controller = SplashViewController
 
     private let window: UIWindow
