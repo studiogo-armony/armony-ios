@@ -286,6 +286,7 @@
 		02DB3A382896888B0056BE3C /* GetAccountInfoTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DB3A372896888B0056BE3C /* GetAccountInfoTask.swift */; };
 		02DB3A3A289689B80056BE3C /* AccountInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DB3A39289689B80056BE3C /* AccountInfo.swift */; };
 		02DB3A412896C5F30056BE3C /* ChangePasswordCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DB3A3E2896C5F30056BE3C /* ChangePasswordCoordinator.swift */; };
+		B7491C348C19432797FD5460 /* ChangePasswordCoordinating.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC083B284E794B67B084B274 /* ChangePasswordCoordinating.swift */; };
 		02DB3A422896C5F30056BE3C /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DB3A3F2896C5F30056BE3C /* ChangePasswordViewController.swift */; };
 		02DB3A432896C5F30056BE3C /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DB3A402896C5F30056BE3C /* ChangePasswordViewModel.swift */; };
 		02DB3A472896C6470056BE3C /* PostChangePasswordTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DB3A462896C6470056BE3C /* PostChangePasswordTask.swift */; };
@@ -422,6 +423,9 @@
 		4E63F6AC9A27446E94D8D3DC /* SplashCoordinating.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF7C63BDE2C4838BB2642B2 /* SplashCoordinating.swift */; };
 		B1F81111F9A24960BAB678CE /* SplashViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10A6E926824495C96A596F5 /* SplashViewModelTests.swift */; };
 		FB789A0C0F9A424990D8080C /* MockSplashCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F230F0D3634AF289F96619 /* MockSplashCoordinator.swift */; };
+		3274F09EAF4C4E4FBA1CE600 /* ChangePasswordViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF130E09BA9D450CBCC1BD22 /* ChangePasswordViewModelTests.swift */; };
+		E19B34A31AD14686B0E15E95 /* MockChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DD7B413D40430C912F5EE0 /* MockChangePasswordView.swift */; };
+		F3819900126945F3A32CC38B /* MockChangePasswordCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFCD384CEAA482DBC283FCB /* MockChangePasswordCoordinator.swift */; };
 		3AEA39C9DF2842F6839354BC /* MockRemoteConfigService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F3C36EF9274348A8780669 /* MockRemoteConfigService.swift */; };
 		0FAD757195F8485DA9E95105 /* MockForceUpdateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087EEE5357394640B504100F /* MockForceUpdateHandler.swift */; };
 		B17ECF9726DA2B2E00DD535D /* Alamofire+NetworkActivityLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17ECF9626DA2B2E00DD535D /* Alamofire+NetworkActivityLogger.swift */; };
@@ -820,6 +824,7 @@
 		02DB3A372896888B0056BE3C /* GetAccountInfoTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAccountInfoTask.swift; sourceTree = "<group>"; };
 		02DB3A39289689B80056BE3C /* AccountInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfo.swift; sourceTree = "<group>"; };
 		02DB3A3E2896C5F30056BE3C /* ChangePasswordCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordCoordinator.swift; sourceTree = "<group>"; };
+		FC083B284E794B67B084B274 /* ChangePasswordCoordinating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordCoordinating.swift; sourceTree = "<group>"; };
 		02DB3A3F2896C5F30056BE3C /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		02DB3A402896C5F30056BE3C /* ChangePasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewModel.swift; sourceTree = "<group>"; };
 		02DB3A462896C6470056BE3C /* PostChangePasswordTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostChangePasswordTask.swift; sourceTree = "<group>"; };
@@ -956,6 +961,9 @@
 		DBF7C63BDE2C4838BB2642B2 /* SplashCoordinating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashCoordinating.swift; sourceTree = "<group>"; };
 		A10A6E926824495C96A596F5 /* SplashViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModelTests.swift; sourceTree = "<group>"; };
 		39F230F0D3634AF289F96619 /* MockSplashCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSplashCoordinator.swift; sourceTree = "<group>"; };
+		AF130E09BA9D450CBCC1BD22 /* ChangePasswordViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewModelTests.swift; sourceTree = "<group>"; };
+		14DD7B413D40430C912F5EE0 /* MockChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockChangePasswordView.swift; sourceTree = "<group>"; };
+		4BFCD384CEAA482DBC283FCB /* MockChangePasswordCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockChangePasswordCoordinator.swift; sourceTree = "<group>"; };
 		D0F3C36EF9274348A8780669 /* MockRemoteConfigService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRemoteConfigService.swift; sourceTree = "<group>"; };
 		087EEE5357394640B504100F /* MockForceUpdateHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockForceUpdateHandler.swift; sourceTree = "<group>"; };
 		B17ECF9626DA2B2E00DD535D /* Alamofire+NetworkActivityLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alamofire+NetworkActivityLogger.swift"; sourceTree = "<group>"; };
@@ -2051,6 +2059,16 @@
 			path = Splash;
 			sourceTree = "<group>";
 		};
+		E83B4C1DA3D745F880AE7502 /* ChangePassword */ = {
+			isa = PBXGroup;
+			children = (
+				AF130E09BA9D450CBCC1BD22 /* ChangePasswordViewModelTests.swift */,
+				14DD7B413D40430C912F5EE0 /* MockChangePasswordView.swift */,
+				4BFCD384CEAA482DBC283FCB /* MockChangePasswordCoordinator.swift */,
+			);
+			path = ChangePassword;
+			sourceTree = "<group>";
+		};
 		C5E266DB2FF8F56A862C056F /* JSONs */ = {
 			isa = PBXGroup;
 			children = (
@@ -2124,6 +2142,7 @@
 				FBA56F7480CA43099329BEAD /* VisitedAccount */,
 				8D59666E43AA9AB9D86DB931 /* AccountInformation */,
 				80DF30700FD54C9FACFE3A57 /* Splash */,
+				E83B4C1DA3D745F880AE7502 /* ChangePassword */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -2325,6 +2344,7 @@
 			children = (
 				02DB3A442896C6130056BE3C /* API */,
 				02DB3A3E2896C5F30056BE3C /* ChangePasswordCoordinator.swift */,
+				FC083B284E794B67B084B274 /* ChangePasswordCoordinating.swift */,
 				02DB3A3F2896C5F30056BE3C /* ChangePasswordViewController.swift */,
 				02DB3A402896C5F30056BE3C /* ChangePasswordViewModel.swift */,
 			);
@@ -4056,6 +4076,7 @@
 				B19CB88C295E0AF5009A23AC /* ChatItemPresentation.swift in Sources */,
 				B1171EE626E7D690003BB64F /* UIColor+Extensions.swift in Sources */,
 				02DB3A412896C5F30056BE3C /* ChangePasswordCoordinator.swift in Sources */,
+				B7491C348C19432797FD5460 /* ChangePasswordCoordinating.swift in Sources */,
 				02754D3729304EB20066AA07 /* Socket.swift in Sources */,
 				B1E0C4FA26DAC5320067DE6F /* AvatarView.swift in Sources */,
 				025E081D2846416600063827 /* ProfileViewController.swift in Sources */,
@@ -4325,6 +4346,9 @@
 				B1F81111F9A24960BAB678CE /* SplashViewModelTests.swift in Sources */,
 				FB789A0C0F9A424990D8080C /* MockSplashCoordinator.swift in Sources */,
 				3AEA39C9DF2842F6839354BC /* MockRemoteConfigService.swift in Sources */,
+				3274F09EAF4C4E4FBA1CE600 /* ChangePasswordViewModelTests.swift in Sources */,
+				E19B34A31AD14686B0E15E95 /* MockChangePasswordView.swift in Sources */,
+				F3819900126945F3A32CC38B /* MockChangePasswordCoordinator.swift in Sources */,
 				0FAD757195F8485DA9E95105 /* MockForceUpdateHandler.swift in Sources */,
 				AA000001000000000000AA02 /* MockNotificationCenter.swift in Sources */,
 				AA000001000000000000AA04 /* MockRegistrationCoordinator.swift in Sources */,

@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class ChangePasswordCoordinator: Coordinator {
+final class ChangePasswordCoordinator: Coordinator, ChangePasswordCoordinating {
 
     typealias Controller = ChangePasswordViewController
     

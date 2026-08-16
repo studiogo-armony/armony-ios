@@ -8,13 +8,12 @@
 import Foundation
 
 final class ChangePasswordViewModel: ViewModel {
-    var coordinator: ChangePasswordCoordinator!
+    var coordinator: (any ChangePasswordCoordinating)!
     private weak var view: ChangePasswordViewDelegate?
-    
-    
-    init(view: ChangePasswordViewDelegate) {
+
+    init(view: ChangePasswordViewDelegate, service: RestService = RestService(backend: .factory())) {
         self.view = view
-        super.init()
+        super.init(service: service)
     }
 
     func saveButtonTapped(currentPassword: String?, newPassword: String?) {
@@ -39,7 +38,7 @@ final class ChangePasswordViewModel: ViewModel {
                 let message = String("ChangePassword.Success.Message", table: .account)
                 await AlertService.show(message: message,
                                         actions: [.okay(action: { [weak self] in
-                    self?.coordinator.pop()
+                    self?.coordinator.pop(animated: true)
                 })])
             }
             catch let error {
