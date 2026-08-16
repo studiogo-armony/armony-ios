@@ -23,6 +23,10 @@
 		02156E32287B2F1F002DE494 /* LogOutBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02156E31287B2F1F002DE494 /* LogOutBottomViewController.swift */; };
 		02156E34287B2FBE002DE494 /* LogOutBottomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02156E33287B2FBE002DE494 /* LogOutBottomViewModel.swift */; };
 		02156E36287B898F002DE494 /* LogOutBottomPopUpCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02156E35287B898F002DE494 /* LogOutBottomPopUpCoordinator.swift */; };
+		BEF1D2FE973C46489B81D685 /* LogOutBottomPopUpCoordinating.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56E709364264231ADD4075D /* LogOutBottomPopUpCoordinating.swift */; };
+		EA03E7CEFF604857BDFBC4B4 /* LogOutBottomPopUpViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D690A065D47D7B8D5E6A9 /* LogOutBottomPopUpViewModelTests.swift */; };
+		A24452D60DCC435EB82BFD0C /* MockLogOutBottomPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4063D4B791648D099A9047A /* MockLogOutBottomPopUpView.swift */; };
+		B7E6410F8E024DD1BBCBCDD9 /* MockLogOutBottomPopUpCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9204B9788BD4FB7AA214F40 /* MockLogOutBottomPopUpCoordinator.swift */; };
 		0215BAE52AE039AA007BB949 /* VisitedAccountMediasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0215BAE42AE039AA007BB949 /* VisitedAccountMediasViewController.swift */; };
 		0215BAE72AE03A22007BB949 /* VisitedAccountMediasViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0215BAE62AE03A22007BB949 /* VisitedAccountMediasViewModel.swift */; };
 		0215BAE92AE03B43007BB949 /* VisitedAccountYoutubeMediaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0215BAE82AE03B43007BB949 /* VisitedAccountYoutubeMediaCell.swift */; };
@@ -577,6 +581,10 @@
 		02156E31287B2F1F002DE494 /* LogOutBottomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOutBottomViewController.swift; sourceTree = "<group>"; };
 		02156E33287B2FBE002DE494 /* LogOutBottomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOutBottomViewModel.swift; sourceTree = "<group>"; };
 		02156E35287B898F002DE494 /* LogOutBottomPopUpCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOutBottomPopUpCoordinator.swift; sourceTree = "<group>"; };
+		E56E709364264231ADD4075D /* LogOutBottomPopUpCoordinating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOutBottomPopUpCoordinating.swift; sourceTree = "<group>"; };
+		CE2D690A065D47D7B8D5E6A9 /* LogOutBottomPopUpViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOutBottomPopUpViewModelTests.swift; sourceTree = "<group>"; };
+		D4063D4B791648D099A9047A /* MockLogOutBottomPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLogOutBottomPopUpView.swift; sourceTree = "<group>"; };
+		A9204B9788BD4FB7AA214F40 /* MockLogOutBottomPopUpCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLogOutBottomPopUpCoordinator.swift; sourceTree = "<group>"; };
 		0215BAE42AE039AA007BB949 /* VisitedAccountMediasViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitedAccountMediasViewController.swift; sourceTree = "<group>"; };
 		0215BAE62AE03A22007BB949 /* VisitedAccountMediasViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitedAccountMediasViewModel.swift; sourceTree = "<group>"; };
 		0215BAE82AE03B43007BB949 /* VisitedAccountYoutubeMediaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitedAccountYoutubeMediaCell.swift; sourceTree = "<group>"; };
@@ -1248,6 +1256,7 @@
 			children = (
 				02D8C9D42916EC90008E80D0 /* Task */,
 				02156E35287B898F002DE494 /* LogOutBottomPopUpCoordinator.swift */,
+				E56E709364264231ADD4075D /* LogOutBottomPopUpCoordinating.swift */,
 				02156E31287B2F1F002DE494 /* LogOutBottomViewController.swift */,
 				02156E33287B2FBE002DE494 /* LogOutBottomViewModel.swift */,
 			);
@@ -2069,6 +2078,16 @@
 			path = ChangePassword;
 			sourceTree = "<group>";
 		};
+		A15170AC07624EC0AC32BCF1 /* LogOut */ = {
+			isa = PBXGroup;
+			children = (
+				CE2D690A065D47D7B8D5E6A9 /* LogOutBottomPopUpViewModelTests.swift */,
+				D4063D4B791648D099A9047A /* MockLogOutBottomPopUpView.swift */,
+				A9204B9788BD4FB7AA214F40 /* MockLogOutBottomPopUpCoordinator.swift */,
+			);
+			path = LogOut;
+			sourceTree = "<group>";
+		};
 		C5E266DB2FF8F56A862C056F /* JSONs */ = {
 			isa = PBXGroup;
 			children = (
@@ -2143,6 +2162,7 @@
 				8D59666E43AA9AB9D86DB931 /* AccountInformation */,
 				80DF30700FD54C9FACFE3A57 /* Splash */,
 				E83B4C1DA3D745F880AE7502 /* ChangePassword */,
+				A15170AC07624EC0AC32BCF1 /* LogOut */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -4084,6 +4104,7 @@
 				024D903D2884939B007B6DFA /* FeedbackSubject.swift in Sources */,
 				B1772B3F2710CE05001E544B /* SkillCell.swift in Sources */,
 				02156E36287B898F002DE494 /* LogOutBottomPopUpCoordinator.swift in Sources */,
+				BEF1D2FE973C46489B81D685 /* LogOutBottomPopUpCoordinating.swift in Sources */,
 				02AC514328343E65004C82E4 /* EmptyStateShowing.swift in Sources */,
 				B13F171426E8157A00875289 /* AvatarPresentation.swift in Sources */,
 				02D8C9D82916F349008E80D0 /* PostForgetPasswordTask.swift in Sources */,
@@ -4349,6 +4370,9 @@
 				3274F09EAF4C4E4FBA1CE600 /* ChangePasswordViewModelTests.swift in Sources */,
 				E19B34A31AD14686B0E15E95 /* MockChangePasswordView.swift in Sources */,
 				F3819900126945F3A32CC38B /* MockChangePasswordCoordinator.swift in Sources */,
+				EA03E7CEFF604857BDFBC4B4 /* LogOutBottomPopUpViewModelTests.swift in Sources */,
+				A24452D60DCC435EB82BFD0C /* MockLogOutBottomPopUpView.swift in Sources */,
+				B7E6410F8E024DD1BBCBCDD9 /* MockLogOutBottomPopUpCoordinator.swift in Sources */,
 				0FAD757195F8485DA9E95105 /* MockForceUpdateHandler.swift in Sources */,
 				AA000001000000000000AA02 /* MockNotificationCenter.swift in Sources */,
 				AA000001000000000000AA04 /* MockRegistrationCoordinator.swift in Sources */,

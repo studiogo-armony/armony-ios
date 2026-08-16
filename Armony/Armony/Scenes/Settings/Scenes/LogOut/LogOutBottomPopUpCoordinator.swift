@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class LogOutBottomPopUpCoordinator: Coordinator {
+final class LogOutBottomPopUpCoordinator: Coordinator, LogOutBottomPopUpCoordinating {
     typealias Controller = LogOutBottomPopUpViewController
 
     weak var navigator: Navigator?

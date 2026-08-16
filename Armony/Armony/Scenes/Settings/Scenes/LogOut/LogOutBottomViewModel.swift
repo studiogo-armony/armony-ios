@@ -9,18 +9,22 @@ import Foundation
 
 final class LogOutBottomPopUpViewModel: ViewModel {
 
-    var coordinator: LogOutBottomPopUpCoordinator!
+    var coordinator: (any LogOutBottomPopUpCoordinating)!
 
     private weak var view: LogOutBottomPopUpViewDelegate?
-    private let authenticator: AuthenticationService
+    private let authenticator: AuthenticationProviding
+    private let notifier: NotificationPosting
 
-    private let notifier: NotificationCenter = .default
-
-    init(view: LogOutBottomPopUpViewDelegate,
-         authenticator: AuthenticationService = .shared) {
+    init(
+        view: LogOutBottomPopUpViewDelegate,
+        authenticator: AuthenticationProviding = AuthenticationService.shared,
+        notifier: NotificationPosting = NotificationCenter.default,
+        service: RestService = RestService(backend: .factory())
+    ) {
         self.view = view
         self.authenticator = authenticator
-        super.init()
+        self.notifier = notifier
+        super.init(service: service)
     }
 
     func logOut() {
@@ -33,7 +37,7 @@ final class LogOutBottomPopUpViewModel: ViewModel {
                 )
 
                 authenticator.unauthenticate()
-                notifier.post(notification: .userLoggedOut)
+                notifier.post(notification: .userLoggedOut, object: nil, userInfo: nil)
 
                 AdjustLogOutEvet().send()
 
