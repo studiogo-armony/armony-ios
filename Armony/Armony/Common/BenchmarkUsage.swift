@@ -50,6 +50,56 @@ import BenchPackage047
 import BenchPackage048
 import BenchPackage049
 import BenchPackage050
+import BenchPackage051
+import BenchPackage052
+import BenchPackage053
+import BenchPackage054
+import BenchPackage055
+import BenchPackage056
+import BenchPackage057
+import BenchPackage058
+import BenchPackage059
+import BenchPackage060
+import BenchPackage061
+import BenchPackage062
+import BenchPackage063
+import BenchPackage064
+import BenchPackage065
+import BenchPackage066
+import BenchPackage067
+import BenchPackage068
+import BenchPackage069
+import BenchPackage070
+import BenchPackage071
+import BenchPackage072
+import BenchPackage073
+import BenchPackage074
+import BenchPackage075
+import BenchPackage076
+import BenchPackage077
+import BenchPackage078
+import BenchPackage079
+import BenchPackage080
+import BenchPackage081
+import BenchPackage082
+import BenchPackage083
+import BenchPackage084
+import BenchPackage085
+import BenchPackage086
+import BenchPackage087
+import BenchPackage088
+import BenchPackage089
+import BenchPackage090
+import BenchPackage091
+import BenchPackage092
+import BenchPackage093
+import BenchPackage094
+import BenchPackage095
+import BenchPackage096
+import BenchPackage097
+import BenchPackage098
+import BenchPackage099
+import BenchPackage100
 
 enum BenchmarkUsage {
     static func touchAll() -> Int {
@@ -104,6 +154,56 @@ enum BenchmarkUsage {
         total += BenchPackage048.value()
         total += BenchPackage049.value()
         total += BenchPackage050.value()
+        total += BenchPackage051.value()
+        total += BenchPackage052.value()
+        total += BenchPackage053.value()
+        total += BenchPackage054.value()
+        total += BenchPackage055.value()
+        total += BenchPackage056.value()
+        total += BenchPackage057.value()
+        total += BenchPackage058.value()
+        total += BenchPackage059.value()
+        total += BenchPackage060.value()
+        total += BenchPackage061.value()
+        total += BenchPackage062.value()
+        total += BenchPackage063.value()
+        total += BenchPackage064.value()
+        total += BenchPackage065.value()
+        total += BenchPackage066.value()
+        total += BenchPackage067.value()
+        total += BenchPackage068.value()
+        total += BenchPackage069.value()
+        total += BenchPackage070.value()
+        total += BenchPackage071.value()
+        total += BenchPackage072.value()
+        total += BenchPackage073.value()
+        total += BenchPackage074.value()
+        total += BenchPackage075.value()
+        total += BenchPackage076.value()
+        total += BenchPackage077.value()
+        total += BenchPackage078.value()
+        total += BenchPackage079.value()
+        total += BenchPackage080.value()
+        total += BenchPackage081.value()
+        total += BenchPackage082.value()
+        total += BenchPackage083.value()
+        total += BenchPackage084.value()
+        total += BenchPackage085.value()
+        total += BenchPackage086.value()
+        total += BenchPackage087.value()
+        total += BenchPackage088.value()
+        total += BenchPackage089.value()
+        total += BenchPackage090.value()
+        total += BenchPackage091.value()
+        total += BenchPackage092.value()
+        total += BenchPackage093.value()
+        total += BenchPackage094.value()
+        total += BenchPackage095.value()
+        total += BenchPackage096.value()
+        total += BenchPackage097.value()
+        total += BenchPackage098.value()
+        total += BenchPackage099.value()
+        total += BenchPackage100.value()
         return total
     }
 }
