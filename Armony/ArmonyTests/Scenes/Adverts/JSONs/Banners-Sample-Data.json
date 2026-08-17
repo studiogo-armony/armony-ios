@@ -1,0 +1,15 @@
+{
+    "data": {
+        "isActive": true,
+        "banners": [
+            {
+                "title": "Test Banner",
+                "image": "https://example.com/banner.jpg",
+                "backgroundColor": "armonyPurple",
+                "deeplink": "armony://adverts"
+            }
+        ]
+    },
+    "error": null,
+    "metadata": null
+}

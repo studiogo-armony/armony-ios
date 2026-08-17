@@ -12,12 +12,15 @@ fileprivate typealias HomeData = (bannerResponse: RestObjectResponse<BannerSlide
 
 final class AdvertsViewModel: ViewModel {
 
-    var coordinator: AdvertsCoordinator!
+    var coordinator: (any AdvertsCoordinating)!
     private weak var view: AdvertsViewDelegate?
 
-    private lazy var messageCountSocketHandler = MessageCountSocketHandler.shared
+    private let messageCountSocketHandler: MessageCountSocketHandling
+    private let authenticator: AuthenticationProviding
+    private let defaults: DefaultsProviding
+    private let appLaunchService: AppLaunchHandling
 
-    private let restService: RestService = RestService(backend: .factory())
+    private let bannerService: RestService
 
     private var advertDidDeleteNotificationToken: NotificationToken? = nil
     private var deletedAdvertIDs: [Int] = .empty
@@ -27,14 +30,14 @@ final class AdvertsViewModel: ViewModel {
 
     var filtersDidUpdate: Callback<FilterViewModel.Filters>? = nil
 
-    private var paginator = Paginator(task: GetAdvertsTask(userID: AuthenticationService.shared.userID))
+    private var paginator: Paginator
 
     private(set) var sliderPresentation: BannerSliderPresentation = .empty
 
     private(set) var filters: FilterViewModel.Filters = .empty {
         didSet {
-            let task  = GetAdvertsTask(
-                userID: AuthenticationService.shared.userID,
+            let task = GetAdvertsTask(
+                userID: authenticator.userID,
                 adTypeIDs: filters.advert?.id?.string,
                 cityIDs: filters.location?.id?.string
             )
@@ -53,8 +56,22 @@ final class AdvertsViewModel: ViewModel {
         return presentation.cards.count
     }
 
-    init(view: AdvertsViewDelegate, service: RestService = .init(backend: .factory())) {
+    init(
+        view: AdvertsViewDelegate,
+        messageCountSocketHandler: MessageCountSocketHandling = MessageCountSocketHandler.shared,
+        authenticator: AuthenticationProviding = AuthenticationService.shared,
+        defaults: DefaultsProviding = Defaults.shared,
+        appLaunchService: AppLaunchHandling = AppLaunchService.shared,
+        bannerService: RestService = .init(backend: .factory()),
+        service: RestService = .init(backend: .factory())
+    ) {
         self.view = view
+        self.messageCountSocketHandler = messageCountSocketHandler
+        self.authenticator = authenticator
+        self.defaults = defaults
+        self.appLaunchService = appLaunchService
+        self.bannerService = bannerService
+        self.paginator = Paginator(task: GetAdvertsTask(userID: authenticator.userID))
         super.init(service: service)
     }
 
@@ -101,7 +118,7 @@ final class AdvertsViewModel: ViewModel {
     }
 
     private func homeData() async throws -> HomeData {
-        async let banners = restService.execute(
+        async let banners = bannerService.execute(
             task: GetBannersTask(),
             type: RestObjectResponse<BannerSliderResponse>.self
         )
@@ -116,11 +133,11 @@ final class AdvertsViewModel: ViewModel {
         Task {
             do {
                 var response = try await homeData()
-                
+
                 if Locale.current.regionCode != "TR" {
                     response.bannerResponse.data.banners.removeFirst()
                 }
-                
+
                 safeSync {
                     sliderPresentation = BannerSliderPresentation(
                         isActive: response.bannerResponse.data.isActive,
@@ -145,7 +162,7 @@ final class AdvertsViewModel: ViewModel {
             }
         }
     }
-    
+
     func chatsRightButtonTapped() {
         coordinator.open(deeplink: .chats)
     }
@@ -237,14 +254,14 @@ final class AdvertsViewModel: ViewModel {
     }
 
     private func handleDeeplinkAndOnboarding() {
-        if !Defaults.shared[.onboardingHasSeen] {
+        if !defaults[.onboardingHasSeen] {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: coordinator.onboarding)
         }
 
-        if AppLaunchService.shared.isLaunchedClosedStateWithNotification,
-           let deeplink = AppLaunchService.shared.deeplink {
+        if appLaunchService.isLaunchedClosedStateWithNotification,
+           let deeplink = appLaunchService.deeplink {
             coordinator.open(deeplink: deeplink)
-            AppLaunchService.shared.reset()
+            appLaunchService.reset()
         }
     }
 }

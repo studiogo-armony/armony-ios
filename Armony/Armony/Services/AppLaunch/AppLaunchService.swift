@@ -17,6 +17,7 @@ enum AppLaunchType {
 protocol AppLaunchHandling {
     var isLaunchedClosedStateWithNotification: Bool { get set }
     var deeplink: Deeplink? { get set }
+    func reset()
 }
 
 final class AppLaunchService: AppLaunchHandling, ResetHandling {

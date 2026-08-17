@@ -12,7 +12,7 @@ private struct Constant {
     static let selectedTabBarImage = "tab-home-selected-icon".image
 }
 
-final class AdvertsCoordinator: Coordinator {
+final class AdvertsCoordinator: Coordinator, AdvertsCoordinating {
 
     typealias Controller = AdvertsViewController
 

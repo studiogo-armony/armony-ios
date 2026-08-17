@@ -1,0 +1,34 @@
+{
+    "data": [
+        {
+            "id": 1,
+            "city": {
+                "id": 34,
+                "name": "Istanbul"
+            },
+            "description": "Test advert",
+            "adType": {
+                "id": 1,
+                "name": "Musician",
+                "colorCode": "#3498DB",
+                "skillTitle": "Skills"
+            },
+            "genres": [],
+            "isActive": true,
+            "skills": [],
+            "user": {
+                "id": "user1",
+                "name": "Test User",
+                "photoUrl": null,
+                "email": null,
+                "token": null
+            },
+            "status": "active",
+            "updatedAt": "2026-01-01",
+            "serviceTypes": [],
+            "external_link": null
+        }
+    ],
+    "error": null,
+    "metadata": null
+}
