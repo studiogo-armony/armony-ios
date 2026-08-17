@@ -29,6 +29,9 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 
         clearKeychainIfneeded()
 
+        // SPM local package benchmark
+        _ = BenchmarkUsage.touchAll()
+
         // Configuration
         configureAppAppearance()
         configureNetfox()
