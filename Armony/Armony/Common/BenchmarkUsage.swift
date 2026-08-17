@@ -102,6 +102,7 @@ import BenchPackage099
 import BenchPackage100
 
 enum BenchmarkUsage {
+    @discardableResult
     static func touchAll() -> Int {
         var total = 0
         total += BenchPackage001.value()
@@ -204,6 +205,7 @@ enum BenchmarkUsage {
         total += BenchPackage098.value()
         total += BenchPackage099.value()
         total += BenchPackage100.value()
+        UserDefaults.standard.set(total, forKey: "BenchmarkUsageTotal")
         return total
     }
 }
