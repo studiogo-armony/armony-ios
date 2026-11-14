@@ -84,24 +84,33 @@ final class RestAPIMiddlewareIntegrationTests: IntegrationTestCase {
         XCTAssertEqual(StubURLProtocol.recordedRequests(.get, path: "/integration/ping").count, 1)
     }
 
-    /// Synchronous on purpose: `XCTExpectFailure` only matches issues recorded on the thread that called it.
-    func test_execute_whenRefreshTokenIsRejected_refreshesAndAsksForLoginOnlyOnce() {
-        XCTExpectFailure("""
-            Known bug: Alamofire asks the retrier again when the response serializer rethrows the 401 validation error. \
-            retryCount is still 0, so RestAPIMiddleware refreshes and presents login a second time.
-            """)
+    /// Alamofire asks the retrier a second time when the response serializer rethrows the 401 validation error.
+    func test_execute_whenRefreshTokenIsRejected_refreshesAndAsksForLoginOnlyOnce() async {
         StubURLProtocol.stub(path: "/integration/ping", statusCode: 401, body: IntegrationFixtures.data(named: "token_expired_error"))
         StubURLProtocol.stub(.post, path: "/auth/refresh", statusCode: 401, body: IntegrationFixtures.data(named: "token_expired_error"))
-        let finished = expectation(description: "execute finished")
 
-        Task { [sut] in
-            _ = try? await sut?.execute(task: PingTask(), type: RestObjectResponse<Ping>.self)
-            finished.fulfill()
+        _ = await result { [sut] in
+            try await sut!.execute(task: PingTask(), type: RestObjectResponse<Ping>.self)
         }
 
-        wait(for: [finished], timeout: 2.0)
         XCTAssertEqual(StubURLProtocol.recordedRequests(.post, path: "/auth/refresh").count, 1)
         XCTAssertEqual(mockSessionExpiredHandler.invokedHandleCount, 1)
+        XCTAssertEqual(mockLogger.invokedLogExceptionCount, 1)
+    }
+
+    func test_execute_whenTokenExpiresAgainAfterRefresh_refreshesForEachAttempt() async throws {
+        StubURLProtocol.stub(path: "/integration/ping", statusCode: 401, body: IntegrationFixtures.data(named: "token_expired_error"))
+        StubURLProtocol.stub(path: "/integration/ping", statusCode: 401, body: IntegrationFixtures.data(named: "token_expired_error"))
+        StubURLProtocol.stub(path: "/integration/ping", body: IntegrationFixtures.data(named: "rest_ping_success"))
+        StubURLProtocol.stub(.post, path: "/auth/refresh", body: IntegrationFixtures.data(named: "refresh_token_success"))
+
+        let outcome = await result { [sut] in
+            try await sut!.execute(task: PingTask(), type: RestObjectResponse<Ping>.self)
+        }
+
+        XCTAssertEqual(try outcome?.get().data, Ping(message: "pong"))
+        XCTAssertEqual(StubURLProtocol.recordedRequests(.get, path: "/integration/ping").count, 3)
+        XCTAssertEqual(StubURLProtocol.recordedRequests(.post, path: "/auth/refresh").count, 2)
     }
 
     func test_execute_whenTokenStaysExpired_stopsAfterFourRetries() async {

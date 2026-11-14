@@ -57,6 +57,14 @@ final class RestAPIMiddleware: RequestInterceptor {
     /// Queue of requests waiting for token refresh to complete
     private var waitingRequests: [RequestRetryCompletion]
 
+    /// `retryCount` of each request whose 401 already started a token refresh.
+    /// Alamofire asks the retrier a second time for the same attempt when the response serializer
+    /// rethrows the validation error; that call must not refresh (and present login) again.
+    private var refreshedAttempts = [UUID: Int]()
+
+    /// Guards `refreshedAttempts`, which Alamofire may reach from different queues
+    private let refreshedAttemptsLock = NSLock()
+
     /// REST service instance for making token refresh requests
     private lazy var tokenRestService: RestService = tokenServiceFactory()
 
@@ -160,6 +168,10 @@ final class RestAPIMiddleware: RequestInterceptor {
             if response.statusCode == NSHTTPURLResponseTokenExpiredStatusCode,
                isWhiteListRequest,
                request.retryCount < 4 {
+                guard startsRefreshAttempt(for: request) else {
+                    completion(.doNotRetry)
+                    return
+                }
                 logger.log(exception:
                         .init(name: "RestService",
                               reason: "NSHTTPURLResponseTokenExpiredStatusCode")
@@ -175,6 +187,20 @@ final class RestAPIMiddleware: RequestInterceptor {
             /// No HTTP response (timeout, connection lost): Alamofire waits for this completion before finishing the request.
             completion(.doNotRetry)
         }
+    }
+
+    /// Records that `request` refreshes the token for its current attempt.
+    /// - Returns: `false` when this attempt already refreshed, i.e. this is Alamofire's repeated retry call.
+    private func startsRefreshAttempt(for request: Request) -> Bool {
+        refreshedAttemptsLock.lock()
+        defer { refreshedAttemptsLock.unlock() }
+
+        if refreshedAttempts[request.id] == request.retryCount {
+            refreshedAttempts[request.id] = nil
+            return false
+        }
+        refreshedAttempts[request.id] = request.retryCount
+        return true
     }
 
     /// Refreshes the access token and retries waiting requests.
