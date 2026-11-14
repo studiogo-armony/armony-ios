@@ -35,6 +35,20 @@
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "742EDAC5DA883D47CAA1325C"
+               BuildableName = "ArmonyIntegrationTests.xctest"
+               BlueprintName = "ArmonyIntegrationTests"
+               ReferencedContainer = "container:Armony.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
             buildForTesting = "NO"
             buildForRunning = "NO"
             buildForProfiling = "NO"
@@ -63,6 +77,16 @@
                BlueprintIdentifier = "B1B55C9726CEFAE300FDE884"
                BuildableName = "ArmonyTests.xctest"
                BlueprintName = "ArmonyTests"
+               ReferencedContainer = "container:Armony.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "742EDAC5DA883D47CAA1325C"
+               BuildableName = "ArmonyIntegrationTests.xctest"
+               BlueprintName = "ArmonyIntegrationTests"
                ReferencedContainer = "container:Armony.xcodeproj">
             </BuildableReference>
          </TestableReference>

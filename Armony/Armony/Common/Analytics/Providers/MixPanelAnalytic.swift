@@ -44,6 +44,13 @@ class MixPanelAnalytic: Analytic {
         NotificationCenter.default.addObserver(self, selector: #selector(userDidLogout), name: .userLoggedOut, object: nil)
     }
 
+    /// Test hosts only need `Mixpanel.mainInstance()` to exist.
+    /// A placeholder token keeps the real project's persisted profile untouched, and tracking is opted out so nothing is sent.
+    /// `optOutTrackingByDefault: true` can't be used: Mixpanel calls `mainInstance()` while initializing with it and asserts.
+    func startOptedOut() {
+        Mixpanel.initialize(token: "armony-test-host").optOutTracking()
+    }
+
     func send(event: MixPanelContext) {
         Mixpanel.mainInstance().track(event: event.name, properties: event.parameters)
     }

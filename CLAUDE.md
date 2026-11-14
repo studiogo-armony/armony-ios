@@ -92,6 +92,14 @@ Treat any file that holds secrets as **local-only** unless the project explicitl
 - JSON fixtures for `MockRestService.load(fromJSONFile:)` live under **`ArmonyTests/Scenes/<FeatureName>/JSONs/`** and must be added to the test target's **Copy Bundle Resources** build phase (not Sources).
 - New `.swift` files must be added to `project.pbxproj` manually (Xcode does not auto-discover files on disk).
 
+### Integration test target
+
+- Target: **`ArmonyIntegrationTests`** (`Armony/ArmonyIntegrationTests/`) — real layers wired together, only the outer boundary faked.
+- The folder is a **synchronized group**: new `.swift` and `.json` files are picked up automatically, no `project.pbxproj` edits.
+- Shared helpers in `Support/`: `StubURLProtocol` (network stubs via `URLSessionConfiguration.stubbed()`), `IntegrationFixtures`, `TestKeychain`, and the `IntegrationTestCase` base class that resets them.
+- Both test bundles use the app as test host; `AppDelegate` detects this and runs `startAsTestHost()` (no analytics, keychain wipe, permission prompts or splash).
+- Run only one bundle with `-only-testing:ArmonyTests` or `-only-testing:ArmonyIntegrationTests`.
+
 ### Simulator for CLI builds
 
 ```

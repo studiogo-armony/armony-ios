@@ -676,6 +676,13 @@
 			remoteGlobalIDString = B1B55C8126CEFADC00FDE884;
 			remoteInfo = Armony;
 		};
+		CE389E5ED84D9923B0AF42CD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B1B55C7A26CEFADC00FDE884 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B1B55C8126CEFADC00FDE884;
+			remoteInfo = Armony;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -1248,6 +1255,7 @@
 		B1B55C9126CEFAE300FDE884 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B1B55C9326CEFAE300FDE884 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B1B55C9826CEFAE300FDE884 /* ArmonyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ArmonyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D72AEB54B0C338B9237A744D /* ArmonyIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ArmonyIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1B55C9C26CEFAE300FDE884 /* AccountViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModelTests.swift; sourceTree = "<group>"; };
 		B1B55C9E26CEFAE300FDE884 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B1B55CA326CEFAE300FDE884 /* ArmonyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ArmonyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1323,6 +1331,7 @@
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		027D25CF2E50AEFB0074737C /* Localization */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Localization; sourceTree = "<group>"; };
+		A44F6E70DAEA82EAE7F95641 /* ArmonyIntegrationTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ArmonyIntegrationTests; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1471,6 +1480,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B1B55CA026CEFAE300FDE884 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		46FD84C923D5DD0A2B886AEC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -3728,6 +3744,7 @@
 				B1D88C84293ABDC20067FA59 /* ci_scripts */,
 				B1B55C8426CEFADD00FDE884 /* Armony */,
 				B1B55C9B26CEFAE300FDE884 /* ArmonyTests */,
+				A44F6E70DAEA82EAE7F95641 /* ArmonyIntegrationTests */,
 				B1B55CA626CEFAE300FDE884 /* ArmonyUITests */,
 				B1B55C8326CEFADC00FDE884 /* Products */,
 				0216CC65293171A100255831 /* Frameworks */,
@@ -3739,6 +3756,7 @@
 			children = (
 				B1B55C8226CEFADC00FDE884 /* Armony.app */,
 				B1B55C9826CEFAE300FDE884 /* ArmonyTests.xctest */,
+				D72AEB54B0C338B9237A744D /* ArmonyIntegrationTests.xctest */,
 				B1B55CA326CEFAE300FDE884 /* ArmonyUITests.xctest */,
 			);
 			name = Products;
@@ -4355,6 +4373,27 @@
 			productReference = B1B55CA326CEFAE300FDE884 /* ArmonyUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		742EDAC5DA883D47CAA1325C /* ArmonyIntegrationTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AD25368385FF405F8FDD6A75 /* Build configuration list for PBXNativeTarget "ArmonyIntegrationTests" */;
+			buildPhases = (
+				D1E3738B4224507D856AFB2D /* Sources */,
+				46FD84C923D5DD0A2B886AEC /* Frameworks */,
+				48D8C36A66C4CC7BC0E6F7D6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				67D129E7BF26AE16D57D1C6D /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				A44F6E70DAEA82EAE7F95641 /* ArmonyIntegrationTests */,
+			);
+			name = ArmonyIntegrationTests;
+			productName = ArmonyIntegrationTests;
+			productReference = D72AEB54B0C338B9237A744D /* ArmonyIntegrationTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -4374,6 +4413,10 @@
 					};
 					B1B55CA226CEFAE300FDE884 = {
 						CreatedOnToolsVersion = 12.4;
+						TestTargetID = B1B55C8126CEFADC00FDE884;
+					};
+					742EDAC5DA883D47CAA1325C = {
+						CreatedOnToolsVersion = 16.2;
 						TestTargetID = B1B55C8126CEFADC00FDE884;
 					};
 				};
@@ -4516,6 +4559,7 @@
 				B1B55C8126CEFADC00FDE884 /* Armony */,
 				B1B55C9726CEFAE300FDE884 /* ArmonyTests */,
 				B1B55CA226CEFAE300FDE884 /* ArmonyUITests */,
+				742EDAC5DA883D47CAA1325C /* ArmonyIntegrationTests */,
 			);
 		};
 /* End PBXProject section */
@@ -4613,6 +4657,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B1B55CA126CEFAE300FDE884 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		48D8C36A66C4CC7BC0E6F7D6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -5088,6 +5139,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D1E3738B4224507D856AFB2D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -5100,6 +5158,11 @@
 			isa = PBXTargetDependency;
 			target = B1B55C8126CEFADC00FDE884 /* Armony */;
 			targetProxy = B1B55CA426CEFAE300FDE884 /* PBXContainerItemProxy */;
+		};
+		67D129E7BF26AE16D57D1C6D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B1B55C8126CEFADC00FDE884 /* Armony */;
+			targetProxy = CE389E5ED84D9923B0AF42CD /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -5405,6 +5468,48 @@
 			};
 			name = Release;
 		};
+		FC990CC5F6E9C6324A977664 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U6ZP8CMS8A;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.armony.ArmonyIntegrationTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Armony.app/Armony";
+			};
+			name = Debug;
+		};
+		30948918F318635673CC963B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U6ZP8CMS8A;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.armony.ArmonyIntegrationTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Armony.app/Armony";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -5440,6 +5545,15 @@
 			buildConfigurations = (
 				B1B55CB326CEFAE300FDE884 /* Debug */,
 				B1B55CB426CEFAE300FDE884 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AD25368385FF405F8FDD6A75 /* Build configuration list for PBXNativeTarget "ArmonyIntegrationTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FC990CC5F6E9C6324A977664 /* Debug */,
+				30948918F318635673CC963B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

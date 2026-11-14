@@ -27,6 +27,11 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
+        if isRunningAsTestHost {
+            startAsTestHost()
+            return true
+        }
+
         clearKeychainIfneeded()
 
         // SPM local package benchmark
@@ -98,6 +103,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
+        guard !isRunningAsTestHost else { return }
         updateAppIconBadgeNumber(application)
         requestATTPermission()
     }
@@ -105,6 +111,22 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 
 // MARK: - Private Methods
 private extension AppDelegate {
+    /// `ArmonyTests` and `ArmonyIntegrationTests` use the app as their test host.
+    /// UI tests launch the app in a separate process, so they still get a regular launch.
+    var isRunningAsTestHost: Bool {
+        return ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil
+    }
+
+    /// Minimal launch for test bundles: no keychain wipe, analytics, permission prompts or splash network calls.
+    /// Firebase and Mixpanel are still set up because their shared instances crash when used before setup.
+    func startAsTestHost() {
+        configureAppAppearance()
+        FirebaseService.shared.start()
+        MixPanelAnalytic.shared.startOptedOut()
+        window?.rootViewController = UIViewController()
+        window?.makeKeyAndVisible()
+    }
+
     func configureNetworkActivityLogger(logger: NetworkActivityLogger = .shared, config: ConfigReader = .shared) {
         logger.startLogging(config: config)
     }

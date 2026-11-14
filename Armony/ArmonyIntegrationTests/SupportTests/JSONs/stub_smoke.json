@@ -1,0 +1,6 @@
+{
+  "data": {
+    "access": "access-token",
+    "refresh": "refresh-token"
+  }
+}
