@@ -21,6 +21,17 @@ final class MockPlaceAdvertCoordinator: PlaceAdvertCoordinating {
         invokedProfileSelectionParameters = (presentation, ())
     }
 
+    // MARK: - showUserAdverts
+    var invokedShowUserAdverts = false
+    var invokedShowUserAdvertsCount = 0
+    var onShowUserAdverts: VoidCallback?
+
+    func showUserAdverts() {
+        invokedShowUserAdverts = true
+        invokedShowUserAdvertsCount += 1
+        onShowUserAdverts?()
+    }
+
     // MARK: - dismiss
     var invokedDismiss = false
     var invokedDismissCount = 0

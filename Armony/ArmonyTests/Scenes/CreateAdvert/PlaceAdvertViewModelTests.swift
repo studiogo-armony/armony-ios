@@ -194,9 +194,9 @@ final class PlaceAdvertViewModelTests: XCTestCase {
         XCTAssertTrue(mockView.invokedResetTextView)
     }
 
-    func test_createAd_onSuccess_navigatesToAccountTab() async throws {
-        let expectation = expectation(description: "selectTab called")
-        mockCoordinator.onSelectTab = {
+    func test_createAd_onSuccess_showsUserAdverts() async throws {
+        let expectation = expectation(description: "showUserAdverts called")
+        mockCoordinator.onShowUserAdverts = {
             expectation.fulfill()
         }
         mockService.stubbedResult = mockService.load(fromJSONFile: "PlaceAdvert-Sample-Data",
@@ -205,8 +205,7 @@ final class PlaceAdvertViewModelTests: XCTestCase {
         sut.createAd(transactionID: nil)
 
         await fulfillment(of: [expectation], timeout: 2.0)
-        XCTAssertTrue(mockCoordinator.invokedSelectTab)
-        XCTAssertEqual(mockCoordinator.invokedSelectTabParameters?.tab, .account)
+        XCTAssertEqual(mockCoordinator.invokedShowUserAdvertsCount, 1)
     }
 
     func test_createAd_withTransactionID_removesFromStorage() async throws {
@@ -806,6 +805,312 @@ final class PlaceAdvertViewModelTests: XCTestCase {
 
         XCTAssertTrue(mockView.invokedResetTextView)
     }
+
+    // MARK: - advertTypeDidSelect form configuration
+
+    func test_advertTypeDidSelect_id1_configuresMusicianForm() {
+        sut.advertTypeDidSelect(advert: makeInput(id: 1))
+
+        assertForm(
+            validator: .musician,
+            skillTitle: DropdownPresentation.skill.title,
+            musicGenreTitle: DropdownPresentation.musicGenres.title,
+            isMusicGenresHidden: false,
+            isInstructionTypeHidden: true
+        )
+    }
+
+    func test_advertTypeDidSelect_id3_configuresEventForm() {
+        sut.advertTypeDidSelect(advert: makeInput(id: 3))
+
+        assertForm(
+            validator: .event,
+            skillTitle: DropdownPresentation.services.title,
+            musicGenreTitle: nil,
+            isMusicGenresHidden: true,
+            isInstructionTypeHidden: true
+        )
+    }
+
+    func test_advertTypeDidSelect_id4_configuresInstructorForm() {
+        sut.advertTypeDidSelect(advert: makeInput(id: 4))
+
+        assertForm(
+            validator: .instructor,
+            skillTitle: DropdownPresentation.instruction.title,
+            musicGenreTitle: nil,
+            isMusicGenresHidden: true,
+            isInstructionTypeHidden: false
+        )
+    }
+
+    func test_advertTypeDidSelect_id5_configuresEventForm() {
+        sut.advertTypeDidSelect(advert: makeInput(id: 5))
+
+        assertForm(
+            validator: .event,
+            skillTitle: DropdownPresentation.services.title,
+            musicGenreTitle: nil,
+            isMusicGenresHidden: true,
+            isInstructionTypeHidden: true
+        )
+    }
+
+    func test_advertTypeDidSelect_id2_configuresBrandForm() {
+        sut.advertTypeDidSelect(advert: makeInput(id: 2))
+
+        assertForm(
+            validator: .brand,
+            skillTitle: DropdownPresentation.skill.title,
+            musicGenreTitle: DropdownPresentation.musicGenres.title,
+            isMusicGenresHidden: false,
+            isInstructionTypeHidden: true
+        )
+    }
+
+    func test_advertTypeDidSelect_unknownID_configuresBrandForm() {
+        sut.advertTypeDidSelect(advert: makeInput(id: 99))
+
+        assertForm(
+            validator: .brand,
+            skillTitle: DropdownPresentation.skill.title,
+            musicGenreTitle: DropdownPresentation.musicGenres.title,
+            isMusicGenresHidden: false,
+            isInstructionTypeHidden: true
+        )
+    }
+
+    func test_advertTypeDidSelect_withNil_doesNotConfigureForm() {
+        sut.advertTypeDidSelect(advert: nil)
+
+        XCTAssertFalse(mockView.invokedUpdateValidators)
+        XCTAssertFalse(mockView.invokedConfigureSkillDropdownView)
+        XCTAssertFalse(mockView.invokedConfigureMusicGenreDropdownView)
+        XCTAssertFalse(mockView.invokedSetMusicGenresDropdownViewVisibility)
+        XCTAssertFalse(mockView.invokedSetInstructionTypeDropdownViewVisibility)
+    }
+
+    func test_advertTypeDidSelect_clearsDependentInputTitles() {
+        sut.advertTypeDidSelect(advert: makeInput(id: 1))
+        sut.skillsDidSelect(skills: [makeInput(id: 7, title: "Guitar")])
+        sut.locationDidSelect(location: makeInput(id: 34, title: "Istanbul"))
+        sut.musicGenresDidSelect(genres: [makeInput(id: 2, title: "Rock")])
+        sut.serviceDidSelect(services: [makeInput(id: 10, title: "Online")])
+
+        sut.advertTypeDidSelect(advert: makeInput(id: 4))
+
+        XCTAssertNil(mockView.invokedUpdateSkillsParameters?.title)
+        XCTAssertNil(mockView.invokedUpdateLocationParameters?.title)
+        XCTAssertNil(mockView.invokedUpdateMusicGenresParameters?.title)
+        XCTAssertNil(mockView.invokedUpdateInstructionTypeParameters?.title)
+    }
+
+    // MARK: - createAd request payload
+
+    func test_createAd_postsSelectedInputs() async throws {
+        sut.advertTypeDidSelect(advert: makeInput(id: 1))
+        sut.musicGenresDidSelect(genres: [makeInput(id: 2, title: "Rock"), makeInput(id: 3, title: "Jazz")])
+        sut.skillsDidSelect(skills: [makeInput(id: 7, title: "Guitar")])
+        sut.locationDidSelect(location: makeInput(id: 34, title: "Istanbul"))
+        sut.descriptionTextViewDidChange(description: "Looking for a band")
+
+        let body = try await postedBody()
+
+        var expected = PlaceAdvertRequest.empty
+        expected.advertTypeID = 1
+        expected.genres = [MusicGenre(id: 2, name: "Rock"), MusicGenre(id: 3, name: "Jazz")]
+        expected.skills = [Skill(id: 7, iconURL: nil, title: "Guitar", colorCode: nil)]
+        expected.location = Location(id: 34, title: "Istanbul")
+        expected.description = "Looking for a band"
+        XCTAssertEqual(body, NSDictionary(dictionary: expected.body()!))
+    }
+
+    func test_createAd_postsSelectedServices() async throws {
+        sut.advertTypeDidSelect(advert: makeInput(id: 4))
+        sut.serviceDidSelect(services: [makeInput(id: 10, title: "Online")])
+        sut.skillsDidSelect(skills: [makeInput(id: 8, title: "Piano")])
+        sut.locationDidSelect(location: makeInput(id: 6, title: "Ankara"))
+
+        let body = try await postedBody()
+
+        var expected = PlaceAdvertRequest.empty
+        expected.advertTypeID = 4
+        expected.serviceTypes = [ServiceResponse(id: 10, title: "Online")]
+        expected.skills = [Skill(id: 8, iconURL: nil, title: "Piano", colorCode: nil)]
+        expected.location = Location(id: 6, title: "Ankara")
+        XCTAssertEqual(body, NSDictionary(dictionary: expected.body()!))
+    }
+
+    func test_createAd_withEmptyDescription_omitsDescription() async throws {
+        sut.advertTypeDidSelect(advert: makeInput(id: 1))
+        sut.descriptionTextViewDidChange(description: "Text")
+        sut.descriptionTextViewDidChange(description: "")
+
+        let body = try await postedBody()
+
+        XCTAssertNil(body["description"])
+    }
+
+    func test_createAd_whenDescriptionEnteredBeforeAdvertType_dropsDescription() async throws {
+        sut.descriptionTextViewDidChange(description: "Typed too early")
+        sut.advertTypeDidSelect(advert: makeInput(id: 1))
+
+        let body = try await postedBody()
+
+        XCTAssertNil(body["description"])
+    }
+
+    func test_createAd_afterAdvertTypeChange_dropsPreviousSelections() async throws {
+        sut.advertTypeDidSelect(advert: makeInput(id: 1))
+        sut.musicGenresDidSelect(genres: [makeInput(id: 2, title: "Rock")])
+        sut.skillsDidSelect(skills: [makeInput(id: 7, title: "Guitar")])
+        sut.locationDidSelect(location: makeInput(id: 34, title: "Istanbul"))
+        sut.advertTypeDidSelect(advert: makeInput(id: 2))
+
+        let body = try await postedBody()
+
+        var expected = PlaceAdvertRequest.empty
+        expected.advertTypeID = 2
+        XCTAssertEqual(body, NSDictionary(dictionary: expected.body()!))
+    }
+
+    func test_createAd_onSuccess_postsNewAdvertNotification() async throws {
+        let expectation = expectation(forNotification: .newAdvertDidPlace, object: nil)
+        mockService.stubbedResult = mockService.load(fromJSONFile: "PlaceAdvert-Sample-Data",
+                                                     type: RestObjectResponse<Advert>.self)
+
+        sut.createAd(transactionID: nil)
+
+        await fulfillment(of: [expectation], timeout: 2.0)
+    }
+
+    func test_createAd_onSuccess_requestsAppReview() async throws {
+        let expectation = expectation(description: "requestReviewIfNeeded called")
+        mockAppRating.onRequestReviewIfNeeded = { expectation.fulfill() }
+        mockService.stubbedResult = mockService.load(fromJSONFile: "PlaceAdvert-Sample-Data",
+                                                     type: RestObjectResponse<Advert>.self)
+
+        sut.createAd(transactionID: nil)
+
+        await fulfillment(of: [expectation], timeout: 3.0)
+    }
+
+    // MARK: - Dropdown requests
+
+    func test_skillsDropdownTapped_withoutAdvertType_requestsSkillsForZero() async throws {
+        await tapAndWait(\.onStopSkillsActivityIndicator) { sut.skillsDropdownTapped() }
+
+        let task = try XCTUnwrap(mockService.invokedExecuteTasks.last as? GetSkillsTask)
+        XCTAssertEqual(task.urlQueryItems, [URLQueryItem(name: "adTypeID", value: "0")])
+    }
+
+    func test_skillsDropdownTapped_withAdvertType_requestsSkillsForAdvertType() async throws {
+        sut.advertTypeDidSelect(advert: makeInput(id: 4))
+
+        await tapAndWait(\.onStopSkillsActivityIndicator) { sut.skillsDropdownTapped() }
+
+        let task = try XCTUnwrap(mockService.invokedExecuteTasks.last as? GetSkillsTask)
+        XCTAssertEqual(task.urlQueryItems, [URLQueryItem(name: "adTypeID", value: "4")])
+    }
+
+    func test_instructionTypeDropdownView_requestsServicesForAdvertType() async throws {
+        sut.advertTypeDidSelect(advert: makeInput(id: 4))
+
+        await tapAndWait(\.onStopInstructionTypeActivityIndicator) { sut.instructionTypeDropdownView() }
+
+        let task = try XCTUnwrap(mockService.invokedExecuteTasks.last as? GetServicesTask)
+        XCTAssertEqual(task.path, "/adtypes/4/servicetypes")
+    }
+
+    // MARK: - Dropdown preselection
+
+    func test_advertTypeDropdownTapped_preselectsSelectedAdvertType() async throws {
+        sut.advertTypeDidSelect(advert: makeInput(id: 2))
+        mockService.stubbedResult = RestArrayResponse<Advert.Properties>(
+            data: [makeAdvertProperties(id: 1), makeAdvertProperties(id: 2)], metadata: nil, error: nil
+        )
+
+        await tapAndWait(\.onStopAdvertTypeActivityIndicator) { sut.advertTypeDropdownTapped() }
+
+        let presentation = try XCTUnwrap(presentedSelection as? AdvertTypeSelectionPresentation)
+        XCTAssertTrue(presentation.delegate === sut)
+        XCTAssertEqual(presentedSelectedIDs, [2])
+    }
+
+    func test_musicGenresDropdownTapped_preselectsSelectedGenres() async throws {
+        sut.musicGenresDidSelect(genres: [makeInput(id: 3, title: "Jazz")])
+        mockService.stubbedResult = RestArrayResponse<MusicGenre>(
+            data: [MusicGenre(id: 2, name: "Rock"), MusicGenre(id: 3, name: "Jazz")], metadata: nil, error: nil
+        )
+
+        await tapAndWait(\.onStopMusicGenresActivityIndicator) { sut.musicGenresDropdownTapped() }
+
+        let presentation = try XCTUnwrap(presentedSelection as? MusicGenresSelectionPresentation)
+        XCTAssertTrue(presentation.delegate === sut)
+        XCTAssertEqual(presentedSelectedIDs, [3])
+    }
+
+    func test_skillsDropdownTapped_preselectsSelectedSkills() async throws {
+        sut.advertTypeDidSelect(advert: makeInput(id: 1))
+        sut.skillsDidSelect(skills: [makeInput(id: 7, title: "Guitar")])
+        mockService.stubbedResult = RestArrayResponse<Skill>(data: [makeSkill(id: 7), makeSkill(id: 8)], metadata: nil, error: nil)
+
+        await tapAndWait(\.onStopSkillsActivityIndicator) { sut.skillsDropdownTapped() }
+
+        let presentation = try XCTUnwrap(presentedSelection as? SkillsSelectionPresentation)
+        XCTAssertTrue(presentation.delegate === sut)
+        XCTAssertEqual(presentedSelectedIDs, [7])
+    }
+
+    func test_skillsDropdownTapped_afterAdvertTypeChange_hasNoPreselection() async throws {
+        sut.advertTypeDidSelect(advert: makeInput(id: 1))
+        sut.skillsDidSelect(skills: [makeInput(id: 7, title: "Guitar")])
+        sut.advertTypeDidSelect(advert: makeInput(id: 2))
+        mockService.stubbedResult = RestArrayResponse<Skill>(data: [makeSkill(id: 7), makeSkill(id: 8)], metadata: nil, error: nil)
+
+        await tapAndWait(\.onStopSkillsActivityIndicator) { sut.skillsDropdownTapped() }
+
+        XCTAssertEqual(presentedSelectedIDs, [])
+    }
+
+    func test_locationDropdownTapped_preselectsSelectedLocation() async throws {
+        sut.locationDidSelect(location: makeInput(id: 34, title: "Istanbul"))
+        mockService.stubbedResult = RestArrayResponse<Location>(
+            data: [Location(id: 6, title: "Ankara"), Location(id: 34, title: "Istanbul")], metadata: nil, error: nil
+        )
+
+        await tapAndWait(\.onStopLocationActivityIndicator) { sut.locationDropdownTapped() }
+
+        let presentation = try XCTUnwrap(presentedSelection as? LocationSelectionPresentation)
+        XCTAssertTrue(presentation.delegate === sut)
+        XCTAssertEqual(presentedSelectedIDs, [34])
+    }
+
+    func test_instructionTypeDropdownView_preselectsSelectedServices() async throws {
+        sut.advertTypeDidSelect(advert: makeInput(id: 4))
+        sut.serviceDidSelect(services: [makeInput(id: 11, title: "Face to face")])
+        mockService.stubbedResult = RestArrayResponse<ServiceResponse>(
+            data: [ServiceResponse(id: 10, title: "Online"), ServiceResponse(id: 11, title: "Face to face")],
+            metadata: nil,
+            error: nil
+        )
+
+        await tapAndWait(\.onStopInstructionTypeActivityIndicator) { sut.instructionTypeDropdownView() }
+
+        let presentation = try XCTUnwrap(presentedSelection as? ServiceSelectionPresentation)
+        XCTAssertTrue(presentation.delegate === sut)
+        XCTAssertEqual(presentedSelectedIDs, [11])
+    }
+
+    func test_dropdownTapped_onSuccess_stopsIndicatorExactlyOnce() async throws {
+        mockService.stubbedResult = RestArrayResponse<Location>(data: [], metadata: nil, error: nil)
+
+        await tapAndWait(\.onStopLocationActivityIndicator) { sut.locationDropdownTapped() }
+
+        XCTAssertEqual(mockView.invokedStartLocationActivityIndicatorCount, 1)
+        XCTAssertEqual(mockView.invokedStopLocationActivityIndicatorCount, 1)
+        XCTAssertEqual(mockCoordinator.invokedProfileSelectionCount, 1)
+    }
 }
 
 // MARK: - Helpers
@@ -816,5 +1121,72 @@ private extension PlaceAdvertViewModelTests {
         let response = mockService.load(fromJSONFile: "PlaceAdvert-Sample-Data",
                                         type: RestObjectResponse<Advert>.self)
         return response.data
+    }
+
+    func makeInput(id: Int, title: String = "Title") -> EmptySelectionInput {
+        return EmptySelectionInput(id: id, title: title, isSelected: true)
+    }
+
+    func makeSkill(id: Int) -> Skill {
+        return Skill(id: id, iconURL: nil, title: "Skill \(id)", colorCode: nil)
+    }
+
+    func makeAdvertProperties(id: Int) -> Advert.Properties {
+        let json = #"{"id": \#(id), "name": "Type \#(id)", "colorCode": "FFFFFF", "skillTitle": "Skill"}"#
+        return try! JSONDecoder().decode(Advert.Properties.self, from: Data(json.utf8))
+    }
+
+    var presentedSelection: (any SelectionPresentation)? {
+        return mockCoordinator.invokedProfileSelectionParameters?.presentation
+    }
+
+    var presentedSelectedIDs: [Int] {
+        return presentedSelection.map { $0.items.filter { $0.isSelected }.map { $0.id } } ?? []
+    }
+
+    func tapAndWait(
+        _ callback: ReferenceWritableKeyPath<MockPlaceAdvertView, VoidCallback?>,
+        tap: () -> Void
+    ) async {
+        let expectation = expectation(description: "activity indicator stopped")
+        mockView[keyPath: callback] = { expectation.fulfill() }
+
+        tap()
+
+        await fulfillment(of: [expectation], timeout: 2.0)
+    }
+
+    /// Calls `createAd` with a successful stub and returns the body sent with `PostPlaceAdvertTask`.
+    func postedBody() async throws -> NSDictionary {
+        let expectation = expectation(description: "createAd finished")
+        mockView.onResetTextView = { expectation.fulfill() }
+        mockService.stubbedResult = mockService.load(fromJSONFile: "PlaceAdvert-Sample-Data",
+                                                     type: RestObjectResponse<Advert>.self)
+
+        sut.createAd(transactionID: nil)
+
+        await fulfillment(of: [expectation], timeout: 2.0)
+        let task = try XCTUnwrap(mockService.invokedExecuteTasks.last as? PostPlaceAdvertTask)
+        return NSDictionary(dictionary: try XCTUnwrap(task.body))
+    }
+
+    func assertForm(
+        validator: PlaceAdvertViewController.Validators,
+        skillTitle: String,
+        musicGenreTitle: String?,
+        isMusicGenresHidden: Bool,
+        isInstructionTypeHidden: Bool,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) {
+        XCTAssertEqual(mockView.invokedUpdateValidatorsCount, 1, file: file, line: line)
+        XCTAssertEqual(mockView.invokedUpdateValidatorsParameters?.validator, validator, file: file, line: line)
+        XCTAssertEqual(mockView.invokedConfigureSkillDropdownViewCount, 1, file: file, line: line)
+        XCTAssertEqual(mockView.invokedConfigureSkillDropdownViewParameters?.presentation.title, skillTitle, file: file, line: line)
+        XCTAssertEqual(mockView.invokedConfigureMusicGenreDropdownViewParameters?.presentation.title, musicGenreTitle, file: file, line: line)
+        XCTAssertEqual(mockView.invokedSetMusicGenresDropdownViewVisibilityCount, 1, file: file, line: line)
+        XCTAssertEqual(mockView.invokedSetMusicGenresDropdownViewVisibilityParameters?.isHidden, isMusicGenresHidden, file: file, line: line)
+        XCTAssertEqual(mockView.invokedSetInstructionTypeDropdownViewVisibilityCount, 1, file: file, line: line)
+        XCTAssertEqual(mockView.invokedSetInstructionTypeDropdownViewVisibilityParameters?.isHidden, isInstructionTypeHidden, file: file, line: line)
     }
 }

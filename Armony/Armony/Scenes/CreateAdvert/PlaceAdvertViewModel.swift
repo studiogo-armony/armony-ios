@@ -79,138 +79,73 @@ final class PlaceAdvertViewModel: ViewModel {
         description = .empty
         request = .empty
 
-        view?.updateMusicGenres(title: nil)
+        resetSelectionTitles()
         view?.updateAdvertType(title: nil)
-        view?.updateSkills(title: nil)
-        view?.updateLocation(title: nil)
-        view?.updateInstructionType(title: nil)
         view?.setInformationsStackViewVisibility(isHidden: selectedIDStorage.advert.isNil)
 
         view?.resetTextView()
     }
 
     func advertTypeDropdownTapped() {
-        view?.startAdvertTypeDropdownViewActivityIndicatorView()
-        Task {
-            do {
-                let response = try await service.execute(task: GetAdvertTypesTask(),
-                                                         type: RestArrayResponse<Advert.Properties>.self)
-
-                self.advertsResponse = response.data
-
-                let items = response.itemsForSelection(selectedID: selectedIDStorage.advert)
-                let selectionPresentation = AdvertTypeSelectionPresentation(delegate: self, items: items)
-                safeSync {
-                    view?.stopAdvertTypeDropdownViewActivityIndicatorView()
-                    coordinator.profileSelection(presentation: selectionPresentation)
-                }
-            }
-            catch {
-                safeSync {
-                    view?.stopAdvertTypeDropdownViewActivityIndicatorView()
-                }
-            }
+        presentSelection(
+            task: GetAdvertTypesTask(),
+            type: RestArrayResponse<Advert.Properties>.self,
+            activity: .advertType
+        ) { [unowned self] response in
+            advertsResponse = response.data
+            let items = response.itemsForSelection(selectedID: selectedIDStorage.advert)
+            return AdvertTypeSelectionPresentation(delegate: self, items: items)
         }
     }
 
     func musicGenresDropdownTapped() {
-
-        view?.startMusicGenresDropdownViewActivityIndicatorView()
-
-        Task {
-            do {
-                let response = try await service.execute(task: GetMusicGenresTask(),
-                                                         type: RestArrayResponse<MusicGenre>.self)
-
-                let items = response.itemsForSelection(selectedIDs: selectedIDStorage.musicGenres)
-                let selectionPresentation = MusicGenresSelectionPresentation(delegate: self, items: items)
-
-                safeSync {
-                    view?.stopMusicGenresDropdownViewActivityIndicatorView()
-                    coordinator.profileSelection(presentation: selectionPresentation)
-                }
-            }
-            catch {
-                safeSync {
-                    view?.stopMusicGenresDropdownViewActivityIndicatorView()
-                }
-            }
+        presentSelection(
+            task: GetMusicGenresTask(),
+            type: RestArrayResponse<MusicGenre>.self,
+            activity: .musicGenres
+        ) { [unowned self] response in
+            let items = response.itemsForSelection(selectedIDs: selectedIDStorage.musicGenres)
+            return MusicGenresSelectionPresentation(delegate: self, items: items)
         }
     }
 
     func skillsDropdownTapped() {
-        view?.startSkillsDropdownViewActivityIndicatorView()
-        Task {
-            do {
-                let response = try await service.execute(task: GetSkillsTask(for: selectedIDStorage.advert.ifNil(.zero)),
-                                                         type: RestArrayResponse<Skill>.self)
-
-                let items = response.itemsForSelection(selectedIDs: selectedIDStorage.skills)
-                let selectionPresentation = SkillsSelectionPresentation(delegate: self,
-                                                                        items: items)
-
-                safeSync {
-                    view?.stopSkillsDropdownViewActivityIndicatorView()
-                    coordinator.profileSelection(presentation: selectionPresentation)
-                }
-            }
-            catch {
-                safeSync {
-                    view?.stopSkillsDropdownViewActivityIndicatorView()
-                }
-            }
+        presentSelection(
+            task: GetSkillsTask(for: selectedIDStorage.advert.ifNil(.zero)),
+            type: RestArrayResponse<Skill>.self,
+            activity: .skills
+        ) { [unowned self] response in
+            let items = response.itemsForSelection(selectedIDs: selectedIDStorage.skills)
+            return SkillsSelectionPresentation(delegate: self, items: items)
         }
     }
 
     func locationDropdownTapped() {
-        view?.startLocationDropdownViewActivityIndicatorView()
-        Task {
-            do {
-                let response = try await service.execute(task: GetLocationTask(),
-                                                         type: RestArrayResponse<Location>.self)
-
-                let items = response.itemsForSelection(selectedID: selectedIDStorage.location)
-                let selectionPresentation = LocationSelectionPresentation(delegate: self, items: items)
-
-                safeSync {
-                    view?.stopLocationDropdownViewActivityIndicatorView()
-                    coordinator.profileSelection(presentation: selectionPresentation)
-                }
-            }
-            catch {
-                safeSync {
-                    view?.stopLocationDropdownViewActivityIndicatorView()
-                }
-            }
+        presentSelection(
+            task: GetLocationTask(),
+            type: RestArrayResponse<Location>.self,
+            activity: .location
+        ) { [unowned self] response in
+            let items = response.itemsForSelection(selectedID: selectedIDStorage.location)
+            return LocationSelectionPresentation(delegate: self, items: items)
         }
     }
 
     func instructionTypeDropdownView() {
-        view?.startInstructionTypeDropdownViewActivityIndicatorView()
         guard let selectedAdvertID = selectedIDStorage.advert else {
+            // Services depend on the advert type; the indicator starts but nothing is requested.
+            DropdownActivity.instructionType.start(view)
             return
         }
-        Task {
-            do {
-                let response = try await service.execute(task: GetServicesTask(adTypeID: selectedAdvertID),
-                                                         type: RestArrayResponse<ServiceResponse>.self)
-
-                let items = response.itemsForSelection(selectedIDs: selectedIDStorage.services)
-                let selectionPresentation = ServiceSelectionPresentation(delegate: self, items: items)
-
-                safeSync {
-                    view?.stopInstructionTypeDropdownViewActivityIndicatorView()
-                    coordinator.profileSelection(presentation: selectionPresentation)
-                }
-            }
-            catch {
-                safeSync {
-                    view?.stopInstructionTypeDropdownViewActivityIndicatorView()
-                }
-            }
+        presentSelection(
+            task: GetServicesTask(adTypeID: selectedAdvertID),
+            type: RestArrayResponse<ServiceResponse>.self,
+            activity: .instructionType
+        ) { [unowned self] response in
+            let items = response.itemsForSelection(selectedIDs: selectedIDStorage.services)
+            return ServiceSelectionPresentation(delegate: self, items: items)
         }
     }
-
 
     func submitButtonTapped() {
         view?.startSubmitButtonActivityIndicatorView()
@@ -219,20 +154,17 @@ final class PlaceAdvertViewModel: ViewModel {
             do {
                 let hasUserAds = try await hasUserAds()
                 view?.stopSubmitButtonActivityIndicatorView()
-                if hasUserAds, purchaseStorage.identifiers.isEmpty {
-                    view?.showPaywall()
-                }
-                else {
+                guard requiresPurchase(hasUserAds: hasUserAds) else {
                     createAd(transactionID: nil)
+                    return
                 }
+                view?.showPaywall()
             }
             catch let error {
-                view?.stopSubmitButtonActivityIndicatorView()
-                AlertService.show(message: error.api.ifNil(.network).description, actions: [.okay()])
+                showSubmitFailure(error)
             }
         }
     }
-
 
     func createAd(transactionID: String?) {
         view?.startSubmitButtonActivityIndicatorView()
@@ -241,26 +173,12 @@ final class PlaceAdvertViewModel: ViewModel {
                 let response = try await service.execute(task: PostPlaceAdvertTask(request: request),
                                                          type: RestObjectResponse<Advert>.self)
 
-                PlaceAdvertAdjustEventsHandler.track(for: request.advertTypeID)
-
-                let adTitle = advertsResponse.first { $0.id == request.advertTypeID }?.title
-
-                PlaceAdvertFirebaseEvents(
-                    label: adTitle.emptyIfNil,
-                    parameters: request.eventParameters()
-                ).send()
+                trackPlacedAdvert()
 
                 view?.stopSubmitButtonActivityIndicatorView()
                 resetInputs()
 
-                let view = coordinator.selectTab(tab: .account, shouldPopToRoot: true)
-
-                if let view = view as? AccountViewController {
-                    view.viewModel.currentSelectedSegmentIndex = 1
-                    if view.isViewLoaded {
-                        view.selectSegment(at: 1)
-                    }
-                }
+                coordinator.showUserAdverts()
                 NotificationCenter.default.post(
                     notification: .newAdvertDidPlace,
                     userInfo: [.advert: response.data]
@@ -275,8 +193,7 @@ final class PlaceAdvertViewModel: ViewModel {
                 }
             }
             catch let error {
-                view?.stopSubmitButtonActivityIndicatorView()
-                AlertService.show(message: error.api.ifNil(.network).description, actions: [.okay()])
+                showSubmitFailure(error)
             }
         }
     }
@@ -290,55 +207,103 @@ final class PlaceAdvertViewModel: ViewModel {
     }
 }
 
+// MARK: - Helpers
+private extension PlaceAdvertViewModel {
+
+    /// Activity indicator of the dropdown that triggered a selection request.
+    struct DropdownActivity {
+        let start: (PlaceAdvertViewDelegate?) -> Void
+        let stop: (PlaceAdvertViewDelegate?) -> Void
+
+        static let advertType = DropdownActivity(
+            start: { $0?.startAdvertTypeDropdownViewActivityIndicatorView() },
+            stop: { $0?.stopAdvertTypeDropdownViewActivityIndicatorView() }
+        )
+        static let musicGenres = DropdownActivity(
+            start: { $0?.startMusicGenresDropdownViewActivityIndicatorView() },
+            stop: { $0?.stopMusicGenresDropdownViewActivityIndicatorView() }
+        )
+        static let skills = DropdownActivity(
+            start: { $0?.startSkillsDropdownViewActivityIndicatorView() },
+            stop: { $0?.stopSkillsDropdownViewActivityIndicatorView() }
+        )
+        static let location = DropdownActivity(
+            start: { $0?.startLocationDropdownViewActivityIndicatorView() },
+            stop: { $0?.stopLocationDropdownViewActivityIndicatorView() }
+        )
+        static let instructionType = DropdownActivity(
+            start: { $0?.startInstructionTypeDropdownViewActivityIndicatorView() },
+            stop: { $0?.stopInstructionTypeDropdownViewActivityIndicatorView() }
+        )
+    }
+
+    func presentSelection<Response: APIResponse>(
+        task: RestAPI.Operation,
+        type: Response.Type,
+        activity: DropdownActivity,
+        makePresentation: @escaping (Response) -> any SelectionPresentation
+    ) {
+        activity.start(view)
+        Task {
+            do {
+                let response = try await service.execute(task: task, type: type)
+                let presentation = makePresentation(response)
+                safeSync {
+                    activity.stop(view)
+                    coordinator.profileSelection(presentation: presentation)
+                }
+            }
+            catch {
+                safeSync {
+                    activity.stop(view)
+                }
+            }
+        }
+    }
+
+    func resetSelectionTitles() {
+        view?.updateSkills(title: nil)
+        view?.updateLocation(title: nil)
+        view?.updateMusicGenres(title: nil)
+        view?.updateInstructionType(title: nil)
+    }
+
+    func requiresPurchase(hasUserAds: Bool) -> Bool {
+        return hasUserAds && purchaseStorage.identifiers.isEmpty
+    }
+
+    func trackPlacedAdvert() {
+        PlaceAdvertAdjustEventsHandler.track(for: request.advertTypeID)
+
+        let adTitle = advertsResponse.first { $0.id == request.advertTypeID }?.title
+        PlaceAdvertFirebaseEvents(
+            label: adTitle.emptyIfNil,
+            parameters: request.eventParameters()
+        ).send()
+    }
+
+    func showSubmitFailure(_ error: Error) {
+        view?.stopSubmitButtonActivityIndicatorView()
+        AlertService.show(message: error.api.ifNil(.network).description, actions: [.okay()])
+    }
+}
+
 // MARK: - AdvertTypeSelectionDelegate
 extension PlaceAdvertViewModel: AdvertTypeSelectionDelegate {
 
     func advertTypeDidSelect(advert: SelectionInput?) {
         selectedIDStorage = .empty
         request = .empty
-        if selectedIDStorage.advert != advert?.id {
-            view?.updateSkills(title: .empty)
-            request.skills = .empty
-        }
 
-        view?.updateSkills(title: nil)
-        view?.updateLocation(title: nil)
-        view?.updateMusicGenres(title: nil)
-        view?.updateInstructionType(title: nil)
-
+        resetSelectionTitles()
         view?.setInformationsStackViewVisibility(isHidden: advert.isNil)
-        if let advert {
-            selectedIDStorage.advert = advert.id
-            view?.updateAdvertType(title: advert.title)
-            request.advertTypeID = advert.id
 
-            if advert.id == 1 {
-                view?.configureMusicGenreDropdownView(presentation: .musicGenres)
-                view?.configureSkillDropdownView(presentation: .skill)
-                view?.setMusicGenresDropdownViewVisibility(isHidden: false)
-                view?.setInstructionTypeDropdownViewVisibility(isHidden: true)
-                view?.updateValidators(validator: .musician)
+        guard let advert else { return }
 
-            } else if [3,5].contains(advert.id) {
-                view?.updateValidators(validator: .event)
-                view?.setMusicGenresDropdownViewVisibility(isHidden: true)
-                view?.configureSkillDropdownView(presentation: .services)
-                view?.setInstructionTypeDropdownViewVisibility(isHidden: true)
-            }
-            else if advert.id == 4 {
-                view?.updateValidators(validator: .instructor)
-                view?.configureSkillDropdownView(presentation: .instruction)
-                view?.setInstructionTypeDropdownViewVisibility(isHidden: false)
-                view?.setMusicGenresDropdownViewVisibility(isHidden: true)
-            }
-            else {
-                view?.updateValidators(validator: .brand)
-                view?.setMusicGenresDropdownViewVisibility(isHidden: false)
-                view?.setInstructionTypeDropdownViewVisibility(isHidden: true)
-                view?.configureSkillDropdownView(presentation: .skill)
-                view?.configureMusicGenreDropdownView(presentation: .musicGenres)
-            }
-        }
+        selectedIDStorage.advert = advert.id
+        request.advertTypeID = advert.id
+        view?.updateAdvertType(title: advert.title)
+        PlaceAdvertForm(advertTypeID: advert.id).apply(to: view)
     }
 }
 

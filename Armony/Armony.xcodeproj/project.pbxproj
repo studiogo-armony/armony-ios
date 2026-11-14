@@ -38,6 +38,7 @@
 		021E2F7A2889F95500132DBB /* FeedbackRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021E2F792889F95500132DBB /* FeedbackRequest.swift */; };
 		021E714B28EDFA3E00795BC8 /* GetAdvertTypesTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021E714A28EDFA3E00795BC8 /* GetAdvertTypesTask.swift */; };
 		021E715028EDFB6800795BC8 /* AdvertType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021E714F28EDFB6800795BC8 /* AdvertType.swift */; };
+		02CA1A0C2F800000001CA00C /* PlaceAdvertForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CA1A0D2F800000001CA00D /* PlaceAdvertForm.swift */; };
 		021E715328EDFCC000795BC8 /* AdvertTypeSelectionPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021E715228EDFCC000795BC8 /* AdvertTypeSelectionPresentation.swift */; };
 		021E715528EE089200795BC8 /* PostPlaceAdvertTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021E715428EE089200795BC8 /* PostPlaceAdvertTask.swift */; };
 		021EC05C2CF3B06B002A48BB /* Chat+Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 021EC05B2CF3B06B002A48BB /* Chat+Localizable.xcstrings */; };
@@ -280,6 +281,7 @@
 		02C9538E285A819200A2B107 /* NotchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C9538D285A819200A2B107 /* NotchView.swift */; };
 		02C95390285A81BF00A2B107 /* NotchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02C9538F285A81BF00A2B107 /* NotchView.xib */; };
 		02CA1A012F800000001CA001 /* PlaceAdvertCoordinating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CA1A002F800000001CA001 /* PlaceAdvertCoordinating.swift */; };
+		02CA1A0A2F800000001CA00A /* PlaceAdvertViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CA1A0B2F800000001CA00B /* PlaceAdvertViewControllerSnapshotTests.swift */; };
 		02CA1A022F800000001CA002 /* PlaceAdvertViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CA1A032F800000001CA003 /* PlaceAdvertViewModelTests.swift */; };
 		02CA1A042F800000001CA004 /* MockPlaceAdvertCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CA1A052F800000001CA005 /* MockPlaceAdvertCoordinator.swift */; };
 		02CA1A062F800000001CA006 /* MockPlaceAdvertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CA1A072F800000001CA007 /* MockPlaceAdvertView.swift */; };
@@ -616,6 +618,7 @@
 		021E2F792889F95500132DBB /* FeedbackRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackRequest.swift; sourceTree = "<group>"; };
 		021E714A28EDFA3E00795BC8 /* GetAdvertTypesTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAdvertTypesTask.swift; sourceTree = "<group>"; };
 		021E714F28EDFB6800795BC8 /* AdvertType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertType.swift; sourceTree = "<group>"; };
+		02CA1A0D2F800000001CA00D /* PlaceAdvertForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceAdvertForm.swift; sourceTree = "<group>"; };
 		021E715228EDFCC000795BC8 /* AdvertTypeSelectionPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertTypeSelectionPresentation.swift; sourceTree = "<group>"; };
 		021E715428EE089200795BC8 /* PostPlaceAdvertTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPlaceAdvertTask.swift; sourceTree = "<group>"; };
 		021EC05B2CF3B06B002A48BB /* Chat+Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = "Chat+Localizable.xcstrings"; sourceTree = "<group>"; };
@@ -843,6 +846,7 @@
 		02C9538D285A819200A2B107 /* NotchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchView.swift; sourceTree = "<group>"; };
 		02C9538F285A81BF00A2B107 /* NotchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotchView.xib; sourceTree = "<group>"; };
 		02CA1A002F800000001CA001 /* PlaceAdvertCoordinating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceAdvertCoordinating.swift; sourceTree = "<group>"; };
+		02CA1A0B2F800000001CA00B /* PlaceAdvertViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceAdvertViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
 		02CA1A032F800000001CA003 /* PlaceAdvertViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceAdvertViewModelTests.swift; sourceTree = "<group>"; };
 		02CA1A052F800000001CA005 /* MockPlaceAdvertCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPlaceAdvertCoordinator.swift; sourceTree = "<group>"; };
 		02CA1A072F800000001CA007 /* MockPlaceAdvertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPlaceAdvertView.swift; sourceTree = "<group>"; };
@@ -1401,6 +1405,7 @@
 			isa = PBXGroup;
 			children = (
 				021E715228EDFCC000795BC8 /* AdvertTypeSelectionPresentation.swift */,
+				02CA1A0D2F800000001CA00D /* PlaceAdvertForm.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -2372,6 +2377,7 @@
 			isa = PBXGroup;
 			children = (
 				02CA1A032F800000001CA003 /* PlaceAdvertViewModelTests.swift */,
+				02CA1A0B2F800000001CA00B /* PlaceAdvertViewControllerSnapshotTests.swift */,
 				02CA1A052F800000001CA005 /* MockPlaceAdvertCoordinator.swift */,
 				02CA1A072F800000001CA007 /* MockPlaceAdvertView.swift */,
 				02AB1007AA001001001AA007 /* JSONs */,
@@ -4304,6 +4310,7 @@
 				022160122883663A00024D2A /* Validation.swift in Sources */,
 				B19CB887295E0912009A23AC /* CreateLiveChatRequest.swift in Sources */,
 				021E715328EDFCC000795BC8 /* AdvertTypeSelectionPresentation.swift in Sources */,
+				02CA1A0C2F800000001CA00C /* PlaceAdvertForm.swift in Sources */,
 				B194740B294D35CB000DC051 /* CGSize+Extension.swift in Sources */,
 				02ED3B4D28F2347A003D849F /* SegmentedControlPresentation.swift in Sources */,
 				B140558C26D9687000D1E565 /* HTTPTask.swift in Sources */,
@@ -4480,6 +4487,7 @@
 				026789922EF09AD3009A266A /* MockCoordinator.swift in Sources */,
 				026789932EF09AD3009A266A /* MockSettingsView.swift in Sources */,
 				02CA1A022F800000001CA002 /* PlaceAdvertViewModelTests.swift in Sources */,
+				02CA1A0A2F800000001CA00A /* PlaceAdvertViewControllerSnapshotTests.swift in Sources */,
 				02CA1A042F800000001CA004 /* MockPlaceAdvertCoordinator.swift in Sources */,
 				02CA1A062F800000001CA006 /* MockPlaceAdvertView.swift in Sources */,
 				02AB1002AA001001001AA002 /* MockRevenueCatPurchaseStorageService.swift in Sources */,

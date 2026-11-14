@@ -12,9 +12,11 @@ final class MockAppRatingService: AppRating {
 
     var invokedRequestReviewIfNeeded = false
     var invokedRequestReviewIfNeededCount = 0
+    var onRequestReviewIfNeeded: VoidCallback?
 
     func requestReviewIfNeeded() {
         invokedRequestReviewIfNeeded = true
         invokedRequestReviewIfNeededCount += 1
+        onRequestReviewIfNeeded?()
     }
 }

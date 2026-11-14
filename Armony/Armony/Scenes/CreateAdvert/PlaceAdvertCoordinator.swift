@@ -39,6 +39,17 @@ final class PlaceAdvertCoordinator: Coordinator, PlaceAdvertCoordinating {
     func profileSelection(presentation: any SelectionPresentation) {
         SelectionBottomPopUpCoordinator(navigator: navigator).start(presentation: presentation)
     }
+
+    func showUserAdverts() {
+        let view = selectTab(tab: .account, shouldPopToRoot: true)
+
+        if let view = view as? AccountViewController {
+            view.viewModel.currentSelectedSegmentIndex = 1
+            if view.isViewLoaded {
+                view.selectSegment(at: 1)
+            }
+        }
+    }
 }
 
 // MARK: - URLNavigatable

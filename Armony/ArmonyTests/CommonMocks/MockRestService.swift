@@ -18,7 +18,20 @@ final class MockRestService: RestService {
 
     var executeExpectation = XCTestExpectation(description: "executeExpectation")
 
+    private let lock = NSLock()
+    private var executedTasks: [RestAPI.Operation] = []
+
+    var invokedExecuteTasks: [RestAPI.Operation] {
+        lock.lock()
+        defer { lock.unlock() }
+        return executedTasks
+    }
+
     override func execute<R>(task operation: RestAPI.Operation, type: R.Type) async throws -> R where R : APIResponse {
+        lock.lock()
+        executedTasks.append(operation)
+        lock.unlock()
+
         if let error = error {
             throw error
         }

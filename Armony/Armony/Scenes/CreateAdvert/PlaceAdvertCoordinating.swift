@@ -9,4 +9,5 @@ import UIKit
 
 protocol PlaceAdvertCoordinating: CoordinatorInterface {
     func profileSelection(presentation: any SelectionPresentation)
+    func showUserAdverts()
 }

@@ -131,19 +131,11 @@ final class PlaceAdvertViewController: UIViewController, ViewController {
         super.viewWillAppear(animated)
         makeNavigationBarTransparent()
 
-        defaultValidationResponders.didValidate = { [weak self] result in
-            self?.submitButton.isEnabled = result.isValid
-            self?.submitButton.backgroundColor = result.isValid ? .armonyPurple : .armonyPurpleLow
-        }
-
-        instructorValidationResponders.didValidate = { [weak self] result in
-            self?.submitButton.isEnabled = result.isValid
-            self?.submitButton.backgroundColor = result.isValid ? .armonyPurple : .armonyPurpleLow
-        }
-
-        othersValidationResponders.didValidate = { [weak self] result in
-            self?.submitButton.isEnabled = result.isValid
-            self?.submitButton.backgroundColor = result.isValid ? .armonyPurple : .armonyPurpleLow
+        // Order matters: each dropdown reports to the last responder group that claimed it.
+        [defaultValidationResponders, instructorValidationResponders, othersValidationResponders].forEach {
+            $0.didValidate = { [weak self] result in
+                self?.updateSubmitButton(isEnabled: result.isValid)
+            }
         }
     }
 
@@ -153,7 +145,7 @@ final class PlaceAdvertViewController: UIViewController, ViewController {
     }
 
     fileprivate func configureSubmitButton() {
-        submitButton.isEnabled = false
+        updateSubmitButton(isEnabled: false)
         submitButton.setTitle(
             String("PlaceAdvert", table: .placeAdvert),
             for: .normal
@@ -161,9 +153,13 @@ final class PlaceAdvertViewController: UIViewController, ViewController {
         submitButton.setTitleColor(.armonyWhite, for: .normal)
         submitButton.setTitleColor(.armonyWhiteMedium, for: .disabled)
         submitButton.titleLabel?.font = .semiboldHeading
-        submitButton.backgroundColor = .armonyPurpleLow
         submitButton.makeAllCornersRounded(radius: .medium)
         submitButton.addTarget(self, action: #selector(submitButtonTapped), for: .touchUpInside)
+    }
+
+    private func updateSubmitButton(isEnabled: Bool) {
+        submitButton.isEnabled = isEnabled
+        submitButton.backgroundColor = isEnabled ? .armonyPurple : .armonyPurpleLow
     }
 
     @objc private func submitButtonTapped() {
@@ -304,14 +300,7 @@ extension PlaceAdvertViewController: PlaceAdvertViewDelegate {
     }
 
     func updateValidators(validator: PlaceAdvertViewController.Validators) {
-        switch validator {
-        case .musician, .brand:
-            break
-        case .instructor:
-            break
-        default:
-            break
-        }
+        // Validation responders are not switched per advert type yet.
     }
 
     func resetTextView() {
