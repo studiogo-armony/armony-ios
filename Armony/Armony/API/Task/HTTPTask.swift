@@ -148,31 +148,31 @@ public extension HTTPTask {
     }
 
     /**
-     * API version from remote configuration
+     * API version from the current API environment
      *
-     * Retrieves the current API version from RemoteConfigService.
+     * Retrieves the current API version from `APIEnvironmentProvider` (remote configuration by default).
      * This allows for dynamic API version management without app updates.
      */
     var apiVersion: String {
-        return RemoteConfigService.shared[.apiVersion]
+        return APIEnvironmentProvider.current.version
     }
 
     /**
-     * API host from remote configuration
+     * API host from the current API environment
      *
-     * Retrieves the current API host from RemoteConfigService.
+     * Retrieves the current API host from `APIEnvironmentProvider` (remote configuration by default).
      * This allows for dynamic endpoint management (e.g., switching between
      * development, staging, and production environments).
      */
     var host: String {
-        return RemoteConfigService.shared[.apiHost]
+        return APIEnvironmentProvider.current.host
     }
 
     /**
      * Constructs the complete URL for the HTTP request
      *
      * Builds a URL by combining the scheme, host, API version, path, and query items.
-     * Uses RemoteConfigService for dynamic configuration of scheme and host.
+     * Uses `APIEnvironmentProvider` for dynamic configuration of scheme and host.
      *
      * ## URL Structure:
      * `{scheme}://{host}/{apiVersion}{path}?{queryItems}`
@@ -188,11 +188,41 @@ public extension HTTPTask {
     func asURL() throws -> URL {
         var urlComponents = URLComponents()
 
-        urlComponents.scheme = RemoteConfigService.shared[.apiScheme]
+        urlComponents.scheme = APIEnvironmentProvider.current.scheme
         urlComponents.host = host
         urlComponents.path = "/\(apiVersion)\(path)"
         urlComponents.queryItems = urlQueryItems
 
         return try urlComponents.asURL()
     }
+}
+
+// MARK: - APIEnvironment
+
+/// Scheme, host and version every `HTTPTask` builds its URL from, unless the task overrides them.
+public protocol APIEnvironment {
+    var scheme: String { get }
+    var host: String { get }
+    var version: String { get }
+}
+
+/// Production source: values fetched by `RemoteConfigService`.
+struct RemoteConfigAPIEnvironment: APIEnvironment {
+
+    var scheme: String {
+        return RemoteConfigService.shared[.apiScheme]
+    }
+
+    var host: String {
+        return RemoteConfigService.shared[.apiHost]
+    }
+
+    var version: String {
+        return RemoteConfigService.shared[.apiVersion]
+    }
+}
+
+/// Integration tests swap `current` for a fixed environment so URLs don't depend on fetched remote config.
+enum APIEnvironmentProvider {
+    static var current: APIEnvironment = RemoteConfigAPIEnvironment()
 }

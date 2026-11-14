@@ -28,8 +28,8 @@ final class RestAPI: API {
         return acceptableStatusCodes
     }()
 
-    init(interceptor: RestAPIMiddleware) {
-        self.connector = Session(additionalHeaders: HTTPHeaders(), interceptor: interceptor)
+    init(interceptor: RestAPIMiddleware, configuration: URLSessionConfiguration = .af.default) {
+        self.connector = Session(additionalHeaders: HTTPHeaders(), interceptor: interceptor, configuration: configuration)
     }
 
     public class func factory() -> RestAPI {
@@ -59,7 +59,9 @@ final class RestAPI: API {
 // MARK: Alamofire.Session
 public extension Alamofire.Session {
 
-    convenience init(additionalHeaders: HTTPHeaders, interceptor: RequestInterceptor) {
+    convenience init(additionalHeaders: HTTPHeaders,
+                     interceptor: RequestInterceptor,
+                     configuration: URLSessionConfiguration = .af.default) {
 
         var defaultHeaders = HTTPHeaders.default
         additionalHeaders.forEach {
@@ -71,7 +73,6 @@ public extension Alamofire.Session {
         defaultHeaders["Accept"] = "application/json"
         defaultHeaders["AppVersion"] = Bundle.main.version
 
-        let configuration = URLSessionConfiguration.af.default
         configuration.headers = defaultHeaders
 
         let isSSLPinningActive: Bool = RemoteConfigService.shared[.isSSLPinningActive]

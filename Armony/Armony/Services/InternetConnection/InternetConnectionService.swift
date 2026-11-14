@@ -8,7 +8,11 @@
 import Foundation
 import Network
 
-public class InternetConnectionService {
+protocol InternetConnectionChecking {
+    var isConnected: Bool { get }
+}
+
+public class InternetConnectionService: InternetConnectionChecking {
 
     private var connectionStatusDidChangeNotification: NotificationToken?
     private let notifier: NotificationCenter = .default

@@ -97,6 +97,8 @@ Treat any file that holds secrets as **local-only** unless the project explicitl
 - Target: **`ArmonyIntegrationTests`** (`Armony/ArmonyIntegrationTests/`) — real layers wired together, only the outer boundary faked.
 - The folder is a **synchronized group**: new `.swift` and `.json` files are picked up automatically, no `project.pbxproj` edits.
 - Shared helpers in `Support/`: `StubURLProtocol` (network stubs via `URLSessionConfiguration.stubbed()`), `IntegrationFixtures`, `TestKeychain`, and the `IntegrationTestCase` base class that resets them.
+- `IntegrationTestCase` swaps `APIEnvironmentProvider.current` for `TestAPIEnvironment` (`https://test.armony.local/v1`), so URLs never depend on remote config cached on the simulator.
+- Real network stack: `RestService(backend: .stubbed(), internetConnectionService:logger:)` — `RestAPI.stubbed()` wires the real `RestAPIMiddleware` to the test keychain.
 - Both test bundles use the app as test host; `AppDelegate` detects this and runs `startAsTestHost()` (no analytics, keychain wipe, permission prompts or splash).
 - Run only one bundle with `-only-testing:ArmonyTests` or `-only-testing:ArmonyIntegrationTests`.
 

@@ -73,15 +73,31 @@ class RestService: Service {
     private var operations: [String: DataRequest]
     
     /// Service to check internet connectivity
-    private let internetConnectionService: InternetConnectionService = .shared
+    private let internetConnectionService: InternetConnectionChecking
+
+    /// Records connectivity and network errors
+    private let logger: ErrorLogging
 
     /// Concurrent queue for safely adding operations
     private let addOperationQueue = DispatchQueue(label: "addOperationQueue", attributes: .concurrent)
 
     /// Initializes the service with a RestAPI backend
     /// - Parameter backend: The RestAPI instance that creates executable network requests
-    required init(backend: RestAPI) {
+    required convenience init(backend: RestAPI) {
+        self.init(backend: backend,
+                  internetConnectionService: InternetConnectionService.shared,
+                  logger: FirebaseCrashlyticsLogger.shared)
+    }
+
+    /// Initializes the service with injectable connectivity and logging, used by integration tests
+    /// - Parameters:
+    ///   - backend: The RestAPI instance that creates executable network requests
+    ///   - internetConnectionService: Decides whether a request is attempted at all
+    ///   - logger: Receives connectivity exceptions and network errors
+    init(backend: RestAPI, internetConnectionService: InternetConnectionChecking, logger: ErrorLogging) {
         self.backend = backend
+        self.internetConnectionService = internetConnectionService
+        self.logger = logger
         self.operations = [String: DataRequest]()
     }
 	
@@ -111,7 +127,7 @@ class RestService: Service {
     func execute<R>(task operataion: RestAPI.Operation, type: R.Type) async throws -> R where R : APIResponse {
         operations[operataion.description]?.cancel()
         guard internetConnectionService.isConnected else {
-            FirebaseCrashlyticsLogger.shared.log(exception: .init(name: "RestService", reason: "internet is not connected"))
+            logger.log(exception: .init(name: "RestService", reason: "internet is not connected"))
             throw APIError.network
         }
         
@@ -138,7 +154,7 @@ class RestService: Service {
     func upload<R>(task operataion: RestAPI.UploadOperation, type: R.Type) async throws -> R where R : APIResponse {
         operations[operataion.description]?.cancel()
         guard internetConnectionService.isConnected else {
-            FirebaseCrashlyticsLogger.shared.log(exception: .init(name: "RestService", reason: "internet is not connected"))
+            logger.log(exception: .init(name: "RestService", reason: "internet is not connected"))
             throw APIError.network
         }
         
@@ -182,7 +198,7 @@ class RestService: Service {
             }
 
             if let error = response.error {
-                FirebaseCrashlyticsLogger.shared.log(error: error)
+                logger.log(error: error)
                 throw error
             }
 

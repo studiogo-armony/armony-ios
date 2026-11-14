@@ -26,7 +26,13 @@ struct Exception {
     }
 }
 
-final class FirebaseCrashlyticsLogger: Logger {
+/// Injectable counterpart of `Logger` (whose associated type prevents using it as a dependency type).
+protocol ErrorLogging {
+    func log(exception: Exception)
+    func log(error: Error?)
+}
+
+final class FirebaseCrashlyticsLogger: Logger, ErrorLogging {
 
     typealias Model = Exception
 
