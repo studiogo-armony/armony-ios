@@ -174,22 +174,30 @@ final class RestServiceIntegrationTests: IntegrationTestCase {
 
     // MARK: - Transport errors
 
-    /// Synchronous on purpose: `XCTExpectFailure` only matches issues recorded on the thread that called it.
-    func test_execute_whenTransportFails_throwsAndLogsError() {
-        XCTExpectFailure("""
-            Known bug: RestAPIMiddleware.retry never calls its completion when the request has no HTTP response \
-            (timeout, connection lost), so execute never returns. Remove this once retry completes with .doNotRetry.
-            """)
+    func test_execute_whenRequestTimesOut_finishesWithAPIErrorWithoutRetrying() async {
         StubURLProtocol.stub(path: "/integration/ping", error: URLError(.timedOut))
-        let finished = expectation(description: "execute finished")
 
-        Task { [sut] in
-            _ = try? await sut?.execute(task: PingTask(), type: RestObjectResponse<Ping>.self)
-            finished.fulfill()
+        await assertFinishesWithAPIError(within: 2.0) { [sut] in
+            _ = try await sut!.execute(task: PingTask(), type: RestObjectResponse<Ping>.self)
         }
 
-        wait(for: [finished], timeout: 3.0)
-        XCTAssertTrue(mockLogger.invokedLogError)
+        XCTAssertEqual(StubURLProtocol.recordedRequests.count, 1)
+    }
+
+    func test_execute_whenConnectionIsLost_finishesWithAPIError() async {
+        StubURLProtocol.stub(path: "/integration/ping", error: URLError(.networkConnectionLost))
+
+        await assertFinishesWithAPIError(within: 2.0) { [sut] in
+            _ = try await sut!.execute(task: PingTask(), type: RestObjectResponse<Ping>.self)
+        }
+    }
+
+    func test_upload_whenRequestTimesOut_finishesWithAPIError() async {
+        StubURLProtocol.stub(.post, path: "/integration/upload", error: URLError(.timedOut))
+
+        await assertFinishesWithAPIError(within: 2.0) { [sut] in
+            _ = try await sut!.upload(task: UploadPingTask(), type: RestObjectResponse<Ping>.self)
+        }
     }
 }
 
@@ -212,6 +220,28 @@ private extension RestServiceIntegrationTests {
             XCTFail("Expected APIError, got \(error)", file: file, line: line)
             return nil
         }
+    }
+
+    /// Runs `work` in a separate task so a request that never completes fails the test instead of hanging the suite.
+    func assertFinishesWithAPIError(within timeout: TimeInterval,
+                                    file: StaticString = #filePath,
+                                    line: UInt = #line,
+                                    _ work: @escaping () async throws -> Void) async {
+        let finished = expectation(description: "request finished")
+        var thrownError: Error?
+
+        Task {
+            do {
+                try await work()
+            }
+            catch {
+                thrownError = error
+            }
+            finished.fulfill()
+        }
+
+        await fulfillment(of: [finished], timeout: timeout)
+        XCTAssertTrue(thrownError is APIError, "Expected APIError, got \(String(describing: thrownError))", file: file, line: line)
     }
 
     func assertThrowsDecodingError<T>(_ expression: @autoclosure () async throws -> T,

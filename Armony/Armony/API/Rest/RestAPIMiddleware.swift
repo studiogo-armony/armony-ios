@@ -138,6 +138,10 @@ final class RestAPIMiddleware: RequestInterceptor {
                 completion(.doNotRetry)
             }
         }
+        else {
+            /// No HTTP response (timeout, connection lost): Alamofire waits for this completion before finishing the request.
+            completion(.doNotRetry)
+        }
     }
 
     /// Refreshes the access token and retries waiting requests.
