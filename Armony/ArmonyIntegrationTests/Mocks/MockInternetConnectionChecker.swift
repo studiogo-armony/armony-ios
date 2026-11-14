@@ -6,16 +6,30 @@
 //
 
 @testable import Armony
+import Foundation
 
+/// Thread-safe: `RestService` reads `isConnected` from concurrent tasks.
 final class MockInternetConnectionChecker: InternetConnectionChecking {
 
-    var invokedIsConnectedGetter = false
-    var invokedIsConnectedGetterCount = 0
+    private let lock = NSLock()
+    private var getterCount = 0
+
+    var invokedIsConnectedGetter: Bool {
+        return invokedIsConnectedGetterCount > 0
+    }
+
+    var invokedIsConnectedGetterCount: Int {
+        lock.lock()
+        defer { lock.unlock() }
+        return getterCount
+    }
+
     var stubbedIsConnected: Bool = true
 
     var isConnected: Bool {
-        invokedIsConnectedGetter = true
-        invokedIsConnectedGetterCount += 1
+        lock.lock()
+        defer { lock.unlock() }
+        getterCount += 1
         return stubbedIsConnected
     }
 }

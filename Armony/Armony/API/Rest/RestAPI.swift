@@ -19,7 +19,8 @@ final class RestAPI: API {
 
     private var connector: Session
 
-    public lazy var acceptableStatusCodes: [Int] = {
+    /// `let` rather than `lazy var`: concurrent requests on the same instance raced to initialize it
+    public let acceptableStatusCodes: [Int] = {
         var acceptableStatusCodes = [Int]()
         acceptableStatusCodes.append(contentsOf: 200...299)
         acceptableStatusCodes.append(contentsOf: 400...499)
