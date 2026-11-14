@@ -51,20 +51,53 @@ final class RestAPIMiddleware: RequestInterceptor {
     /// Type alias for request retry completion handlers
     public typealias RequestRetryCompletion = (RetryResult) -> Void
     
+    /// Called when the refresh token is rejected; must call `completion` once the user has logged in or registered
+    typealias SessionExpiredHandler = (_ completion: @escaping VoidCallback) -> Void
+
     /// Queue of requests waiting for token refresh to complete
     private var waitingRequests: [RequestRetryCompletion]
 
     /// REST service instance for making token refresh requests
-    private lazy var tokenRestService: RestService = RestService(backend: .factory())
+    private lazy var tokenRestService: RestService = tokenServiceFactory()
+
+    /// Creates `tokenRestService` on the first token refresh
+    private let tokenServiceFactory: () -> RestService
 
     /// Authentication service for managing tokens and user state
-    private let authenticator: AuthenticationService
+    private let authenticator: AuthenticationProviding
 
-    /// Initializes the middleware with an authentication service
-    /// - Parameter authenticator: The authentication service to use for token management
-    init(authenticator: AuthenticationService = .shared) {
+    /// Source of the user's selected region
+    private let defaults: Defaults
+
+    /// Records token expiration events
+    private let logger: ErrorLogging
+
+    /// Presents login after the session can't be refreshed
+    private let sessionExpiredHandler: SessionExpiredHandler
+
+    /// Initializes the middleware; defaults match the production setup
+    /// - Parameters:
+    ///   - authenticator: The authentication service to use for token management
+    ///   - defaults: Source of the region header
+    ///   - logger: Receives token expiration events
+    ///   - tokenServiceFactory: Creates the service used for `/auth/refresh`
+    ///   - sessionExpiredHandler: Asks the user to log in again when the refresh token is rejected
+    init(authenticator: AuthenticationProviding = AuthenticationService.shared,
+         defaults: Defaults = .shared,
+         logger: ErrorLogging = FirebaseCrashlyticsLogger.shared,
+         tokenServiceFactory: @escaping () -> RestService = { RestService(backend: .factory()) },
+         sessionExpiredHandler: @escaping SessionExpiredHandler = RestAPIMiddleware.presentLogin) {
         self.authenticator = authenticator
+        self.defaults = defaults
+        self.logger = logger
+        self.tokenServiceFactory = tokenServiceFactory
+        self.sessionExpiredHandler = sessionExpiredHandler
         waitingRequests = [RequestRetryCompletion]()
+    }
+
+    /// Default `SessionExpiredHandler`: presents login and continues after login or registration
+    static func presentLogin(completion: @escaping VoidCallback) {
+        LoginCoordinator().start(loginCompletion: completion, registrationCompletion: completion)
     }
     
     /// Adapts outgoing requests by adding required headers.
@@ -84,8 +117,8 @@ final class RestAPIMiddleware: RequestInterceptor {
         var urlRequest = urlRequest
         urlRequest.setValue("IOS", forHTTPHeaderField: "Client-Type")
         
-        if Defaults.shared[.isRegionActive] {
-            if let region: String = Defaults.shared[.region], region.isNotEmpty {
+        if defaults[.isRegionActive] {
+            if let region: String = defaults[.region], region.isNotEmpty {
                 urlRequest.setValue(region, forHTTPHeaderField: "Region")
             }
         }
@@ -127,7 +160,7 @@ final class RestAPIMiddleware: RequestInterceptor {
             if response.statusCode == NSHTTPURLResponseTokenExpiredStatusCode,
                isWhiteListRequest,
                request.retryCount < 4 {
-                FirebaseCrashlyticsLogger.shared.log(exception:
+                logger.log(exception:
                         .init(name: "RestService",
                               reason: "NSHTTPURLResponseTokenExpiredStatusCode")
                 )
@@ -168,10 +201,7 @@ final class RestAPIMiddleware: RequestInterceptor {
             catch {
                 safeSync {
                     authenticator.unauthenticate()
-                    LoginCoordinator().start { [weak self] in
-                        self?.waitingRequests.forEach { $0(.doNotRetry) }
-                        self?.waitingRequests.removeAll()
-                    } registrationCompletion: { [weak self] in
+                    sessionExpiredHandler { [weak self] in
                         self?.waitingRequests.forEach { $0(.doNotRetry) }
                         self?.waitingRequests.removeAll()
                     }

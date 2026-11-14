@@ -222,26 +222,15 @@ private extension RestServiceIntegrationTests {
         }
     }
 
-    /// Runs `work` in a separate task so a request that never completes fails the test instead of hanging the suite.
     func assertFinishesWithAPIError(within timeout: TimeInterval,
                                     file: StaticString = #filePath,
                                     line: UInt = #line,
                                     _ work: @escaping () async throws -> Void) async {
-        let finished = expectation(description: "request finished")
-        var thrownError: Error?
-
-        Task {
-            do {
-                try await work()
-            }
-            catch {
-                thrownError = error
-            }
-            finished.fulfill()
+        guard let outcome = await result(within: timeout, work) else { return }
+        guard case let .failure(error) = outcome, error is APIError else {
+            XCTFail("Expected APIError, got \(outcome)", file: file, line: line)
+            return
         }
-
-        await fulfillment(of: [finished], timeout: timeout)
-        XCTAssertTrue(thrownError is APIError, "Expected APIError, got \(String(describing: thrownError))", file: file, line: line)
     }
 
     func assertThrowsDecodingError<T>(_ expression: @autoclosure () async throws -> T,
