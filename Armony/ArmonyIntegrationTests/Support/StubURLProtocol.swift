@@ -15,6 +15,7 @@ import Foundation
 /// StubURLProtocol.stub(.post, path: "/auth/refresh", body: tokenData)
 /// ```
 /// Multiple stubs for the same method + path are returned in order; the last one keeps answering.
+/// `stub(_:path:respond:)` decides per request instead, e.g. like a server checking the `Authorization` header.
 /// A request without a matching stub fails with `URLError(.resourceUnavailable)` and is still recorded.
 final class StubURLProtocol: URLProtocol {
 
@@ -48,15 +49,17 @@ final class StubURLProtocol: URLProtocol {
         }
     }
 
+    typealias Responder = (URLRequest) -> Response
+
     private final class Entry {
         let method: Method
         let path: String
-        var responses: [Response]
+        var responders: [Responder]
 
-        init(method: Method, path: String, response: Response) {
+        init(method: Method, path: String, responder: @escaping Responder) {
             self.method = method
             self.path = path
-            self.responses = [response]
+            self.responders = [responder]
         }
 
         func matches(_ request: URLRequest) -> Bool {
@@ -66,8 +69,9 @@ final class StubURLProtocol: URLProtocol {
             return requestPath.hasSuffix(path)
         }
 
-        func nextResponse() -> Response {
-            return responses.count > 1 ? responses.removeFirst() : responses[0]
+        func nextResponse(for request: URLRequest) -> Response {
+            let responder = responders.count > 1 ? responders.removeFirst() : responders[0]
+            return responder(request)
         }
     }
 
@@ -83,11 +87,20 @@ final class StubURLProtocol: URLProtocol {
                      statusCode: Int = 200,
                      headers: [String: String] = ["Content-Type": "application/json"],
                      body: Data?) {
-        add(.http(statusCode: statusCode, headers: headers, body: body), method: method, path: path)
+        add({ _ in .http(statusCode: statusCode, headers: headers, body: body) }, method: method, path: path)
     }
 
     static func stub(_ method: Method = .get, path: String, error: Error) {
-        add(.failure(error), method: method, path: path)
+        add({ _ in .failure(error) }, method: method, path: path)
+    }
+
+    /// Builds the response from the incoming request on every call. Called while the stub registry is locked.
+    static func stub(_ method: Method = .get, path: String, respond: @escaping Responder) {
+        add(respond, method: method, path: path)
+    }
+
+    static func json(statusCode: Int = 200, body: Data?) -> Response {
+        return .http(statusCode: statusCode, headers: ["Content-Type": "application/json"], body: body)
     }
 
     static var recordedRequests: [RecordedRequest] {
@@ -105,13 +118,13 @@ final class StubURLProtocol: URLProtocol {
         }
     }
 
-    private static func add(_ response: Response, method: Method, path: String) {
+    private static func add(_ responder: @escaping Responder, method: Method, path: String) {
         synchronized {
             if let entry = entries.first(where: { $0.method == method && $0.path == path }) {
-                entry.responses.append(response)
+                entry.responders.append(responder)
             }
             else {
-                entries.append(Entry(method: method, path: path, response: response))
+                entries.append(Entry(method: method, path: path, responder: responder))
             }
         }
     }
@@ -135,7 +148,7 @@ final class StubURLProtocol: URLProtocol {
     override func startLoading() {
         let response: Response? = Self.synchronized {
             Self.requests.append(RecordedRequest(request: request, body: request.bodyData))
-            return Self.entries.first(where: { $0.matches(request) })?.nextResponse()
+            return Self.entries.first(where: { $0.matches(request) })?.nextResponse(for: request)
         }
 
         switch response {

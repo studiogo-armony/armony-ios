@@ -53,6 +53,21 @@ final class StubURLProtocolTests: IntegrationTestCase {
         XCTAssertEqual(StubURLProtocol.recordedRequests.count, 3)
     }
 
+    func test_request_whenResponderIsStubbed_answersBasedOnRequest() async throws {
+        StubURLProtocol.stub(path: "/adverts") { request in
+            let isAuthorized = request.value(forHTTPHeaderField: "Authorization") == "valid"
+            return StubURLProtocol.json(statusCode: isAuthorized ? 200 : 401, body: nil)
+        }
+        var authorized = URLRequest(url: baseURL.appendingPathComponent("adverts"))
+        authorized.setValue("valid", forHTTPHeaderField: "Authorization")
+
+        let (_, unauthorizedResponse) = try await session.data(from: baseURL.appendingPathComponent("adverts"))
+        let (_, authorizedResponse) = try await session.data(for: authorized)
+
+        XCTAssertEqual((unauthorizedResponse as? HTTPURLResponse)?.statusCode, 401)
+        XCTAssertEqual((authorizedResponse as? HTTPURLResponse)?.statusCode, 200)
+    }
+
     func test_request_whenPathIsNotStubbed_failsAndIsRecorded() async {
         do {
             _ = try await session.data(from: baseURL.appendingPathComponent("unknown"))

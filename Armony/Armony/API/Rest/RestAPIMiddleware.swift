@@ -54,16 +54,21 @@ final class RestAPIMiddleware: RequestInterceptor {
     /// Called when the refresh token is rejected; must call `completion` once the user has logged in or registered
     typealias SessionExpiredHandler = (_ completion: @escaping VoidCallback) -> Void
 
-    /// Queue of requests waiting for token refresh to complete
+    /// Queue of requests waiting for token refresh (or the login it falls back to) to complete
     private var waitingRequests: [RequestRetryCompletion]
+
+    /// `true` from the first 401 until the refresh succeeds or the login it falls back to completes.
+    /// Further 401s in that window wait instead of starting another refresh or login.
+    private var isRefreshing = false
 
     /// `retryCount` of each request whose 401 already started a token refresh.
     /// Alamofire asks the retrier a second time for the same attempt when the response serializer
     /// rethrows the validation error; that call must not refresh (and present login) again.
     private var refreshedAttempts = [UUID: Int]()
 
-    /// Guards `refreshedAttempts`, which Alamofire may reach from different queues
-    private let refreshedAttemptsLock = NSLock()
+    /// Guards `waitingRequests`, `isRefreshing` and `refreshedAttempts`: Alamofire calls `retry` on its own queues
+    /// while the refresh finishes on the main queue
+    private let lock = NSLock()
 
     /// REST service instance for making token refresh requests
     private lazy var tokenRestService: RestService = tokenServiceFactory()
@@ -172,12 +177,16 @@ final class RestAPIMiddleware: RequestInterceptor {
                     completion(.doNotRetry)
                     return
                 }
+                guard !wasSentWithOutdatedCredentials(request) else {
+                    /// The token changed while this request was in flight: retry with the new one, or give up after logout
+                    completion(authenticator.isAuthenticated ? .retry : .doNotRetry)
+                    return
+                }
                 logger.log(exception:
                         .init(name: "RestService",
                               reason: "NSHTTPURLResponseTokenExpiredStatusCode")
                 )
-                waitingRequests.append(completion)
-                refreshToken()
+                waitForRefresh(completion)
             }
             else {
                 completion(.doNotRetry)
@@ -192,8 +201,8 @@ final class RestAPIMiddleware: RequestInterceptor {
     /// Records that `request` refreshes the token for its current attempt.
     /// - Returns: `false` when this attempt already refreshed, i.e. this is Alamofire's repeated retry call.
     private func startsRefreshAttempt(for request: Request) -> Bool {
-        refreshedAttemptsLock.lock()
-        defer { refreshedAttemptsLock.unlock() }
+        lock.lock()
+        defer { lock.unlock() }
 
         if refreshedAttempts[request.id] == request.retryCount {
             refreshedAttempts[request.id] = nil
@@ -201,6 +210,39 @@ final class RestAPIMiddleware: RequestInterceptor {
         }
         refreshedAttempts[request.id] = request.retryCount
         return true
+    }
+
+    /// Whether `request` carried other auth headers than the authenticator has now, i.e. a refresh or logout
+    /// happened after it was sent. Requests sent without a token compare as empty.
+    private func wasSentWithOutdatedCredentials(_ request: Request) -> Bool {
+        return authenticator.additionalHTTPHeaders.contains { field, currentValue in
+            request.request?.value(forHTTPHeaderField: field).emptyIfNil != currentValue
+        }
+    }
+
+    /// Queues `completion` until the token refresh finishes; the first waiting request starts the refresh.
+    private func waitForRefresh(_ completion: @escaping RequestRetryCompletion) {
+        lock.lock()
+        waitingRequests.append(completion)
+        let shouldStartRefresh = !isRefreshing
+        isRefreshing = true
+        lock.unlock()
+
+        if shouldStartRefresh {
+            refreshToken()
+        }
+    }
+
+    /// Hands `result` to every waiting request and allows the next 401 to refresh again.
+    /// Completions run outside the lock, since Alamofire may call `retry` again from them.
+    private func completeWaitingRequests(with result: RetryResult) {
+        lock.lock()
+        let completions = waitingRequests
+        waitingRequests.removeAll()
+        isRefreshing = false
+        lock.unlock()
+
+        completions.forEach { $0(result) }
     }
 
     /// Refreshes the access token and retries waiting requests.
@@ -220,16 +262,14 @@ final class RestAPIMiddleware: RequestInterceptor {
                 )
                 safeSync {
                     authenticator.identify(accessToken: response.data.access, refreshToken: response.data.refresh)
-                    waitingRequests.forEach { $0(.retry) }
-                    waitingRequests.removeAll()
                 }
+                completeWaitingRequests(with: .retry)
             }
             catch {
                 safeSync {
                     authenticator.unauthenticate()
                     sessionExpiredHandler { [weak self] in
-                        self?.waitingRequests.forEach { $0(.doNotRetry) }
-                        self?.waitingRequests.removeAll()
+                        self?.completeWaitingRequests(with: .doNotRetry)
                     }
                 }
             }

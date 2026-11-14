@@ -127,6 +127,67 @@ final class RestAPIMiddlewareIntegrationTests: IntegrationTestCase {
         XCTAssertFalse(mockSessionExpiredHandler.invokedHandle)
     }
 
+    // MARK: - Concurrent requests
+
+    func test_execute_whenConcurrentRequestsGetTokenExpired_refreshesOnceAndRetriesAll() async throws {
+        stubServerAccepting(token: "new-access", paths: ConcurrentTasks.paths)
+        StubURLProtocol.stub(.post, path: "/auth/refresh", body: IntegrationFixtures.data(named: "refresh_token_success"))
+
+        let outcome = await result { [sut] in
+            try await ConcurrentTasks.executeAll(on: sut!)
+        }
+
+        XCTAssertEqual(try outcome?.get(), Array(repeating: Ping(message: "pong"), count: 3))
+        XCTAssertEqual(StubURLProtocol.recordedRequests(.post, path: "/auth/refresh").count, 1)
+        for path in ConcurrentTasks.paths {
+            let requests = StubURLProtocol.recordedRequests(.get, path: path)
+            XCTAssertEqual(requests.last?.value(forHTTPHeaderField: "Authorization"), "new-access", path)
+        }
+        XCTAssertEqual(authenticator.refreshToken, "refresh-2")
+    }
+
+    func test_execute_whenConcurrentRequestsGetTokenExpiredAndRefreshIsRejected_asksForLoginOnce() async {
+        stubServerAccepting(token: "never-valid", paths: ConcurrentTasks.paths)
+        StubURLProtocol.stub(.post, path: "/auth/refresh", statusCode: 401, body: IntegrationFixtures.data(named: "token_expired_error"))
+
+        let outcome = await result { [sut] in
+            try await ConcurrentTasks.executeAll(on: sut!)
+        }
+
+        assertAPIError(outcome, code: 401)
+        XCTAssertEqual(StubURLProtocol.recordedRequests(.post, path: "/auth/refresh").count, 1)
+        XCTAssertEqual(mockSessionExpiredHandler.invokedHandleCount, 1)
+        XCTAssertFalse(authenticator.isAuthenticated)
+    }
+
+    func test_execute_whenTokenExpiresWhileLoginIsShown_waitsForLoginInsteadOfRefreshing() async {
+        mockSessionExpiredHandler.stubbedShouldCallCompletion = false
+        stubServerAccepting(token: "never-valid", paths: ConcurrentTasks.paths)
+        StubURLProtocol.stub(.post, path: "/auth/refresh", statusCode: 401, body: IntegrationFixtures.data(named: "token_expired_error"))
+        let firstStarted = expectation(description: "first request waits for login")
+
+        Task { [sut] in
+            _ = try? await sut?.execute(task: ConcurrentTasks.First(), type: RestObjectResponse<Ping>.self)
+        }
+        Task { [mockSessionExpiredHandler] in
+            while mockSessionExpiredHandler?.invokedHandle == false {
+                await Task.yield()
+            }
+            firstStarted.fulfill()
+        }
+        await fulfillment(of: [firstStarted], timeout: 2.0)
+
+        // Login is on screen: a guest request that gets 401 must neither refresh again nor present a second login.
+        Task { [sut] in
+            _ = try? await sut?.execute(task: ConcurrentTasks.Second(), type: RestObjectResponse<Ping>.self)
+        }
+        try? await Task.sleep(nanoseconds: 300_000_000)
+
+        XCTAssertEqual(StubURLProtocol.recordedRequests(.get, path: ConcurrentTasks.paths[1]).count, 1)
+        XCTAssertEqual(StubURLProtocol.recordedRequests(.post, path: "/auth/refresh").count, 1)
+        XCTAssertEqual(mockSessionExpiredHandler.invokedHandleCount, 1)
+    }
+
     func test_execute_whenWhitelistedEndpointReturns401_doesNotRefresh() async {
         StubURLProtocol.stub(.post, path: "/auth/signin", statusCode: 401, body: IntegrationFixtures.data(named: "token_expired_error"))
 
@@ -170,6 +231,18 @@ final class RestAPIMiddlewareIntegrationTests: IntegrationTestCase {
 // MARK: - Assertions
 private extension RestAPIMiddlewareIntegrationTests {
 
+    /// Behaves like the backend: 200 for requests carrying `token`, 401 otherwise, regardless of timing.
+    func stubServerAccepting(token: String, paths: [String]) {
+        let success = IntegrationFixtures.data(named: "rest_ping_success")
+        let expired = IntegrationFixtures.data(named: "token_expired_error")
+        for path in paths {
+            StubURLProtocol.stub(path: path) { request in
+                let isAuthorized = request.value(forHTTPHeaderField: "Authorization") == token
+                return StubURLProtocol.json(statusCode: isAuthorized ? 200 : 401, body: isAuthorized ? success : expired)
+            }
+        }
+    }
+
     func assertAPIError<T>(_ outcome: Result<T, Error>?,
                            code: Int,
                            file: StaticString = #filePath,
@@ -191,6 +264,34 @@ private struct Ping: Decodable, Equatable {
 private struct PingTask: HTTPTask {
     var method: HTTPMethod = .get
     var path: String = "/integration/ping"
+}
+
+/// Separate task types: `RestService` cancels a running request whose task has the same `description` (type name).
+private enum ConcurrentTasks {
+
+    static let paths = ["/integration/first", "/integration/second", "/integration/third"]
+
+    struct First: HTTPTask {
+        var method: HTTPMethod = .get
+        var path: String = ConcurrentTasks.paths[0]
+    }
+
+    struct Second: HTTPTask {
+        var method: HTTPMethod = .get
+        var path: String = ConcurrentTasks.paths[1]
+    }
+
+    struct Third: HTTPTask {
+        var method: HTTPMethod = .get
+        var path: String = ConcurrentTasks.paths[2]
+    }
+
+    static func executeAll(on service: RestService) async throws -> [Ping] {
+        async let first = service.execute(task: First(), type: RestObjectResponse<Ping>.self)
+        async let second = service.execute(task: Second(), type: RestObjectResponse<Ping>.self)
+        async let third = service.execute(task: Third(), type: RestObjectResponse<Ping>.self)
+        return try await [first.data, second.data, third.data]
+    }
 }
 
 private struct SignInTask: HTTPTask {

@@ -99,6 +99,8 @@ Treat any file that holds secrets as **local-only** unless the project explicitl
 - Shared helpers in `Support/`: `StubURLProtocol` (network stubs via `URLSessionConfiguration.stubbed()`), `IntegrationFixtures`, `TestKeychain`, and the `IntegrationTestCase` base class that resets them.
 - `IntegrationTestCase` swaps `APIEnvironmentProvider.current` for `TestAPIEnvironment` (`https://test.armony.local/v1`), so URLs never depend on remote config cached on the simulator.
 - Real network stack: `RestService(backend: .stubbed(), internetConnectionService:logger:)` — `RestAPI.stubbed()` wires the real `RestAPIMiddleware` to the test keychain. Use `RestAPIMiddleware.stubbed(authenticator:defaults:logger:sessionExpiredHandler:)` to control auth, region and the login prompt; `/auth/refresh` is stubbed like any other path.
+- For timing-independent server behaviour (e.g. 401 unless the `Authorization` header holds the new token), use `StubURLProtocol.stub(_:path:respond:)` instead of a fixed response sequence.
+- Concurrent requests on one `RestService` need distinct task types: it cancels a running request whose task has the same `description`. Mocks touched from concurrent tasks must be thread-safe (see `MockInternetConnectionChecker`).
 - Wrap calls that could hang (retry/refresh flows) in `await result(within:) { ... }` from `IntegrationTestCase`, so a stuck request fails the test instead of the suite.
 - `XCTExpectFailure` only matches issues on the calling thread: write expected-failure tests synchronously (`Task` + `wait(for:)`), not as `async` tests.
 - Both test bundles use the app as test host; `AppDelegate` detects this and runs `startAsTestHost()` (no analytics, keychain wipe, permission prompts or splash).
