@@ -2,7 +2,7 @@ import XCTest
 @testable import Armony
 import SnapshotTesting
 
-final class NotchViewSnapshotTests: XCTestCase {
+final class NotchViewSnapshotTests: SnapshotTestCase {
     var sut: NotchView!
 
     override func setUp() {

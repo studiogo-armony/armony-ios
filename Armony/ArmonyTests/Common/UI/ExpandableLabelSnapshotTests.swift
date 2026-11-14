@@ -2,7 +2,7 @@ import XCTest
 @testable import Armony
 import SnapshotTesting
 
-final class ExpandableLabelSnapshotTests: XCTestCase {
+final class ExpandableLabelSnapshotTests: SnapshotTestCase {
     var sut: ExpandableLabel!
 
     override func setUp() {

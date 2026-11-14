@@ -2,7 +2,7 @@ import XCTest
 @testable import Armony
 import SnapshotTesting
 
-final class GradientViewSnapshotTests: XCTestCase {
+final class GradientViewSnapshotTests: SnapshotTestCase {
     var sut: GradientView!
 
     override func setUp() {

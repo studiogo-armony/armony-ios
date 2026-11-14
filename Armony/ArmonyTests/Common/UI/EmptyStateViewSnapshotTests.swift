@@ -2,7 +2,7 @@ import XCTest
 @testable import Armony
 import SnapshotTesting
 
-final class EmptyStateViewSnapshotTests: XCTestCase {
+final class EmptyStateViewSnapshotTests: SnapshotTestCase {
     var sut: EmptyStateView!
 
     private let width: CGFloat = 375

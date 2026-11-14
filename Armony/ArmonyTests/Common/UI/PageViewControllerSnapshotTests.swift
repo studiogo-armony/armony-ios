@@ -7,7 +7,7 @@ import XCTest
 @testable import Armony
 import SnapshotTesting
 
-final class PageViewControllerSnapshotTests: XCTestCase {
+final class PageViewControllerSnapshotTests: SnapshotTestCase {
 
     private let size = CGSize(width: 375, height: 300)
 

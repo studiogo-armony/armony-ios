@@ -109,8 +109,13 @@ Treat any file that holds secrets as **local-only** unless the project explicitl
 ### Simulator for CLI builds
 
 ```
-platform=iOS Simulator,id=1844D0EE-B1AC-46CC-BA8F-0DB59522559E  # iPhone 16
+platform=iOS Simulator,id=286C8272-3690-469C-9FFB-AF518C4C0379  # iPhone 16, iOS 18.6
 ```
+
+### Snapshot tests
+
+- Snapshot test classes subclass **`SnapshotTestCase`** (`ArmonyTests/Common/UI/`), which fails fast unless running on the reference simulator: **iPhone 16, iOS 18.6**. Rendering (screen scale, layout margins, font rendering) differs per device/iOS version, so references are only comparable there. Update the constants in `SnapshotTestCase` when the reference device changes, and re-record all snapshots on it.
+- The shared schemes pin the **test** language to `en` / `US` (the app's launch language stays `tr`), so snapshots never depend on the simulator's language.
 
 ### Testability conventions
 

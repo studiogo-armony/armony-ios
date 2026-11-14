@@ -2,7 +2,7 @@ import XCTest
 @testable import Armony
 import SnapshotTesting
 
-final class SegmentedControlViewSnapshotTests: XCTestCase {
+final class SegmentedControlViewSnapshotTests: SnapshotTestCase {
     var sut: SegmentedControlView!
 
     override func setUp() {

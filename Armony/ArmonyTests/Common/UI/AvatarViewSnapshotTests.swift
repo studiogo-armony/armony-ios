@@ -2,7 +2,7 @@ import XCTest
 @testable import Armony
 import SnapshotTesting
 
-final class AvatarViewSnapshotTests: XCTestCase {
+final class AvatarViewSnapshotTests: SnapshotTestCase {
     var sut: AvatarView!
 
     override func setUp() {

@@ -2,7 +2,7 @@ import XCTest
 @testable import Armony
 import SnapshotTesting
 
-final class TitleAccessoryViewSnapshotTests: XCTestCase {
+final class TitleAccessoryViewSnapshotTests: SnapshotTestCase {
     var sut: TitleAccessoryView!
 
     override func setUp() {

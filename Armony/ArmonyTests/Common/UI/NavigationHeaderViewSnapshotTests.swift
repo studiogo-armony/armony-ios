@@ -2,7 +2,7 @@ import XCTest
 @testable import Armony
 import SnapshotTesting
 
-final class NavigationHeaderViewSnapshotTests: XCTestCase {
+final class NavigationHeaderViewSnapshotTests: SnapshotTestCase {
     var sut: NavigationHeaderView!
 
     private let width: CGFloat = 375

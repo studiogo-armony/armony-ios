@@ -10,7 +10,7 @@ import XCTest
 @testable import Armony
 import SnapshotTesting
 
-final class DropdownViewSnapshotTests: XCTestCase {
+final class DropdownViewSnapshotTests: SnapshotTestCase {
 
     var sut: DropdownView!
 

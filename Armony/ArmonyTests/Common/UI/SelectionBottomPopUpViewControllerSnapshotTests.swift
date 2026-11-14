@@ -7,7 +7,7 @@ import XCTest
 @testable import Armony
 import SnapshotTesting
 
-final class SelectionBottomPopUpViewControllerSnapshotTests: XCTestCase {
+final class SelectionBottomPopUpViewControllerSnapshotTests: SnapshotTestCase {
 
     private let width: CGFloat = 375
 

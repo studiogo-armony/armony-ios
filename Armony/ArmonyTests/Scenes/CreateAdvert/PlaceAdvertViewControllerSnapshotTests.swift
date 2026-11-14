@@ -7,7 +7,7 @@ import XCTest
 @testable import Armony
 import SnapshotTesting
 
-final class PlaceAdvertViewControllerSnapshotTests: XCTestCase {
+final class PlaceAdvertViewControllerSnapshotTests: SnapshotTestCase {
 
     private var sut: PlaceAdvertViewController!
     private var viewModel: PlaceAdvertViewModel!

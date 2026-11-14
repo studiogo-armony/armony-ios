@@ -2,7 +2,7 @@ import XCTest
 @testable import Armony
 import SnapshotTesting
 
-final class MusicGenresViewSnapshotTests: XCTestCase {
+final class MusicGenresViewSnapshotTests: SnapshotTestCase {
     var sut: MusicGenresView!
 
     private let width: CGFloat = 375
