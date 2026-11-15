@@ -57,12 +57,7 @@ final class BannerSliderCell: UICollectionViewCell {
     }
     
     func configure(with presentation: BannerSliderItemPresentation, roundedCorners: CACornerMask?) {
-        let images = [
-            "test1".image,
-            "test2".image,
-            "test3".image,
-        ]
-        imageView.image = images.randomElement()
+        imageView.setImage(source: .url(presentation.imageURL))
         titleLabel.text = presentation.title
         contentView.setBackgroundColor(presentation.backgroundColor)
         if let roundedCorners {
