@@ -51,6 +51,12 @@ final class AppLaunchService: AppLaunchHandling, ResetHandling {
         return .none
     }
 
+    /// Cold launch through a URL: with scenes the URL arrives in `UIScene.ConnectionOptions`, not in `launchOptions`.
+    func handleLaunch(url: URL) {
+        isLaunchedClosedStateWithNotification = true
+        deeplink = url.deeplink
+    }
+
     func reset() {
         deeplink = nil
         isLaunchedClosedStateWithNotification = false

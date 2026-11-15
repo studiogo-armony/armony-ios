@@ -20,14 +20,16 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     private let authenticator = AuthenticationService.shared
     private let userDefaults = Defaults.shared
 
-    lazy var window: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
+    static var shared: AppDelegate? {
+        return UIApplication.shared.delegate as? AppDelegate
+    }
 
     // MARK: - AppDelegate
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
-        if isRunningAsTestHost {
+        if Self.isRunningAsTestHost {
             startAsTestHost()
             return true
         }
@@ -67,10 +69,15 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         // Revenue Cat
         RevenueCatService.shared.start()
 
-        // App start
-        AppCoordinator(window: window!).start()
-
         return true
+    }
+
+    func application(_ application: UIApplication,
+                     configurationForConnecting connectingSceneSession: UISceneSession,
+                     options: UIScene.ConnectionOptions) -> UISceneConfiguration {
+        let configuration = UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
+        configuration.delegateClass = SceneDelegate.self
+        return configuration
     }
 
     func requestATTPermission() {
@@ -99,27 +106,23 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         )
     }
 
-
-    public func application(_ app: UIApplication,
-                            open url: URL,
-                            options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
-        return !navigation.open(url.deeplink, dismissToRoot: true)
-    }
-    
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        guard !isRunningAsTestHost, !UITestLaunchConfiguration.isEnabled else { return }
-        updateAppIconBadgeNumber(application)
+    func sceneDidBecomeActive() {
+        guard !Self.isRunningAsTestHost, !UITestLaunchConfiguration.isEnabled else { return }
+        updateAppIconBadgeNumber(UIApplication.shared)
         requestATTPermission()
+    }
+}
+
+extension AppDelegate {
+    /// `ArmonyTests` and `ArmonyIntegrationTests` use the app as their test host.
+    /// UI tests launch the app in a separate process, so they still get a regular launch.
+    static var isRunningAsTestHost: Bool {
+        return ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil
     }
 }
 
 // MARK: - Private Methods
 private extension AppDelegate {
-    /// `ArmonyTests` and `ArmonyIntegrationTests` use the app as their test host.
-    /// UI tests launch the app in a separate process, so they still get a regular launch.
-    var isRunningAsTestHost: Bool {
-        return ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil
-    }
 
     /// Minimal launch for test bundles: no keychain wipe, analytics, permission prompts or splash network calls.
     /// Firebase and Mixpanel are still set up because their shared instances crash when used before setup.
@@ -127,26 +130,17 @@ private extension AppDelegate {
         configureAppAppearance()
         FirebaseService.shared.start()
         MixPanelAnalytic.shared.startOptedOut()
-        window?.rootViewController = UIViewController()
-        window?.makeKeyAndVisible()
     }
 
     #if DEBUG
     /// UI tests launch the app in its own process: the real tab bar flow, but without splash, remote config,
-    /// permission prompts or analytics (see `UITestLaunchConfiguration`).
+    /// permission prompts or analytics (see `UITestLaunchConfiguration`). The window is set up by `SceneDelegate`.
     func startAsUITestApp() {
         UITestLaunchConfiguration.apply()
         configureAppAppearance()
         FirebaseService.shared.start()
         MixPanelAnalytic.shared.startOptedOut()
         IQKeyboardManager.shared.enable = true
-
-        AppCoordinator(window: window!).startAsArmony()
-        window?.makeKeyAndVisible()
-
-        if let deeplink = UITestLaunchConfiguration.deeplink {
-            navigation.open(deeplink, dismissToRoot: false)
-        }
     }
     #endif
 
