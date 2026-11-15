@@ -19,6 +19,7 @@ final class AdvertsViewModel: ViewModel {
     private let authenticator: AuthenticationProviding
     private let defaults: DefaultsProviding
     private let appLaunchService: AppLaunchHandling
+    private let regionCode: String?
 
     private let bannerService: RestService
 
@@ -62,6 +63,7 @@ final class AdvertsViewModel: ViewModel {
         authenticator: AuthenticationProviding = AuthenticationService.shared,
         defaults: DefaultsProviding = Defaults.shared,
         appLaunchService: AppLaunchHandling = AppLaunchService.shared,
+        regionCode: String? = Locale.current.regionCode,
         bannerService: RestService = .init(backend: .factory()),
         service: RestService = .init(backend: .factory())
     ) {
@@ -70,6 +72,7 @@ final class AdvertsViewModel: ViewModel {
         self.authenticator = authenticator
         self.defaults = defaults
         self.appLaunchService = appLaunchService
+        self.regionCode = regionCode
         self.bannerService = bannerService
         self.paginator = Paginator(task: GetAdvertsTask(userID: authenticator.userID))
         super.init(service: service)
@@ -134,7 +137,7 @@ final class AdvertsViewModel: ViewModel {
             do {
                 var response = try await homeData()
 
-                if Locale.current.regionCode != "TR" {
+                if regionCode != "TR", !response.bannerResponse.data.banners.isEmpty {
                     response.bannerResponse.data.banners.removeFirst()
                 }
 

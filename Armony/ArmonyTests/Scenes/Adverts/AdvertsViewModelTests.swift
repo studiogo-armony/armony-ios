@@ -141,6 +141,45 @@ final class AdvertsViewModelTests: XCTestCase {
         XCTAssertTrue(mockView.invokedStopActivityIndicatorView)
     }
 
+    // MARK: - fetchAdverts — banners by region
+
+    func test_fetchAdverts_whenRegionNotTRAndBannersEmpty_doesNotCrash() async throws {
+        sut = makeSUT(regionCode: "US")
+        let expectation = expectation(description: "stopActivityIndicator called")
+        mockView.onStopActivityIndicatorView = { expectation.fulfill() }
+        try stubHomeData(bannerTitles: [])
+
+        sut.fetchAdverts()
+
+        await fulfillment(of: [expectation], timeout: 2.0)
+        XCTAssertTrue(sut.sliderPresentation.banners.isEmpty)
+        XCTAssertEqual(sut.numberOfItemsInSection, 1)
+    }
+
+    func test_fetchAdverts_whenRegionNotTR_dropsFirstBanner() async throws {
+        sut = makeSUT(regionCode: "US")
+        let expectation = expectation(description: "stopActivityIndicator called")
+        mockView.onStopActivityIndicatorView = { expectation.fulfill() }
+        try stubHomeData(bannerTitles: ["First", "Second"])
+
+        sut.fetchAdverts()
+
+        await fulfillment(of: [expectation], timeout: 2.0)
+        XCTAssertEqual(sut.sliderPresentation.banners.map(\.title), ["Second"])
+    }
+
+    func test_fetchAdverts_whenRegionTR_keepsAllBanners() async throws {
+        sut = makeSUT(regionCode: "TR")
+        let expectation = expectation(description: "stopActivityIndicator called")
+        mockView.onStopActivityIndicatorView = { expectation.fulfill() }
+        try stubHomeData(bannerTitles: ["First", "Second"])
+
+        sut.fetchAdverts()
+
+        await fulfillment(of: [expectation], timeout: 2.0)
+        XCTAssertEqual(sut.sliderPresentation.banners.map(\.title), ["First", "Second"])
+    }
+
     // MARK: - numberOfItemsInSection
 
     func test_numberOfItemsInSection_initiallyZero() {
@@ -309,5 +348,37 @@ private extension AdvertsViewModelTests {
             fromJSONFile: "Adverts-Sample-Data",
             type: RestArrayResponse<Advert>.self
         )
+    }
+
+    func stubHomeData(bannerTitles: [String]) throws {
+        stubHomeData()
+        let banners = bannerTitles.map { title in
+            """
+            { "title": "\(title)", "image": "https://example.com/banner.jpg", \
+            "backgroundColor": "armonyPurple", "deeplink": "armony://adverts" }
+            """
+        }
+        let json = """
+        { "data": { "isActive": true, "banners": [\(banners.joined(separator: ","))] }, "error": null, "metadata": null }
+        """
+        mockBannerService.stubbedResult = try JSONDecoder().decode(
+            RestObjectResponse<BannerSliderResponse>.self,
+            from: Data(json.utf8)
+        )
+    }
+
+    func makeSUT(regionCode: String?) -> AdvertsViewModel {
+        let sut = AdvertsViewModel(
+            view: mockView,
+            messageCountSocketHandler: mockSocketHandler,
+            authenticator: mockAuthenticator,
+            defaults: mockDefaults,
+            appLaunchService: mockAppLaunchService,
+            regionCode: regionCode,
+            bannerService: mockBannerService,
+            service: mockService
+        )
+        sut.coordinator = mockCoordinator
+        return sut
     }
 }
