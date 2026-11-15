@@ -15,21 +15,6 @@ public enum ImageSource {
 
 public extension UIImageView {
 
-    private func set_af_image(url: URL?,
-                      placeholderImage: UIImage? = nil,
-                      completion: Callback<AFIDataResponse<UIImage>>? = nil) {
-        if let url = url {
-            af.setImage(withURL: url,
-                        placeholderImage: placeholderImage,
-                        imageTransition: .crossDissolve(0.25),
-                        completion: completion)
-        }
-        else {
-            af.cancelImageRequest()
-            image = placeholderImage
-        }
-    }
-
     func setImage(source: ImageSource, completion: Callback<UIImage?>? = nil) {
         switch source {
         case .static(let image):
@@ -37,9 +22,43 @@ public extension UIImageView {
             completion?(image)
 
         case .url(let placeholder, let url):
-            set_af_image(url: url, placeholderImage: placeholder) { response in
-                completion?(response.value)
-            }
+            RemoteImageLoaderProvider.current.setImage(
+                on: self,
+                url: url,
+                placeholder: placeholder,
+                completion: completion
+            )
         }
     }
+}
+
+// MARK: - RemoteImageLoading
+
+/// Loads `ImageSource.url` images into an image view.
+protocol RemoteImageLoading {
+    func setImage(on imageView: UIImageView, url: URL?, placeholder: UIImage?, completion: Callback<UIImage?>?)
+}
+
+/// Production source: downloads and caches images with AlamofireImage.
+struct AlamofireRemoteImageLoader: RemoteImageLoading {
+
+    func setImage(on imageView: UIImageView, url: URL?, placeholder: UIImage?, completion: Callback<UIImage?>?) {
+        if let url = url {
+            imageView.af.setImage(withURL: url,
+                                  placeholderImage: placeholder,
+                                  imageTransition: .crossDissolve(0.25),
+                                  completion: { response in
+                completion?(response.value)
+            })
+        }
+        else {
+            imageView.af.cancelImageRequest()
+            imageView.image = placeholder
+        }
+    }
+}
+
+/// Snapshot tests swap `current` for a stub so URL images render without the network.
+enum RemoteImageLoaderProvider {
+    static var current: RemoteImageLoading = AlamofireRemoteImageLoader()
 }

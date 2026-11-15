@@ -4,6 +4,7 @@
 //
 
 import XCTest
+@testable import Armony
 
 /// Base class for snapshot tests.
 ///
@@ -32,6 +33,13 @@ class SnapshotTestCase: XCTestCase {
                 """
             )
         }
+
+        RemoteImageLoaderProvider.current = ColoredRemoteImageLoader()
+    }
+
+    override func tearDownWithError() throws {
+        RemoteImageLoaderProvider.current = AlamofireRemoteImageLoader()
+        try super.tearDownWithError()
     }
 }
 
