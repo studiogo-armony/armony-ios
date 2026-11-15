@@ -189,7 +189,6 @@
 		02A261F12B24D10D004D26A1 /* DeleteAccountFeedbackSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A261F02B24D10D004D26A1 /* DeleteAccountFeedbackSelection.swift */; };
 		02A261F32B24DBE0004D26A1 /* PostDeleteAccountFeedbackTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A261F22B24DBE0004D26A1 /* PostDeleteAccountFeedbackTask.swift */; };
 		02A60CE22D0A291300B0FA80 /* Onboarding+Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 02A60CE12D0A291300B0FA80 /* Onboarding+Localizable.xcstrings */; };
-		02CA1A122F800000001CA012 /* ColoredRemoteImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CA1A132F800000001CA013 /* ColoredRemoteImageLoader.swift */; };
 		02A824842881B202004351D0 /* MockRestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A824832881B202004351D0 /* MockRestService.swift */; };
 		02A9C1F72E3D615A0031A636 /* RevenueCatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A9C1F62E3D614A0031A636 /* RevenueCatService.swift */; };
 		02AA55E5302E69280047CE53 /* AdvertCoordinating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02AA55E4302E69280047CE53 /* AdvertCoordinating.swift */; };
@@ -254,10 +253,15 @@
 		02CA1A022F800000001CA002 /* PlaceAdvertViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CA1A032F800000001CA003 /* PlaceAdvertViewModelTests.swift */; };
 		02CA1A042F800000001CA004 /* MockPlaceAdvertCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CA1A052F800000001CA005 /* MockPlaceAdvertCoordinator.swift */; };
 		02CA1A062F800000001CA006 /* MockPlaceAdvertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CA1A072F800000001CA007 /* MockPlaceAdvertView.swift */; };
-		02CA1A102F800000001CA010 /* AdvertsViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CA1A112F800000001CA011 /* AdvertsViewControllerSnapshotTests.swift */; };
 		02CA1A0A2F800000001CA00A /* PlaceAdvertViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CA1A0B2F800000001CA00B /* PlaceAdvertViewControllerSnapshotTests.swift */; };
 		02CA1A0C2F800000001CA00C /* PlaceAdvertForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CA1A0D2F800000001CA00D /* PlaceAdvertForm.swift */; };
 		02CA1A0E2F800000001CA00E /* SnapshotTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CA1A0F2F800000001CA00F /* SnapshotTestCase.swift */; };
+		02CA1A102F800000001CA010 /* AdvertsViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CA1A112F800000001CA011 /* AdvertsViewControllerSnapshotTests.swift */; };
+		02CA1A122F800000001CA012 /* ColoredRemoteImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CA1A132F800000001CA013 /* ColoredRemoteImageLoader.swift */; };
+		02CA1A232F800000001CA023 /* UITestingContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CA1A212F800000001CA021 /* UITestingContract.swift */; };
+		02CA1A242F800000001CA024 /* UITestLaunchConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CA1A222F800000001CA022 /* UITestLaunchConfiguration.swift */; };
+		02CA1A252F800000001CA025 /* UITestingContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CA1A212F800000001CA021 /* UITestingContract.swift */; };
+		02CA1A282F800000001CA028 /* UITestStubURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CA1A272F800000001CA027 /* UITestStubURLProtocol.swift */; };
 		02CA1B012F800000001CB001 /* FilterCoordinating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CA1B002F800000001CB000 /* FilterCoordinating.swift */; };
 		02CAA4AE284BCEA1004C118D /* ProfileUpdatePutTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CAA4AD284BCEA1004C118D /* ProfileUpdatePutTask.swift */; };
 		02D00FCD2913254100B84DD7 /* HTTPUploadTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D00FCC2913254100B84DD7 /* HTTPUploadTask.swift */; };
@@ -495,7 +499,6 @@
 		B1B55C8F26CEFAE300FDE884 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1B55C8E26CEFAE300FDE884 /* Assets.xcassets */; };
 		B1B55C9226CEFAE300FDE884 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1B55C9026CEFAE300FDE884 /* LaunchScreen.storyboard */; };
 		B1B55C9D26CEFAE300FDE884 /* AccountViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B55C9C26CEFAE300FDE884 /* AccountViewModelTests.swift */; };
-		B1B55CA826CEFAE300FDE884 /* ArmonyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B55CA726CEFAE300FDE884 /* ArmonyUITests.swift */; };
 		B1B6132029AEA7D500A0A0AA /* ValidatableTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B6131F29AEA7D500A0A0AA /* ValidatableTextView.swift */; };
 		B1B9F52326E927090036252D /* UICollectionView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B9F52226E927090036252D /* UICollectionView+Extensions.swift */; };
 		B1B9F52626E9282A0036252D /* UIResponder+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B9F52526E9282A0036252D /* UIResponder+Extensions.swift */; };
@@ -759,7 +762,6 @@
 		02A261F02B24D10D004D26A1 /* DeleteAccountFeedbackSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountFeedbackSelection.swift; sourceTree = "<group>"; };
 		02A261F22B24DBE0004D26A1 /* PostDeleteAccountFeedbackTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDeleteAccountFeedbackTask.swift; sourceTree = "<group>"; };
 		02A60CE12D0A291300B0FA80 /* Onboarding+Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = "Onboarding+Localizable.xcstrings"; sourceTree = "<group>"; };
-		02CA1A132F800000001CA013 /* ColoredRemoteImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredRemoteImageLoader.swift; sourceTree = "<group>"; };
 		02A824832881B202004351D0 /* MockRestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRestService.swift; sourceTree = "<group>"; };
 		02A9C1F62E3D614A0031A636 /* RevenueCatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevenueCatService.swift; sourceTree = "<group>"; };
 		02AA55E4302E69280047CE53 /* AdvertCoordinating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertCoordinating.swift; sourceTree = "<group>"; };
@@ -822,10 +824,14 @@
 		02CA1A032F800000001CA003 /* PlaceAdvertViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceAdvertViewModelTests.swift; sourceTree = "<group>"; };
 		02CA1A052F800000001CA005 /* MockPlaceAdvertCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPlaceAdvertCoordinator.swift; sourceTree = "<group>"; };
 		02CA1A072F800000001CA007 /* MockPlaceAdvertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPlaceAdvertView.swift; sourceTree = "<group>"; };
-		02CA1A112F800000001CA011 /* AdvertsViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertsViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
 		02CA1A0B2F800000001CA00B /* PlaceAdvertViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceAdvertViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
 		02CA1A0D2F800000001CA00D /* PlaceAdvertForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceAdvertForm.swift; sourceTree = "<group>"; };
 		02CA1A0F2F800000001CA00F /* SnapshotTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotTestCase.swift; sourceTree = "<group>"; };
+		02CA1A112F800000001CA011 /* AdvertsViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertsViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
+		02CA1A132F800000001CA013 /* ColoredRemoteImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredRemoteImageLoader.swift; sourceTree = "<group>"; };
+		02CA1A212F800000001CA021 /* UITestingContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestingContract.swift; sourceTree = "<group>"; };
+		02CA1A222F800000001CA022 /* UITestLaunchConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestLaunchConfiguration.swift; sourceTree = "<group>"; };
+		02CA1A272F800000001CA027 /* UITestStubURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestStubURLProtocol.swift; sourceTree = "<group>"; };
 		02CA1B002F800000001CB000 /* FilterCoordinating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCoordinating.swift; sourceTree = "<group>"; };
 		02CAA4AD284BCEA1004C118D /* ProfileUpdatePutTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUpdatePutTask.swift; sourceTree = "<group>"; };
 		02D00FCC2913254100B84DD7 /* HTTPUploadTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPUploadTask.swift; sourceTree = "<group>"; };
@@ -1066,8 +1072,6 @@
 		B1B55C9C26CEFAE300FDE884 /* AccountViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModelTests.swift; sourceTree = "<group>"; };
 		B1B55C9E26CEFAE300FDE884 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B1B55CA326CEFAE300FDE884 /* ArmonyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ArmonyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B1B55CA726CEFAE300FDE884 /* ArmonyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArmonyUITests.swift; sourceTree = "<group>"; };
-		B1B55CA926CEFAE300FDE884 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B1B6131F29AEA7D500A0A0AA /* ValidatableTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatableTextView.swift; sourceTree = "<group>"; };
 		B1B9F52226E927090036252D /* UICollectionView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extensions.swift"; sourceTree = "<group>"; };
 		B1B9F52526E9282A0036252D /* UIResponder+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponder+Extensions.swift"; sourceTree = "<group>"; };
@@ -1137,9 +1141,20 @@
 		FD0771887559456599426B2F /* Banners-Sample-Data.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "Banners-Sample-Data.json"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		02CA1A262F800000001CA026 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = B1B55CA226CEFAE300FDE884 /* ArmonyUITests */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		027D25CF2E50AEFB0074737C /* Localization */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Localization; sourceTree = "<group>"; };
 		A44F6E70DAEA82EAE7F95641 /* ArmonyIntegrationTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ArmonyIntegrationTests; sourceTree = "<group>"; };
+		B1B55CA626CEFAE300FDE884 /* ArmonyUITests */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (02CA1A262F800000001CA026 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = ArmonyUITests; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2289,6 +2304,16 @@
 			path = CreateAdvert;
 			sourceTree = "<group>";
 		};
+		02CA1A202F800000001CA020 /* Testing */ = {
+			isa = PBXGroup;
+			children = (
+				02CA1A212F800000001CA021 /* UITestingContract.swift */,
+				02CA1A222F800000001CA022 /* UITestLaunchConfiguration.swift */,
+				02CA1A272F800000001CA027 /* UITestStubURLProtocol.swift */,
+			);
+			path = Testing;
+			sourceTree = "<group>";
+		};
 		02D3283C2D276E6200B7E4BE /* AppRating */ = {
 			isa = PBXGroup;
 			children = (
@@ -2941,6 +2966,7 @@
 		B177347926D43F0E00BD7D39 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				02CA1A202F800000001CA020 /* Testing */,
 				02D3283F2D2777E700B7E4BE /* Security */,
 				026C4FD0280D5FA800C0B967 /* CommonConstants.swift */,
 				B1E2947F299FE22200602819 /* HashableKey.swift */,
@@ -3393,15 +3419,6 @@
 				B1B55C9E26CEFAE300FDE884 /* Info.plist */,
 			);
 			path = ArmonyTests;
-			sourceTree = "<group>";
-		};
-		B1B55CA626CEFAE300FDE884 /* ArmonyUITests */ = {
-			isa = PBXGroup;
-			children = (
-				B1B55CA726CEFAE300FDE884 /* ArmonyUITests.swift */,
-				B1B55CA926CEFAE300FDE884 /* Info.plist */,
-			);
-			path = ArmonyUITests;
 			sourceTree = "<group>";
 		};
 		B1B6131E29AEA7CA00A0A0AA /* Validatable */ = {
@@ -3893,6 +3910,9 @@
 			dependencies = (
 				B1B55CA526CEFAE300FDE884 /* PBXTargetDependency */,
 			);
+			fileSystemSynchronizedGroups = (
+				B1B55CA626CEFAE300FDE884 /* ArmonyUITests */,
+			);
 			name = ArmonyUITests;
 			productName = ArmonyUITests;
 			productReference = B1B55CA326CEFAE300FDE884 /* ArmonyUITests.xctest */;
@@ -4081,6 +4101,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02CA1A232F800000001CA023 /* UITestingContract.swift in Sources */,
+				02CA1A242F800000001CA024 /* UITestLaunchConfiguration.swift in Sources */,
+				02CA1A282F800000001CA028 /* UITestStubURLProtocol.swift in Sources */,
 				B14055A626D976BC00D1E565 /* RestAPI.swift in Sources */,
 				02299355280CD24600B7E411 /* AccountViewModel.swift in Sources */,
 				022F986A292818C100D8D783 /* LiveChatViewController.swift in Sources */,
@@ -4543,7 +4566,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1B55CA826CEFAE300FDE884 /* ArmonyUITests.swift in Sources */,
+				02CA1A252F800000001CA025 /* UITestingContract.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

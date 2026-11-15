@@ -106,6 +106,22 @@ Treat any file that holds secrets as **local-only** unless the project explicitl
 - Both test bundles use the app as test host; `AppDelegate` detects this and runs `startAsTestHost()` (no analytics, keychain wipe, permission prompts or splash).
 - Run only one bundle with `-only-testing:ArmonyTests` or `-only-testing:ArmonyIntegrationTests`.
 
+### UI tests (Page Object)
+
+- Target: **`ArmonyUITests`** (`Armony/ArmonyUITests/`), run with the **`Armony-UITests`** scheme (kept out of `Armony-Debug` so regular test runs stay fast). The folder is a **synchronized group**: new files need no `project.pbxproj` edits.
+- Layout: `Support/` (`UITestCase` base class, `TestUser`), `Pages/` (one page object per screen, built on `Page`), `Tests/` (flows that read like user steps; no raw `XCUIElement` queries in tests).
+- Page objects: navigating actions return the next page (`openAccountTab() -> RegistrationPage`); each page defines an `anchor` element, and `waitUntilDisplayed()` asserts it.
+- The app is launched by `UITestCase` (`launchHome()`, `launchLogin()`) with `-UITesting` (`UITestLaunchConfiguration`, **Debug builds only**): no splash/remote config, onboarding seen, animations off, and every request goes to `ui-tests.armony.invalid`, so UI tests never reach a real backend.
+- Network is stubbed **inside the app**: tests register `UITestStub`s (method + path suffix + status + JSON body) with `stub(_:)` **before** launching; `UITestCase` writes them to a per-test file (`UI_TEST_STUBS_FILE`) and `UITestStubURLProtocol` answers from it. Bodies come from `ArmonyUITests/Fixtures/*.json` (server keys, see `CodingKeys`); canned stubs live in `Support/UITestStub+Responses.swift`. The home screen's stubs (`UITestStub.home()`) are added to every test. **A request without a stub fails the test in `tearDown`** (the message names it), so a missing stub is never silently ignored.
+- Every request is appended to a per-test log file (`UI_TEST_REQUEST_LOG_FILE`): assert what the app sent with `waitForRequest("POST", "/auth/signin").json[...]`.
+- Fast starts, so a test only walks the navigation it is about: `launchHome(signedIn: true)` starts with a session (`UITestSession`); `launchLogin()` opens login directly via an authenticated deeplink (`UI_TEST_DEEPLINK`).
+- Parallel run (separate simulator clones; per-test temp files keep tests isolated): add `-parallel-testing-enabled YES -parallel-testing-worker-count 3` to the command below.
+- Flow tests (`LoginFlowTests`, `RegistrationFlowTests`) cover the whole result of a submit: screen closed, the completion ran (the tab the user was heading to is selected), or the error alert is shown and the screen stays. Smoke tests (`*SmokeTests`) need no stubs.
+- `Common/Testing/UITestingContract.swift` is compiled into **both** the app and `ArmonyUITests`: it holds `AccessibilityIdentifier` (raw value = case name) and the launch argument. To make a new element testable, add a case there and call `view.setAccessibilityIdentifier(_:)` in the view controller. Find elements by identifier, never by localized text.
+- Password fields change type when revealed (`secureTextFields` ↔ `textFields`): use `Page.element(_:)` (type-agnostic) for those.
+- The sign up password field uses `textContentType = .oneTimeCode` in UI test mode: iOS's "Strong Password" sheet otherwise swallows typed characters.
+- Run: `xcodebuild test -project Armony/Armony.xcodeproj -scheme Armony-UITests -destination 'platform=iOS Simulator,id=286C8272-3690-469C-9FFB-AF518C4C0379'`
+
 ### Simulator for CLI builds
 
 ```

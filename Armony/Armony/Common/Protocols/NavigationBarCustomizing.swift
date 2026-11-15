@@ -81,6 +81,7 @@ extension NavigationBarCustomizing where Self: UIViewController {
 
         let button = UIButton(type: .system)
         button.setImage(.dismissCrossIcon, for: .normal)
+        button.setAccessibilityIdentifier(.dismissButton)
         button.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             button.widthAnchor.constraint(equalToConstant: 32),

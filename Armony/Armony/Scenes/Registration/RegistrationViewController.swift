@@ -38,6 +38,7 @@ final class RegistrationViewController: UIViewController, ViewController {
 
     private lazy var hideShowPasswordButton: UIButton = {
         let button = UIButton(type: .custom)
+        button.setAccessibilityIdentifier(.registrationPasswordVisibilityButton)
         button.addTarget(self, action: #selector(hideShowPasswordButtonTapped), for: .touchUpInside)
         button.setImage(hideShowPasswordButtonImage, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -142,6 +143,11 @@ final class RegistrationViewController: UIViewController, ViewController {
         passwordTextField.autocorrectionType = .no
         passwordTextField.isSecureTextEntry = true
 
+        if UITestLaunchConfiguration.isEnabled {
+            // iOS offers a strong password on sign up forms, and that sheet swallows the characters UI tests type.
+            passwordTextField.textContentType = .oneTimeCode
+        }
+
         passwordTextField.rightView = hideShowPasswordButton
         passwordTextField.rightViewMode = .always
 
@@ -150,6 +156,15 @@ final class RegistrationViewController: UIViewController, ViewController {
                 Validation.Rule.Length(min: 6, max: 300, error: String("Common.Validation.Password.Error", table: .common))
             ]
         )
+    }
+
+    private func configureAccessibilityIdentifiers() {
+        titleLabel.setAccessibilityIdentifier(.registrationTitleLabel)
+        nameTextField.setAccessibilityIdentifier(.registrationNameTextField)
+        emailTextField.setAccessibilityIdentifier(.registrationEmailTextField)
+        passwordTextField.setAccessibilityIdentifier(.registrationPasswordTextField)
+        okayButton.setAccessibilityIdentifier(.registrationSignUpButton)
+        goLoginButton.setAccessibilityIdentifier(.registrationGoToLoginButton)
     }
 
     @objc private func hideShowPasswordButtonTapped() {
@@ -210,6 +225,7 @@ extension RegistrationViewController: RegistrationViewDelegate {
 
     func configureUI() {
         view.backgroundColor = .armonyBlack
+        configureAccessibilityIdentifiers()
         titleLabel.font = .semiboldTitle
         titleLabel.textColor = .armonyWhite
         navigationBarImageView.setAlpha(.medium)

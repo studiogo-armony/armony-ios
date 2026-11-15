@@ -32,6 +32,13 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             return true
         }
 
+        #if DEBUG
+        if UITestLaunchConfiguration.isEnabled {
+            startAsUITestApp()
+            return true
+        }
+        #endif
+
         clearKeychainIfneeded()
 
         // Configuration
@@ -100,7 +107,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
-        guard !isRunningAsTestHost else { return }
+        guard !isRunningAsTestHost, !UITestLaunchConfiguration.isEnabled else { return }
         updateAppIconBadgeNumber(application)
         requestATTPermission()
     }
@@ -123,6 +130,25 @@ private extension AppDelegate {
         window?.rootViewController = UIViewController()
         window?.makeKeyAndVisible()
     }
+
+    #if DEBUG
+    /// UI tests launch the app in its own process: the real tab bar flow, but without splash, remote config,
+    /// permission prompts or analytics (see `UITestLaunchConfiguration`).
+    func startAsUITestApp() {
+        UITestLaunchConfiguration.apply()
+        configureAppAppearance()
+        FirebaseService.shared.start()
+        MixPanelAnalytic.shared.startOptedOut()
+        IQKeyboardManager.shared.enable = true
+
+        AppCoordinator(window: window!).startAsArmony()
+        window?.makeKeyAndVisible()
+
+        if let deeplink = UITestLaunchConfiguration.deeplink {
+            navigation.open(deeplink, dismissToRoot: false)
+        }
+    }
+    #endif
 
     func configureNetworkActivityLogger(logger: NetworkActivityLogger = .shared, config: ConfigReader = .shared) {
         logger.startLogging(config: config)

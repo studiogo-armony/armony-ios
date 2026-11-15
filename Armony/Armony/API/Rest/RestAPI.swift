@@ -30,6 +30,9 @@ final class RestAPI: API {
     }()
 
     init(interceptor: RestAPIMiddleware, configuration: URLSessionConfiguration = .af.default) {
+        #if DEBUG
+        UITestLaunchConfiguration.installStubs(on: configuration)
+        #endif
         self.connector = Session(additionalHeaders: HTTPHeaders(), interceptor: interceptor, configuration: configuration)
     }
 

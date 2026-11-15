@@ -1,0 +1,12 @@
+{
+    "data": {
+        "id": "ui-test-user",
+        "name": "Test User",
+        "bio": null,
+        "city": null,
+        "photoUrl": null,
+        "genres": [],
+        "title": null,
+        "skills": []
+    }
+}

@@ -1,0 +1,7 @@
+{
+    "data": {
+        "accessToken": "ui-test-access",
+        "refreshToken": "ui-test-refresh",
+        "userId": "ui-test-user"
+    }
+}

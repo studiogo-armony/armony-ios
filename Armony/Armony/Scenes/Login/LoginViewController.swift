@@ -30,6 +30,7 @@ public final class LoginViewController: UIViewController, ViewController {
 
     private lazy var hideShowPasswordButton: UIButton = {
         let button = UIButton(type: .custom)
+        button.setAccessibilityIdentifier(.loginPasswordVisibilityButton)
         button.addTarget(self, action: #selector(hideShowPasswordButtonTapped), for: .touchUpInside)
         button.setImage(hideShowPasswordButtonImage, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -117,6 +118,15 @@ public final class LoginViewController: UIViewController, ViewController {
         )
     }
 
+    private func configureAccessibilityIdentifiers() {
+        titleLabel.setAccessibilityIdentifier(.loginTitleLabel)
+        emailTextField.setAccessibilityIdentifier(.loginEmailTextField)
+        passwordTextField.setAccessibilityIdentifier(.loginPasswordTextField)
+        loginButton.setAccessibilityIdentifier(.loginSignInButton)
+        forgetPasswordButton.setAccessibilityIdentifier(.loginForgotPasswordButton)
+        signupButton.setAccessibilityIdentifier(.loginGoToSignUpButton)
+    }
+
     @objc private func hideShowPasswordButtonTapped() {
         passwordTextField.isSecureTextEntry.toggle()
         hideShowPasswordButton.setImage(hideShowPasswordButtonImage, for: .normal)
@@ -127,6 +137,7 @@ public final class LoginViewController: UIViewController, ViewController {
 extension LoginViewController: LoginViewDelegate {
     func configureUI() {
         view.backgroundColor = .armonyBlack
+        configureAccessibilityIdentifiers()
         navigationBarImageView.setAlpha(.medium)
         gradientView.configure(with: .init(orientation: .vertical, color: .login))
         titleLabel.text = String("SignIn", table: .common)

@@ -42,6 +42,7 @@ final class AccountViewController: UIViewController, ViewController {
         super.viewDidLoad()
         configureSegmentedControl()
         prepareUI()
+        editButton.setAccessibilityIdentifier(.accountEditButton)
         viewModel.viewDidLoad()
 
         addNotifications(
